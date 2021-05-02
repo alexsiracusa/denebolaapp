@@ -1,5 +1,5 @@
 //
-//  CategoriesText.swift
+//  SearchButton.swift
 //  DenebolaApp
 //
 //  Created by Alex Siracusa on 5/2/21.
@@ -7,25 +7,24 @@
 
 import SwiftUI
 
-struct CategoriesText: View {
+struct SearchButton: View {
     let backgroundRect: some View = RoundedRectangle(cornerRadius: 1000, style: .circular).foregroundColor(Color.gray)
     
     var body: some View {
         HStack {
-            Image(systemName: "paperplane.circle")
+            Image(systemName: "magnifyingglass.circle")
                 .resizable()
                 .frame(width: 25, height: 25)
-            Text("Categories")
+            Text("Search")
         }
         .padding([.top, .bottom], 8)
         .padding([.leading, .trailing], 15)
         .background(backgroundRect.brightness(0.3))
-            
     }
 }
 
-struct CategoriesText_Previews: PreviewProvider {
+struct SearchButton_Previews: PreviewProvider {
     static var previews: some View {
-        CategoriesText()
+        SearchButton()
     }
 }

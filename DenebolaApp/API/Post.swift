@@ -38,6 +38,10 @@ struct Post: Codable, Equatable, Identifiable {
     var renderedTitle: String {
         return title.rendered.html2AttributedString!
     }
+    
+    var hasMedia: Bool {
+        return featured_media != 0
+    }
 }
 
 struct Embeded: Codable {

@@ -15,22 +15,30 @@ struct CategoriesView: View {
             VStack {
                 ScrollViewReader { value in
                     ScrollView(.horizontal) {
-                        Button {
-                            withAnimation {
-                                value.scrollTo(1, anchor: .top)
+                        HStack {
+                            Button {
+                                withAnimation {
+                                    value.scrollTo(1, anchor: .top)
+                                }
+                            } label : {
+                                CategoriesButton()
+                                    .foregroundColor(.black)
                             }
-                        } label : {
-                            CategoriesText()
-                                .padding(.leading)
-                                .padding(.bottom, 5)
-                                .foregroundColor(.black)
+                            Button {
+                                //TODO
+                            } label : {
+                                SearchButton()
+                                    .foregroundColor(.black)
+                            }
                         }
+                        .padding(.leading)
+                        .padding(.bottom, 5)
                     }
                     ScrollView {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 0) {
                                 ForEach(Categories.allCases, id: \.rawValue.0) {category in
-                                    CategoryButton(id: category.id, name: category.name)
+                                    CategoryButton(id: category.id, name: category.name, image: category.image)
                                         .padding([.leading, .trailing], 5)
                                 }
                                 Rectangle()

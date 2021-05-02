@@ -18,7 +18,7 @@ struct PostFeed: View {
                 //let title = post.renderedTitle
                 let title = post.title.rendered
                 let date = post.date
-                let image = post._embedded!.featuredMedia![0].source_url
+                let image = post._embedded!.featuredMedia?[0].source_url
                 PostRow(title: title, author: "Author", date: date, imageURL: image, post: post)
             }
         } else {
@@ -27,7 +27,8 @@ struct PostFeed: View {
             }
             Text("Loading")
                 .onAppear {
-                    handler.loadPostPage(category: nil, page: 1, per_page: 10, embed: true) { posts, error in
+                    //The API can't load the media in post 15, id: 25090 because of permissions I think so we need to figure that out
+                    handler.loadPostPage(category: nil, page: 1, per_page: 14, embed: true) { posts, error in
                         self.posts = posts
                         self.error = error
                     }

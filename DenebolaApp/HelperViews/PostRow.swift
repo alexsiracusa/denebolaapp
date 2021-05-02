@@ -12,41 +12,57 @@ struct PostRow: View {
     let title: String
     let author: String
     let date: String
-    let imageURL: String
+    let imageURL: String?
     @State var image: Image? = nil
     var post: Post
     
     var body: some View {
         HStack(alignment: .top) {
+            //media display
             if let image = image {
+                //loaded media
                 image
                     .resizable()
-                    //.aspectRatio(contentMode: .fit)
+                    .scaledToFill()
                     .frame(height: 100)
                     .aspectRatio(1.6, contentMode: .fit)
-                    .frame(height: 100)
+                    .clipped()
+                    .cornerRadius(5)
             } else {
-                Rectangle()
-                    .frame(height: 100)
-                    .aspectRatio(1.6, contentMode: .fit)
-                    .foregroundColor(.gray)
+                if post.hasMedia {
+                    //loading media
+                    Rectangle()
+                        .frame(height: 100)
+                        .aspectRatio(1.6, contentMode: .fit)
+                        .foregroundColor(.gray)
+                        .cornerRadius(5)
+                } else {
+                    //has no media
+                    Image("DenebolaLogo")
+                        .resizable()
+                        .frame(width: 100, height: 100)
+                        .cornerRadius(5)
+                }
             }
+            
+            //title + author + date
             NavigationLink( destination:
-                PostView(post: post)
+                PostView(post: post, image: image)
                     .navigationBarTitle(Text(""), displayMode: .inline)
             ) {
                 VStack(alignment: .leading, spacing: 3) {
+                    //title
                     Text(title)
                         .lineLimit(nil)
                         .font(.title2)
                         .lineLimit(nil)
-                        //.frame(maxHeight: 75)
-                    
+                    //author
                     HStack {
                         Image(systemName: "person.fill")
                         Text(author).font(.subheadline)
                             .lineLimit(1)
                     }
+                    //date
                     HStack {
                         Image(systemName: "calendar")
                         Text(date).font(.subheadline)
@@ -60,8 +76,10 @@ struct PostRow: View {
         .frame(height:100)
         .padding([.leading, .trailing], 10)
         .onAppear {
-            handler.loadImage(imageURL) { image, error  in
-                self.image = image
+            if let url = imageURL {
+                handler.loadImage(url) { image, error  in
+                    self.image = image
+                }
             }
         }
     }

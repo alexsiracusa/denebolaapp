@@ -33,17 +33,17 @@ enum Categories: RawRepresentable, CaseIterable {
     
     var rawValue: (Int, String, Image) {
         switch self {
-        case .arts: return (2, "Arts", Image("RamenPanda"))
-        case .photo_gallery: return (55, "Photos", Image("RamenPanda"))
-        case .videos: return (14, "Videos", Image("RamenPanda"))
-        case .news: return (6, "News", Image("RamenPanda"))
-        case .club_directory: return (371, "Clubs", Image("RamenPanda"))
-        case .features: return (255, "Features", Image("RamenPanda"))
-        case .humans_of_south: return (657, "South", Image("RamenPanda"))
-        case .opinions: return (7, "Opinions", Image("RamenPanda"))
-        case .procrastinate_here: return (182, "Procrastinate", Image("RamenPanda"))
-        case .sports: return (10, "Sports", Image("RamenPanda"))
-        case .athlete_of_the_week: return (399, "Athlete", Image("RamenPanda"))
+        case .arts: return (2, "Arts", Image("DenebolaLogo"))
+        case .photo_gallery: return (55, "Photos", Image("DenebolaLogo"))
+        case .videos: return (14, "Videos", Image("DenebolaLogo"))
+        case .news: return (6, "News", Image("DenebolaLogo"))
+        case .club_directory: return (371, "Clubs", Image("DenebolaLogo"))
+        case .features: return (255, "Features", Image("DenebolaLogo"))
+        case .humans_of_south: return (657, "South", Image("DenebolaLogo"))
+        case .opinions: return (7, "Opinions", Image("DenebolaLogo"))
+        case .procrastinate_here: return (182, "Procrastinate", Image("DenebolaLogo"))
+        case .sports: return (10, "Sports", Image("DenebolaLogo"))
+        case .athlete_of_the_week: return (399, "Athlete", Image("DenebolaLogo"))
         }
     }
     

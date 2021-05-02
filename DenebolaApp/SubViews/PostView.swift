@@ -25,12 +25,24 @@ struct PostView: View {
     /// swiftui refuses to give any useful errors if it doesn't compile so just don't make errors
     var body: some View {
         ScrollView {
+            //image
             if let image = image {
                 image
                     .resizable()
                     .scaledToFit()
-                    .padding(.top, 10)
+            } else {
+                if post.hasMedia {
+                    Rectangle()
+                        .frame(height: 250)
+                        .foregroundColor(.gray)
+                }
             }
+            //title
+            Text(post.title.rendered).font(.largeTitle).bold()
+                .frame(alignment: .leading)
+                .padding(.bottom, 5)
+            
+            //content
             if let content = content {
                 Text(content)
                     .fixedSize(horizontal: false, vertical: true)
@@ -44,6 +56,7 @@ struct PostView: View {
             }
         }
         .onAppear() {
+            self.content = self.post.renderedContent
             handler.loadFullPost(id, embed: true) { post, media, image, error in
                 self.loaded = true
                 self.media = media
@@ -53,7 +66,7 @@ struct PostView: View {
                 self.content = post.renderedContent
             }
         }
-        .padding([.leading, .trailing])
+        .padding([.leading, .trailing, .top])
     }
 }
 
