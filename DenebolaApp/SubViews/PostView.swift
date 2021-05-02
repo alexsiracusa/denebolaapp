@@ -11,9 +11,11 @@ import WebKit
 struct PostView: View {
     @EnvironmentObject var handler: APIHandler
     
-    let id: Int
+    var id: Int {
+        return post.id
+    }
     @State var loaded = false
-    @State var post: Post? = nil
+    @State var post: Post
     @State var media: Media? = nil
     @State var image: Image? = nil
     @State var error: String? = nil
@@ -27,6 +29,7 @@ struct PostView: View {
                 image
                     .resizable()
                     .scaledToFit()
+                    .padding(.top, 10)
             }
             if let content = content {
                 Text(content)
@@ -41,9 +44,8 @@ struct PostView: View {
             }
         }
         .onAppear() {
-            handler.loadFullPost(id) { post, media, image, error in
+            handler.loadFullPost(id, embed: true) { post, media, image, error in
                 self.loaded = true
-                self.post = post
                 self.media = media
                 self.image = image
                 self.error = error
@@ -57,7 +59,7 @@ struct PostView: View {
 
 struct PostView_Previews: PreviewProvider {
     static var previews: some View {
-        PostView(id: 25094)
+        PostView(post: Post.default)
             .environmentObject(APIHandler())
     }
 }

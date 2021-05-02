@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ViewController: View {
+    @EnvironmentObject var handler: APIHandler
     
     init() {
         UITabBar.appearance().barTintColor = UIColor.white
@@ -18,7 +19,7 @@ struct ViewController: View {
             HomeView()
                 .tabItem {
                     Image(systemName: "house")
-                    Text("Favourites")
+                    Text("Home")
             }
             MultimediaView()
                 .tabItem {
@@ -43,5 +44,6 @@ struct ViewController: View {
 struct ViewController_Previews: PreviewProvider {
     static var previews: some View {
         ViewController()
+            .environmentObject(APIHandler())
     }
 }

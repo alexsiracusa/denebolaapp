@@ -11,8 +11,9 @@ import SwiftUI
 class APIHandler: ObservableObject {
     let domain = "https://nshsdenebola.com"
     
-    func loadPost(_ id: Int, completionHandler: @escaping (Post?, String?) -> Void) {
-        let url = domain + "/wp-json/wp/v2/posts/" + "\(id)"
+    func loadPost(_ id: Int, embed: Bool, completionHandler: @escaping (Post?, String?) -> Void) {
+        var url = domain + "/wp-json/wp/v2/posts/" + "\(id)"
+        if embed {url += "?_embed"}
         APIHandler.decodeJSON(url: url, completionHandler: completionHandler)
     }
     
@@ -26,24 +27,26 @@ class APIHandler: ObservableObject {
         APIHandler.decodeJSON(url: url, completionHandler: completionHandler)
     }
     
-    func loadCategoryList(page: Int = 1, per_page: Int = 100, completionHandler: @escaping ([Category]?, String?) -> Void) {
+    func loadCategoryList(page: Int = 1, per_page: Int = 100, embed: Bool, completionHandler: @escaping ([Category]?, String?) -> Void) {
         var url = domain + "/?rest_route=/wp/v2/categories"
         url += "&page=\(page)"
         url += "&per_page=\(per_page)"
+        if embed {url += "&_embed"}
         APIHandler.decodeJSON(url: url, completionHandler: completionHandler)
     }
     
-    func loadPostPage(category: Int? = nil, page: Int = 1, per_page: Int = 10, completionHandler: @escaping ([Post]?, String?) -> Void) {
+    func loadPostPage(category: Int? = nil, page: Int = 1, per_page: Int = 10, embed: Bool,  completionHandler: @escaping ([Post]?, String?) -> Void) {
         var url = domain + "/?rest_route=/wp/v2/posts"
         url += "&per_page=\(per_page)"
         if let category = category {url += "&categories=\(category)"}
         url += "&page=\(page)"
+        if embed {url += "&_embed"}
         APIHandler.decodeJSON(url: url, completionHandler: completionHandler)
     }
     
-    func loadFullPost(_ id: Int, completionHandler: @escaping (Post?, Media?, Image?, String?) -> Void) {
+    func loadFullPost(_ id: Int, embed: Bool, completionHandler: @escaping (Post?, Media?, Image?, String?) -> Void) {
         // loading post
-        loadPost(id) { post, error in
+        loadPost(id, embed: embed) { post, error in
             guard let post = post, error == nil else {
                 completionHandler(nil, nil, nil, error)
                 return

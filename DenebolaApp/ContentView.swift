@@ -9,7 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
+        //PostFeed()
         ViewController()
+            .environmentObject(APIHandler())
         //PostView(id: 25133)
         //    .environmentObject(APIHandler())
     }

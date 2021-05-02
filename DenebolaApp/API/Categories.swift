@@ -21,6 +21,16 @@ enum Categories: RawRepresentable, CaseIterable {
     case sports
     case athlete_of_the_week
     
+    var id: Int {
+        return self.rawValue.0
+    }
+    var name: String {
+        return self.rawValue.1
+    }
+    var image: Image {
+        return self.rawValue.2
+    }
+    
     var rawValue: (Int, String, Image) {
         switch self {
         case .arts: return (2, "Arts", Image("RamenPanda"))

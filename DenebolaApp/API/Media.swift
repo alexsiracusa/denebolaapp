@@ -10,13 +10,13 @@ import Foundation
 struct Media: Codable, Equatable, Identifiable {
     let id: Int
     let date: String
-    let date_gmt: String
-    let status: String
+    let date_gmt: String?
+    let status: String?
     let type: String
     let link: String
     let title: Render
     let author: Int
-    let description: Render
+    let description: Render?
     let caption: Render
     let media_type: String
     let mime_type: String
