@@ -1,0 +1,585 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CEC03FB1263E354200FFCB45 /* DenebolaAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FB0263E354200FFCB45 /* DenebolaAppApp.swift */; };
+		CEC03FB3263E354200FFCB45 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FB2263E354200FFCB45 /* ContentView.swift */; };
+		CEC03FB5263E354400FFCB45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC03FB4263E354400FFCB45 /* Assets.xcassets */; };
+		CEC03FB8263E354400FFCB45 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC03FB7263E354400FFCB45 /* Preview Assets.xcassets */; };
+		CEC03FC3263E354400FFCB45 /* DenebolaAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FC2263E354400FFCB45 /* DenebolaAppTests.swift */; };
+		CEC03FCE263E354400FFCB45 /* DenebolaAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FCD263E354400FFCB45 /* DenebolaAppUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CEC03FBF263E354400FFCB45 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CEC03FA5263E354200FFCB45 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CEC03FAC263E354200FFCB45;
+			remoteInfo = DenebolaApp;
+		};
+		CEC03FCA263E354400FFCB45 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CEC03FA5263E354200FFCB45 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CEC03FAC263E354200FFCB45;
+			remoteInfo = DenebolaApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CEC03FAD263E354200FFCB45 /* DenebolaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DenebolaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEC03FB0263E354200FFCB45 /* DenebolaAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenebolaAppApp.swift; sourceTree = "<group>"; };
+		CEC03FB2263E354200FFCB45 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CEC03FB4263E354400FFCB45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CEC03FB7263E354400FFCB45 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CEC03FB9263E354400FFCB45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CEC03FBE263E354400FFCB45 /* DenebolaAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DenebolaAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEC03FC2263E354400FFCB45 /* DenebolaAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenebolaAppTests.swift; sourceTree = "<group>"; };
+		CEC03FC4263E354400FFCB45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CEC03FC9263E354400FFCB45 /* DenebolaAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DenebolaAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEC03FCD263E354400FFCB45 /* DenebolaAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenebolaAppUITests.swift; sourceTree = "<group>"; };
+		CEC03FCF263E354400FFCB45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CEC03FAA263E354200FFCB45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEC03FBB263E354400FFCB45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEC03FC6263E354400FFCB45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CEC03FA4263E354200FFCB45 = {
+			isa = PBXGroup;
+			children = (
+				CEC03FAF263E354200FFCB45 /* DenebolaApp */,
+				CEC03FC1263E354400FFCB45 /* DenebolaAppTests */,
+				CEC03FCC263E354400FFCB45 /* DenebolaAppUITests */,
+				CEC03FAE263E354200FFCB45 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CEC03FAE263E354200FFCB45 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CEC03FAD263E354200FFCB45 /* DenebolaApp.app */,
+				CEC03FBE263E354400FFCB45 /* DenebolaAppTests.xctest */,
+				CEC03FC9263E354400FFCB45 /* DenebolaAppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CEC03FAF263E354200FFCB45 /* DenebolaApp */ = {
+			isa = PBXGroup;
+			children = (
+				CEC03FB0263E354200FFCB45 /* DenebolaAppApp.swift */,
+				CEC03FB2263E354200FFCB45 /* ContentView.swift */,
+				CEC03FB4263E354400FFCB45 /* Assets.xcassets */,
+				CEC03FB9263E354400FFCB45 /* Info.plist */,
+				CEC03FB6263E354400FFCB45 /* Preview Content */,
+			);
+			path = DenebolaApp;
+			sourceTree = "<group>";
+		};
+		CEC03FB6263E354400FFCB45 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				CEC03FB7263E354400FFCB45 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CEC03FC1263E354400FFCB45 /* DenebolaAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				CEC03FC2263E354400FFCB45 /* DenebolaAppTests.swift */,
+				CEC03FC4263E354400FFCB45 /* Info.plist */,
+			);
+			path = DenebolaAppTests;
+			sourceTree = "<group>";
+		};
+		CEC03FCC263E354400FFCB45 /* DenebolaAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				CEC03FCD263E354400FFCB45 /* DenebolaAppUITests.swift */,
+				CEC03FCF263E354400FFCB45 /* Info.plist */,
+			);
+			path = DenebolaAppUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CEC03FAC263E354200FFCB45 /* DenebolaApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEC03FD2263E354400FFCB45 /* Build configuration list for PBXNativeTarget "DenebolaApp" */;
+			buildPhases = (
+				CEC03FA9263E354200FFCB45 /* Sources */,
+				CEC03FAA263E354200FFCB45 /* Frameworks */,
+				CEC03FAB263E354200FFCB45 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DenebolaApp;
+			productName = DenebolaApp;
+			productReference = CEC03FAD263E354200FFCB45 /* DenebolaApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CEC03FBD263E354400FFCB45 /* DenebolaAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEC03FD5263E354400FFCB45 /* Build configuration list for PBXNativeTarget "DenebolaAppTests" */;
+			buildPhases = (
+				CEC03FBA263E354400FFCB45 /* Sources */,
+				CEC03FBB263E354400FFCB45 /* Frameworks */,
+				CEC03FBC263E354400FFCB45 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CEC03FC0263E354400FFCB45 /* PBXTargetDependency */,
+			);
+			name = DenebolaAppTests;
+			productName = DenebolaAppTests;
+			productReference = CEC03FBE263E354400FFCB45 /* DenebolaAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CEC03FC8263E354400FFCB45 /* DenebolaAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEC03FD8263E354400FFCB45 /* Build configuration list for PBXNativeTarget "DenebolaAppUITests" */;
+			buildPhases = (
+				CEC03FC5263E354400FFCB45 /* Sources */,
+				CEC03FC6263E354400FFCB45 /* Frameworks */,
+				CEC03FC7263E354400FFCB45 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CEC03FCB263E354400FFCB45 /* PBXTargetDependency */,
+			);
+			name = DenebolaAppUITests;
+			productName = DenebolaAppUITests;
+			productReference = CEC03FC9263E354400FFCB45 /* DenebolaAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CEC03FA5263E354200FFCB45 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					CEC03FAC263E354200FFCB45 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					CEC03FBD263E354400FFCB45 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = CEC03FAC263E354200FFCB45;
+					};
+					CEC03FC8263E354400FFCB45 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = CEC03FAC263E354200FFCB45;
+					};
+				};
+			};
+			buildConfigurationList = CEC03FA8263E354200FFCB45 /* Build configuration list for PBXProject "DenebolaApp" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CEC03FA4263E354200FFCB45;
+			productRefGroup = CEC03FAE263E354200FFCB45 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CEC03FAC263E354200FFCB45 /* DenebolaApp */,
+				CEC03FBD263E354400FFCB45 /* DenebolaAppTests */,
+				CEC03FC8263E354400FFCB45 /* DenebolaAppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CEC03FAB263E354200FFCB45 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEC03FB8263E354400FFCB45 /* Preview Assets.xcassets in Resources */,
+				CEC03FB5263E354400FFCB45 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEC03FBC263E354400FFCB45 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEC03FC7263E354400FFCB45 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CEC03FA9263E354200FFCB45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEC03FB3263E354200FFCB45 /* ContentView.swift in Sources */,
+				CEC03FB1263E354200FFCB45 /* DenebolaAppApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEC03FBA263E354400FFCB45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEC03FC3263E354400FFCB45 /* DenebolaAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEC03FC5263E354400FFCB45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEC03FCE263E354400FFCB45 /* DenebolaAppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CEC03FC0263E354400FFCB45 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CEC03FAC263E354200FFCB45 /* DenebolaApp */;
+			targetProxy = CEC03FBF263E354400FFCB45 /* PBXContainerItemProxy */;
+		};
+		CEC03FCB263E354400FFCB45 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CEC03FAC263E354200FFCB45 /* DenebolaApp */;
+			targetProxy = CEC03FCA263E354400FFCB45 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		CEC03FD0263E354400FFCB45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CEC03FD1263E354400FFCB45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CEC03FD3263E354400FFCB45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"DenebolaApp/Preview Content\"";
+				DEVELOPMENT_TEAM = 6ZFN3Y2T93;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = DenebolaApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = sequal.DenebolaApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CEC03FD4263E354400FFCB45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"DenebolaApp/Preview Content\"";
+				DEVELOPMENT_TEAM = 6ZFN3Y2T93;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = DenebolaApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = sequal.DenebolaApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CEC03FD6263E354400FFCB45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6ZFN3Y2T93;
+				INFOPLIST_FILE = DenebolaAppTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = sequal.DenebolaAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DenebolaApp.app/DenebolaApp";
+			};
+			name = Debug;
+		};
+		CEC03FD7263E354400FFCB45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6ZFN3Y2T93;
+				INFOPLIST_FILE = DenebolaAppTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = sequal.DenebolaAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DenebolaApp.app/DenebolaApp";
+			};
+			name = Release;
+		};
+		CEC03FD9263E354400FFCB45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6ZFN3Y2T93;
+				INFOPLIST_FILE = DenebolaAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = sequal.DenebolaAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DenebolaApp;
+			};
+			name = Debug;
+		};
+		CEC03FDA263E354400FFCB45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6ZFN3Y2T93;
+				INFOPLIST_FILE = DenebolaAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = sequal.DenebolaAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DenebolaApp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CEC03FA8263E354200FFCB45 /* Build configuration list for PBXProject "DenebolaApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEC03FD0263E354400FFCB45 /* Debug */,
+				CEC03FD1263E354400FFCB45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CEC03FD2263E354400FFCB45 /* Build configuration list for PBXNativeTarget "DenebolaApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEC03FD3263E354400FFCB45 /* Debug */,
+				CEC03FD4263E354400FFCB45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CEC03FD5263E354400FFCB45 /* Build configuration list for PBXNativeTarget "DenebolaAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEC03FD6263E354400FFCB45 /* Debug */,
+				CEC03FD7263E354400FFCB45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CEC03FD8263E354400FFCB45 /* Build configuration list for PBXNativeTarget "DenebolaAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEC03FD9263E354400FFCB45 /* Debug */,
+				CEC03FDA263E354400FFCB45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CEC03FA5263E354200FFCB45 /* Project object */;
+}
