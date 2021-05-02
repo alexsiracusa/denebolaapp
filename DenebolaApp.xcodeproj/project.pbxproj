@@ -13,6 +13,11 @@
 		CEC03FB8263E354400FFCB45 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC03FB7263E354400FFCB45 /* Preview Assets.xcassets */; };
 		CEC03FC3263E354400FFCB45 /* DenebolaAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FC2263E354400FFCB45 /* DenebolaAppTests.swift */; };
 		CEC03FCE263E354400FFCB45 /* DenebolaAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FCD263E354400FFCB45 /* DenebolaAppUITests.swift */; };
+		FA73AA2B263E361E00B6C8B6 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73AA27263E361E00B6C8B6 /* Media.swift */; };
+		FA73AA2C263E361E00B6C8B6 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73AA28263E361E00B6C8B6 /* Category.swift */; };
+		FA73AA2D263E361E00B6C8B6 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73AA29263E361E00B6C8B6 /* Post.swift */; };
+		FA73AA2E263E361E00B6C8B6 /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73AA2A263E361E00B6C8B6 /* APIHandler.swift */; };
+		FA73AA30263E363600B6C8B6 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73AA2F263E363600B6C8B6 /* PostView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +50,11 @@
 		CEC03FC9263E354400FFCB45 /* DenebolaAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DenebolaAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC03FCD263E354400FFCB45 /* DenebolaAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenebolaAppUITests.swift; sourceTree = "<group>"; };
 		CEC03FCF263E354400FFCB45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA73AA27263E361E00B6C8B6 /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
+		FA73AA28263E361E00B6C8B6 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		FA73AA29263E361E00B6C8B6 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		FA73AA2A263E361E00B6C8B6 /* APIHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
+		FA73AA2F263E363600B6C8B6 /* PostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +107,8 @@
 			children = (
 				CEC03FB0263E354200FFCB45 /* DenebolaAppApp.swift */,
 				CEC03FB2263E354200FFCB45 /* ContentView.swift */,
+				FA73AA2F263E363600B6C8B6 /* PostView.swift */,
+				FA73AA26263E361E00B6C8B6 /* API */,
 				CEC03FB4263E354400FFCB45 /* Assets.xcassets */,
 				CEC03FB9263E354400FFCB45 /* Info.plist */,
 				CEC03FB6263E354400FFCB45 /* Preview Content */,
@@ -128,6 +140,17 @@
 				CEC03FCF263E354400FFCB45 /* Info.plist */,
 			);
 			path = DenebolaAppUITests;
+			sourceTree = "<group>";
+		};
+		FA73AA26263E361E00B6C8B6 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				FA73AA27263E361E00B6C8B6 /* Media.swift */,
+				FA73AA28263E361E00B6C8B6 /* Category.swift */,
+				FA73AA29263E361E00B6C8B6 /* Post.swift */,
+				FA73AA2A263E361E00B6C8B6 /* APIHandler.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,8 +282,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA73AA30263E363600B6C8B6 /* PostView.swift in Sources */,
 				CEC03FB3263E354200FFCB45 /* ContentView.swift in Sources */,
 				CEC03FB1263E354200FFCB45 /* DenebolaAppApp.swift in Sources */,
+				FA73AA2B263E361E00B6C8B6 /* Media.swift in Sources */,
+				FA73AA2E263E361E00B6C8B6 /* APIHandler.swift in Sources */,
+				FA73AA2C263E361E00B6C8B6 /* Category.swift in Sources */,
+				FA73AA2D263E361E00B6C8B6 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,7 +447,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DenebolaApp/Preview Content\"";
-				DEVELOPMENT_TEAM = 6ZFN3Y2T93;
+				DEVELOPMENT_TEAM = 9LZB553FST;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DenebolaApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -427,7 +455,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = sequal.DenebolaApp;
+				PRODUCT_BUNDLE_IDENTIFIER = org.siracusafamily.DenebolaApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -441,7 +469,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DenebolaApp/Preview Content\"";
-				DEVELOPMENT_TEAM = 6ZFN3Y2T93;
+				DEVELOPMENT_TEAM = 9LZB553FST;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DenebolaApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -449,7 +477,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = sequal.DenebolaApp;
+				PRODUCT_BUNDLE_IDENTIFIER = org.siracusafamily.DenebolaApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
