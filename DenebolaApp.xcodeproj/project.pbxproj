@@ -13,6 +13,12 @@
 		CEC03FB8263E354400FFCB45 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC03FB7263E354400FFCB45 /* Preview Assets.xcassets */; };
 		CEC03FC3263E354400FFCB45 /* DenebolaAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FC2263E354400FFCB45 /* DenebolaAppTests.swift */; };
 		CEC03FCE263E354400FFCB45 /* DenebolaAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FCD263E354400FFCB45 /* DenebolaAppUITests.swift */; };
+		FA56AA43263F080900B6D838 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA42263F080900B6D838 /* ViewController.swift */; };
+		FA56AA46263F0B2300B6D838 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA45263F0B2300B6D838 /* CategoriesView.swift */; };
+		FA56AA4A263F0B5100B6D838 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA49263F0B5100B6D838 /* HomeView.swift */; };
+		FA56AA4C263F0B5A00B6D838 /* PodcastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA4B263F0B5A00B6D838 /* PodcastView.swift */; };
+		FA56AA4E263F0B6700B6D838 /* MultimediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA4D263F0B6700B6D838 /* MultimediaView.swift */; };
+		FA56AA51263F0BFF00B6D838 /* PhotoGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA50263F0BFF00B6D838 /* PhotoGalleryView.swift */; };
 		FA73AA2B263E361E00B6C8B6 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73AA27263E361E00B6C8B6 /* Media.swift */; };
 		FA73AA2C263E361E00B6C8B6 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73AA28263E361E00B6C8B6 /* Category.swift */; };
 		FA73AA2D263E361E00B6C8B6 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73AA29263E361E00B6C8B6 /* Post.swift */; };
@@ -50,6 +56,12 @@
 		CEC03FC9263E354400FFCB45 /* DenebolaAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DenebolaAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC03FCD263E354400FFCB45 /* DenebolaAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenebolaAppUITests.swift; sourceTree = "<group>"; };
 		CEC03FCF263E354400FFCB45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA56AA42263F080900B6D838 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FA56AA45263F0B2300B6D838 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
+		FA56AA49263F0B5100B6D838 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		FA56AA4B263F0B5A00B6D838 /* PodcastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastView.swift; sourceTree = "<group>"; };
+		FA56AA4D263F0B6700B6D838 /* MultimediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultimediaView.swift; sourceTree = "<group>"; };
+		FA56AA50263F0BFF00B6D838 /* PhotoGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryView.swift; sourceTree = "<group>"; };
 		FA73AA27263E361E00B6C8B6 /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		FA73AA28263E361E00B6C8B6 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		FA73AA29263E361E00B6C8B6 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -107,7 +119,9 @@
 			children = (
 				CEC03FB0263E354200FFCB45 /* DenebolaAppApp.swift */,
 				CEC03FB2263E354200FFCB45 /* ContentView.swift */,
-				FA73AA2F263E363600B6C8B6 /* PostView.swift */,
+				FA56AA42263F080900B6D838 /* ViewController.swift */,
+				FA56AA44263F0B0E00B6D838 /* MainViews */,
+				FA56AA4F263F0BCA00B6D838 /* SubViews */,
 				FA73AA26263E361E00B6C8B6 /* API */,
 				CEC03FB4263E354400FFCB45 /* Assets.xcassets */,
 				CEC03FB9263E354400FFCB45 /* Info.plist */,
@@ -142,13 +156,33 @@
 			path = DenebolaAppUITests;
 			sourceTree = "<group>";
 		};
+		FA56AA44263F0B0E00B6D838 /* MainViews */ = {
+			isa = PBXGroup;
+			children = (
+				FA56AA49263F0B5100B6D838 /* HomeView.swift */,
+				FA56AA45263F0B2300B6D838 /* CategoriesView.swift */,
+				FA56AA4B263F0B5A00B6D838 /* PodcastView.swift */,
+				FA56AA4D263F0B6700B6D838 /* MultimediaView.swift */,
+			);
+			path = MainViews;
+			sourceTree = "<group>";
+		};
+		FA56AA4F263F0BCA00B6D838 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				FA73AA2F263E363600B6C8B6 /* PostView.swift */,
+				FA56AA50263F0BFF00B6D838 /* PhotoGalleryView.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
 		FA73AA26263E361E00B6C8B6 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				FA73AA2A263E361E00B6C8B6 /* APIHandler.swift */,
+				FA73AA29263E361E00B6C8B6 /* Post.swift */,
 				FA73AA27263E361E00B6C8B6 /* Media.swift */,
 				FA73AA28263E361E00B6C8B6 /* Category.swift */,
-				FA73AA29263E361E00B6C8B6 /* Post.swift */,
-				FA73AA2A263E361E00B6C8B6 /* APIHandler.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -284,10 +318,16 @@
 			files = (
 				FA73AA30263E363600B6C8B6 /* PostView.swift in Sources */,
 				CEC03FB3263E354200FFCB45 /* ContentView.swift in Sources */,
+				FA56AA51263F0BFF00B6D838 /* PhotoGalleryView.swift in Sources */,
 				CEC03FB1263E354200FFCB45 /* DenebolaAppApp.swift in Sources */,
+				FA56AA4C263F0B5A00B6D838 /* PodcastView.swift in Sources */,
+				FA56AA4A263F0B5100B6D838 /* HomeView.swift in Sources */,
+				FA56AA4E263F0B6700B6D838 /* MultimediaView.swift in Sources */,
 				FA73AA2B263E361E00B6C8B6 /* Media.swift in Sources */,
 				FA73AA2E263E361E00B6C8B6 /* APIHandler.swift in Sources */,
+				FA56AA46263F0B2300B6D838 /* CategoriesView.swift in Sources */,
 				FA73AA2C263E361E00B6C8B6 /* Category.swift in Sources */,
+				FA56AA43263F080900B6D838 /* ViewController.swift in Sources */,
 				FA73AA2D263E361E00B6C8B6 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
