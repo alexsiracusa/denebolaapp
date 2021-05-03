@@ -16,6 +16,7 @@ struct CategoriesButton: View {
                 .resizable()
                 .frame(width: 25, height: 25)
             Text("Categories")
+                .font(.headline)
         }
         .padding([.top, .bottom], 8)
         .padding([.leading, .trailing], 15)

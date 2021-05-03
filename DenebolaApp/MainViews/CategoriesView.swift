@@ -52,6 +52,12 @@ struct CategoriesView: View {
                             .frame(height: 10)
                             .foregroundColor(.gray)
                             .brightness(0.3)
+                        HStack {
+                            Text("Recent Posts")
+                                .font(.headline)
+                                .padding(.leading)
+                            Spacer()
+                        }
                         Spacer(minLength: 15)
                         PostFeed()
                     }

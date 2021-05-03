@@ -43,6 +43,7 @@ struct PostRowView: View {
                         .frame(height: 100)
                         .aspectRatio(1.6, contentMode: .fit)
                         .foregroundColor(.gray)
+                        .brightness(0.3)
                         .cornerRadius(5)
                 } else {
                     //has no media

@@ -35,6 +35,7 @@ struct PostView: View {
                     Rectangle()
                         .frame(height: 250)
                         .foregroundColor(.gray)
+                        .brightness(0.3)
                 }
             }
             //title

@@ -25,7 +25,12 @@ struct PostFeed: View {
             if let error = loader.error {
                 Text(error)
             }
-            Text("Loading")
+            VStack {
+                ForEach(0..<8) { n in
+                    LoadingPostRowView()
+                        .padding(.top, 5)
+                }
+            }
         }
         
     }
