@@ -10,16 +10,16 @@ import Foundation
 struct Post: Codable, Equatable, Identifiable {
     let id: Int
     let date: String
-    let date_gmt: String
-    let status: String
-    let type: String
-    let link: String
+    let date_gmt: String?
+    let status: String?
+    let type: String?
+    let link: String?
     let title: Render
     let content: Render
     let excerpt: Render
-    let author: Int
+    let author: Int?
     let featured_media: Int
-    let categories: [Int]
+    let categories: [Int]?
     let _embedded: Embeded?
     
     static func ==(lhs: Post, rhs: Post) -> Bool {
@@ -46,7 +46,7 @@ struct Post: Codable, Equatable, Identifiable {
 
 struct Embeded: Codable {
     let author: Author?
-    let featuredMedia: [Media]?
+    let featuredMedia: [SimpleMedia]?
     //let category: [Category]?
     
     enum CodingKeys: String, CodingKey {
@@ -54,6 +54,11 @@ struct Embeded: Codable {
         case author = "author"
         //case category = "wp:term"
     }
+}
+
+struct SimpleMedia: Codable {
+    let id: Int?
+    let source_url: String?
 }
 
 struct Author: Codable {

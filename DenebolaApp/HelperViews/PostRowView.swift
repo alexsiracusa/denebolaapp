@@ -7,14 +7,22 @@
 
 import SwiftUI
 
-struct PostRow: View {
+struct PostRowView: View {
     @EnvironmentObject var handler: APIHandler
-    let title: String
-    let author: String
-    let date: String
-    let imageURL: String?
+    let postRow: PostRow
+    var title: String {
+        return postRow.title
+    }
+    var author: String {
+        return postRow.author
+    }
+    var date: String {
+        return postRow.date
+    }
+    var imageURL: String? {
+        return postRow.imageURL
+    }
     @State var image: Image? = nil
-    var post: Post
     
     var body: some View {
         HStack(alignment: .top) {
@@ -29,7 +37,7 @@ struct PostRow: View {
                     .clipped()
                     .cornerRadius(5)
             } else {
-                if post.hasMedia {
+                if postRow.hasMedia {
                     //loading media
                     Rectangle()
                         .frame(height: 100)
@@ -47,7 +55,7 @@ struct PostRow: View {
             
             //title + author + date
             NavigationLink( destination:
-                PostView(post: post, image: image)
+                PostView(id: postRow.id, hasMedia: postRow.hasMedia)
                     .navigationBarTitle(Text(""), displayMode: .inline)
             ) {
                 VStack(alignment: .leading, spacing: 3) {
@@ -85,9 +93,9 @@ struct PostRow: View {
     }
 }
 
-struct PostRow_Previews: PreviewProvider {
+struct PostRowView_Previews: PreviewProvider {
     static var previews: some View {
-        PostRow(title: "Title Here Sample text to make long", author: "Alex Siracusa", date: "April 22, 2021", imageURL: "aa", post: Post.default)
+        PostRowView(postRow: PostRow(id: 1, title: "Title here long text", author: "Alex Siracusa", date: "April 22, 2021", imageURL: nil, hasMedia: false))
             .environmentObject(APIHandler())
     }
 }
