@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CEB97FEF2645E90F00847FF9 /* FetchImage in Frameworks */ = {isa = PBXBuildFile; productRef = CEB97FEE2645E90F00847FF9 /* FetchImage */; };
 		CEC03FB1263E354200FFCB45 /* DenebolaAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FB0263E354200FFCB45 /* DenebolaAppApp.swift */; };
 		CEC03FB3263E354200FFCB45 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FB2263E354200FFCB45 /* ContentView.swift */; };
 		CEC03FB5263E354400FFCB45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC03FB4263E354400FFCB45 /* Assets.xcassets */; };
@@ -98,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEB97FEF2645E90F00847FF9 /* FetchImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +249,9 @@
 			dependencies = (
 			);
 			name = DenebolaApp;
+			packageProductDependencies = (
+				CEB97FEE2645E90F00847FF9 /* FetchImage */,
+			);
 			productName = DenebolaApp;
 			productReference = CEC03FAD263E354200FFCB45 /* DenebolaApp.app */;
 			productType = "com.apple.product-type.application";
@@ -318,6 +323,9 @@
 				Base,
 			);
 			mainGroup = CEC03FA4263E354200FFCB45;
+			packageReferences = (
+				CEB97FED2645E90F00847FF9 /* XCRemoteSwiftPackageReference "FetchImage" */,
+			);
 			productRefGroup = CEC03FAE263E354200FFCB45 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -543,7 +551,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DenebolaApp/Preview Content\"";
-				DEVELOPMENT_TEAM = 9LZB553FST;
+				DEVELOPMENT_TEAM = 6ZFN3Y2T93;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DenebolaApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -551,7 +559,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.siracusafamily.DenebolaApp;
+				PRODUCT_BUNDLE_IDENTIFIER = sequal.DenebolaApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -565,7 +573,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DenebolaApp/Preview Content\"";
-				DEVELOPMENT_TEAM = 9LZB553FST;
+				DEVELOPMENT_TEAM = 6ZFN3Y2T93;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DenebolaApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -573,7 +581,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.siracusafamily.DenebolaApp;
+				PRODUCT_BUNDLE_IDENTIFIER = sequal.DenebolaApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -704,6 +712,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CEB97FED2645E90F00847FF9 /* XCRemoteSwiftPackageReference "FetchImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/FetchImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CEB97FEE2645E90F00847FF9 /* FetchImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEB97FED2645E90F00847FF9 /* XCRemoteSwiftPackageReference "FetchImage" */;
+			productName = FetchImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CEC03FA5263E354200FFCB45 /* Project object */;
 }

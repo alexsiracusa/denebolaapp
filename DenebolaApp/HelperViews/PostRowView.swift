@@ -6,9 +6,9 @@
 //
 
 import SwiftUI
+import FetchImage
 
 struct PostRowView: View {
-    @EnvironmentObject var handler: APIHandler
     let postRow: PostRow
     var title: String {
         return postRow.title
@@ -19,15 +19,16 @@ struct PostRowView: View {
     var date: String {
         return postRow.date
     }
-    var imageURL: String? {
-        return postRow.imageURL
+    var imageURL: URL? {
+        return postRow.imageURL != nil ? URL(string: postRow.imageURL!) : nil
     }
-    @State var image: Image? = nil
+    
+    @ObservedObject private var image = FetchImage()
     
     var body: some View {
         HStack(alignment: .top) {
             //media display
-            if let image = image {
+            if let image = image.view {
                 //loaded media
                 image
                     .resizable()
@@ -56,8 +57,8 @@ struct PostRowView: View {
             
             //title + author + date
             NavigationLink( destination:
-                PostView(id: postRow.id, hasMedia: postRow.hasMedia, imageURL: postRow.imageURL, title: postRow.title, image: image, author: postRow.author)
-                    .navigationBarTitle(Text(""), displayMode: .inline)
+                                PostView(id: postRow.id, hasMedia: postRow.hasMedia, imageURL: postRow.imageURL, title: postRow.title, author: postRow.author)
+                                .navigationBarTitle(Text(""), displayMode: .inline)
             ) {
                 VStack(alignment: .leading, spacing: 3) {
                     //title
@@ -86,10 +87,11 @@ struct PostRowView: View {
         .padding([.leading, .trailing], 10)
         .onAppear {
             if let url = imageURL {
-                handler.loadImage(url) { image, error  in
-                    self.image = image
-                }
+                image.load(url)
             }
+        }
+        .onDisappear {
+            image.reset()
         }
     }
 }
