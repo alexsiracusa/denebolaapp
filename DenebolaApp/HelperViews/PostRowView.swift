@@ -56,7 +56,7 @@ struct PostRowView: View {
             
             //title + author + date
             NavigationLink( destination:
-                PostView(id: postRow.id, hasMedia: postRow.hasMedia)
+                PostView(id: postRow.id, hasMedia: postRow.hasMedia, imageURL: postRow.imageURL, title: postRow.title, image: image, author: postRow.author)
                     .navigationBarTitle(Text(""), displayMode: .inline)
             ) {
                 VStack(alignment: .leading, spacing: 3) {
@@ -96,7 +96,7 @@ struct PostRowView: View {
 
 struct PostRowView_Previews: PreviewProvider {
     static var previews: some View {
-        PostRowView(postRow: PostRow(id: 1, title: "Title here long text", author: "Alex Siracusa", date: "April 22, 2021", imageURL: nil, hasMedia: false))
+        PostRowView(postRow: PostRow(id: 1, title: "Title here long text multi line text very cool", author: "Alex Siracusa", date: "April 22, 2021", imageURL: nil, hasMedia: false))
             .environmentObject(APIHandler())
     }
 }

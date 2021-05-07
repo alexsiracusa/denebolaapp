@@ -45,7 +45,7 @@ struct Post: Codable, Equatable, Identifiable {
 }
 
 struct Embeded: Codable {
-    let author: Author?
+    let author: [Author]?
     let featuredMedia: [SimpleMedia]?
     //let category: [Category]?
     
@@ -62,7 +62,8 @@ struct SimpleMedia: Codable {
 }
 
 struct Author: Codable {
-    
+    let id: Int?
+    let name: String?
 }
 
 struct Render: Codable {

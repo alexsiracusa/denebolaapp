@@ -77,6 +77,38 @@ class APIHandler: ObservableObject {
         }
     }
     
+    func loadPostForDisplay(_ id: Int, withImage: Bool, completionHandler: @escaping (Post?, Image?, String?) -> Void) {
+        loadPost(id, embed: true) {post, error in
+            guard let post = post, error == nil else {
+                completionHandler(nil,nil,error)
+                return
+            }
+            
+            if !withImage {
+                completionHandler(post, nil, error)
+            }
+            //has no media
+            guard post.hasMedia else {
+                completionHandler(post, nil, error)
+                return
+            }
+            guard let simpleMedia = post._embedded?.featuredMedia else {
+                completionHandler(post, nil, error)
+                return
+            }
+            guard let url = simpleMedia[0].source_url else {
+                completionHandler(post, nil, error)
+                return
+            }
+            
+            //has media
+            self.loadImage(url) {image, error in
+                completionHandler(post, image, error)
+                return
+            }
+        }
+    }
+    
     func loadImage(_ url: String, completionHandler: @escaping (Image?, String?) -> Void) {
         guard let url = URL(string: url) else { return }
         let task = URLSession.shared.dataTask(with: url) { data, response, error in

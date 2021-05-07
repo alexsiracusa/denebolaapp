@@ -13,14 +13,33 @@ struct PostView: View {
     
     var id: Int
     var hasMedia: Bool
-    @State var loaded = false
-    @State var postRow: PostRow?
-    //@State var media: Media? = nil
-    @State var image: Image? = nil
-    @State var error: String? = nil
-    
+    var imageURL: String? = nil
     @State var title: String? = nil
     @State var content: String? = nil
+    @State var image: Image? = nil
+    @State var author: String? = nil
+    
+    @State var loaded = false
+    @State var error: String? = nil
+    
+    func load() {
+        if image == nil && hasMedia {
+            handler.loadPostForDisplay(id, withImage: true) { post, image, error in
+                self.content = post?.renderedContent
+                self.title = post?.renderedTitle
+                self.image = image
+                self.author = post?._embedded?.author?[0].name
+                loaded = true
+            }
+        } else {
+            handler.loadPostForDisplay(id, withImage: false) { post, image, error in
+                self.content = post?.renderedContent
+                self.title = post?.renderedTitle
+                self.author = post?._embedded?.author?[0].name
+                loaded = true
+            }
+        }
+    }
     
     /// swiftui refuses to give any useful errors if it doesn't compile so just don't make errors
     var body: some View {
@@ -59,15 +78,7 @@ struct PostView: View {
             }
         }
         .onAppear() {
-            //self.content = self.post.renderedContent
-            handler.loadFullPost(id, embed: true) { post, media, image, error in
-                self.loaded = true
-                //self.media = media
-                self.image = image
-                self.error = error
-                guard let post = post else {return}
-                self.content = post.renderedContent
-            }
+            load()
         }
         .padding([.leading, .trailing, .top])
     }
@@ -75,7 +86,7 @@ struct PostView: View {
 
 struct PostView_Previews: PreviewProvider {
     static var previews: some View {
-        PostView(id: 25182, hasMedia: true, postRow: nil)
+        PostView(id: 25182, hasMedia: true)
             .environmentObject(APIHandler())
     }
 }
