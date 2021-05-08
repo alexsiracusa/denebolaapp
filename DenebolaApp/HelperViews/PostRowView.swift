@@ -23,7 +23,7 @@ struct PostRowView: View {
         return postRow.imageURL != nil ? URL(string: postRow.imageURL!) : nil
     }
     
-    @ObservedObject private var image = FetchImage()
+    @StateObject private var image = FetchImage()
     
     var body: some View {
         HStack(alignment: .top) {
