@@ -44,7 +44,7 @@ class APIHandler: ObservableObject {
         APIHandler.decodeJSON(url: url, completionHandler: completionHandler)
     }
     
-    func loadFullPost(_ id: Int, embed: Bool, completionHandler: @escaping (Post?, Media?, Image?, String?) -> Void) {
+    func loadFullPost(_ id: Int, embed: Bool, completionHandler: @escaping (Post?, Media?, URL?, String?) -> Void) {
         // loading post
         loadPost(id, embed: embed) { post, error in
             guard let post = post, error == nil else {
@@ -63,30 +63,19 @@ class APIHandler: ObservableObject {
                     completionHandler(post, nil, nil, error)
                     return
                 }
-                let url = media.source_url
                 
-                // loading image
-                self.loadImage(url) { image, error in
-                    guard let image = image, error == nil else {
-                        completionHandler(post, nil, nil, error)
-                        return
-                    }
-                    completionHandler(post, media, image, error)
-                }
+                completionHandler(post, media, media.source_url.asURL, error)
             }
         }
     }
     
-    func loadPostForDisplay(_ id: Int, withImage: Bool, completionHandler: @escaping (Post?, Image?, String?) -> Void) {
+    func loadPostForDisplay(_ id: Int, completionHandler: @escaping (Post?, URL?, String?) -> Void) {
         loadPost(id, embed: true) {post, error in
             guard let post = post, error == nil else {
-                completionHandler(nil,nil,error)
+                completionHandler(nil, nil, error)
                 return
             }
             
-            if !withImage {
-                completionHandler(post, nil, error)
-            }
             //has no media
             guard post.hasMedia else {
                 completionHandler(post, nil, error)
@@ -101,38 +90,8 @@ class APIHandler: ObservableObject {
                 return
             }
             
-            //has media
-            self.loadImage(url) {image, error in
-                completionHandler(post, image, error)
-                return
-            }
+            completionHandler(post, url.asURL, error)
         }
-    }
-    
-    func loadImage(_ url: String, completionHandler: @escaping (Image?, String?) -> Void) {
-        guard let url = url.asURL else {
-            let error = "Fetch failed: Bad URL"
-            completionHandler(nil, error)
-            return
-        }
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data, error == nil else {
-                DispatchQueue.main.async {
-                    let error = "Fetch failed: \(error!)"
-                    completionHandler(nil, error)
-                }
-                return
-            }
-            DispatchQueue.main.async {
-                guard let uiImage = UIImage(data: data) else {
-                    let error = "Fetch failed: could not convert to image"
-                    completionHandler(nil, error)
-                    return
-                }
-                completionHandler(Image(uiImage: uiImage), nil)
-            }
-        }
-        task.resume()
     }
     
     static func decodeJSON<ResponseType:Codable>(url: String, completionHandler: @escaping (ResponseType?, String?) -> Void) {

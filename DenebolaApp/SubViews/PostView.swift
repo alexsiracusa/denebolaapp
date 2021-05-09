@@ -12,35 +12,22 @@ struct PostView: View {
     @EnvironmentObject var handler: APIHandler
     
     var id: Int
-    var hasMedia: Bool
-    var imageURL: String? = nil
     @State var title: String? = nil
     @State var content: String? = nil
-    @State var image: Image? = nil
+    @State var image: ImageView? = nil
     @State var author: String? = nil
     
     @State var loaded = false
     @State var error: String? = nil
     
     func load() {
-        print("loading \(id)")
-        if image == nil && hasMedia {
-            handler.loadPostForDisplay(id, withImage: true) { post, image, error in
-                self.content = post?.renderedContent
-                self.title = post?.renderedTitle
-                self.image = image
-                self.author = post?._embedded?.author?[0].name
-                self.error = error
-                loaded = true
-            }
-        } else {
-            handler.loadPostForDisplay(id, withImage: false) { post, image, error in
-                self.content = post?.renderedContent
-                self.title = post?.renderedTitle
-                self.author = post?._embedded?.author?[0].name
-                self.error = error
-                loaded = true
-            }
+        handler.loadPostForDisplay(id) { post, imageUrl, error in
+            self.content = post?.renderedContent
+            self.title = post?.renderedTitle
+            self.image = imageUrl.map {ImageView(url: $0)}
+            self.author = post?._embedded?.author?[0].name
+            self.error = error
+            loaded = true
         }
     }
     
@@ -48,18 +35,7 @@ struct PostView: View {
     var body: some View {
         ScrollView {
             //image
-            if let image = image {
-                image
-                    .resizable()
-                    .scaledToFit()
-            } else {
-                if hasMedia {
-                    Rectangle()
-                        .frame(height: 250)
-                        .foregroundColor(.gray)
-                        .brightness(0.3)
-                }
-            }
+            image
             //title
             if let title = title {
                 Text(title).font(.largeTitle).bold()
@@ -90,7 +66,7 @@ struct PostView: View {
 
 struct PostView_Previews: PreviewProvider {
     static var previews: some View {
-        PostView(id: 25182, hasMedia: true)
+        PostView(id: 25182)
             .environmentObject(APIHandler())
     }
 }

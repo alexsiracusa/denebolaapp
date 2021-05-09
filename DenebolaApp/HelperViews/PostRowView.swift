@@ -20,45 +20,31 @@ struct PostRowView: View {
         return postRow.date
     }
     var imageURL: URL? {
-        //return postRow.imageURL != nil ? URL(string: postRow.imageURL!) : nil
         return postRow.imageURL?.asURL
     }
     
-    @StateObject private var image = FetchImage()
+    var image: ImageView? {
+        imageURL.flatMap {ImageView(url: $0)}
+    }
     
     var body: some View {
         HStack(alignment: .top) {
-            //media display
-            if let image = image.view {
-                //loaded media
-                image
-                    .resizable()
-                    .scaledToFill()
+            if postRow.hasMedia {
+                image?
                     .frame(width: 160, height: 100)
                     .aspectRatio(1.6, contentMode: .fit)
                     .clipped()
                     .cornerRadius(5)
             } else {
-                if postRow.hasMedia {
-                    //loading media
-                    Rectangle()
-                        .frame(width: 160, height: 100)
-                        .aspectRatio(1.6, contentMode: .fit)
-                        .foregroundColor(.gray)
-                        .brightness(0.3)
-                        .cornerRadius(5)
-                } else {
-                    //has no media
-                    Image("DenebolaLogo")
-                        .resizable()
-                        .frame(width: 100, height: 100)
-                        .cornerRadius(5)
-                }
+                Image("DenebolaLogo")
+                    .resizable()
+                    .frame(width: 100, height: 100)
+                    .cornerRadius(5)
             }
             
             //title + author + date
             NavigationLink( destination:
-                PostView(id: postRow.id, hasMedia: postRow.hasMedia, imageURL: postRow.imageURL, title: postRow.title, image: image.displayImage, author: postRow.author)
+                PostView(id: postRow.id, title: postRow.title, image: image, author: postRow.author)
                 .navigationBarTitle(Text(""), displayMode: .inline)
             ) {
                 VStack(alignment: .leading, spacing: 3) {
@@ -86,15 +72,6 @@ struct PostRowView: View {
         }
         .frame(height:100)
         .padding([.leading, .trailing], 10)
-        .onAppear {
-            if let url = imageURL {
-                image.load(url)
-                image.objectWillChange.send()
-            }
-        }
-        .onDisappear {
-            image.reset()
-        }
     }
 }
 
