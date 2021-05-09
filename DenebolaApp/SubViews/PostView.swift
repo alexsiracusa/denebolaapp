@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import WebKit
+import LoaderUI
 
 struct PostView: View {
     @EnvironmentObject var handler: APIHandler
@@ -54,7 +54,7 @@ struct PostView: View {
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 if loaded == false {
-                    Text("Loading")
+                    BallPulse()
                 } else {
                     if let error = error {
                         Text(error)

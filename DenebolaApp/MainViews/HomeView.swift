@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FetchImage
+import LoaderUI
 
 struct HomeView: View {
     @EnvironmentObject private var handler: APIHandler
@@ -29,13 +30,17 @@ struct HomeView: View {
                     loadPosts()
                 })
                 .padding()
+    
+                if loadedPosts.count == 0 {
+                    BallPulse()
+                } else {
+                    PageView(pages: loadedPosts.map {post in
+                        PostPreviewHome(post: post)
+                            .padding(.horizontal, 5.0)
+                    })
+                    .aspectRatio(1.5, contentMode: .fit)
+                }
                 
-                
-                PageView(pages: loadedPosts.map {post in
-                    PostPreviewHome(post: post)
-                        .padding(.horizontal, 5.0)
-                })
-                .aspectRatio(1.5, contentMode: .fit)
                 
                 Spacer()
             }
@@ -81,7 +86,7 @@ private struct PostPreviewHome: View {
     
     var body: some View {
         NavigationLink( destination:
-                            PostView(id: post.id, title: post.title, author: post.author)
+                            PostView(id: post.id)
         ) {
             GeometryReader { reader in
                 ImageView(url: URL(string: post.imageURL ?? "https://designshack.net/wp-content/uploads/placeholder-image.png")!) // TODO: remove placeholder

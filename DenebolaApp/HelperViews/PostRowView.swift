@@ -31,6 +31,7 @@ struct PostRowView: View {
         HStack(alignment: .top) {
             if postRow.hasMedia {
                 image?
+                    .scaledToFill()
                     .frame(width: 160, height: 100)
                     .aspectRatio(1.6, contentMode: .fit)
                     .clipped()
@@ -44,7 +45,7 @@ struct PostRowView: View {
             
             //title + author + date
             NavigationLink( destination:
-                PostView(id: postRow.id, title: postRow.title, image: image, author: postRow.author)
+                PostView(id: postRow.id)
                 .navigationBarTitle(Text(""), displayMode: .inline)
             ) {
                 VStack(alignment: .leading, spacing: 3) {
