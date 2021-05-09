@@ -23,12 +23,14 @@ struct PostView: View {
     @State var error: String? = nil
     
     func load() {
+        print("loading \(id)")
         if image == nil && hasMedia {
             handler.loadPostForDisplay(id, withImage: true) { post, image, error in
                 self.content = post?.renderedContent
                 self.title = post?.renderedTitle
                 self.image = image
                 self.author = post?._embedded?.author?[0].name
+                self.error = error
                 loaded = true
             }
         } else {
@@ -36,6 +38,7 @@ struct PostView: View {
                 self.content = post?.renderedContent
                 self.title = post?.renderedTitle
                 self.author = post?._embedded?.author?[0].name
+                self.error = error
                 loaded = true
             }
         }

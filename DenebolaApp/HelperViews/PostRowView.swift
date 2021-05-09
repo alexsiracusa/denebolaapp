@@ -20,7 +20,8 @@ struct PostRowView: View {
         return postRow.date
     }
     var imageURL: URL? {
-        return postRow.imageURL != nil ? URL(string: postRow.imageURL!) : nil
+        //return postRow.imageURL != nil ? URL(string: postRow.imageURL!) : nil
+        return postRow.imageURL?.asURL
     }
     
     @StateObject private var image = FetchImage()
@@ -99,7 +100,7 @@ struct PostRowView: View {
 
 struct PostRowView_Previews: PreviewProvider {
     static var previews: some View {
-        PostRowView(postRow: PostRow(id: 1, title: "Title here long text multi line text very cool", author: "Alex Siracusa", date: "April 22, 2021", imageURL: nil, hasMedia: false))
+        PostRowView(postRow: PostRow(id: 1, title: "Title here long text multi line text very cool", author: "Alex Siracusa", date: "April 22, 2021", imageURL: "http://nshsdenebola.com/wp-content/uploads/2021/02/https___cdn.cnn_.com_cnnnext_dam_assets_210121163502-joe-biden.jpg", hasMedia: true))
             .environmentObject(APIHandler())
     }
 }

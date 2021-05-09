@@ -110,7 +110,12 @@ class APIHandler: ObservableObject {
     }
     
     func loadImage(_ url: String, completionHandler: @escaping (Image?, String?) -> Void) {
-        guard let url = URL(string: url) else { return }
+        guard let url = url.asURL else {
+            let error = "Fetch failed: Bad URL"
+            print(url)
+            completionHandler(nil, error)
+            return
+        }
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data, error == nil else {
                 DispatchQueue.main.async {
