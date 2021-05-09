@@ -45,6 +45,7 @@ struct PostView: View {
                         .bold()
                         .frame(alignment: .leading)
                         .padding(.bottom, 5)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 
                 //content
