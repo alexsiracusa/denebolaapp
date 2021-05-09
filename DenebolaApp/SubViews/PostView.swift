@@ -39,6 +39,7 @@ struct PostView: View {
                 image
                     .scaledToFit()
                     .padding(.top)
+                    .scaledToFill()
                 //title
                 if let title = title {
                     Text(title).font(.largeTitle)
