@@ -26,6 +26,14 @@ struct ImageView: View {
     }
 }
 
+extension FetchImage {
+    var displayImage: Image? {
+        guard let image = self.image else {return nil}
+        return Image(uiImage: image.imageWithoutBaseline())
+        
+    }
+}
+
 
 struct ImageView_Previews: PreviewProvider {
     static var previews: some View {

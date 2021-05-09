@@ -567,7 +567,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DenebolaApp/Preview Content\"";
-				DEVELOPMENT_TEAM = 6ZFN3Y2T93;
+				DEVELOPMENT_TEAM = 9LZB553FST;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DenebolaApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -575,7 +575,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = sequal.DenebolaApp;
+				PRODUCT_BUNDLE_IDENTIFIER = org.siracusafamily.DenebolaApp.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -589,7 +589,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DenebolaApp/Preview Content\"";
-				DEVELOPMENT_TEAM = 6ZFN3Y2T93;
+				DEVELOPMENT_TEAM = 9LZB553FST;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DenebolaApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -597,7 +597,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = sequal.DenebolaApp;
+				PRODUCT_BUNDLE_IDENTIFIER = org.siracusafamily.DenebolaApp.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
