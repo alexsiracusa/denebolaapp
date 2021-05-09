@@ -33,7 +33,7 @@ struct PostRowView: View {
                 image
                     .resizable()
                     .scaledToFill()
-                    .frame(height: 100)
+                    .frame(width: 160, height: 100)
                     .aspectRatio(1.6, contentMode: .fit)
                     .clipped()
                     .cornerRadius(5)
@@ -41,7 +41,7 @@ struct PostRowView: View {
                 if postRow.hasMedia {
                     //loading media
                     Rectangle()
-                        .frame(height: 100)
+                        .frame(width: 160, height: 100)
                         .aspectRatio(1.6, contentMode: .fit)
                         .foregroundColor(.gray)
                         .brightness(0.3)
@@ -88,6 +88,7 @@ struct PostRowView: View {
         .onAppear {
             if let url = imageURL {
                 image.load(url)
+                image.objectWillChange.send()
             }
         }
         .onDisappear {
