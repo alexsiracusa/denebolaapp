@@ -45,7 +45,7 @@ struct PostRowView: View {
             
             //title + author + date
             NavigationLink( destination:
-                PostView(id: postRow.id)
+                PostView(id: postRow.id, title: postRow.title, image: image, author: postRow.author)
                 .navigationBarTitle(Text(""), displayMode: .inline)
             ) {
                 VStack(alignment: .leading, spacing: 3) {

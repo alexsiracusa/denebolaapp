@@ -86,7 +86,7 @@ private struct PostPreviewHome: View {
     
     var body: some View {
         NavigationLink( destination:
-                            PostView(id: post.id)
+            PostView(id: post.id, title: post.title, author: post.author)
         ) {
             GeometryReader { reader in
                 ImageView(url: URL(string: post.imageURL ?? "https://designshack.net/wp-content/uploads/placeholder-image.png")!) // TODO: remove placeholder
