@@ -14,15 +14,15 @@ struct ImageView: View {
     @StateObject private var image = FetchImage()
 
     var body: some View {
-        ZStack {
-            Rectangle().fill(Color.gray)
-            image.view?
+        if let view = image.view {
+            view
                 .resizable()
-                .aspectRatio(contentMode: .fill)
                 .clipped()
+                .onDisappear(perform: image.reset)
+        } else {
+            Rectangle().fill(Color.gray)
+                .onAppear { image.load(url) }
         }
-        .onAppear { image.load(url) }
-        .onDisappear(perform: image.reset)
     }
 }
 

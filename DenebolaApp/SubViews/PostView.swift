@@ -34,27 +34,30 @@ struct PostView: View {
     /// swiftui refuses to give any useful errors if it doesn't compile so just don't make errors
     var body: some View {
         ScrollView {
-            //image
-            image
-                .scaledToFit()
-                .padding(.top)
-            //title
-            if let title = title {
-                Text(title).font(.largeTitle).bold()
-                    .frame(maxHeight: .infinity, alignment: .leading)
-                    .padding(.bottom, 5)
-            }
-            
-            //content
-            if let content = content {
-                Text(content)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-            if loaded == false {
-                Text("Loading")
-            } else {
-                if let error = error {
-                    Text(error)
+            VStack(alignment: .leading) {
+                //image
+                image
+                    .scaledToFit()
+                    .padding(.top)
+                //title
+                if let title = title {
+                    Text(title).font(.largeTitle)
+                        .bold()
+                        .frame(alignment: .leading)
+                        .padding(.bottom, 5)
+                }
+                
+                //content
+                if let content = content {
+                    Text(content)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                if loaded == false {
+                    Text("Loading")
+                } else {
+                    if let error = error {
+                        Text(error)
+                    }
                 }
             }
         }
