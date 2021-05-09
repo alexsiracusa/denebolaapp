@@ -84,6 +84,7 @@ struct PostView: View {
             load()
         }
         .padding([.leading, .trailing, .top])
+        .navigationTitle("\(title ?? "Loading")")
     }
 }
 
