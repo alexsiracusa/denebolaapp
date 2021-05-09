@@ -12,7 +12,7 @@ class ScrollViewLoader: ObservableObject {
     @Published var posts = [PostRow]()
     @Published var isLoadingPage = false
     @Published var error: String?
-    private var topIndex = 0
+    private var per_page = 20
     private var currentPage = 1
     private var canLoadMorePages = true
     
@@ -26,7 +26,7 @@ class ScrollViewLoader: ObservableObject {
     
     func loadMorePostsIfNeeded(currentItem: PostRow) {
         let index = posts.firstIndex(where: {currentItem.id == $0.id})
-        let thresholdIndex = posts.index(posts.endIndex, offsetBy: -5)
+        let thresholdIndex = posts.index(posts.endIndex, offsetBy: -per_page)
         if index == thresholdIndex {
             loadMorePosts()
         }
@@ -35,7 +35,7 @@ class ScrollViewLoader: ObservableObject {
     func loadMorePosts() {
         guard !isLoadingPage && canLoadMorePages else {return}
         isLoadingPage = true
-        handler.loadPostPage(category: category, page: currentPage, per_page: 10, embed: true) { posts, error in
+        handler.loadPostPage(category: category, page: currentPage, per_page: per_page, embed: true) { posts, error in
             self.error = error
             guard let posts = posts else {
                 self.canLoadMorePages = false
