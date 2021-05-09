@@ -112,7 +112,6 @@ class APIHandler: ObservableObject {
     func loadImage(_ url: String, completionHandler: @escaping (Image?, String?) -> Void) {
         guard let url = url.asURL else {
             let error = "Fetch failed: Bad URL"
-            print(url)
             completionHandler(nil, error)
             return
         }

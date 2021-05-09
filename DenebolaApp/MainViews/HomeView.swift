@@ -87,6 +87,7 @@ private struct PostPreviewHome: View {
             GeometryReader { reader in
                 ImageView(url: URL(string: post.imageURL ?? "https://designshack.net/wp-content/uploads/placeholder-image.png")!) // TODO: remove placeholder
                     .aspectRatio(contentMode: .fill)
+                    .frame(width: reader.size.width, height: reader.size.height)
                     .overlay(LinearGradient(gradient: Gradient(colors: [.clear, .black]), startPoint: UnitPoint(x: 0.5, y: 0.75), endPoint: .bottom)
                             .cornerRadius(10)
                             .opacity(0.25)
