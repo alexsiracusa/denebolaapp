@@ -17,7 +17,7 @@ struct PageView<Page: View>: View {
                 PageViewController(pages: pages, currentPage: $currentPage).id(UUID())
                 PageControl(numberOfPages: pages.count, currentPage: $currentPage)
                     .frame(width: CGFloat(pages.count * 18))
-                    .padding(.trailing)
+                    .padding(.trailing, 20.0)
             }
         }
     }

@@ -76,21 +76,13 @@ class APIHandler: ObservableObject {
                 return
             }
             
-            //has no media
             guard post.hasMedia else {
                 completionHandler(post, nil, error)
                 return
             }
-            guard let simpleMedia = post._embedded?.featuredMedia else {
-                completionHandler(post, nil, error)
-                return
-            }
-            guard let url = simpleMedia[0].source_url else {
-                completionHandler(post, nil, error)
-                return
-            }
             
-            completionHandler(post, url.asURL, error)
+            let imageUrl = post._embedded?.featuredMedia?[0].source_url?.asURL
+            completionHandler(post, imageUrl, error)
         }
     }
     

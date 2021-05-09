@@ -25,18 +25,17 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             VStack {
-                CategorySelection(selectedCategory: $selectedCategory,
-                                  onCategorySelected: {_ in
-                                    loadPosts()
-                                  })
-                    .padding()
+                CategorySelection(selectedCategory: $selectedCategory, onCategorySelected: {_ in
+                    loadPosts()
+                })
+                .padding()
                 
                 
                 PageView(pages: loadedPosts.map {post in
                     PostPreviewHome(post: post)
+                        .padding(.horizontal, 5.0)
                 })
                 .aspectRatio(1.5, contentMode: .fit)
-                .padding()
                 
                 Spacer()
             }
@@ -82,15 +81,15 @@ private struct PostPreviewHome: View {
     
     var body: some View {
         NavigationLink( destination:
-            PostView(id: post.id, title: post.title, author: post.author)
+                            PostView(id: post.id, title: post.title, author: post.author)
         ) {
             GeometryReader { reader in
                 ImageView(url: URL(string: post.imageURL ?? "https://designshack.net/wp-content/uploads/placeholder-image.png")!) // TODO: remove placeholder
                     .aspectRatio(contentMode: .fill)
                     .frame(width: reader.size.width, height: reader.size.height)
                     .overlay(LinearGradient(gradient: Gradient(colors: [.clear, .black]), startPoint: UnitPoint(x: 0.5, y: 0.75), endPoint: .bottom)
-                            .cornerRadius(10)
-                            .opacity(0.25)
+                                .cornerRadius(10)
+                                .opacity(0.25)
                     )
                 
                 
