@@ -27,7 +27,7 @@ struct Post: Codable, Equatable, Identifiable {
     }
     
     func asPostRow() -> PostRow {
-        return PostRow(id: self.id, title: self.renderedTitle, author: (self._embedded!.author![0].name)!, date: self.date, imageURL: self._embedded?.featuredMedia?[0].source_url, hasMedia: self.hasMedia)
+        return PostRow(id: self.id, title: self.renderedTitle, author: (self._embedded!.author![0].name)!, date: self.renderedDate, imageURL: self._embedded?.featuredMedia?[0].source_url, hasMedia: self.hasMedia)
     }
     
     var renderedContent: String {
@@ -41,6 +41,17 @@ struct Post: Codable, Equatable, Identifiable {
     
     var renderedTitle: String {
         return title.rendered.html2AttributedString!
+    }
+    
+    var renderedDate: String {
+        let date = DateFormatter()
+        date.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        date.locale = Locale(identifier: "en_US")
+        
+        let parsedDate = date.date(from: self.date)!
+        date.setLocalizedDateFormatFromTemplate("MMMMdYYYY")
+        
+        return date.string(from: parsedDate)
     }
     
     var hasMedia: Bool {
