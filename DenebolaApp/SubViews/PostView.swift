@@ -36,6 +36,7 @@ struct PostView: View {
         ScrollView {
             //image
             image
+                .scaledToFit()
                 .padding(.top)
             //title
             if let title = title {
