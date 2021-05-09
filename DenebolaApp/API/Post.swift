@@ -26,6 +26,10 @@ struct Post: Codable, Equatable, Identifiable {
         return lhs.id == rhs.id
     }
     
+    func asPostRow() -> PostRow {
+        return PostRow(id: self.id, title: self.renderedTitle, author: (self._embedded!.author![0].name)!, date: self.date, imageURL: self._embedded?.featuredMedia?[0].source_url, hasMedia: self.hasMedia)
+    }
+    
     var renderedContent: String {
         return content.rendered.html2AttributedString!
             .replacingOccurrences(of: "\n", with: "\n\n")

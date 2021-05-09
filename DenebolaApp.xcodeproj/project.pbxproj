@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE1E88772647484300E1245E /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E88762647484300E1245E /* PageViewController.swift */; };
+		CE1E887C264748F700E1245E /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E887B264748F700E1245E /* PageView.swift */; };
+		CE1E888126474BFC00E1245E /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E888026474BFC00E1245E /* PageControl.swift */; };
+		CE1E88872647561600E1245E /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E88862647561600E1245E /* ImageView.swift */; };
 		CEB97FEF2645E90F00847FF9 /* FetchImage in Frameworks */ = {isa = PBXBuildFile; productRef = CEB97FEE2645E90F00847FF9 /* FetchImage */; };
 		CEC03FB1263E354200FFCB45 /* DenebolaAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FB0263E354200FFCB45 /* DenebolaAppApp.swift */; };
 		CEC03FB3263E354200FFCB45 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FB2263E354200FFCB45 /* ContentView.swift */; };
@@ -57,6 +61,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE1E88762647484300E1245E /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		CE1E887B264748F700E1245E /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
+		CE1E888026474BFC00E1245E /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
+		CE1E88862647561600E1245E /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		CEC03FAD263E354200FFCB45 /* DenebolaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DenebolaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC03FB0263E354200FFCB45 /* DenebolaAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenebolaAppApp.swift; sourceTree = "<group>"; };
 		CEC03FB2263E354200FFCB45 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -200,6 +208,7 @@
 			children = (
 				FA73AA2F263E363600B6C8B6 /* PostView.swift */,
 				FA56AA50263F0BFF00B6D838 /* PhotoGalleryView.swift */,
+				CE1E887B264748F700E1245E /* PageView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -213,6 +222,9 @@
 				FA56AA55263F0F2400B6D838 /* CategoryButton.swift */,
 				FA56AA53263F0D8D00B6D838 /* CategoriesButton.swift */,
 				FA56AA65263F61EC00B6D838 /* SearchButton.swift */,
+				CE1E88762647484300E1245E /* PageViewController.swift */,
+				CE1E888026474BFC00E1245E /* PageControl.swift */,
+				CE1E88862647561600E1245E /* ImageView.swift */,
 			);
 			path = HelperViews;
 			sourceTree = "<group>";
@@ -375,6 +387,7 @@
 				FA56AA6A263F8F0F00B6D838 /* ScrollViewLoader.swift in Sources */,
 				FA56AA62263F2FD200B6D838 /* PostFeed.swift in Sources */,
 				CEC03FB3263E354200FFCB45 /* ContentView.swift in Sources */,
+				CE1E887C264748F700E1245E /* PageView.swift in Sources */,
 				FA56AA54263F0D8D00B6D838 /* CategoriesButton.swift in Sources */,
 				FA56AA51263F0BFF00B6D838 /* PhotoGalleryView.swift in Sources */,
 				FA56AA66263F61EC00B6D838 /* SearchButton.swift in Sources */,
@@ -386,11 +399,14 @@
 				FA56AA64263F3F1A00B6D838 /* SamplePost.swift in Sources */,
 				FA56AA4E263F0B6700B6D838 /* MultimediaView.swift in Sources */,
 				FA73AA2B263E361E00B6C8B6 /* Media.swift in Sources */,
+				CE1E88872647561600E1245E /* ImageView.swift in Sources */,
 				FA73AA2E263E361E00B6C8B6 /* APIHandler.swift in Sources */,
 				FA56AA46263F0B2300B6D838 /* CategoriesView.swift in Sources */,
 				FA73AA2C263E361E00B6C8B6 /* Category.swift in Sources */,
+				CE1E888126474BFC00E1245E /* PageControl.swift in Sources */,
 				FA56AA43263F080900B6D838 /* ViewController.swift in Sources */,
 				FA56AA5C263F246000B6D838 /* PostRowView.swift in Sources */,
+				CE1E88772647484300E1245E /* PageViewController.swift in Sources */,
 				FA56AA6C263F933700B6D838 /* PostRow.swift in Sources */,
 				FA73AA2D263E361E00B6C8B6 /* Post.swift in Sources */,
 			);

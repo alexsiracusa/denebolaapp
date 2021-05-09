@@ -41,9 +41,7 @@ class ScrollViewLoader: ObservableObject {
                 self.canLoadMorePages = false
                 return
             }
-            let newPosts = posts.map{
-                return PostRow(id: $0.id, title: $0.renderedTitle, author: ($0._embedded!.author![0].name)!, date: $0.date, imageURL: $0._embedded?.featuredMedia?[0].source_url, hasMedia: $0.hasMedia)
-            }
+            let newPosts = posts.map {$0.asPostRow()}
             self.posts += newPosts
             self.currentPage += 1
             self.isLoadingPage = false
