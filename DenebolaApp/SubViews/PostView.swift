@@ -41,7 +41,7 @@ struct PostView: View {
             //title
             if let title = title {
                 Text(title).font(.largeTitle).bold()
-                    .frame(alignment: .leading)
+                    .frame(maxHeight: .infinity, alignment: .leading)
                     .padding(.bottom, 5)
             }
             
