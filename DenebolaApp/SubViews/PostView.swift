@@ -36,6 +36,7 @@ struct PostView: View {
         ScrollView {
             //image
             image
+                .padding(.top)
             //title
             if let title = title {
                 Text(title).font(.largeTitle).bold()
@@ -59,7 +60,7 @@ struct PostView: View {
         .onAppear() {
             load()
         }
-        .padding([.leading, .trailing, .top])
+        .padding([.leading, .trailing])
         .navigationTitle("\(title ?? "Loading")")
     }
 }
