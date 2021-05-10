@@ -12,10 +12,17 @@ struct PodcastView: View {
     @State var audioPlayer: AVAudioPlayer!
     
     var body: some View {
-        Button {
-            self.audioPlayer.play()
-        } label: {
-            Text("Play")
+        VStack {
+            Button {
+                self.audioPlayer.play()
+            } label: {
+                Text("Play")
+            }
+            Button {
+                self.audioPlayer.pause()
+            } label: {
+                Text("Pause")
+            }
         }
         .onAppear {
             let data = NSDataAsset(name: "alan walker - faded (ncs release) at very low quality")!.data
