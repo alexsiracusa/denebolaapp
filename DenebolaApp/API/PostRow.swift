@@ -12,6 +12,6 @@ struct PostRow: Identifiable {
     let title: String
     let author: String
     let date: String
-    let imageURL: String?
+    let imageURL: URL?
     let hasMedia: Bool
 }

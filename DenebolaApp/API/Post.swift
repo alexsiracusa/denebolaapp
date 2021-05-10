@@ -27,10 +27,10 @@ struct Post: Codable, Equatable, Identifiable {
     }
     
     func asPostRow() -> PostRow {
-        return PostRow(id: self.id, title: self.renderedTitle, author: (self._embedded!.author![0].name)!, date: self.renderedDate, imageURL: self._embedded?.featuredMedia?[0].source_url, hasMedia: self.hasMedia)
+        return PostRow(id: self.id, title: self.renderedTitle, author: (self._embedded!.author![0].name)!, date: self.renderedDate, imageURL: self._embedded?.featuredMedia?[0].source_url?.asURL, hasMedia: self.hasMedia)
     }
     
-    var renderedContent: String {
+    var renderedContent: String { //TODO: remove?
         return content.rendered.html2AttributedString!
             .replacingOccurrences(of: "\n", with: "\n\n")
     }
@@ -102,28 +102,3 @@ struct Author: Codable {
 struct Render: Codable {
     let rendered: String
 }
-
-extension String {
-    var html2AttributedString: String? {
-        guard let data = data(using: .utf8) else { return nil }
-        do {
-            return try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil).string
-            //return self
-            
-        } catch let error as NSError {
-            print(error.localizedDescription)
-            return  nil
-        }
-    }
-    
-    var asURL: URL? {
-        guard let urlString = self.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) else {
-            return nil
-        }
-        return URL(string: urlString)
-    }
-    
-}
-
-
-
