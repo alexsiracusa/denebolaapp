@@ -15,6 +15,7 @@ class PodcastLoader: NSObject, ObservableObject, XMLParserDelegate {
     var title = String()
     var imageURL = String()
     var audioURL = String()
+    var descrip = String()
     
     func load() {
         guard let url = URL(string: rss) else {return}
@@ -30,10 +31,10 @@ class PodcastLoader: NSObject, ObservableObject, XMLParserDelegate {
     // 1
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
 
-        if elementName == "item" {
-            title = String()
-            //imageURL = String()
-        }
+//        if elementName == "item" {
+//            title = String()
+//            //imageURL = String()
+//        }
         if elementName == "enclosure" {
             let attrsUrl = attributeDict as [String: NSString]
             let auidoURL = attrsUrl["url"]
@@ -52,20 +53,20 @@ class PodcastLoader: NSObject, ObservableObject, XMLParserDelegate {
         if elementName == "item" {
             let imageURL = URL(string: imageURL)
             let audioURL = URL(string: audioURL)
-            let podcast = Podcast(title: title, imageURL: imageURL, audioURL: audioURL)
+            let podcast = Podcast(title: title, description: descrip, imageURL: imageURL, audioURL: audioURL)
             podcasts.append(podcast)
         }
     }
 
     // 3
     func parser(_ parser: XMLParser, foundCharacters string: String) {
-        let data = string//.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let data = string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
 
         if (!data.isEmpty) {
             if self.elementName == "title" {
-                title += data
-            } else if self.elementName == "itunes:image" {
-                //code
+                title = data
+            } else if self.elementName == "description" {
+                descrip = data
             }
         }
     }

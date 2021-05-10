@@ -86,6 +86,26 @@ class APIHandler: ObservableObject {
         }
     }
     
+    func loadMP3(url: URL, completionHandler: @escaping (Data?, String?) -> Void) {
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        let task = URLSession.shared.dataTask(with: request) { data, _, error in
+            
+            // check for errors
+            guard let data = data, error == nil else {
+                DispatchQueue.main.async {
+                    let error = "Fetch failed: \(error!)"
+                    completionHandler(nil, error)
+                }
+                return
+            }
+            completionHandler(data, nil)
+        }
+        
+        task.resume()
+    }
+    
     static func decodeJSON<ResponseType: Codable>(url: String, completionHandler: @escaping (ResponseType?, String?) -> Void) {
         guard let url = URL(string: url) else { return }
         var request = URLRequest(url: url)

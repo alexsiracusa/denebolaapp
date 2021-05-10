@@ -11,6 +11,7 @@ import SwiftUI
 struct PodcastView: View {
     @State var audioPlayer: AVAudioPlayer!
     @EnvironmentObject var loader: PodcastLoader
+    @EnvironmentObject var handler: APIHandler
     
     var body: some View {
         ScrollView {
@@ -34,10 +35,16 @@ struct PodcastView: View {
                             .clipped()
                             .cornerRadius(5)
                     }
-                    
-                    Text(podcast.title!)
-                        .foregroundColor(podcast.audioURL != nil ? .green : .red)
-                        .lineLimit(2)
+                    Button {
+                        handler.loadMP3(url: podcast.audioURL!) { data, error in
+                            guard let data = data else {return}
+                            self.audioPlayer = try! AVAudioPlayer(data: data)
+                            self.audioPlayer.play()
+                        }
+                    } label: {
+                        Text(podcast.title!)
+                            .foregroundColor(.black)
+                    }
                     Spacer()
                 }
                 
@@ -55,5 +62,6 @@ struct PodcastView_Previews: PreviewProvider {
     static var previews: some View {
         PodcastView()
             .environmentObject(PodcastLoader())
+            .environmentObject(APIHandler())
     }
 }
