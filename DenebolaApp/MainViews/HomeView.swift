@@ -95,5 +95,6 @@ private struct PostPreviewHome: View {
             }
             .clipShape(RoundedRectangle(cornerRadius: 7.0))
         }
+        .buttonStyle(PlainButtonStyle())
     }
 }

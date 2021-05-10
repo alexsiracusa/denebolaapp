@@ -9,10 +9,24 @@ import MediaPlayer
 import SwiftUI
 
 struct PodcastView: View {
-    @State var audioPlayer: AVAudioPlayer!
+    @State var audioPlayer = AVPlayer()
     @EnvironmentObject var loader: PodcastLoader
     @EnvironmentObject var handler: APIHandler
-    
+
+    @State var time = 0
+
+    func loadNewAudio(url: URL) {
+        audioPlayer = AVPlayer(url: url)
+        // Receive time updates
+        audioPlayer.addPeriodicTimeObserver(
+            forInterval: CMTimeMake(value: 1, timescale: 2), // 1/2 seconds
+            queue: DispatchQueue.main,
+            using: {
+                self.time = Int($0.seconds)
+            }
+        )
+    }
+
     var body: some View {
         NavigationView {
             ScrollView {
@@ -26,6 +40,7 @@ struct PodcastView: View {
                 } label: {
                     Text("Pause")
                 }
+                Text(String(format: "%02d:%02d", time / 60, time % 60))
                 ForEach(loader.podcasts) { podcast in
                     HStack(alignment: .top) {
                         if let url = podcast.imageURL {
@@ -38,11 +53,8 @@ struct PodcastView: View {
                                 .padding(.leading, 5)
                         }
                         Button {
-                            handler.loadData(url: podcast.audioURL!) { data, error in
-                                guard let data = data else {return}
-                                self.audioPlayer = try! AVAudioPlayer(data: data)
-                                self.audioPlayer.play()
-                            }
+                            self.audioPlayer = AVPlayer(url: podcast.audioURL!)
+                            self.audioPlayer.play()
                         } label: {
                             Text(podcast.title!)
                                 .foregroundColor(.black)
@@ -50,9 +62,7 @@ struct PodcastView: View {
                         }
                         Spacer()
                     }
-                    
                 }
-                
             }
             .navigationBarTitle("Denebacast", displayMode: .inline)
             .navigationBarItems(
@@ -60,8 +70,7 @@ struct PodcastView: View {
             )
         }
         .onAppear {
-            let data = NSDataAsset(name: "alan walker - faded (ncs release) at very low quality")!.data
-            self.audioPlayer = try! AVAudioPlayer(data: data)
+            self.loadNewAudio(url: URL(string: "https://cdn.discordapp.com/attachments/254443423568887809/396343613870571520/favorite_song.mp3")!)
             loader.load()
         }
     }
