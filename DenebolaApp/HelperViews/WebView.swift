@@ -81,11 +81,8 @@ public struct WebView: View, UIViewRepresentable {
         
         public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
             
-            // Whether the requested page is our own website
-            let isDomain = navigationAction.request.url?.host.map {$0.contains("nshsdenebola")} ?? false
-            
             // Allow page to be loaded in frame
-            guard !isDomain else {
+            guard navigationAction.navigationType == .linkActivated else {
                 decisionHandler(.allow)
                 return
             }
