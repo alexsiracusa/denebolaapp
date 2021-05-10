@@ -74,7 +74,7 @@
 		CEAE3E2C2648CA2F0066C825 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		CEAE3E342648CAC50066C825 /* DefaultViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultViews.swift; sourceTree = "<group>"; };
 		CEAE3E3C2648D0CC0066C825 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
-		CEC03FAD263E354200FFCB45 /* DenebolaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DenebolaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEC03FAD263E354200FFCB45 /* Denebola.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Denebola.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC03FB0263E354200FFCB45 /* DenebolaAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenebolaAppApp.swift; sourceTree = "<group>"; };
 		CEC03FB2263E354200FFCB45 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CEC03FB4263E354400FFCB45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -162,7 +162,7 @@
 		CEC03FAE263E354200FFCB45 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CEC03FAD263E354200FFCB45 /* DenebolaApp.app */,
+				CEC03FAD263E354200FFCB45 /* Denebola.app */,
 				CEC03FBE263E354400FFCB45 /* DenebolaAppTests.xctest */,
 				CEC03FC9263E354400FFCB45 /* DenebolaAppUITests.xctest */,
 			);
@@ -291,7 +291,7 @@
 				CE4D2D4226489C6500C243CC /* LoaderUI */,
 			);
 			productName = DenebolaApp;
-			productReference = CEC03FAD263E354200FFCB45 /* DenebolaApp.app */;
+			productReference = CEC03FAD263E354200FFCB45 /* Denebola.app */;
 			productType = "com.apple.product-type.application";
 		};
 		CEC03FBD263E354400FFCB45 /* DenebolaAppTests */ = {
@@ -609,7 +609,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = sequal.DenebolaApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Denebola;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -633,7 +633,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = sequal.DenebolaApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Denebola;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
