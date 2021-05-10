@@ -17,7 +17,7 @@ struct PodcastView: View {
 
     func loadNewAudio(url: URL) {
         audioPlayer.pause()
-        audioPlayer = AVPlayer(url: url)
+        self.audioPlayer = AVPlayer(url: url)
         // Receive time updates
         audioPlayer.addPeriodicTimeObserver(
             forInterval: CMTimeMake(value: 1, timescale: 2), // 1/2 seconds
@@ -27,12 +27,22 @@ struct PodcastView: View {
             }
         )
     }
+    
+    func play() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
+         }
+         catch {
+            // report for an error
+         }
+        audioPlayer.play()
+    }
 
     var body: some View {
         NavigationView {
             ScrollView {
                 Button {
-                    self.audioPlayer.play()
+                    self.play()
                 } label: {
                     Text("Play")
                 }
@@ -55,7 +65,7 @@ struct PodcastView: View {
                         }
                         Button {
                             self.loadNewAudio(url: podcast.audioURL!)
-                            self.audioPlayer.play()
+                            self.play()
                         } label: {
                             Text(podcast.title!)
                                 .foregroundColor(.black)
