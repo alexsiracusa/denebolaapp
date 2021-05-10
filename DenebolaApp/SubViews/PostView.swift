@@ -7,7 +7,6 @@
 
 import SwiftUI
 import LoaderUI
-import WebView
 
 struct PostView: View {
     @EnvironmentObject var handler: APIHandler
@@ -88,23 +87,19 @@ struct PostView_Previews: PreviewProvider {
 
 private struct ContentRenderer: View {
     @StateObject private var webviewStore = WebViewStore()
-    @State private var webviewHeight: CGFloat? = nil
+    @State private var webviewHeight: CGFloat = 500
     
     var htmlContent: String
-    private let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        WebView(webView: webviewStore.webView)
+        WebView(webView: webviewStore.webView, pageViewIdealSize: $webviewHeight)
             // Resize to fit page or start at 500
-            .frame(height: webviewHeight ?? 500, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            .frame(height: webviewHeight, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             // Poll HTML through javascript for page height
-            .onReceive(timer, perform: { _ in
-                webviewStore.webView.evaluateJavaScript("document.body.offsetHeight", completionHandler: {a, b in
-                    webviewHeight = CGFloat(a! as! Int) + 50
-                })
-            })
-            // Load HTML
             .onAppear {
+                // Setup webview
+                webviewStore.webView.scrollView.isScrollEnabled = false
+                webviewStore.webView.scrollView.bounces = false
                 webviewStore.webView.loadHTMLString(htmlContent, baseURL: URL(string: "https://www.nshsdenebola.com"))
             }
     }
