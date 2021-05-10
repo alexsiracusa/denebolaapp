@@ -14,43 +14,50 @@ struct PodcastView: View {
     @EnvironmentObject var handler: APIHandler
     
     var body: some View {
-        ScrollView {
-            Button {
-                self.audioPlayer.play()
-            } label: {
-                Text("Play")
-            }
-            Button {
-                self.audioPlayer.pause()
-            } label: {
-                Text("Pause")
-            }
-            ForEach(loader.podcasts) { podcast in
-                HStack(alignment: .top) {
-                    if let url = podcast.imageURL {
-                        ImageView(url: url)
-                            .scaledToFill()
-                            .frame(width: 50, height: 50)
-                            .aspectRatio(1, contentMode: .fit)
-                            .clipped()
-                            .cornerRadius(5)
-                            .padding(.leading, 5)
-                    }
-                    Button {
-                        handler.loadMP3(url: podcast.audioURL!) { data, error in
-                            guard let data = data else {return}
-                            self.audioPlayer = try! AVAudioPlayer(data: data)
-                            self.audioPlayer.play()
+        NavigationView {
+            ScrollView {
+                Button {
+                    self.audioPlayer.play()
+                } label: {
+                    Text("Play")
+                }
+                Button {
+                    self.audioPlayer.pause()
+                } label: {
+                    Text("Pause")
+                }
+                ForEach(loader.podcasts) { podcast in
+                    HStack(alignment: .top) {
+                        if let url = podcast.imageURL {
+                            ImageView(url: url)
+                                .scaledToFill()
+                                .frame(width: 50, height: 50)
+                                .aspectRatio(1, contentMode: .fit)
+                                .clipped()
+                                .cornerRadius(5)
+                                .padding(.leading, 5)
                         }
-                    } label: {
-                        Text(podcast.title!)
-                            .foregroundColor(.black)
-                            .lineLimit(2)
+                        Button {
+                            handler.loadData(url: podcast.audioURL!) { data, error in
+                                guard let data = data else {return}
+                                self.audioPlayer = try! AVAudioPlayer(data: data)
+                                self.audioPlayer.play()
+                            }
+                        } label: {
+                            Text(podcast.title!)
+                                .foregroundColor(.black)
+                                .lineLimit(2)
+                        }
+                        Spacer()
                     }
-                    Spacer()
+                    
                 }
                 
             }
+            .navigationBarTitle("Denebacast", displayMode: .inline)
+            .navigationBarItems(
+                trailing: ToolbarLogo()
+            )
         }
         .onAppear {
             let data = NSDataAsset(name: "alan walker - faded (ncs release) at very low quality")!.data

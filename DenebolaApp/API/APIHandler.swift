@@ -86,7 +86,7 @@ class APIHandler: ObservableObject {
         }
     }
     
-    func loadMP3(url: URL, completionHandler: @escaping (Data?, String?) -> Void) {
+    func loadData(url: URL, completionHandler: @escaping (Data?, String?) -> Void) {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         
