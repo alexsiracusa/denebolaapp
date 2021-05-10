@@ -29,7 +29,7 @@ struct HomeView: View {
                 CategorySelection(selectedCategory: $selectedCategory, onCategorySelected: {_ in
                     loadPosts()
                 })
-                .padding()
+                //.padding()
                 
                 if loadedPosts.count > 0 {
                     PageView(pages: loadedPosts.map {post in
@@ -81,11 +81,14 @@ private struct CategorySelection: View {
                                 reader.scrollTo(category.id, anchor: .center)
                             }
                         }) {
-                            Text("\(category.name)")
+                            //Text("\(category.name)")
+                            BubbleText(text: category.name)
                         }
-                        .foregroundColor(category == selectedCategory ? .black : .gray)
+                        .foregroundColor(category == selectedCategory ? .black : .secondary)
                     }
+                    Spacer(minLength: 150)
                 }
+                .padding([.leading, .trailing, .top, .bottom], 10)
             }
         }
     }
