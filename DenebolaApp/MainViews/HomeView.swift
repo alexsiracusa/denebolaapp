@@ -71,15 +71,20 @@ private struct CategorySelection: View {
     
     var body: some View {
         ScrollView([.horizontal], showsIndicators: false) {
-            HStack {
-                ForEach(Categories.allCases, id: \.id) { category in
-                    Button(action: {
-                        selectedCategory = category
-                        onCategorySelected(category)
-                    }) {
-                        Text("\(category.name)")
+            ScrollViewReader {reader in
+                HStack {
+                    ForEach(Categories.allCases, id: \.id) { category in
+                        Button(action: {
+                            selectedCategory = category
+                            onCategorySelected(category)
+                            withAnimation {
+                                reader.scrollTo(category.id, anchor: .center)
+                            }
+                        }) {
+                            Text("\(category.name)")
+                        }
+                        .foregroundColor(category == selectedCategory ? .black : .gray)
                     }
-                    .foregroundColor(category == selectedCategory ? .black : .gray)
                 }
             }
         }
