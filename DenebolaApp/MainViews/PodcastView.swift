@@ -16,6 +16,7 @@ struct PodcastView: View {
     @State var time = 0
 
     func loadNewAudio(url: URL) {
+        audioPlayer.pause()
         audioPlayer = AVPlayer(url: url)
         // Receive time updates
         audioPlayer.addPeriodicTimeObserver(
@@ -53,7 +54,7 @@ struct PodcastView: View {
                                 .padding(.leading, 5)
                         }
                         Button {
-                            self.audioPlayer = AVPlayer(url: podcast.audioURL!)
+                            self.loadNewAudio(url: podcast.audioURL!)
                             self.audioPlayer.play()
                         } label: {
                             Text(podcast.title!)
