@@ -84,9 +84,17 @@ private struct CategorySelection: View {
 private struct PostPreviewHome: View {
     var post: PostRow
     
+    var imageURL: URL? {
+        return post.imageURL?.asURL
+    }
+    
+    var image: ImageView? {
+        imageURL.flatMap {ImageView(url: $0)}
+    }
+    
     var body: some View {
         NavigationLink( destination:
-            PostView(id: post.id, title: post.title, author: post.author)
+            PostView(id: post.id, title: post.title, image: image, author: post.author)
         ) {
             GeometryReader { reader in
                 ImageView(url: URL(string: post.imageURL ?? "https://designshack.net/wp-content/uploads/placeholder-image.png")!) // TODO: remove placeholder

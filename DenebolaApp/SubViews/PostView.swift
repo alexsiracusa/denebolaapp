@@ -37,7 +37,6 @@ struct PostView: View {
             VStack(alignment: .leading) {
                 //image
                 image
-                    .scaledToFit()
                     .padding(.top)
                     .scaledToFill()
                 //title
