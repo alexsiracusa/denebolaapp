@@ -16,12 +16,10 @@ class PodcastLoader: NSObject, ObservableObject, XMLParserDelegate {
     
     func load() {
         guard let url = URL(string: rss) else {return}
-        loadFeed(url: url) { podcast, error in
-            
-        }
+        loadFeed(url: url)
     }
     
-    private func loadFeed(url: URL, completion: @escaping (Podcast?, String?) -> Void) {
+    private func loadFeed(url: URL) {
         let parser = XMLParser(contentsOf: url)!
         parser.delegate = self
         parser.parse()
