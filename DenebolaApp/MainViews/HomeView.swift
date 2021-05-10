@@ -48,6 +48,10 @@ struct HomeView: View {
                 loadPosts()
             }
             .navigationBarTitle("Home", displayMode: .inline)
+            .navigationBarItems(
+                leading:
+                    ToolbarLogo()
+            )
         }
     }
 }
