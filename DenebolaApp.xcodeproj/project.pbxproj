@@ -23,6 +23,7 @@
 		CEC03FC3263E354400FFCB45 /* DenebolaAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FC2263E354400FFCB45 /* DenebolaAppTests.swift */; };
 		CEC03FCE263E354400FFCB45 /* DenebolaAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FCD263E354400FFCB45 /* DenebolaAppUITests.swift */; };
 		FA4618C926496BBB0018522B /* BubbleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4618C826496BBB0018522B /* BubbleText.swift */; };
+		FA4618CC264980240018522B /* PodcastLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4618CB264980240018522B /* PodcastLoader.swift */; };
 		FA56AA43263F080900B6D838 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA42263F080900B6D838 /* ViewController.swift */; };
 		FA56AA46263F0B2300B6D838 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA45263F0B2300B6D838 /* CategoriesView.swift */; };
 		FA56AA4A263F0B5100B6D838 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA49263F0B5100B6D838 /* HomeView.swift */; };
@@ -86,6 +87,7 @@
 		CEC03FCD263E354400FFCB45 /* DenebolaAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenebolaAppUITests.swift; sourceTree = "<group>"; };
 		CEC03FCF263E354400FFCB45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA4618C826496BBB0018522B /* BubbleText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleText.swift; sourceTree = "<group>"; };
+		FA4618CB264980240018522B /* PodcastLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastLoader.swift; sourceTree = "<group>"; };
 		FA56AA42263F080900B6D838 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FA56AA45263F0B2300B6D838 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		FA56AA49263F0B5100B6D838 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				FA56AA4F263F0BCA00B6D838 /* SubViews */,
 				FA56AA52263F0D2900B6D838 /* HelperViews */,
 				FA73AA26263E361E00B6C8B6 /* API */,
+				FA4618CA264980090018522B /* PodcastRSS */,
 				CEAE3E2B2648CA0B0066C825 /* Util */,
 				CEC03FB4263E354400FFCB45 /* Assets.xcassets */,
 				CEC03FB9263E354400FFCB45 /* Info.plist */,
@@ -209,6 +212,14 @@
 				CEC03FCF263E354400FFCB45 /* Info.plist */,
 			);
 			path = DenebolaAppUITests;
+			sourceTree = "<group>";
+		};
+		FA4618CA264980090018522B /* PodcastRSS */ = {
+			isa = PBXGroup;
+			children = (
+				FA4618CB264980240018522B /* PodcastLoader.swift */,
+			);
+			path = PodcastRSS;
 			sourceTree = "<group>";
 		};
 		FA56AA44263F0B0E00B6D838 /* MainViews */ = {
@@ -429,6 +440,7 @@
 				CE1E88872647561600E1245E /* ImageView.swift in Sources */,
 				FA73AA2E263E361E00B6C8B6 /* APIHandler.swift in Sources */,
 				FA56AA46263F0B2300B6D838 /* CategoriesView.swift in Sources */,
+				FA4618CC264980240018522B /* PodcastLoader.swift in Sources */,
 				FA73AA2C263E361E00B6C8B6 /* Category.swift in Sources */,
 				CE1E888126474BFC00E1245E /* PageControl.swift in Sources */,
 				FA56AA43263F080900B6D838 /* ViewController.swift in Sources */,

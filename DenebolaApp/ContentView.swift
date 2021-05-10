@@ -13,6 +13,7 @@ struct ContentView: View {
         ViewController()
             .environmentObject(APIHandler())
             .preferredColorScheme(.light) // Until we add dark mode custom theming
+            .environmentObject(PodcastLoader())
         //PostView(id: 25133)
         //    .environmentObject(APIHandler())
     }

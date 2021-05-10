@@ -10,6 +10,7 @@ import MediaPlayer
 
 struct PodcastView: View {
     @State var audioPlayer: AVAudioPlayer!
+    @EnvironmentObject var loader: PodcastLoader
     
     var body: some View {
         VStack {
@@ -23,10 +24,14 @@ struct PodcastView: View {
             } label: {
                 Text("Pause")
             }
+            ForEach(loader.podcasts) { podcast in
+                Text(podcast.title!)
+            }
         }
         .onAppear {
             let data = NSDataAsset(name: "alan walker - faded (ncs release) at very low quality")!.data
             self.audioPlayer = try! AVAudioPlayer(data: data)
+            loader.load()
         }
     }
 }
@@ -34,5 +39,6 @@ struct PodcastView: View {
 struct PodcastView_Previews: PreviewProvider {
     static var previews: some View {
         PodcastView()
+            .environmentObject(PodcastLoader())
     }
 }
