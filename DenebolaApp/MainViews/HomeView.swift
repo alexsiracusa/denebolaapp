@@ -96,7 +96,7 @@ private struct PostPreviewHome: View {
     var post: PostRow
     
     var image: ImageView? {
-        post.imageURL.flatMap { ImageView(url: $0) }
+        post.fullImageURL.flatMap { ImageView(url: $0) }
     }
     
     var body: some View {
@@ -104,7 +104,7 @@ private struct PostPreviewHome: View {
             PostView(id: post.id, title: post.title, image: image, author: post.author)
         ) {
             GeometryReader { reader in
-                if let imageURL = post.imageURL {
+                if let imageURL = post.fullImageURL {
                     ImageView(url: imageURL)
                         .aspectRatio(contentMode: .fill)
                         .frame(width: reader.size.width, height: reader.size.height)

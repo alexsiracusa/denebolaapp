@@ -122,16 +122,17 @@ class APIHandler: ObservableObject {
                 return
             }
             
-            if let result = try? JSONDecoder().decode(ResponseType.self, from: data) {
+            do {
+                let result = try JSONDecoder().decode(ResponseType.self, from: data)
                 // have good data
                 DispatchQueue.main.async {
                     completionHandler(result, nil)
                 }
                 return
-            } else {
+            } catch {
                 // could not convert data
                 DispatchQueue.main.async {
-                    let error = "Fetch failed: could not decode json"
+                    let error = "Fetch failed: could not decode json. Reason: \(error)"
                     completionHandler(nil, error)
                 }
             }

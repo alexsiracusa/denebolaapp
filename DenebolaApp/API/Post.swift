@@ -27,7 +27,11 @@ struct Post: Codable, Equatable, Identifiable {
     }
     
     func asPostRow() -> PostRow {
-        return PostRow(id: self.id, title: self.renderedTitle, author: (self._embedded!.author![0].name)!, date: self.renderedDate, imageURL: self._embedded?.featuredMedia?[0].source_url?.asURL, hasMedia: self.hasMedia)
+        return PostRow(id: self.id, title: self.renderedTitle, author: (self._embedded!.author![0].name)!, date: self.renderedDate, fullImageURL: self._embedded?.featuredMedia?[0].source_url?.asURL, thumbnailImageURL: self.getThumbnailUrl(), hasMedia: self.hasMedia)
+    }
+    
+    func getThumbnailUrl() -> URL? {
+        return self._embedded?.featuredMedia?[0].media_details.getSize("medium")?.source_url.asURL
     }
     
     var renderedContent: String { // TODO: remove?
@@ -92,6 +96,19 @@ struct Embeded: Codable {
 struct SimpleMedia: Codable {
     let id: Int?
     let source_url: String?
+    let media_details: MediaDetails
+}
+
+struct MediaDetails: Codable {
+    let sizes: [String: MediaSize]
+    
+    func getSize(_ name: String) -> MediaSize? {
+        return self.sizes[name]
+    }
+}
+
+struct MediaSize: Codable {
+    let source_url: String
 }
 
 struct Author: Codable {
