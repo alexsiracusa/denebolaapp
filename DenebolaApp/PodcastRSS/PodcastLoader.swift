@@ -19,6 +19,7 @@ class PodcastLoader: NSObject, ObservableObject, XMLParserDelegate {
     
     func load() {
         guard let url = URL(string: rss) else {return}
+        podcasts = []
         loadFeed(url: url)
     }
     
