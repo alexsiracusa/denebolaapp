@@ -6,10 +6,21 @@
 //
 
 import SwiftUI
+import MediaPlayer
 
 struct PodcastView: View {
+    @State var audioPlayer: AVAudioPlayer!
+    
     var body: some View {
-        Text("Podcast")
+        Button {
+            self.audioPlayer.play()
+        } label: {
+            Text("Play")
+        }
+        .onAppear {
+            let data = NSDataAsset(name: "alan walker - faded (ncs release) at very low quality")!.data
+            self.audioPlayer = try! AVAudioPlayer(data: data)
+        }
     }
 }
 
