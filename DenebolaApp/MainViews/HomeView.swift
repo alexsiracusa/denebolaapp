@@ -11,12 +11,10 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject private var handler: APIHandler
-    
-    @State private var selectedCategory = Categories.allCases.first!
     @State private var loadedPosts = [PostRow]()
     
     func loadPosts() {
-        handler.loadPostPage(category: selectedCategory.id, page: 1, per_page: 3, embed: true, completionHandler: { post, _ in
+        handler.loadPostPage(category: nil, page: 1, per_page: 5, embed: true, completionHandler: { post, _ in
             guard let post = post, post.count > 0 else { return }
             
             self.loadedPosts = post.map { $0.asPostRow() }
@@ -25,15 +23,16 @@ struct HomeView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                CategorySelection(selectedCategory: $selectedCategory, onCategorySelected: { _ in
-                    loadPosts()
-                })
+            VStack(alignment: .leading) {
+                Text("Latest Posts")
+                    .font(.title2)
+                    .bold()
+                    .padding([.top, .leading])
                 
                 if loadedPosts.count > 0 {
                     PageView(pages: loadedPosts.map { post in
                         PostPreviewHome(post: post)
-                            .padding(.horizontal, 5.0)
+                            .padding(.horizontal, 10.0)
                     })
                         .aspectRatio(1.5, contentMode: .fit)
                         .id(UUID()) // Reset selected page to 1
@@ -48,10 +47,7 @@ struct HomeView: View {
                 loadPosts()
             }
             .navigationBarTitle("Home", displayMode: .inline)
-            .navigationBarItems(
-                trailing:
-                ToolbarLogo()
-            )
+            .navigationBarItems(trailing: ToolbarLogo())
         }
     }
 }
@@ -60,35 +56,6 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
             .environmentObject(APIHandler())
-    }
-}
-
-private struct CategorySelection: View {
-    @Binding var selectedCategory: Categories
-    
-    var onCategorySelected: (Categories) -> Void = { _ in }
-    
-    var body: some View {
-        ScrollView([.horizontal], showsIndicators: false) {
-            ScrollViewReader { reader in
-                HStack {
-                    ForEach(Categories.allCases, id: \.id) { category in
-                        Button(action: {
-                            selectedCategory = category
-                            onCategorySelected(category)
-                            withAnimation {
-                                reader.scrollTo(category.id, anchor: .center)
-                            }
-                        }) {
-                            BubbleText(text: category.name)
-                        }
-                        .foregroundColor(category == selectedCategory ? .black : .secondary)
-                    }
-                    Spacer(minLength: 150)
-                }
-                .padding([.leading, .trailing, .top, .bottom], 10)
-            }
-        }
     }
 }
 

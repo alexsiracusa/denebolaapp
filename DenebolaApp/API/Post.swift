@@ -30,8 +30,9 @@ struct Post: Codable, Equatable, Identifiable {
         return PostRow(id: self.id, title: self.renderedTitle, author: (self._embedded!.author![0].name)!, date: self.renderedDate, fullImageURL: self._embedded?.featuredMedia?[0].source_url?.asURL, thumbnailImageURL: self.getThumbnailUrl(), hasMedia: self.hasMedia)
     }
     
+    /// Gets a smaller "medium" size thumbnail or the original size if it's smaller
     func getThumbnailUrl() -> URL? {
-        return self._embedded?.featuredMedia?[0].media_details.getSize("medium")?.source_url.asURL
+        return self._embedded?.featuredMedia?[0].media_details.getSize("medium")?.source_url.asURL ?? self._embedded?.featuredMedia?[0].source_url?.asURL
     }
     
     var renderedContent: String { // TODO: remove?
@@ -67,6 +68,9 @@ struct Post: Codable, Equatable, Identifiable {
                     body {
                         font-family: -apple-system, "Helvetica Neue", "Lucida Grande";
                         font-size: "Large";
+                    }
+                    * {
+                        max-width: 100%;
                     }
                 </style>
                 <body>
