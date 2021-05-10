@@ -23,7 +23,7 @@ struct Media: Codable, Equatable, Identifiable {
     let media_details: Media_Details
     let post: Int?
     let source_url: String
-    
+
     static func ==(lhs: Media, rhs: Media) -> Bool {
         return lhs.id == rhs.id
     }
@@ -51,9 +51,3 @@ struct Size: Codable {
     let mime_type: String
     let source_url: String
 }
-
-
-
-
-
-

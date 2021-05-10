@@ -5,8 +5,8 @@
 //  Created by Connor Tam on 5/8/21.
 //
 
-import SwiftUI
 import FetchImage
+import SwiftUI
 
 struct ImageView: View {
     let url: URL

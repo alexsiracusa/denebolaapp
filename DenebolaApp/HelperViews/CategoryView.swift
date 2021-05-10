@@ -10,7 +10,7 @@ import SwiftUI
 struct CategoryView: View {
     let id: Int
     let name: String
-    
+
     var body: some View {
         Text(name)
     }

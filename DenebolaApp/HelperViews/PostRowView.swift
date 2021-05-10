@@ -5,28 +5,31 @@
 //  Created by Alex Siracusa on 5/2/21.
 //
 
-import SwiftUI
 import FetchImage
+import SwiftUI
 
 struct PostRowView: View {
     let postRow: PostRow
     var title: String {
         return postRow.title
     }
+
     var author: String {
         return postRow.author
     }
+
     var date: String {
         return postRow.date
     }
+
     var imageURL: URL? {
         return postRow.imageURL
     }
-    
+
     var image: ImageView? {
-        imageURL.flatMap {ImageView(url: $0)}
+        imageURL.flatMap { ImageView(url: $0) }
     }
-    
+
     var body: some View {
         HStack(alignment: .top) {
             if postRow.hasMedia {
@@ -42,24 +45,24 @@ struct PostRowView: View {
                     .frame(width: 100, height: 100)
                     .cornerRadius(5)
             }
-            
-            //title + author + date
-            NavigationLink( destination:
+
+            // title + author + date
+            NavigationLink(destination:
                 PostView(id: postRow.id, title: postRow.title, image: image, author: postRow.author)
-                .navigationBarTitle(Text(""), displayMode: .inline)
+                    .navigationBarTitle(Text(""), displayMode: .inline)
             ) {
                 VStack(alignment: .leading, spacing: 3) {
-                    //title
+                    // title
                     Text(title)
                         .font(.title2)
                         .lineLimit(nil)
-                    //author
+                    // author
                     HStack {
                         Image(systemName: "person.fill")
                         Text(author).font(.subheadline)
                             .lineLimit(1)
                     }
-                    //date
+                    // date
                     HStack {
                         Image(systemName: "calendar")
                         Text(date).font(.subheadline)
@@ -70,7 +73,7 @@ struct PostRowView: View {
                 Spacer()
             }
         }
-        .frame(height:100)
+        .frame(height: 100)
         .padding([.leading, .trailing], 10)
     }
 }

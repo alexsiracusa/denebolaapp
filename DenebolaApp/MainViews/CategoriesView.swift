@@ -9,14 +9,14 @@ import SwiftUI
 
 struct CategoriesView: View {
     @EnvironmentObject var handler: APIHandler
-    
+
     var body: some View {
         NavigationView {
             ScrollView {
-                ScrollViewReader { value in
+                ScrollViewReader { _ in
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 0) {
-                            ForEach(Categories.allCases, id: \.rawValue.0) {category in
+                            ForEach(Categories.allCases, id: \.rawValue.0) { category in
                                 CategoryButton(id: category.id, name: category.name, image: category.image)
                                     .padding([.leading, .trailing], 5)
                             }
@@ -45,16 +45,15 @@ struct CategoriesView: View {
             .navigationBarTitle("Feed", displayMode: .inline)
             .navigationBarItems(
                 leading:
-                    NavigationLink(destination:
-                        Search()
-                    ) {
-                        Image(systemName: "magnifyingglass")
-                            .foregroundColor(.black)
-                    }
-                ,
+                NavigationLink(destination:
+                    Search()
+                ) {
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(.black)
+                },
+
                 trailing:
-                    ToolbarLogo()
-                    
+                ToolbarLogo()
             )
         }
     }

@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 class ScrollViewLoader: ObservableObject {
     @Published var posts = [PostRow]()
     @Published var isLoadingPage = false
@@ -25,7 +24,7 @@ class ScrollViewLoader: ObservableObject {
     }
     
     func loadMorePostsIfNeeded(currentItem: PostRow) {
-        let index = posts.firstIndex(where: {currentItem.id == $0.id})
+        let index = posts.firstIndex(where: { currentItem.id == $0.id })
         let thresholdIndex = posts.index(posts.endIndex, offsetBy: -per_page)
         if index == thresholdIndex {
             loadMorePosts()
@@ -33,7 +32,7 @@ class ScrollViewLoader: ObservableObject {
     }
     
     func loadMorePosts() {
-        guard !isLoadingPage && canLoadMorePages else {return}
+        guard !isLoadingPage, canLoadMorePages else { return }
         isLoadingPage = true
         handler.loadPostPage(category: category, page: currentPage, per_page: per_page, embed: true) { posts, error in
             self.error = error
@@ -41,11 +40,10 @@ class ScrollViewLoader: ObservableObject {
                 self.canLoadMorePages = false
                 return
             }
-            let newPosts = posts.map {$0.asPostRow()}
+            let newPosts = posts.map { $0.asPostRow() }
             self.posts += newPosts
             self.currentPage += 1
             self.isLoadingPage = false
         }
     }
-    
 }

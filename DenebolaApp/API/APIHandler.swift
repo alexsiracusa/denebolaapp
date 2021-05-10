@@ -13,7 +13,7 @@ class APIHandler: ObservableObject {
     
     func loadPost(_ id: Int, embed: Bool, completionHandler: @escaping (Post?, String?) -> Void) {
         var url = domain + "/wp-json/wp/v2/posts/" + "\(id)"
-        if embed {url += "?_embed"}
+        if embed { url += "?_embed" }
         APIHandler.decodeJSON(url: url, completionHandler: completionHandler)
     }
     
@@ -31,16 +31,16 @@ class APIHandler: ObservableObject {
         var url = domain + "/?rest_route=/wp/v2/categories"
         url += "&page=\(page)"
         url += "&per_page=\(per_page)"
-        if embed {url += "&_embed"}
+        if embed { url += "&_embed" }
         APIHandler.decodeJSON(url: url, completionHandler: completionHandler)
     }
     
-    func loadPostPage(category: Int? = nil, page: Int = 1, per_page: Int = 10, embed: Bool,  completionHandler: @escaping ([Post]?, String?) -> Void) {
+    func loadPostPage(category: Int? = nil, page: Int = 1, per_page: Int = 10, embed: Bool, completionHandler: @escaping ([Post]?, String?) -> Void) {
         var url = domain + "/?rest_route=/wp/v2/posts"
         url += "&per_page=\(per_page)"
-        if let category = category {url += "&categories=\(category)"}
+        if let category = category { url += "&categories=\(category)" }
         url += "&page=\(page)"
-        if embed {url += "&_embed"}
+        if embed { url += "&_embed" }
         APIHandler.decodeJSON(url: url, completionHandler: completionHandler)
     }
     
@@ -52,7 +52,7 @@ class APIHandler: ObservableObject {
                 return
             }
             let mediaID = post.featured_media
-            guard mediaID != 0  else {
+            guard mediaID != 0 else {
                 completionHandler(post, nil, nil, error)
                 return
             }
@@ -70,7 +70,7 @@ class APIHandler: ObservableObject {
     }
     
     func loadPostForDisplay(_ id: Int, completionHandler: @escaping (Post?, URL?, String?) -> Void) {
-        loadPost(id, embed: true) {post, error in
+        loadPost(id, embed: true) { post, error in
             guard let post = post, error == nil else {
                 completionHandler(nil, nil, error)
                 return
@@ -86,14 +86,14 @@ class APIHandler: ObservableObject {
         }
     }
     
-    static func decodeJSON<ResponseType:Codable>(url: String, completionHandler: @escaping (ResponseType?, String?) -> Void) {
-        guard let url = URL(string: url) else {return}
+    static func decodeJSON<ResponseType: Codable>(url: String, completionHandler: @escaping (ResponseType?, String?) -> Void) {
+        guard let url = URL(string: url) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+        let task = URLSession.shared.dataTask(with: request) { data, _, error in
             
-            //check for errors
+            // check for errors
             guard let data = data, error == nil else {
                 DispatchQueue.main.async {
                     let error = "Fetch failed: \(error!)"
@@ -119,14 +119,4 @@ class APIHandler: ObservableObject {
         
         task.resume()
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }

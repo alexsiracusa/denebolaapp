@@ -16,7 +16,7 @@ struct Category: Codable, Identifiable {
     let slug: String
     let taxonomy: String
     let parent: Int
-    
+
     static func ==(lhs: Category, rhs: Category) -> Bool {
         return lhs.id == rhs.id
     }

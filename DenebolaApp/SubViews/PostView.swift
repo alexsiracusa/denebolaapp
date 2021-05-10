@@ -5,8 +5,8 @@
 //  Created by Alex Siracusa on 4/19/21.
 //
 
-import SwiftUI
 import LoaderUI
+import SwiftUI
 
 struct PostView: View {
     @EnvironmentObject var handler: APIHandler
@@ -24,7 +24,7 @@ struct PostView: View {
         handler.loadPostForDisplay(id) { post, imageUrl, error in
             self.content = post?.htmlContent
             self.title = post?.renderedTitle
-            self.image = imageUrl.map {ImageView(url: $0)}
+            self.image = imageUrl.map { ImageView(url: $0) }
             self.author = post?._embedded?.author?[0].name
             self.error = error
 
@@ -34,15 +34,13 @@ struct PostView: View {
     
     /// swiftui refuses to give any useful errors if it doesn't compile so just don't make errors
     var body: some View {
-        
-        
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading) {
-                //image
+                // image
                 image
                     .padding(.top)
                     .scaledToFill()
-                //title
+                // title
                 if let title = title {
                     Text(title).font(.largeTitle)
                         .bold()
@@ -65,14 +63,14 @@ struct PostView: View {
                 }
             }
         }
-        .onAppear() {
+        .onAppear {
             load()
         }
         .padding([.leading, .trailing])
         .navigationTitle("\(title ?? "Loading")")
         .navigationBarItems(
             trailing:
-                ToolbarLogo()
+            ToolbarLogo()
         )
     }
 }
@@ -84,7 +82,6 @@ struct PostView_Previews: PreviewProvider {
     }
 }
 
-
 private struct ContentRenderer: View {
     @StateObject private var webviewStore = WebViewStore()
     @State private var webviewHeight: CGFloat = 500
@@ -94,7 +91,7 @@ private struct ContentRenderer: View {
     var body: some View {
         WebView(webView: webviewStore.webView, pageViewIdealSize: $webviewHeight)
             // Resize to fit page or start at 500
-            .frame(height: webviewHeight, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            .frame(height: webviewHeight, alignment: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/)
             // Poll HTML through javascript for page height
             .onAppear {
                 // Setup webview

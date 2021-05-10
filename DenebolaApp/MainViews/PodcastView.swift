@@ -5,8 +5,8 @@
 //  Created by Alex Siracusa on 5/2/21.
 //
 
-import SwiftUI
 import MediaPlayer
+import SwiftUI
 
 struct PodcastView: View {
     @State var audioPlayer: AVAudioPlayer!

@@ -6,9 +6,8 @@
 //
 //  Adapted from https://github.com/kylehickinson/SwiftUI-WebView/blob/main/Sources/WebView/WebView.swift
 
-
-import SwiftUI
 import Combine
+import SwiftUI
 import WebKit
 
 @dynamicMemberLookup
@@ -65,8 +64,7 @@ public struct WebView: View, UIViewRepresentable {
         return webView
     }
     
-    public func updateUIView(_ uiView: WKWebView, context: UIViewRepresentableContext<WebView>) {
-    }
+    public func updateUIView(_ uiView: WKWebView, context: UIViewRepresentableContext<WebView>) {}
     
     public func makeCoordinator() -> Coordinator {
         Coordinator(self)
@@ -80,7 +78,6 @@ public struct WebView: View, UIViewRepresentable {
         }
         
         public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-            
             // Allow page to be loaded in frame
             guard navigationAction.navigationType == .linkActivated else {
                 decisionHandler(.allow)
@@ -94,11 +91,9 @@ public struct WebView: View, UIViewRepresentable {
         
         public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
             // Get size of page
-            webView.evaluateJavaScript("document.documentElement.scrollHeight", completionHandler: {height, _ in
+            webView.evaluateJavaScript("document.documentElement.scrollHeight", completionHandler: { height, _ in
                 self.parent.pageViewIdealSize = height! as! CGFloat
             })
         }
     }
-
 }
-
