@@ -7,6 +7,7 @@
 
 import SwiftUI
 import LoaderUI
+import WebView
 
 struct PostView: View {
     @EnvironmentObject var handler: APIHandler
@@ -22,18 +23,21 @@ struct PostView: View {
     
     func load() {
         handler.loadPostForDisplay(id) { post, imageUrl, error in
-            self.content = post?.renderedContent
+            self.content = post?.htmlContent
             self.title = post?.renderedTitle
             self.image = imageUrl.map {ImageView(url: $0)}
             self.author = post?._embedded?.author?[0].name
             self.error = error
+
             loaded = true
         }
     }
     
     /// swiftui refuses to give any useful errors if it doesn't compile so just don't make errors
     var body: some View {
-        ScrollView {
+        
+        
+        ScrollView(showsIndicators: false) {
             VStack(alignment: .leading) {
                 //image
                 image
@@ -48,11 +52,11 @@ struct PostView: View {
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 
-                //content
                 if let content = content {
-                    Text(content)
-                        .fixedSize(horizontal: false, vertical: true)
+                    ContentRenderer(htmlContent: content)
+                        .padding(-5)
                 }
+                
                 if loaded == false {
                     BallPulse()
                 } else {
@@ -82,3 +86,26 @@ struct PostView_Previews: PreviewProvider {
 }
 
 
+private struct ContentRenderer: View {
+    @StateObject private var webviewStore = WebViewStore()
+    @State private var webviewHeight: CGFloat? = nil
+    
+    var htmlContent: String
+    private let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
+    
+    var body: some View {
+        WebView(webView: webviewStore.webView)
+            // Resize to fit page or start at 500
+            .frame(height: webviewHeight ?? 500, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            // Poll HTML through javascript for page height
+            .onReceive(timer, perform: { _ in
+                webviewStore.webView.evaluateJavaScript("document.body.offsetHeight", completionHandler: {a, b in
+                    webviewHeight = CGFloat(a! as! Int) + 50
+                })
+            })
+            // Load HTML
+            .onAppear {
+                webviewStore.webView.loadHTMLString(htmlContent, baseURL: URL(string: "https://www.nshsdenebola.com"))
+            }
+    }
+}

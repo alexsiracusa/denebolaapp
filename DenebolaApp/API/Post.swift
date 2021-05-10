@@ -54,6 +54,24 @@ struct Post: Codable, Equatable, Identifiable {
         return date.string(from: parsedDate)
     }
     
+    var htmlContent: String {
+        return """
+            <!DOCTYPE HTML>
+            <head><meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'></meta></head>
+            <html>
+                <style>
+                    body {
+                        font-family: -apple-system, "Helvetica Neue", "Lucida Grande";
+                        font-size: "Large";
+                    }
+                </style>
+                <body>
+                    \(self.content.rendered)
+                </body>
+            </html>
+        """
+    }
+    
     var hasMedia: Bool {
         return featured_media != 0
     }
@@ -91,7 +109,7 @@ extension String {
         do {
             return try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil).string
             //return self
-
+            
         } catch let error as NSError {
             print(error.localizedDescription)
             return  nil
