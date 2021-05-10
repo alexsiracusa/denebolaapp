@@ -20,20 +20,15 @@ struct ImageView: View {
                 .clipped()
                 .onDisappear(perform: image.reset)
         } else {
-            Rectangle().fill(Color.gray)
-                .onAppear { image.load(url) }
+            ZStack {
+                PlaceholderBackground()
+                    .onAppear { image.load(url) }
+                DefaultLoader()
+                    .scaleEffect(0.1)
+            }
         }
     }
 }
-
-extension FetchImage {
-    var displayImage: Image? {
-        guard let image = self.image else {return nil}
-        return Image(uiImage: image.imageWithoutBaseline())
-        
-    }
-}
-
 
 struct ImageView_Previews: PreviewProvider {
     static var previews: some View {

@@ -51,7 +51,6 @@ struct PostRowView: View {
                 VStack(alignment: .leading, spacing: 3) {
                     //title
                     Text(title)
-                        .lineLimit(nil)
                         .font(.title2)
                         .lineLimit(nil)
                     //author

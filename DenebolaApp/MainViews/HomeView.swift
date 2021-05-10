@@ -30,17 +30,18 @@ struct HomeView: View {
                     loadPosts()
                 })
                 .padding()
-    
-                if loadedPosts.count == 0 {
-                    BallPulse()
-                } else {
+                
+                if loadedPosts.count > 0 {
                     PageView(pages: loadedPosts.map {post in
                         PostPreviewHome(post: post)
                             .padding(.horizontal, 5.0)
                     })
                     .aspectRatio(1.5, contentMode: .fit)
+                    .id(UUID()) // Reset selected page to 1
+                } else {
+                    PlaceholderBackground()
+                    DefaultLoader()
                 }
-                
                 
                 Spacer()
             }
@@ -88,27 +89,27 @@ private struct CategorySelection: View {
 private struct PostPreviewHome: View {
     var post: PostRow
     
-    var imageURL: URL? {
-        return post.imageURL?.asURL
-    }
-    
     var image: ImageView? {
-        imageURL.flatMap {ImageView(url: $0)}
+        post.imageURL.flatMap {ImageView(url: $0)}
     }
     
     var body: some View {
         NavigationLink( destination:
-            PostView(id: post.id, title: post.title, image: image, author: post.author)
+                            PostView(id: post.id, title: post.title, image: image, author: post.author)
         ) {
             GeometryReader { reader in
-                ImageView(url: URL(string: post.imageURL ?? "https://designshack.net/wp-content/uploads/placeholder-image.png")!) // TODO: remove placeholder
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: reader.size.width, height: reader.size.height)
-                    .overlay(LinearGradient(gradient: Gradient(colors: [.clear, .black]), startPoint: UnitPoint(x: 0.5, y: 0.75), endPoint: .bottom)
-                                .cornerRadius(10)
-                                .opacity(0.25)
-                    )
-                
+                if let imageURL = post.imageURL {
+                    ImageView(url: imageURL)
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: reader.size.width, height: reader.size.height)
+                        .overlay(LinearGradient(gradient: Gradient(colors: [.clear, .black]), startPoint: UnitPoint(x: 0.5, y: 0.75), endPoint: .bottom)
+                                    .cornerRadius(10)
+                                    .opacity(0.25)
+                        )
+                    
+                } else {
+                    PlaceholderImage()
+                }
                 
                 // Text Description
                 VStack(alignment: .leading) {

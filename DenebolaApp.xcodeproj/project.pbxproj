@@ -13,6 +13,8 @@
 		CE1E88872647561600E1245E /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E88862647561600E1245E /* ImageView.swift */; };
 		CE3D9B5C2648B739003A3AB6 /* WebView in Frameworks */ = {isa = PBXBuildFile; productRef = CE3D9B5B2648B739003A3AB6 /* WebView */; };
 		CE4D2D4326489C6500C243CC /* LoaderUI in Frameworks */ = {isa = PBXBuildFile; productRef = CE4D2D4226489C6500C243CC /* LoaderUI */; };
+		CEAE3E2D2648CA2F0066C825 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE3E2C2648CA2F0066C825 /* Extensions.swift */; };
+		CEAE3E352648CAC50066C825 /* DefaultViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE3E342648CAC50066C825 /* DefaultViews.swift */; };
 		CEB97FEF2645E90F00847FF9 /* FetchImage in Frameworks */ = {isa = PBXBuildFile; productRef = CEB97FEE2645E90F00847FF9 /* FetchImage */; };
 		CEC03FB1263E354200FFCB45 /* DenebolaAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FB0263E354200FFCB45 /* DenebolaAppApp.swift */; };
 		CEC03FB3263E354200FFCB45 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FB2263E354200FFCB45 /* ContentView.swift */; };
@@ -69,6 +71,8 @@
 		CE1E887B264748F700E1245E /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
 		CE1E888026474BFC00E1245E /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 		CE1E88862647561600E1245E /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		CEAE3E2C2648CA2F0066C825 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		CEAE3E342648CAC50066C825 /* DefaultViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultViews.swift; sourceTree = "<group>"; };
 		CEC03FAD263E354200FFCB45 /* DenebolaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DenebolaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC03FB0263E354200FFCB45 /* DenebolaAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenebolaAppApp.swift; sourceTree = "<group>"; };
 		CEC03FB2263E354200FFCB45 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -136,6 +140,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CEAE3E2B2648CA0B0066C825 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				CEAE3E2C2648CA2F0066C825 /* Extensions.swift */,
+				CEAE3E342648CAC50066C825 /* DefaultViews.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
 		CEC03FA4263E354200FFCB45 = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +179,7 @@
 				FA56AA4F263F0BCA00B6D838 /* SubViews */,
 				FA56AA52263F0D2900B6D838 /* HelperViews */,
 				FA73AA26263E361E00B6C8B6 /* API */,
+				CEAE3E2B2648CA0B0066C825 /* Util */,
 				CEC03FB4263E354400FFCB45 /* Assets.xcassets */,
 				CEC03FB9263E354400FFCB45 /* Info.plist */,
 				CEC03FB6263E354400FFCB45 /* Preview Content */,
@@ -399,6 +413,7 @@
 				FA56AA5A263F219D00B6D838 /* CategoryView.swift in Sources */,
 				FA56AA6E263FA12200B6D838 /* LoadingPostRowView.swift in Sources */,
 				FA56AA58263F1AC100B6D838 /* Categories.swift in Sources */,
+				CEAE3E352648CAC50066C825 /* DefaultViews.swift in Sources */,
 				FA56AA6A263F8F0F00B6D838 /* ScrollViewLoader.swift in Sources */,
 				FA56AA62263F2FD200B6D838 /* PostFeed.swift in Sources */,
 				CEC03FB3263E354200FFCB45 /* ContentView.swift in Sources */,
@@ -421,6 +436,7 @@
 				FA73AA2C263E361E00B6C8B6 /* Category.swift in Sources */,
 				CE1E888126474BFC00E1245E /* PageControl.swift in Sources */,
 				FA56AA43263F080900B6D838 /* ViewController.swift in Sources */,
+				CEAE3E2D2648CA2F0066C825 /* Extensions.swift in Sources */,
 				FA56AA5C263F246000B6D838 /* PostRowView.swift in Sources */,
 				CE1E88772647484300E1245E /* PageViewController.swift in Sources */,
 				FA56AA6C263F933700B6D838 /* PostRow.swift in Sources */,

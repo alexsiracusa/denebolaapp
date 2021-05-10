@@ -13,12 +13,10 @@ struct PageView<Page: View>: View {
     
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
-            if pages.count > 0 { // TODO: make better
-                PageViewController(pages: pages, currentPage: $currentPage).id(UUID())
-                PageControl(numberOfPages: pages.count, currentPage: $currentPage)
-                    .frame(width: CGFloat(pages.count * 18))
-                    .padding(.trailing, 20.0)
-            }
+            PageViewController(pages: pages, currentPage: $currentPage)
+            PageControl(numberOfPages: pages.count, currentPage: $currentPage)
+                .frame(width: CGFloat(pages.count * 18))
+                .padding(.trailing, 20.0)
         }
     }
 }
