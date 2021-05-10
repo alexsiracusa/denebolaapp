@@ -14,7 +14,7 @@ struct LoadingPostRowView: View {
                 .cornerRadius(5)
                 .frame(height: 100)
                 .aspectRatio(1.6, contentMode: .fit)
-            
+
             VStack(alignment: .leading, spacing: 3) {
                 PlaceholderBackground()
                     .frame(height: 40)
@@ -30,7 +30,7 @@ struct LoadingPostRowView: View {
             .foregroundColor(.black)
             Spacer()
         }
-        .frame(height:100)
+        .frame(height: 100)
         .padding([.leading, .trailing], 10)
     }
 }

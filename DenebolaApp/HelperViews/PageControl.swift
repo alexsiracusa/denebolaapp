@@ -18,8 +18,7 @@ struct PageControl: UIViewRepresentable {
         control.numberOfPages = numberOfPages
         control.addTarget(context.coordinator,
                           action: #selector(Coordinator.updateCurrentPage(sender:)),
-                          for: .valueChanged
-        )
+                          for: .valueChanged)
         
         return control
     }

@@ -43,7 +43,7 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
         
         init(_ pageViewController: PageViewController) {
             parent = pageViewController
-            controllers = parent.pages.map {UIHostingController(rootView: $0)}
+            controllers = parent.pages.map { UIHostingController(rootView: $0) }
         }
         
         func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
@@ -73,7 +73,8 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
         func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
             if completed,
                let visibleViewController = pageViewController.viewControllers?.first,
-               let index = controllers.firstIndex(of: visibleViewController) {
+               let index = controllers.firstIndex(of: visibleViewController)
+            {
                 parent.currentPage = index
             }
         }

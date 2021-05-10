@@ -5,39 +5,38 @@
 //  Created by Alex Siracusa on 5/2/21.
 //
 
-import SwiftUI
 import FetchImage
 import LoaderUI
+import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject private var handler: APIHandler
     
-    @State private var selectedCategory: Categories = Categories.allCases.first!
+    @State private var selectedCategory = Categories.allCases.first!
     @State private var loadedPosts = [PostRow]()
     
     func loadPosts() {
-        handler.loadPostPage(category: selectedCategory.id, page: 1, per_page: 3, embed: true, completionHandler: {post, error in
-            guard let post = post, post.count > 0 else {return}
+        handler.loadPostPage(category: selectedCategory.id, page: 1, per_page: 3, embed: true, completionHandler: { post, _ in
+            guard let post = post, post.count > 0 else { return }
             
-            self.loadedPosts = post.map {$0.asPostRow()}
+            self.loadedPosts = post.map { $0.asPostRow() }
         })
     }
     
     var body: some View {
         NavigationView {
             VStack {
-                CategorySelection(selectedCategory: $selectedCategory, onCategorySelected: {_ in
+                CategorySelection(selectedCategory: $selectedCategory, onCategorySelected: { _ in
                     loadPosts()
                 })
-                //.padding()
                 
                 if loadedPosts.count > 0 {
-                    PageView(pages: loadedPosts.map {post in
+                    PageView(pages: loadedPosts.map { post in
                         PostPreviewHome(post: post)
                             .padding(.horizontal, 5.0)
                     })
-                    .aspectRatio(1.5, contentMode: .fit)
-                    .id(UUID()) // Reset selected page to 1
+                        .aspectRatio(1.5, contentMode: .fit)
+                        .id(UUID()) // Reset selected page to 1
                 } else {
                     PlaceholderBackground()
                     DefaultLoader()
@@ -51,7 +50,7 @@ struct HomeView: View {
             .navigationBarTitle("Home", displayMode: .inline)
             .navigationBarItems(
                 trailing:
-                    ToolbarLogo()
+                ToolbarLogo()
             )
         }
     }
@@ -67,11 +66,11 @@ struct HomeView_Previews: PreviewProvider {
 private struct CategorySelection: View {
     @Binding var selectedCategory: Categories
     
-    var onCategorySelected: (Categories) -> Void = {_ in}
+    var onCategorySelected: (Categories) -> Void = { _ in }
     
     var body: some View {
         ScrollView([.horizontal], showsIndicators: false) {
-            ScrollViewReader {reader in
+            ScrollViewReader { reader in
                 HStack {
                     ForEach(Categories.allCases, id: \.id) { category in
                         Button(action: {
@@ -81,7 +80,6 @@ private struct CategorySelection: View {
                                 reader.scrollTo(category.id, anchor: .center)
                             }
                         }) {
-                            //Text("\(category.name)")
                             BubbleText(text: category.name)
                         }
                         .foregroundColor(category == selectedCategory ? .black : .secondary)
@@ -98,12 +96,12 @@ private struct PostPreviewHome: View {
     var post: PostRow
     
     var image: ImageView? {
-        post.imageURL.flatMap {ImageView(url: $0)}
+        post.imageURL.flatMap { ImageView(url: $0) }
     }
     
     var body: some View {
-        NavigationLink( destination:
-                            PostView(id: post.id, title: post.title, image: image, author: post.author)
+        NavigationLink(destination:
+            PostView(id: post.id, title: post.title, image: image, author: post.author)
         ) {
             GeometryReader { reader in
                 if let imageURL = post.imageURL {
@@ -111,8 +109,8 @@ private struct PostPreviewHome: View {
                         .aspectRatio(contentMode: .fill)
                         .frame(width: reader.size.width, height: reader.size.height)
                         .overlay(LinearGradient(gradient: Gradient(colors: [.clear, .black]), startPoint: UnitPoint(x: 0.5, y: 0.75), endPoint: .bottom)
-                                    .cornerRadius(10)
-                                    .opacity(0.25)
+                            .cornerRadius(10)
+                            .opacity(0.25)
                         )
                     
                 } else {

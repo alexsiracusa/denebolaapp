@@ -30,17 +30,17 @@ struct Post: Codable, Equatable, Identifiable {
         return PostRow(id: self.id, title: self.renderedTitle, author: (self._embedded!.author![0].name)!, date: self.renderedDate, imageURL: self._embedded?.featuredMedia?[0].source_url?.asURL, hasMedia: self.hasMedia)
     }
     
-    var renderedContent: String { //TODO: remove?
-        return content.rendered.html2AttributedString!
+    var renderedContent: String { // TODO: remove?
+        return self.content.rendered.html2AttributedString!
             .replacingOccurrences(of: "\n", with: "\n\n")
     }
     
     var renderedExcerpt: String {
-        return excerpt.rendered.html2AttributedString!
+        return self.excerpt.rendered.html2AttributedString!
     }
     
     var renderedTitle: String {
-        return title.rendered.html2AttributedString!
+        return self.title.rendered.html2AttributedString!
     }
     
     var renderedDate: String {
@@ -73,19 +73,19 @@ struct Post: Codable, Equatable, Identifiable {
     }
     
     var hasMedia: Bool {
-        return featured_media != 0
+        return self.featured_media != 0
     }
 }
 
 struct Embeded: Codable {
     let author: [Author]?
     let featuredMedia: [SimpleMedia]?
-    //let category: [Category]?
+    // let category: [Category]?
     
     enum CodingKeys: String, CodingKey {
         case featuredMedia = "wp:featuredmedia"
-        case author = "author"
-        //case category = "wp:term"
+        case author
+        // case category = "wp:term"
     }
 }
 

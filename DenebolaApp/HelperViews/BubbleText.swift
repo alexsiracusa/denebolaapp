@@ -10,7 +10,7 @@ import SwiftUI
 struct BubbleText: View {
     let text: String
     let backgroundRect: some View = RoundedRectangle(cornerRadius: 1000, style: .circular).foregroundColor(Color.gray)
-    
+
     var body: some View {
         Text(text)
             .padding([.top, .bottom], 3)

@@ -9,12 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        //PostFeed()
         ViewController()
             .environmentObject(APIHandler())
             .preferredColorScheme(.light) // Until we add dark mode custom theming
-        //PostView(id: 25133)
-        //    .environmentObject(APIHandler())
     }
 }
 

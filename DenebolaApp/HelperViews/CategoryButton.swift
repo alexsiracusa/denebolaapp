@@ -12,13 +12,13 @@ struct CategoryButton: View {
     let id: Int
     let name: String
     let image: Image
-    
+
     var body: some View {
-        NavigationLink( destination:
+        NavigationLink(destination:
             CategoryView(id: id, name: name)
         ) {
             ZStack {
-                GeometryReader { geometry in
+                GeometryReader { _ in
                     VStack {
                         Spacer()
                         Text(name)
@@ -32,15 +32,14 @@ struct CategoryButton: View {
                         .cornerRadius(10)
                         .zIndex(1)
                         .overlay(LinearGradient(gradient: Gradient(colors: [.clear, .black]), startPoint: UnitPoint(x: 0.5, y: 0.8), endPoint: .bottom)
-                                .cornerRadius(10)
-                                .opacity(0.25)
-                                //.brightness(0.7)
+                            .cornerRadius(10)
+                            .opacity(0.25)
+                            // .brightness(0.7)
                         )
                 }
             }
             .frame(width: size, height: size)
         }
-
     }
 }
 

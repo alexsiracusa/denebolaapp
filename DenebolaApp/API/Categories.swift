@@ -20,17 +20,19 @@ enum Categories: RawRepresentable, CaseIterable {
     case procrastinate_here
     case sports
     case athlete_of_the_week
-    
+
     var id: Int {
         return self.rawValue.0
     }
+
     var name: String {
         return self.rawValue.1
     }
+
     var image: Image {
         return self.rawValue.2
     }
-    
+
     var rawValue: (Int, String, Image) {
         switch self {
         case .arts: return (2, "Arts", Image("DenebolaLogo"))
@@ -46,7 +48,7 @@ enum Categories: RawRepresentable, CaseIterable {
         case .athlete_of_the_week: return (399, "Athlete", Image("DenebolaLogo"))
         }
     }
-    
+
     init?(rawValue: (Int, String, Image)) {
         self = .opinions
     }
