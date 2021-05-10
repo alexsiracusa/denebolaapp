@@ -67,6 +67,10 @@ struct PostView: View {
         }
         .padding([.leading, .trailing])
         .navigationTitle("\(title ?? "Loading")")
+        .navigationBarItems(
+            trailing:
+                ToolbarLogo()
+        )
     }
 }
 

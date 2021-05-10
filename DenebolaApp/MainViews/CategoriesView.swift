@@ -45,15 +45,16 @@ struct CategoriesView: View {
             .navigationBarTitle("Feed", displayMode: .inline)
             .navigationBarItems(
                 leading:
-                    ToolbarLogo()
-                ,
-                trailing:
                     NavigationLink(destination:
                         Search()
                     ) {
                         Image(systemName: "magnifyingglass")
                             .foregroundColor(.black)
                     }
+                ,
+                trailing:
+                    ToolbarLogo()
+                    
             )
         }
     }

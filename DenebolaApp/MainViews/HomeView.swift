@@ -49,7 +49,7 @@ struct HomeView: View {
             }
             .navigationBarTitle("Home", displayMode: .inline)
             .navigationBarItems(
-                leading:
+                trailing:
                     ToolbarLogo()
             )
         }
