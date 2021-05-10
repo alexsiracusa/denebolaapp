@@ -13,7 +13,7 @@ struct PodcastView: View {
     @EnvironmentObject var loader: PodcastLoader
     
     var body: some View {
-        VStack {
+        ScrollView {
             Button {
                 self.audioPlayer.play()
             } label: {
@@ -25,7 +25,22 @@ struct PodcastView: View {
                 Text("Pause")
             }
             ForEach(loader.podcasts) { podcast in
-                Text(podcast.title!)
+                HStack(alignment: .top) {
+                    if let url = podcast.imageURL {
+                        ImageView(url: url)
+                            .scaledToFill()
+                            .frame(width: 50, height: 50)
+                            .aspectRatio(1, contentMode: .fit)
+                            .clipped()
+                            .cornerRadius(5)
+                    }
+                    
+                    Text(podcast.title!)
+                        .foregroundColor(podcast.audioURL != nil ? .green : .red)
+                        .lineLimit(2)
+                    Spacer()
+                }
+                
             }
         }
         .onAppear {
