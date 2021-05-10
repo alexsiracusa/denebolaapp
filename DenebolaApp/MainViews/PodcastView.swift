@@ -34,6 +34,7 @@ struct PodcastView: View {
                             .aspectRatio(1, contentMode: .fit)
                             .clipped()
                             .cornerRadius(5)
+                            .padding(.leading, 5)
                     }
                     Button {
                         handler.loadMP3(url: podcast.audioURL!) { data, error in
@@ -44,6 +45,7 @@ struct PodcastView: View {
                     } label: {
                         Text(podcast.title!)
                             .foregroundColor(.black)
+                            .lineLimit(2)
                     }
                     Spacer()
                 }
