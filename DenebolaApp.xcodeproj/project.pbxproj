@@ -47,6 +47,7 @@
 		FA73AA30263E363600B6C8B6 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73AA2F263E363600B6C8B6 /* PostView.swift */; };
 		FA86EE422648BA09003BD44B /* ToolbarLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA86EE412648BA09003BD44B /* ToolbarLogo.swift */; };
 		FA86EE442648BC84003BD44B /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA86EE432648BC84003BD44B /* Search.swift */; };
+		FA97B952264A01A700E13209 /* PodcastPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97B951264A01A700E13209 /* PodcastPlayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,7 @@
 		FA73AA2F263E363600B6C8B6 /* PostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		FA86EE412648BA09003BD44B /* ToolbarLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarLogo.swift; sourceTree = "<group>"; };
 		FA86EE432648BC84003BD44B /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		FA97B951264A01A700E13209 /* PodcastPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +243,7 @@
 				FA56AA50263F0BFF00B6D838 /* PhotoGalleryView.swift */,
 				CE1E887B264748F700E1245E /* PageView.swift */,
 				FA86EE432648BC84003BD44B /* Search.swift */,
+				FA97B951264A01A700E13209 /* PodcastPlayer.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA97B952264A01A700E13209 /* PodcastPlayer.swift in Sources */,
 				FA86EE422648BA09003BD44B /* ToolbarLogo.swift in Sources */,
 				FA73AA30263E363600B6C8B6 /* PostView.swift in Sources */,
 				FA56AA5A263F219D00B6D838 /* CategoryView.swift in Sources */,

@@ -41,6 +41,7 @@ struct PodcastView: View {
     var body: some View {
         NavigationView {
             ScrollView {
+                PodcastPlayer(podcast: Podcast.default)
                 Button {
                     self.play()
                 } label: {
