@@ -17,6 +17,7 @@ struct PodcastView: View {
         }
     }
     @State var audioPlayer = AVPlayer()
+    @State var podcasts = [Podcast]()
     
     @State var time = 0.0
     @State var audioLength = 0.0
@@ -69,7 +70,6 @@ struct PodcastView: View {
                             if playing {
                                 Button {
                                     pause()
-                                    playing = false
                                 } label: {
                                     Image(systemName: "pause.circle")
                                         .resizable()
@@ -78,7 +78,6 @@ struct PodcastView: View {
                             } else {
                                 Button {
                                     play()
-                                    playing = true
                                 } label: {
                                     Image(systemName: "play.circle")
                                         .resizable()
@@ -111,7 +110,7 @@ struct PodcastView: View {
                             .padding(.leading)
                         Spacer()
                     }
-                    ForEach(loader.podcasts) { podcast in
+                    ForEach(podcasts) { podcast in
                         HStack(alignment: .top) {
                             Button {
                                 currentPodcast = podcast
@@ -155,7 +154,9 @@ struct PodcastView: View {
         }
         .onAppear {
             if !loader.loaded {
-                loader.load()
+                loader.load() { podcasts in
+                    self.podcasts = podcasts
+                }
                 currentPodcast = loader.podcasts[0]
             }
         }

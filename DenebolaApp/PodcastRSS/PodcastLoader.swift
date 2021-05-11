@@ -18,9 +18,15 @@ class PodcastLoader: NSObject, ObservableObject, XMLParserDelegate {
     var audioURL = String()
     var descrip = String()
     var date = String()
+    
+    var onEnd: ([Podcast]) -> Void = {_ in }
+    func parserDidEndDocument(_ parser: XMLParser) {
+        onEnd(podcasts)
+    }
 
-    func load() {
+    func load(completion: @escaping ([Podcast]) -> Void) {
         guard let url = URL(string: rss) else { return }
+        onEnd = completion
         podcasts = []
         loadFeed(url: url)
         loaded = true
