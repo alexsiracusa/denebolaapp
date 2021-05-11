@@ -10,6 +10,8 @@ import Foundation
 class PodcastLoader: NSObject, ObservableObject, XMLParserDelegate {
     let rss = "https://anchor.fm/s/f635e84/podcast/rss"
     @Published var podcasts: [Podcast] = []
+    @Published var time = 0.0
+    @Published var loaded = false
     var elementName = String()
     var title = String()
     var imageURL = String()
@@ -21,6 +23,7 @@ class PodcastLoader: NSObject, ObservableObject, XMLParserDelegate {
         guard let url = URL(string: rss) else { return }
         podcasts = []
         loadFeed(url: url)
+        loaded = true
     }
 
     private func loadFeed(url: URL) {
@@ -88,7 +91,4 @@ struct Podcast: Identifiable {
         return Podcast(title: "S3E3 - April vacation recap, 4 days a week in person, spring sports, and tik tok drama.", description: "On this weeks episode Freshman Neil Giesser joins the show to talk about his first year at South. Senior Jaden Friedman gives some nfl draft predictions. And the show is wrapped up with our take on tik tok and YouTube news.", date: "Tue, 04 May 2021 01:04:27 GMT", imageURL: imageURL, audioURL: audioURL)
     }
     
-    func asObject() -> PodcastObject {
-        return PodcastObject(title: title, description: description, date: date, imageURL: imageURL, audioURL: audioURL)
-    }
 }

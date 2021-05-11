@@ -45,5 +45,6 @@ struct ViewController_Previews: PreviewProvider {
     static var previews: some View {
         ViewController()
             .environmentObject(APIHandler())
+            .environmentObject(PodcastLoader())
     }
 }

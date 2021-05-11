@@ -66,24 +66,26 @@ struct PodcastView: View {
                                     .resizable()
                                     .frame(width: 30, height: 30)
                             }
-                            Button {
-                                playing.toggle()
-                                if playing {
-                                    play()
-                                } else {
+                            if playing {
+                                Button {
                                     pause()
-                                }
-                            } label: {
-                                if !playing {
-                                    Image(systemName: "play.circle")
-                                        .resizable()
-                                        .frame(width: 30, height: 30)
-                                } else {
+                                    playing = false
+                                } label: {
                                     Image(systemName: "pause.circle")
                                         .resizable()
                                         .frame(width: 30, height: 30)
                                 }
+                            } else {
+                                Button {
+                                    play()
+                                    playing = true
+                                } label: {
+                                    Image(systemName: "play.circle")
+                                        .resizable()
+                                        .frame(width: 30, height: 30)
+                                }
                             }
+                            
                             Button {
                                 audioPlayer.seek(to: CMTime(seconds: time + 30, preferredTimescale: CMTimeScale(1.0)))
                             } label: {
@@ -152,8 +154,10 @@ struct PodcastView: View {
             }
         }
         .onAppear {
-            loader.load()
-            currentPodcast = loader.podcasts[0]
+            if !loader.loaded {
+                loader.load()
+                currentPodcast = loader.podcasts[0]
+            }
         }
     }
     
