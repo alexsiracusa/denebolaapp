@@ -15,6 +15,7 @@ struct PodcastPlayer: View {
     @State var time = 0.0
     @State var audioLength = 0.0
     @State var playing = false
+    @State var sliding = false
 
     func loadNewAudio(url: URL) {
         audioPlayer.pause()
@@ -29,7 +30,9 @@ struct PodcastPlayer: View {
             forInterval: CMTimeMake(value: 1, timescale: 2), // 1/2 seconds
             queue: DispatchQueue.main,
             using: {
-                self.time = $0.seconds
+                if !sliding {
+                    self.time = $0.seconds
+                }
             }
         )
     }
@@ -60,15 +63,9 @@ struct PodcastPlayer: View {
             Slider(value: $time, in: 0...audioLength) { editing in
                 if !editing {
                     audioPlayer.seek(to: CMTime(seconds: time, preferredTimescale: CMTimeScale(1.0)))
-                    audioPlayer.addPeriodicTimeObserver(
-                        forInterval: CMTimeMake(value: 1, timescale: 2), // 1/2 seconds
-                        queue: DispatchQueue.main,
-                        using: {
-                            self.time = $0.seconds
-                        }
-                    )
+                    sliding = false
                 } else {
-                    
+                    sliding = true
                 }
             }
                 .padding([.leading, .trailing])
@@ -85,7 +82,6 @@ struct PodcastPlayer: View {
                 playing.toggle()
                 if playing {
                     play()
-                    audioPlayer.seek(to: CMTime(seconds: 30, preferredTimescale: CMTimeScale(1.0)))
                 } else {
                     pause()
                 }
