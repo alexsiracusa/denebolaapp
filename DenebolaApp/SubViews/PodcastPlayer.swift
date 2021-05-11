@@ -9,13 +9,19 @@ import SwiftUI
 import MediaPlayer
 
 struct PodcastPlayer: View {
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @State var audioPlayer = AVPlayer()
-    var podcast: Podcast
+    @ObservedObject var podcast: PodcastObject
     
     @State var time = 0.0
     @State var audioLength = 0.0
     @State var playing = false
     @State var sliding = false
+    
+    init(podcast: Podcast) {
+        self.podcast = podcast.asObject()
+        loadNewAudio(url: podcast.audioURL!)
+    }
 
     func loadNewAudio(url: URL) {
         audioPlayer.pause()
@@ -55,6 +61,12 @@ struct PodcastPlayer: View {
     
     var body: some View {
         VStack {
+            HStack {
+                Text(podcast.title)
+                    .padding(.leading)
+                Spacer()
+            }
+            
             ImageView(url: podcast.imageURL!)
                 .scaledToFit()
                 .cornerRadius(10)
@@ -77,27 +89,41 @@ struct PodcastPlayer: View {
                     .font(.caption)
             }
             .padding([.leading, .trailing])
-            
-            Button {
-                playing.toggle()
-                if playing {
-                    play()
-                } else {
-                    pause()
+            HStack(spacing: 30) {
+                Button {
+                    audioPlayer.seek(to: CMTime(seconds: time - 15, preferredTimescale: CMTimeScale(1.0)))
+                } label: {
+                    Image(systemName: "gobackward.15")
+                        .resizable()
+                        .frame(width: 30, height: 30)
                 }
-            } label: {
-                if !playing {
-                    Image(systemName: "play.circle")
+                Button {
+                    playing.toggle()
+                    if playing {
+                        play()
+                    } else {
+                        pause()
+                    }
+                } label: {
+                    if !playing {
+                        Image(systemName: "play.circle")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                    } else {
+                        Image(systemName: "pause.circle")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                    }
+                }
+                Button {
+                    audioPlayer.seek(to: CMTime(seconds: time + 30, preferredTimescale: CMTimeScale(1.0)))
+                } label: {
+                    Image(systemName: "goforward.30")
                         .resizable()
-                        .frame(width: 100, height: 100)
-                        .padding(.top, 30)
-                } else {
-                    Image(systemName: "pause.circle")
-                        .resizable()
-                        .frame(width: 100, height: 100)
-                        .padding(.top, 30)
+                        .frame(width: 30, height: 30)
                 }
             }
+            .offset(y: -15)
             Spacer()
         }
         .onAppear {

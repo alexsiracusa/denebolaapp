@@ -9,21 +9,170 @@ import MediaPlayer
 import SwiftUI
 
 struct PodcastView: View {
-    @State var audioPlayer = AVPlayer()
     @EnvironmentObject var loader: PodcastLoader
     @EnvironmentObject var handler: APIHandler
+    @State var currentPodcast: Podcast = Podcast.default {
+        didSet {
+            loadNewAudio(url: currentPodcast.audioURL!)
+        }
+    }
+    @State var audioPlayer = AVPlayer()
+    
+    @State var time = 0.0
+    @State var audioLength = 0.0
+    @State var playing = false
+    @State var sliding = false
 
-    @State var time = 0
-
+    var body: some View {
+        NavigationView {
+            ScrollViewReader { value in
+                ScrollView {
+                    
+                    //Current Podcast
+                    VStack {
+                        HStack {
+                            Text(currentPodcast.title)
+                                .padding(.leading)
+                            Spacer()
+                        }
+                        
+                        ImageView(url: currentPodcast.imageURL!)
+                            .scaledToFit()
+                            .cornerRadius(10)
+                            .aspectRatio(1.0, contentMode: .fit)
+                            .padding([.leading, .trailing])
+                        Slider(value: $time, in: 0...audioLength) { editing in
+                            if !editing {
+                                audioPlayer.seek(to: CMTime(seconds: time, preferredTimescale: CMTimeScale(1.0)))
+                                sliding = false
+                            } else {
+                                sliding = true
+                            }
+                        }
+                            .padding([.leading, .trailing])
+                        HStack {
+                            Text(String(format: "%02d:%02d", Int(time) / 60, Int(time) % 60))
+                                .font(.caption)
+                            Spacer()
+                            Text(String(format: "%02d:%02d", Int(audioLength) / 60, Int(audioLength) % 60))
+                                .font(.caption)
+                        }
+                        .padding([.leading, .trailing])
+                        HStack(spacing: 30) {
+                            Button {
+                                audioPlayer.seek(to: CMTime(seconds: time - 15, preferredTimescale: CMTimeScale(1.0)))
+                            } label: {
+                                Image(systemName: "gobackward.15")
+                                    .resizable()
+                                    .frame(width: 30, height: 30)
+                            }
+                            Button {
+                                playing.toggle()
+                                if playing {
+                                    play()
+                                } else {
+                                    pause()
+                                }
+                            } label: {
+                                if !playing {
+                                    Image(systemName: "play.circle")
+                                        .resizable()
+                                        .frame(width: 30, height: 30)
+                                } else {
+                                    Image(systemName: "pause.circle")
+                                        .resizable()
+                                        .frame(width: 30, height: 30)
+                                }
+                            }
+                            Button {
+                                audioPlayer.seek(to: CMTime(seconds: time + 30, preferredTimescale: CMTimeScale(1.0)))
+                            } label: {
+                                Image(systemName: "goforward.30")
+                                    .resizable()
+                                    .frame(width: 30, height: 30)
+                            }
+                        }
+                        .offset(y: -15)
+                        Spacer()
+                    }
+                    .onAppear {
+                        loadNewAudio(url: currentPodcast.audioURL!)
+                    }
+                    .id(1)
+                    .padding(.top)
+                    
+                    
+                    //Podcast List
+                    HStack {
+                        Text("Episodes")
+                            .font(.headline)
+                            .padding(.leading)
+                        Spacer()
+                    }
+                    ForEach(loader.podcasts) { podcast in
+                        HStack(alignment: .top) {
+                            Button {
+                                currentPodcast = podcast
+                                withAnimation {
+                                    value.scrollTo(1, anchor: .top)
+                                }
+                                play()
+                            } label: {
+                                PlayButton()
+                                    .padding(.leading, 5)
+                            }
+                            Button {
+                                currentPodcast = podcast
+                                withAnimation {
+                                    value.scrollTo(1, anchor: .top)
+                                }
+                            } label: {
+                                VStack(alignment: .leading) {
+                                    Text(podcast.title)
+                                        .foregroundColor(.black)
+                                        .font(.headline)
+                                        .lineLimit(2)
+                                    Text(podcast.date)
+                                        .foregroundColor(.gray)
+                                        .font(.footnote)
+                                    Text(podcast.description)
+                                        .foregroundColor(.secondary)
+                                        .lineLimit(1)
+                                }
+                            }
+                            Spacer()
+                        }
+                    }
+                }
+                .navigationBarTitle("Denebacast", displayMode: .inline)
+                .navigationBarItems(
+                    trailing: ToolbarLogo()
+                )
+                
+            }
+        }
+        .onAppear {
+            loader.load()
+            currentPodcast = loader.podcasts[0]
+        }
+    }
+    
     func loadNewAudio(url: URL) {
         audioPlayer.pause()
         self.audioPlayer = AVPlayer(url: url)
+        if let duration = audioPlayer.currentItem?.asset.duration {
+            self.audioLength = CMTimeGetSeconds(duration)
+        } else {
+            self.audioLength = 0.0
+        }
         // Receive time updates
         audioPlayer.addPeriodicTimeObserver(
             forInterval: CMTimeMake(value: 1, timescale: 2), // 1/2 seconds
             queue: DispatchQueue.main,
             using: {
-                self.time = Int($0.seconds)
+                if !sliding {
+                    self.time = $0.seconds
+                }
             }
         )
     }
@@ -36,56 +185,15 @@ struct PodcastView: View {
             // report for an error
          }
         audioPlayer.play()
+        self.playing = true
     }
-
-    var body: some View {
-        NavigationView {
-            ScrollView {
-                PodcastPlayer(podcast: Podcast.default)
-                Button {
-                    self.play()
-                } label: {
-                    Text("Play")
-                }
-                Button {
-                    self.audioPlayer.pause()
-                } label: {
-                    Text("Pause")
-                }
-                Text(String(format: "%02d:%02d", time / 60, time % 60))
-                ForEach(loader.podcasts) { podcast in
-                    HStack(alignment: .top) {
-                        if let url = podcast.imageURL {
-                            ImageView(url: url)
-                                .scaledToFill()
-                                .frame(width: 50, height: 50)
-                                .aspectRatio(1, contentMode: .fit)
-                                .clipped()
-                                .cornerRadius(5)
-                                .padding(.leading, 5)
-                        }
-                        Button {
-                            self.loadNewAudio(url: podcast.audioURL!)
-                            self.play()
-                        } label: {
-                            Text(podcast.title!)
-                                .foregroundColor(.black)
-                                .lineLimit(2)
-                        }
-                        Spacer()
-                    }
-                }
-            }
-            .navigationBarTitle("Denebacast", displayMode: .inline)
-            .navigationBarItems(
-                trailing: ToolbarLogo()
-            )
-        }
-        .onAppear {
-            self.loadNewAudio(url: URL(string: "https://cdn.discordapp.com/attachments/254443423568887809/396343613870571520/favorite_song.mp3")!)
-            loader.load()
-        }
+    
+    func pause() {
+        self.audioPlayer.pause()
+        self.playing = false
     }
+    
+    
 }
 
 struct PodcastView_Previews: PreviewProvider {

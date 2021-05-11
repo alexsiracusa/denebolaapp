@@ -48,6 +48,8 @@
 		FA86EE422648BA09003BD44B /* ToolbarLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA86EE412648BA09003BD44B /* ToolbarLogo.swift */; };
 		FA86EE442648BC84003BD44B /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA86EE432648BC84003BD44B /* Search.swift */; };
 		FA97B952264A01A700E13209 /* PodcastPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97B951264A01A700E13209 /* PodcastPlayer.swift */; };
+		FA97B956264A263D00E13209 /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97B955264A263D00E13209 /* PlayButton.swift */; };
+		FA97B958264A2B6900E13209 /* PodcastObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97B957264A2B6900E13209 /* PodcastObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +115,8 @@
 		FA86EE412648BA09003BD44B /* ToolbarLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarLogo.swift; sourceTree = "<group>"; };
 		FA86EE432648BC84003BD44B /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		FA97B951264A01A700E13209 /* PodcastPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastPlayer.swift; sourceTree = "<group>"; };
+		FA97B955264A263D00E13209 /* PlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
+		FA97B957264A2B6900E13209 /* PodcastObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				FA4618CB264980240018522B /* PodcastLoader.swift */,
+				FA97B957264A2B6900E13209 /* PodcastObject.swift */,
 			);
 			path = PodcastRSS;
 			sourceTree = "<group>";
@@ -261,6 +266,7 @@
 				CE1E88862647561600E1245E /* ImageView.swift */,
 				FA86EE412648BA09003BD44B /* ToolbarLogo.swift */,
 				CEAE3E3C2648D0CC0066C825 /* WebView.swift */,
+				FA97B955264A263D00E13209 /* PlayButton.swift */,
 			);
 			path = HelperViews;
 			sourceTree = "<group>";
@@ -424,6 +430,7 @@
 				FA56AA5A263F219D00B6D838 /* CategoryView.swift in Sources */,
 				FA56AA6E263FA12200B6D838 /* LoadingPostRowView.swift in Sources */,
 				FA56AA58263F1AC100B6D838 /* Categories.swift in Sources */,
+				FA97B958264A2B6900E13209 /* PodcastObject.swift in Sources */,
 				CEAE3E352648CAC50066C825 /* DefaultViews.swift in Sources */,
 				FA56AA6A263F8F0F00B6D838 /* ScrollViewLoader.swift in Sources */,
 				FA56AA62263F2FD200B6D838 /* PostFeed.swift in Sources */,
@@ -447,6 +454,7 @@
 				FA4618CC264980240018522B /* PodcastLoader.swift in Sources */,
 				FA73AA2C263E361E00B6C8B6 /* Category.swift in Sources */,
 				CE1E888126474BFC00E1245E /* PageControl.swift in Sources */,
+				FA97B956264A263D00E13209 /* PlayButton.swift in Sources */,
 				FA56AA43263F080900B6D838 /* ViewController.swift in Sources */,
 				CEAE3E2D2648CA2F0066C825 /* Extensions.swift in Sources */,
 				FA56AA5C263F246000B6D838 /* PostRowView.swift in Sources */,
