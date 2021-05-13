@@ -30,12 +30,14 @@ struct HomeView: View {
                     .padding([.top, .leading])
                 
                 if loadedPosts.count > 0 {
+                    
                     PageView(pages: loadedPosts.map { post in
                         PostPreviewHome(post: post)
                             .padding(.horizontal, 10.0)
                     })
                         .aspectRatio(1.5, contentMode: .fit)
                         .id(UUID()) // Reset selected page to 1
+                    
                 } else {
                     PlaceholderBackground()
                     DefaultLoader()
@@ -44,7 +46,9 @@ struct HomeView: View {
                 Spacer()
             }
             .onAppear {
-                loadPosts()
+                if loadedPosts.count == 0 {
+                    loadPosts()
+                }
             }
             .navigationBarTitle("Home", displayMode: .inline)
             .navigationBarItems(trailing: ToolbarLogo())

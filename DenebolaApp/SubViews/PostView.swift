@@ -54,24 +54,19 @@ struct PostView: View {
                         .padding(-5)
                 }
                 
-                if loaded == false {
+                if !loaded {
                     BallPulse()
-                } else {
-                    if let error = error {
-                        Text(error)
-                    }
+                } else if let error = error {
+                    Text(error)
                 }
             }
         }
         .onAppear {
-            load()
+            if !loaded { load() }
         }
         .padding([.leading, .trailing])
         .navigationTitle("\(title ?? "Loading")")
-        .navigationBarItems(
-            trailing:
-            ToolbarLogo()
-        )
+        .navigationBarItems(trailing: ToolbarLogo())
     }
 }
 
