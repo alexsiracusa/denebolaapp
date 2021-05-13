@@ -12,6 +12,7 @@
 		CE1E888126474BFC00E1245E /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E888026474BFC00E1245E /* PageControl.swift */; };
 		CE1E88872647561600E1245E /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E88862647561600E1245E /* ImageView.swift */; };
 		CE4D2D4326489C6500C243CC /* LoaderUI in Frameworks */ = {isa = PBXBuildFile; productRef = CE4D2D4226489C6500C243CC /* LoaderUI */; };
+		CE87B3EE264CCE8A009CAF44 /* Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE87B3ED264CCE8A009CAF44 /* Support.swift */; };
 		CEAE3E2D2648CA2F0066C825 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE3E2C2648CA2F0066C825 /* Extensions.swift */; };
 		CEAE3E352648CAC50066C825 /* DefaultViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE3E342648CAC50066C825 /* DefaultViews.swift */; };
 		CEAE3E3D2648D0CC0066C825 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE3E3C2648D0CC0066C825 /* WebView.swift */; };
@@ -72,6 +73,7 @@
 		CE1E887B264748F700E1245E /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
 		CE1E888026474BFC00E1245E /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 		CE1E88862647561600E1245E /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		CE87B3ED264CCE8A009CAF44 /* Support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Support.swift; sourceTree = "<group>"; };
 		CEAE3E2C2648CA2F0066C825 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		CEAE3E342648CAC50066C825 /* DefaultViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultViews.swift; sourceTree = "<group>"; };
 		CEAE3E3C2648D0CC0066C825 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 			children = (
 				CEAE3E2C2648CA2F0066C825 /* Extensions.swift */,
 				CEAE3E342648CAC50066C825 /* DefaultViews.swift */,
+				CE87B3ED264CCE8A009CAF44 /* Support.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				CEC03FB1263E354200FFCB45 /* DenebolaAppApp.swift in Sources */,
 				FA56AA4C263F0B5A00B6D838 /* PodcastView.swift in Sources */,
 				FA86EE442648BC84003BD44B /* Search.swift in Sources */,
+				CE87B3EE264CCE8A009CAF44 /* Support.swift in Sources */,
 				FA56AA56263F0F2400B6D838 /* CategoryButton.swift in Sources */,
 				FA56AA4A263F0B5100B6D838 /* HomeView.swift in Sources */,
 				FA56AA64263F3F1A00B6D838 /* SamplePost.swift in Sources */,

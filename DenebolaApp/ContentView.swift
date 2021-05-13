@@ -5,16 +5,26 @@
 //  Created by Connor Tam on 5/1/21.
 //
 
+import MediaPlayer
 import SwiftUI
 
 struct ContentView: View {
+    init() {
+        // Initial program code to be run once
+        do {
+            
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
+            
+        } catch {
+            // report for an error
+        }
+    }
+    
     var body: some View {
         ViewController()
             .environmentObject(APIHandler())
             .preferredColorScheme(.light) // Until we add dark mode custom theming
             .environmentObject(PodcastLoader())
-        //PostView(id: 25133)
-        //    .environmentObject(APIHandler())
     }
 }
 

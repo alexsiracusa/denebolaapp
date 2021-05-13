@@ -9,7 +9,7 @@ import Foundation
 
 class PodcastLoader: NSObject, ObservableObject, XMLParserDelegate {
     let rss = "https://anchor.fm/s/f635e84/podcast/rss"
-    @Published var podcasts: [Podcast] = []
+    @Published var podcasts: [PodcastData] = []
     @Published var time = 0.0
     @Published var loaded = false
     var elementName = String()
@@ -19,12 +19,12 @@ class PodcastLoader: NSObject, ObservableObject, XMLParserDelegate {
     var descrip = String()
     var date = String()
     
-    var onEnd: ([Podcast]) -> Void = {_ in }
+    var onEnd: ([PodcastData]) -> Void = {_ in }
     func parserDidEndDocument(_ parser: XMLParser) {
         onEnd(podcasts)
     }
 
-    func load(completion: @escaping ([Podcast]) -> Void) {
+    func load(completion: @escaping ([PodcastData]) -> Void) {
         guard let url = URL(string: rss) else { return }
         onEnd = completion
         podcasts = []
@@ -62,7 +62,7 @@ class PodcastLoader: NSObject, ObservableObject, XMLParserDelegate {
         if elementName == "item" {
             let imageURL = URL(string: self.imageURL)
             let audioURL = URL(string: self.audioURL)
-            let podcast = Podcast(title: title, description: descrip, date: date, imageURL: imageURL, audioURL: audioURL)
+            let podcast = PodcastData(title: title, description: descrip, date: date, imageURL: imageURL, audioURL: audioURL)
             podcasts.append(podcast)
         }
     }
@@ -83,7 +83,7 @@ class PodcastLoader: NSObject, ObservableObject, XMLParserDelegate {
     }
 }
 
-struct Podcast: Identifiable {
+struct PodcastData: Identifiable {
     var id = UUID()
     var title: String
     var description: String
@@ -91,10 +91,10 @@ struct Podcast: Identifiable {
     var imageURL: URL?
     var audioURL: URL?
     
-    static var `default`: Podcast {
+    static var `default`: PodcastData {
         let imageURL = URL(string: "https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded_nologo/2481705/2481705-1618286836680-cc0bfe519a5a9.jpg")
         let audioURL = URL(string: "https://anchor.fm/s/f635e84/podcast/play/32773030/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2F2021-4-4%2F182526282-44100-2-80c111c8f86be.m4a")
-        return Podcast(title: "S3E3 - April vacation recap, 4 days a week in person, spring sports, and tik tok drama.", description: "On this weeks episode Freshman Neil Giesser joins the show to talk about his first year at South. Senior Jaden Friedman gives some nfl draft predictions. And the show is wrapped up with our take on tik tok and YouTube news.", date: "Tue, 04 May 2021 01:04:27 GMT", imageURL: imageURL, audioURL: audioURL)
+        return PodcastData(title: "S3E3 - April vacation recap, 4 days a week in person, spring sports, and tik tok drama.", description: "On this weeks episode Freshman Neil Giesser joins the show to talk about his first year at South. Senior Jaden Friedman gives some nfl draft predictions. And the show is wrapped up with our take on tik tok and YouTube news.", date: "Tue, 04 May 2021 01:04:27 GMT", imageURL: imageURL, audioURL: audioURL)
     }
     
 }

@@ -11,25 +11,25 @@ import SwiftUI
 struct PodcastView: View {
     @EnvironmentObject var loader: PodcastLoader
     @EnvironmentObject var handler: APIHandler
-    @State var currentPodcast: Podcast = Podcast.default {
+    @State var currentPodcast = PodcastData.default {
         didSet {
-            loadNewAudio(url: currentPodcast.audioURL!)
+            self.loadNewAudio(url: self.currentPodcast.audioURL!)
         }
     }
+
     @State var audioPlayer = AVPlayer()
-    @State var podcasts = [Podcast]()
+    @State var podcasts = [PodcastData]()
     
     @State var time = 0.0
     @State var audioLength = 0.0
     @State var playing = false
     @State var sliding = false
-
+    
     var body: some View {
         NavigationView {
             ScrollViewReader { value in
                 ScrollView {
-                    
-                    //Current Podcast
+                    // Current Podcast
                     VStack {
                         HStack {
                             Text(currentPodcast.title)
@@ -42,7 +42,8 @@ struct PodcastView: View {
                             .cornerRadius(10)
                             .aspectRatio(1.0, contentMode: .fit)
                             .padding([.leading, .trailing])
-                        Slider(value: $time, in: 0...audioLength) { editing in
+                        
+                        Slider(value: $time, in: 0 ... audioLength) { editing in
                             if !editing {
                                 audioPlayer.seek(to: CMTime(seconds: time, preferredTimescale: CMTimeScale(1.0)))
                                 sliding = false
@@ -50,15 +51,17 @@ struct PodcastView: View {
                                 sliding = true
                             }
                         }
-                            .padding([.leading, .trailing])
+                        .padding([.leading, .trailing])
+                        
                         HStack {
-                            Text(String(format: "%02d:%02d", Int(time) / 60, Int(time) % 60))
+                            Text(getFormattedMinutesSeconds(time))
                                 .font(.caption)
                             Spacer()
-                            Text(String(format: "%02d:%02d", Int(audioLength) / 60, Int(audioLength) % 60))
+                            Text(getFormattedMinutesSeconds(audioLength))
                                 .font(.caption)
                         }
                         .padding([.leading, .trailing])
+                        
                         HStack(spacing: 30) {
                             Button {
                                 audioPlayer.seek(to: CMTime(seconds: time - 15, preferredTimescale: CMTimeScale(1.0)))
@@ -96,82 +99,50 @@ struct PodcastView: View {
                         .offset(y: -15)
                         Spacer()
                     }
-                    .onAppear {
-                        loadNewAudio(url: currentPodcast.audioURL!)
-                    }
                     .id(1)
                     .padding(.top)
                     
-                    
-                    //Podcast List
+                    // Podcast List
                     HStack {
                         Text("Episodes")
                             .font(.headline)
                             .padding(.leading)
                         Spacer()
                     }
+                    
                     ForEach(podcasts) { podcast in
-                        HStack(alignment: .top) {
-                            Button {
-                                currentPodcast = podcast
-                                withAnimation {
-                                    value.scrollTo(1, anchor: .top)
-                                }
-                                play()
-                            } label: {
-                                PlayButton()
-                                    .padding(.leading, 5)
+                        PodcastRow(podcast: podcast) {
+                            currentPodcast = podcast
+                            withAnimation {
+                                value.scrollTo(1, anchor: .top)
                             }
-                            Button {
-                                currentPodcast = podcast
-                                withAnimation {
-                                    value.scrollTo(1, anchor: .top)
-                                }
-                            } label: {
-                                VStack(alignment: .leading) {
-                                    Text(podcast.title)
-                                        .foregroundColor(.black)
-                                        .font(.headline)
-                                        .lineLimit(2)
-                                    Text(podcast.date)
-                                        .foregroundColor(.gray)
-                                        .font(.footnote)
-                                    Text(podcast.description)
-                                        .foregroundColor(.secondary)
-                                        .lineLimit(1)
-                                }
-                            }
-                            Spacer()
+                            play()
                         }
                     }
                 }
                 .navigationBarTitle("Denebacast", displayMode: .inline)
-                .navigationBarItems(
-                    trailing: ToolbarLogo()
-                )
-                
+                .navigationBarItems(trailing: ToolbarLogo())
             }
         }
         .onAppear {
-            if !loader.loaded {
-                loader.load() { podcasts in
-                    self.podcasts = podcasts
-                }
+            guard !loader.loaded else { return }
+            loader.load { podcasts in
+                self.podcasts = podcasts
                 currentPodcast = loader.podcasts[0]
             }
         }
     }
     
     func loadNewAudio(url: URL) {
-        audioPlayer.pause()
-        self.audioPlayer = AVPlayer(url: url)
+        self.audioPlayer.replaceCurrentItem(with: AVPlayerItem(url: url))
+        // Get duration
         if let duration = audioPlayer.currentItem?.asset.duration {
             self.audioLength = CMTimeGetSeconds(duration)
         } else {
             self.audioLength = 0.0
         }
         // Receive time updates
-        audioPlayer.addPeriodicTimeObserver(
+        self.audioPlayer.addPeriodicTimeObserver(
             forInterval: CMTimeMake(value: 1, timescale: 2), // 1/2 seconds
             queue: DispatchQueue.main,
             using: {
@@ -183,13 +154,7 @@ struct PodcastView: View {
     }
     
     func play() {
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
-         }
-         catch {
-            // report for an error
-         }
-        audioPlayer.play()
+        self.audioPlayer.play()
         self.playing = true
     }
     
@@ -197,8 +162,6 @@ struct PodcastView: View {
         self.audioPlayer.pause()
         self.playing = false
     }
-    
-    
 }
 
 struct PodcastView_Previews: PreviewProvider {
@@ -206,5 +169,34 @@ struct PodcastView_Previews: PreviewProvider {
         PodcastView()
             .environmentObject(PodcastLoader())
             .environmentObject(APIHandler())
+    }
+}
+
+private struct PodcastRow: View {
+    var podcast: PodcastData
+    var onSelect: () -> Void
+    
+    var body: some View {
+        HStack(alignment: .top) {
+            Button(action: onSelect) {
+                PlayButton()
+                    .padding(.leading, 5)
+            }
+            Button(action: onSelect) {
+                VStack(alignment: .leading) {
+                    Text(podcast.title)
+                        .foregroundColor(.black)
+                        .font(.headline)
+                        .lineLimit(2)
+                    Text(podcast.date)
+                        .foregroundColor(.gray)
+                        .font(.footnote)
+                    Text(podcast.description)
+                        .foregroundColor(.secondary)
+                        .lineLimit(1)
+                }
+            }
+            Spacer()
+        }
     }
 }
