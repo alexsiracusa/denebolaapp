@@ -23,7 +23,18 @@ struct PodcastView: View {
     @State var time = 0.0
     @State var audioLength = 0.0
     @State var playing = false
-    @State var sliding = false
+    @State var seeking = false
+    
+    func MediaControlImage(_ name: String) -> some View {
+        return Image(systemName: name)
+            .font(.system(size: 30))
+    }
+    
+    func seek(to: Double) {
+        audioPlayer.seek(to: CMTime(seconds: to, preferredTimescale: CMTimeScale(to))) {_ in 
+            seeking = false
+        }
+    }
     
     var body: some View {
         NavigationView {
@@ -45,11 +56,9 @@ struct PodcastView: View {
                         
                         Slider(value: $time, in: 0 ... audioLength) { editing in
                             if !editing {
-                                audioPlayer.seek(to: CMTime(seconds: time, preferredTimescale: CMTimeScale(1.0))) {_ in
-                                    sliding = false
-                                }
+                                seek(to: time)
                             } else {
-                                sliding = true
+                                seeking = true
                             }
                         }
                         .padding([.leading, .trailing])
@@ -65,36 +74,21 @@ struct PodcastView: View {
                         
                         HStack(spacing: 30) {
                             Button {
-                                audioPlayer.seek(to: CMTime(seconds: time - 15, preferredTimescale: CMTimeScale(1.0)))
+                                seek(to: time - 15.0)
                             } label: {
-                                Image(systemName: "gobackward.15")
-                                    .resizable()
-                                    .frame(width: 30, height: 30)
-                            }
-                            if playing {
-                                Button {
-                                    pause()
-                                } label: {
-                                    Image(systemName: "pause.circle")
-                                        .resizable()
-                                        .frame(width: 30, height: 30)
-                                }
-                            } else {
-                                Button {
-                                    play()
-                                } label: {
-                                    Image(systemName: "play.circle")
-                                        .resizable()
-                                        .frame(width: 30, height: 30)
-                                }
+                                MediaControlImage("gobackward.15")
                             }
                             
                             Button {
-                                audioPlayer.seek(to: CMTime(seconds: time + 30, preferredTimescale: CMTimeScale(1.0)))
+                                if playing { pause() } else { play() }
                             } label: {
-                                Image(systemName: "goforward.30")
-                                    .resizable()
-                                    .frame(width: 30, height: 30)
+                                MediaControlImage(playing ? "pause.circle" : "play.circle")
+                            }
+                            
+                            Button {
+                                seek(to: time + 30.0)
+                            } label: {
+                                MediaControlImage("goforward.30")
                             }
                         }
                         .offset(y: -15)
@@ -147,7 +141,7 @@ struct PodcastView: View {
             forInterval: CMTimeMake(value: 1, timescale: 2), // 1/2 seconds
             queue: DispatchQueue.main,
             using: {
-                if !sliding {
+                if !seeking {
                     self.time = $0.seconds
                 }
             }
