@@ -45,8 +45,9 @@ struct PodcastView: View {
                         
                         Slider(value: $time, in: 0 ... audioLength) { editing in
                             if !editing {
-                                audioPlayer.seek(to: CMTime(seconds: time, preferredTimescale: CMTimeScale(1.0)))
-                                sliding = false
+                                audioPlayer.seek(to: CMTime(seconds: time, preferredTimescale: CMTimeScale(1.0))) {_ in
+                                    sliding = false
+                                }
                             } else {
                                 sliding = true
                             }
@@ -112,10 +113,10 @@ struct PodcastView: View {
                     
                     ForEach(podcasts) { podcast in
                         PodcastRow(podcast: podcast) {
-                            currentPodcast = podcast
                             withAnimation {
                                 value.scrollTo(1, anchor: .top)
                             }
+                            currentPodcast = podcast
                             play()
                         }
                     }
