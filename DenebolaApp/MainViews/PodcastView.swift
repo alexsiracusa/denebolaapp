@@ -199,7 +199,6 @@ struct PodcastView: View {
     func pause() {
         self.audioPlayer.pause()
         self.player.playing = false
-        self.showingPodcastToolbar = false
     }
 }
 

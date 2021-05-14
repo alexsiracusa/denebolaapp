@@ -59,7 +59,15 @@ struct ViewController: View {
                     Image(systemName: "newspaper")
                     Text("Feed")
                 }
-            PodcastView(player: player, showingToolbar: $showingPodcastToolbar)
+            GeometryReader { geometry in
+                PodcastView(player: player, showingToolbar: $showingPodcastToolbar)
+                if showingPodcastToolbar {
+                    PodcastToolbar(image: image, player: player, showingPodcastToolbar: $showingPodcastToolbar)
+                        .frame(width: geometry.size.width, height: 50)
+                        .position(x: geometry.size.width / 2, y: geometry.size.height - 25)
+                        .transition(.move(edge: .bottom))
+                }
+            }
                 .tabItem {
                     Image(systemName: "headphones")
                     Text("Podcast")
