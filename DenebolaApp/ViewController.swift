@@ -25,8 +25,8 @@ struct ViewController: View {
             GeometryReader { geometry in
                 HomeView()
                 PodcastToolbar(image: image, player: player)
-                    .frame(width: geometry.size.width, height: 70)
-                    .position(x: geometry.size.width / 2, y: geometry.size.height - 35)
+                    .frame(width: geometry.size.width, height: 50)
+                    .position(x: geometry.size.width / 2, y: geometry.size.height - 25)
             }
                 .tabItem {
                     Image(systemName: "house")

@@ -12,10 +12,10 @@ struct PodcastToolbar: View {
     var image: ImageView
     @ObservedObject var player: PlayerObject
     
-    func toolbarImage(_ name: String) -> some View {
+    func toolbarImage(_ name: String, size: CGFloat) -> some View {
         Image(systemName: name)
             .resizable()
-            .frame(width: 40, height: 40)
+            .frame(width: size, height: size)
     }
     
     func seek(to: Double) {
@@ -24,37 +24,49 @@ struct PodcastToolbar: View {
     }
     
     var body: some View {
-        HStack(spacing: 20) {
-            image
-                .scaledToFill()
-                .frame(width: 60, height: 60)
-                .aspectRatio(1.0, contentMode: .fit)
-                .clipped()
-                .cornerRadius(8)
-            Button {
-                seek(to: player.player.currentTime().seconds - 15)
-            } label: {
-                toolbarImage("gobackward.15")
-            }
-            Button {
-                if player.playing {
-                    pause()
-                } else {
-                    play()
+        VStack(spacing: 0) {
+            Divider()
+            HStack(spacing: 0) {
+                image
+                    .scaledToFill()
+                    .frame(width: 40, height: 40)
+                    .aspectRatio(1.0, contentMode: .fit)
+                    .clipped()
+                    .cornerRadius(8)
+                    .padding(.leading, 20)
+                Spacer()
+                Button {
+                    seek(to: player.player.currentTime().seconds - 15)
+                } label: {
+                    toolbarImage("gobackward.15", size: 30)
                 }
-            } label: {
-                toolbarImage(player.playing ? "pause.circle" : "play.circle")
+                Spacer()
+                Button {
+                    if player.playing {
+                        pause()
+                    } else {
+                        play()
+                    }
+                } label: {
+                    toolbarImage(player.playing ? "pause.circle" : "play.fill", size: 25)
+                }
+                Spacer()
+                Button {
+                    seek(to: player.player.currentTime().seconds + 30)
+                } label: {
+                    toolbarImage("goforward.30", size: 30)
+                }
+                Spacer()
+                Button {
+                    
+                } label: {
+                    toolbarImage("xmark.circle", size: 30)
+                }
+                .padding(.trailing, 20)
             }
-            Button {
-                seek(to: player.player.currentTime().seconds + 30)
-            } label: {
-                toolbarImage("goforward.30")
-            }
-            Button {
-                
-            } label: {
-                toolbarImage("xmark.circle")
-            }
+            .frame(height: 40)
+            .padding([.top, .bottom], 5)
+            .background(Color.white)
         }
     }
     
