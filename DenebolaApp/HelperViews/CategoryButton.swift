@@ -8,25 +8,27 @@
 import SwiftUI
 
 struct CategoryButton: View {
-    let size: CGFloat = 125.0
+    let size: CGFloat = 95.0
     let id: Int
     let name: String
     let image: Image
+    
+    let onSelect: () -> Void
 
     var body: some View {
-        NavigationLink(destination:
-            CategoryView(id: id, name: name)
-        ) {
-            ZStack {
-                GeometryReader { _ in
-                    VStack {
-                        Spacer()
-                        Text(name)
-                            .bold()
-                            .padding(5)
-                            .foregroundColor(.white)
-                    }
-                    .zIndex(2)
+        ZStack {
+            GeometryReader { _ in
+                VStack {
+                    Spacer()
+                    Text(name)
+                        .bold()
+                        .font(.caption)
+                        .padding(5)
+                        .foregroundColor(.white)
+                }
+                .zIndex(2)
+                
+                Button(action: onSelect) {
                     image
                         .resizable()
                         .cornerRadius(10)
@@ -37,14 +39,15 @@ struct CategoryButton: View {
                             // .brightness(0.7)
                         )
                 }
+                
             }
-            .frame(width: size, height: size)
         }
+        .frame(width: size, height: size)
     }
 }
 
 struct CategoryButton_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryButton(id: 7, name: "Opinions", image: Image("DenebolaLogo"))
+        CategoryButton(id: 7, name: "Opinions", image: Image("DenebolaLogo"), onSelect: {})
     }
 }

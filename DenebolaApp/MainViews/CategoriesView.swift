@@ -10,36 +10,36 @@ import SwiftUI
 struct CategoriesView: View {
     @EnvironmentObject var handler: APIHandler
 
+    @State var selectedCategory: Int? = nil
+
     var body: some View {
         NavigationView {
             ScrollView {
-                ScrollViewReader { _ in
+                VStack(alignment: .leading) {
                     ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 0) {
+                        HStack() {
                             ForEach(Categories.allCases, id: \.rawValue.0) { category in
-                                CategoryButton(id: category.id, name: category.name, image: category.image)
-                                    .padding([.leading, .trailing], 5)
+                                CategoryButton(id: category.id, name: category.name, image: category.image, onSelect: {
+                                    selectedCategory = category.id
+                                })
                             }
                             Rectangle()
                                 .frame(width: 20)
                                 .foregroundColor(.clear)
                         }
-                        .padding([.leading, .trailing], 5)
                         .padding(.top, 15)
+                        .padding([.leading, .trailing])
                     }
-                    Spacer(minLength: 12)
-                    Rectangle()
-                        .frame(height: 10)
-                        .foregroundColor(.gray)
-                        .brightness(0.3)
-                    HStack {
-                        Text("Recent Posts")
-                            .font(.headline)
-                            .padding(.leading)
-                        Spacer()
-                    }
+                    
                     Spacer(minLength: 15)
-                    PostFeed()
+
+                    Text("Latest Posts")
+                        .font(.headline)
+                        .padding(.leading)
+
+                    Spacer(minLength: 15)
+
+                    PostFeed(category: selectedCategory)
                 }
             }
             .navigationBarTitle("Feed", displayMode: .inline)

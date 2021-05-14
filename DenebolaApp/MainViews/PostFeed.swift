@@ -9,7 +9,11 @@ import SwiftUI
 
 struct PostFeed: View {
     @EnvironmentObject var handler: APIHandler
-    @ObservedObject var loader = ScrollViewLoader(category: nil)
+    @ObservedObject var loader: ScrollViewLoader
+
+    init(category: Int? = nil) {
+        loader = ScrollViewLoader(category: category)
+    }
 
     var body: some View {
         if loader.posts.count != 0 {
@@ -19,6 +23,8 @@ struct PostFeed: View {
                         .onAppear {
                             loader.loadMorePostsIfNeeded(currentItem: postRow)
                         }
+                        .padding(.horizontal)
+                        .padding(.vertical, 2.0)
                 }
             }
         } else {

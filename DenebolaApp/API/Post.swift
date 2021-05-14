@@ -69,6 +69,9 @@ struct Post: Codable, Equatable, Identifiable {
                         font-family: -apple-system, "Helvetica Neue", "Lucida Grande";
                         font-size: "Large";
                     }
+                    .blocks-gallery-grid { /* For photo galleries don't display bullets */
+                        list-style-type: none;
+                    }
                     * {
                         max-width: 100%;
                     }

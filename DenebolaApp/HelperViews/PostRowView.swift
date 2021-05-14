@@ -10,7 +10,7 @@ import SwiftUI
 
 struct PostRowView: View {
     let postRow: PostRow
-    
+
     var title: String {
         return postRow.title
     }
@@ -26,7 +26,7 @@ struct PostRowView: View {
     var thumbnailImage: ImageView? {
         postRow.thumbnailImageURL.flatMap { ImageView(url: $0) }
     }
-    
+
     var fullImage: ImageView? {
         postRow.fullImageURL.flatMap { ImageView(url: $0) }
     }
@@ -36,15 +36,13 @@ struct PostRowView: View {
             if postRow.hasMedia {
                 thumbnailImage?
                     .scaledToFill()
-                    .frame(width: 160, height: 100)
+                    .frame(width: 140, height: 100)
                     .aspectRatio(1.6, contentMode: .fit)
                     .clipped()
-                    .cornerRadius(5)
             } else {
                 Image("DenebolaLogo")
                     .resizable()
                     .frame(width: 100, height: 100)
-                    .cornerRadius(5)
             }
 
             // title + author + date
@@ -52,37 +50,39 @@ struct PostRowView: View {
                 PostView(id: postRow.id, title: postRow.title, image: fullImage, author: postRow.author)
                     .navigationBarTitle(Text(""), displayMode: .inline)
             ) {
-                VStack(alignment: .leading, spacing: 3) {
+                VStack(alignment: .leading) {
                     // title
                     Text(title)
-                        .font(.title2)
+                        .bold()
+                        .font(.title3)
                         .lineLimit(nil)
-                    // author
-                    HStack {
-                        Image(systemName: "person.fill")
-                        Text(author).font(.subheadline)
-                            .lineLimit(1)
-                    }
-                    // date
-                    HStack {
-                        Image(systemName: "calendar")
-                        Text(date).font(.subheadline)
-                            .lineLimit(1)
-                    }
-                }
-                .foregroundColor(.black)
+                        .foregroundColor(.black)
+                    Spacer(minLength: 0.0)
+                    Text(author)
+                        .font(.subheadline)
+                        .foregroundColor(.black)
+                    Text(date)
+                        .foregroundColor(.gray)
+                        .font(.subheadline)
+                }.padding(.vertical, 4.0)
+
                 Spacer()
             }
         }
         .frame(height: 100)
-        .padding([.leading, .trailing], 10)
+        .cornerRadius(10.0)
+        .background(
+            RoundedRectangle(cornerRadius: 10.0)
+                .fill(Color.white)
+                .shadow(color: Color.gray.opacity(0.3), radius: 10.0, x: 0, y: 1.0)
+        )
     }
 }
 
 struct PostRowView_Previews: PreviewProvider {
     static var previews: some View {
         let testURL = "http://nshsdenebola.com/wp-content/uploads/2021/02/https___cdn.cnn_.com_cnnnext_dam_assets_210121163502-joe-biden.jpg".asURL
-        
+
         PostRowView(postRow: PostRow(id: 1, title: "Title here long text multi line text very cool", author: "Alex Siracusa", date: "April 22, 2021", fullImageURL: testURL, thumbnailImageURL: testURL, hasMedia: true))
             .environmentObject(APIHandler())
     }
