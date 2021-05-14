@@ -13,17 +13,22 @@ struct PodcastView: View {
     @EnvironmentObject var handler: APIHandler
     @State var currentPodcast = PodcastData.default {
         didSet {
-            self.loadNewAudio(url: self.currentPodcast.audioURL!)
+            self.beginNewAudio(url: self.currentPodcast.audioURL!)
         }
     }
 
     @State var audioPlayer = AVPlayer()
     @State var podcasts = [PodcastData]()
+    @State var loadingAsset: AVAsset! = nil
     
     @State var time = 0.0
     @State var audioLength = 0.0
     @State var playing = false
     @State var seeking = false
+    
+    init() {
+        self.audioPlayer.automaticallyWaitsToMinimizeStalling = false
+    }
     
     func MediaControlImage(_ name: String) -> some View {
         return Image(systemName: name)
@@ -128,8 +133,38 @@ struct PodcastView: View {
         }
     }
     
-    func loadNewAudio(url: URL) {
-        self.audioPlayer.replaceCurrentItem(with: AVPlayerItem(url: url))
+    func beginNewAudio(url: URL) {
+        if let loadingAsset = self.loadingAsset {
+            loadingAsset.cancelLoading()
+        }
+        
+        self.loadingAsset = AVAsset(url: url)
+        
+        self.audioPlayer.replaceCurrentItem(with: nil)
+        // Do not block the main thread loading audio
+        self.loadingAsset.loadValuesAsynchronously(forKeys: ["playable"], completionHandler: {
+            var error: NSError? = nil
+            let status = self.loadingAsset.statusOfValue(forKey: "playable", error: &error)
+
+            switch status {
+                case .loaded:
+                    DispatchQueue.main.async {
+                        self.loadAsset()
+                    }
+                case .failed:
+                    fallthrough
+                case .cancelled:
+                    // TODO
+                    break;
+                default:
+                    break;
+            }
+        })
+    }
+    
+    func loadAsset() {
+        let item = AVPlayerItem(asset: self.loadingAsset)
+        self.audioPlayer.replaceCurrentItem(with: item)
         // Get duration
         if let duration = audioPlayer.currentItem?.asset.duration {
             self.audioLength = CMTimeGetSeconds(duration)
