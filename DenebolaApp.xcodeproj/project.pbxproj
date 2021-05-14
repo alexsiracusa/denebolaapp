@@ -24,8 +24,10 @@
 		CEC03FC3263E354400FFCB45 /* DenebolaAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FC2263E354400FFCB45 /* DenebolaAppTests.swift */; };
 		CEC03FCE263E354400FFCB45 /* DenebolaAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FCD263E354400FFCB45 /* DenebolaAppUITests.swift */; };
 		CECE6EB7264DFFFC0068EFCE /* PostPreviewPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECE6EB6264DFFFC0068EFCE /* PostPreviewPages.swift */; };
+		FA22FB7A264E2E6C009062FC /* PodcastToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA22FB79264E2E6C009062FC /* PodcastToolbar.swift */; };
 		FA4618C926496BBB0018522B /* BubbleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4618C826496BBB0018522B /* BubbleText.swift */; };
 		FA4618CC264980240018522B /* PodcastLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4618CB264980240018522B /* PodcastLoader.swift */; };
+		FA4B7364264E335200516AC6 /* PlayerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4B7363264E335200516AC6 /* PlayerObject.swift */; };
 		FA56AA43263F080900B6D838 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA42263F080900B6D838 /* ViewController.swift */; };
 		FA56AA46263F0B2300B6D838 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA45263F0B2300B6D838 /* CategoriesView.swift */; };
 		FA56AA4A263F0B5100B6D838 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA49263F0B5100B6D838 /* HomeView.swift */; };
@@ -90,8 +92,10 @@
 		CEC03FCD263E354400FFCB45 /* DenebolaAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenebolaAppUITests.swift; sourceTree = "<group>"; };
 		CEC03FCF263E354400FFCB45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CECE6EB6264DFFFC0068EFCE /* PostPreviewPages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPreviewPages.swift; sourceTree = "<group>"; };
+		FA22FB79264E2E6C009062FC /* PodcastToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastToolbar.swift; sourceTree = "<group>"; };
 		FA4618C826496BBB0018522B /* BubbleText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleText.swift; sourceTree = "<group>"; };
 		FA4618CB264980240018522B /* PodcastLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastLoader.swift; sourceTree = "<group>"; };
+		FA4B7363264E335200516AC6 /* PlayerObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerObject.swift; sourceTree = "<group>"; };
 		FA56AA42263F080900B6D838 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FA56AA45263F0B2300B6D838 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		FA56AA49263F0B5100B6D838 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -264,6 +268,7 @@
 				FA86EE412648BA09003BD44B /* ToolbarLogo.swift */,
 				CEAE3E3C2648D0CC0066C825 /* WebView.swift */,
 				FA97B955264A263D00E13209 /* PlayButton.swift */,
+				FA22FB79264E2E6C009062FC /* PodcastToolbar.swift */,
 			);
 			path = HelperViews;
 			sourceTree = "<group>";
@@ -280,6 +285,7 @@
 				FA73AA27263E361E00B6C8B6 /* Media.swift */,
 				FA73AA28263E361E00B6C8B6 /* Category.swift */,
 				FA56AA57263F1AC100B6D838 /* Categories.swift */,
+				FA4B7363264E335200516AC6 /* PlayerObject.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -424,6 +430,7 @@
 				FA86EE422648BA09003BD44B /* ToolbarLogo.swift in Sources */,
 				FA73AA30263E363600B6C8B6 /* PostView.swift in Sources */,
 				FA56AA6E263FA12200B6D838 /* LoadingPostRowView.swift in Sources */,
+				FA22FB7A264E2E6C009062FC /* PodcastToolbar.swift in Sources */,
 				CECE6EB7264DFFFC0068EFCE /* PostPreviewPages.swift in Sources */,
 				FA56AA58263F1AC100B6D838 /* Categories.swift in Sources */,
 				CEAE3E352648CAC50066C825 /* DefaultViews.swift in Sources */,
@@ -431,6 +438,7 @@
 				FA56AA62263F2FD200B6D838 /* PostFeed.swift in Sources */,
 				CEC03FB3263E354200FFCB45 /* ContentView.swift in Sources */,
 				CEAE3E3D2648D0CC0066C825 /* WebView.swift in Sources */,
+				FA4B7364264E335200516AC6 /* PlayerObject.swift in Sources */,
 				CE1E887C264748F700E1245E /* PageView.swift in Sources */,
 				FA4618C926496BBB0018522B /* BubbleText.swift in Sources */,
 				FA56AA51263F0BFF00B6D838 /* PhotoGalleryView.swift in Sources */,
