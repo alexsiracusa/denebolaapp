@@ -11,13 +11,27 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject private var handler: APIHandler
-    @State private var loadedPosts = [PostRow]()
+    @State private var loadedPosts = [PostPreviewInfo]()
     
     func loadPosts() {
-        handler.loadPostPage(category: nil, page: 1, per_page: 5, embed: true, completionHandler: { post, _ in
-            guard let post = post, post.count > 0 else { return }
-            self.loadedPosts = post.map { $0.asPostRow() }
-        })
+        var displayedIds = Set<Int>()
+        
+        DispatchQueue.main.async {
+            for category in Categories.allCases {
+                handler.loadPostPage(category: category.id, page: 1, per_page: 2, embed: true, completionHandler: { posts, _ in
+                    guard let posts = posts, posts.count > 0 else {return}
+                    
+                    for post in posts {
+                        if displayedIds.contains(post.id) {continue} // avoid duplicate posts that might have more than one category
+                        
+                        loadedPosts.append(PostPreviewInfo(tag: category.name, row: post.asPostRow(thumbnailSize: "large")))
+                        displayedIds.insert(post.id)
+                        
+                        break;
+                    }
+                })
+            }
+        }
     }
     
     var body: some View {

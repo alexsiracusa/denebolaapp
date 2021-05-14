@@ -26,13 +26,13 @@ struct Post: Codable, Equatable, Identifiable {
         return lhs.id == rhs.id
     }
     
-    func asPostRow() -> PostRow {
-        return PostRow(id: self.id, title: self.renderedTitle, author: (self._embedded!.author![0].name)!, date: self.renderedDate, fullImageURL: self._embedded?.featuredMedia?[0].source_url?.asURL, thumbnailImageURL: self.getThumbnailUrl(), hasMedia: self.hasMedia)
+    func asPostRow(thumbnailSize: String = "medium") -> PostRow {
+        return PostRow(id: self.id, title: self.renderedTitle, author: (self._embedded!.author![0].name)!, date: self.renderedDate, fullImageURL: self._embedded?.featuredMedia?[0].source_url?.asURL, thumbnailImageURL: self.getThumbnailSizeUrl(size: thumbnailSize), hasMedia: self.hasMedia)
     }
     
-    /// Gets a smaller "medium" size thumbnail or the original size if it's smaller
-    func getThumbnailUrl() -> URL? {
-        return self._embedded?.featuredMedia?[0].media_details.getSize("medium")?.source_url.asURL ?? self._embedded?.featuredMedia?[0].source_url?.asURL
+    /// Gets a image with the specified size string or the original size if it doesn't exist (might be smaller)
+    func getThumbnailSizeUrl(size: String) -> URL? {
+        return self._embedded?.featuredMedia?[0].media_details.getSize(size)?.source_url.asURL ?? self._embedded?.featuredMedia?[0].source_url?.asURL
     }
     
     var renderedContent: String { // TODO: remove?
@@ -74,6 +74,7 @@ struct Post: Codable, Equatable, Identifiable {
                     }
                     * {
                         max-width: 100%;
+                        height: auto;
                     }
                 </style>
                 <body>
