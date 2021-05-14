@@ -75,7 +75,7 @@ struct ViewController: View {
                     Text("Podcast")
                 }
         }
-        .background(Color.blue)
+        .accentColor(.orange)
     }
 }
 
