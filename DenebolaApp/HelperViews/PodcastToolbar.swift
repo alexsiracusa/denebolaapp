@@ -49,7 +49,7 @@ struct PodcastToolbar: View {
                         play()
                     }
                 } label: {
-                    toolbarImage(player.playing ? "pause.circle" : "play.fill", size: 25)
+                    toolbarImage(player.playing ? "pause.fill" : "play.fill", size: 25)
                 }
                 Spacer()
                 Button {
