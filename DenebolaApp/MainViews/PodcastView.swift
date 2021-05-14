@@ -191,9 +191,10 @@ struct PodcastView: View {
     }
     
     func play() {
-        self.audioPlayer.play()
-        self.player.playing = true
-        self.showingPodcastToolbar = true
+        audioPlayer.play()
+        player.playing = true
+        player.image = ImageView(url: currentPodcast.imageURL!)
+        showingPodcastToolbar = true
     }
     
     func pause() {

@@ -10,7 +10,9 @@ import MediaPlayer
 
 struct ViewController: View {
     @EnvironmentObject var handler: APIHandler
-    @State var image: ImageView = ImageView(url: URL(string: "https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg")!)
+    var image: ImageView {
+        return player.image
+    }
     //@State var playing = true
     @ObservedObject var player: PlayerObject = PlayerObject()
     @State var showingPodcastToolbar = false

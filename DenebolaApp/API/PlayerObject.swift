@@ -11,10 +11,12 @@ import MediaPlayer
 class PlayerObject: ObservableObject {
     @Published var player: AVPlayer
     @Published var playing: Bool
+    @Published var image: ImageView
     
     init() {
         self.player = AVPlayer()
         self.playing = false
+        self.image = ImageView(url: URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png")!)
     }
     
     func play() {
