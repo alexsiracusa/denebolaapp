@@ -237,5 +237,6 @@ private struct PodcastRow: View {
             }
             Spacer()
         }
+        //.frame(
     }
 }

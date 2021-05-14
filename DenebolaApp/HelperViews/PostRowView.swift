@@ -10,6 +10,12 @@ import SwiftUI
 
 struct PostRowView: View {
     let postRow: PostRow
+    var style: Style = .floating
+    
+    enum Style {
+        case floating
+        case normal
+    }
 
     var title: String {
         return postRow.title
@@ -36,8 +42,8 @@ struct PostRowView: View {
             if postRow.hasMedia {
                 thumbnailImage?
                     .scaledToFill()
-                    .frame(width: 140, height: 100)
-                    .aspectRatio(1.6, contentMode: .fit)
+                    .frame(width: style == .floating ? 160 : 100, height: 100)
+                    .aspectRatio(style == .floating ? 1.6 : 1.0, contentMode: .fit)
                     .clipped()
             } else {
                 Image("DenebolaLogo")
@@ -70,11 +76,12 @@ struct PostRowView: View {
             }
         }
         .frame(height: 100)
-        .cornerRadius(10.0)
-        .background(
+        .cornerRadius(style == .floating ? 10.0 : 0.0)
+        .background(style == .floating ?
             RoundedRectangle(cornerRadius: 10.0)
                 .fill(Color.white)
                 .shadow(color: Color.gray.opacity(0.3), radius: 10.0, x: 0, y: 1.0)
+            : nil
         )
     }
 }

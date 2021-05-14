@@ -11,27 +11,19 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject private var handler: APIHandler
-    @State private var loadedPosts = [PostPreviewInfo]()
+    @State private var loadedPosts = [PostRow]()
     
     func loadPosts() {
         var displayedIds = Set<Int>()
         
-        DispatchQueue.main.async {
-            for category in Categories.allCases {
-                handler.loadPostPage(category: category.id, page: 1, per_page: 2, embed: true, completionHandler: { posts, _ in
-                    guard let posts = posts, posts.count > 0 else {return}
-                    
-                    for post in posts {
-                        if displayedIds.contains(post.id) {continue} // avoid duplicate posts that might have more than one category
-                        
-                        loadedPosts.append(PostPreviewInfo(tag: category.name, row: post.asPostRow(thumbnailSize: "large")))
-                        displayedIds.insert(post.id)
-                        
-                        break;
-                    }
-                })
-            }
-        }
+        
+            handler.loadPostPage(category: nil, page: 1, per_page: 5, embed: true, completionHandler: { posts, _ in
+                guard let posts = posts, posts.count > 0 else {return}
+                
+                loadedPosts = posts.map {$0.asPostRow(thumbnailSize: "large")}
+            })
+        
+        
     }
     
     var body: some View {
@@ -42,8 +34,20 @@ struct HomeView: View {
                     .bold()
                     .padding([.top, .leading])
                 
-                PostPreviewPages(posts: loadedPosts)
-                    .aspectRatio(1.5, contentMode: .fit)
+                if loadedPosts.count > 0 {
+                    Group {
+                        PostCard(post: loadedPosts[0], textSize: .title2)
+                        
+                        HStack {
+                            PostCard(post: loadedPosts[1], textSize: .subheadline)
+                            PostCard(post: loadedPosts[2], textSize: .subheadline)
+                        }
+                        
+                        PostRowView(postRow: loadedPosts[3], style: .normal)
+                        
+                    }.padding(.horizontal)
+                }
+                
                 
                 Spacer()
             }
@@ -65,3 +69,22 @@ struct HomeView_Previews: PreviewProvider {
     }
 }
 
+
+struct PostCard: View {
+    let post: PostRow
+    let textSize: Font
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            ImageView(url: post.thumbnailImageURL!)
+                .aspectRatio(1.6, contentMode: .fit)
+                .clipped()
+            
+            Text(post.title)
+                .bold()
+                .font(textSize)
+            
+            Text(post.date)
+        }
+    }
+}
