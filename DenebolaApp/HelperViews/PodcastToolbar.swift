@@ -11,6 +11,7 @@ import MediaPlayer
 struct PodcastToolbar: View {
     var image: ImageView
     @ObservedObject var player: PlayerObject
+    @Binding var showingPodcastToolbar: Bool
     
     func toolbarImage(_ name: String, size: CGFloat) -> some View {
         Image(systemName: name)
@@ -58,7 +59,9 @@ struct PodcastToolbar: View {
                 }
                 Spacer()
                 Button {
-                    
+                    withAnimation {
+                        showingPodcastToolbar = false
+                    }
                 } label: {
                     toolbarImage("xmark.circle", size: 30)
                 }
@@ -83,6 +86,6 @@ struct PodcastToolbar: View {
 
 struct PodcastToolbar_Previews: PreviewProvider {
     static var previews: some View {
-        PodcastToolbar(image: ImageView(url: URL(string: "https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg")!), player: PlayerObject())
+        PodcastToolbar(image: ImageView(url: URL(string: "https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg")!), player: PlayerObject(), showingPodcastToolbar: .constant(true))
     }
 }

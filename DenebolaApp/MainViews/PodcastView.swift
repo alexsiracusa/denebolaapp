@@ -17,23 +17,23 @@ struct PodcastView: View {
         }
     }
 
-    //@Binding var audioPlayer: AVPlayer// = AVPlayer()
     @State var podcasts = [PodcastData]()
     @State var loadingAsset: AVAsset! = nil
     
     @State var time = 0.0
     @State var audioLength = 0.0
-    //@Binding var playing: Bool
     @State var seeking = false
     @ObservedObject var player: PlayerObject
+    @Binding var showingPodcastToolbar: Bool
     var playing: Bool {
         player.playing
     }
     var audioPlayer: AVPlayer {
         return player.player
     }
-    init(player: PlayerObject) {
+    init(player: PlayerObject, showingToolbar: Binding<Bool>) {
         self.player = player
+        self._showingPodcastToolbar = showingToolbar
         self.audioPlayer.automaticallyWaitsToMinimizeStalling = false
     }
     
@@ -193,17 +193,19 @@ struct PodcastView: View {
     func play() {
         self.audioPlayer.play()
         self.player.playing = true
+        self.showingPodcastToolbar = true
     }
     
     func pause() {
         self.audioPlayer.pause()
         self.player.playing = false
+        self.showingPodcastToolbar = false
     }
 }
 
 struct PodcastView_Previews: PreviewProvider {
     static var previews: some View {
-        PodcastView(player: PlayerObject())
+        PodcastView(player: PlayerObject(), showingToolbar: .constant(false))
             .environmentObject(PodcastLoader())
             .environmentObject(APIHandler())
     }
