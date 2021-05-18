@@ -38,14 +38,15 @@ struct HomeView: View {
                     Group {
                         PostCard(post: loadedPosts[0], textSize: .title2)
                         
-                        HStack {
+                        HStack(alignment: .top) {
                             PostCard(post: loadedPosts[1], textSize: .subheadline)
                             PostCard(post: loadedPosts[2], textSize: .subheadline)
                         }
                         
                         PostRowView(postRow: loadedPosts[3], style: .normal)
                         
-                    }.padding(.horizontal)
+                    }
+                    .padding(.horizontal)
                 }
                 
                 
@@ -76,13 +77,10 @@ struct PostCard: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            ImageView(url: post.thumbnailImageURL!)
-                .aspectRatio(1.6, contentMode: .fit)
-                .clipped()
+            ImageView(url: post.thumbnailImageURL!, aspectRatio: 1.6)
             Text(post.title)
                 .bold()
                 .font(textSize)
-            
             Text(post.date)
         }
     }
