@@ -79,7 +79,6 @@ struct PostCard: View {
             ImageView(url: post.thumbnailImageURL!)
                 .aspectRatio(1.6, contentMode: .fit)
                 .clipped()
-            
             Text(post.title)
                 .bold()
                 .font(textSize)
