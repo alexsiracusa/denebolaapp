@@ -28,37 +28,39 @@ struct HomeView: View {
     
     var body: some View {
         NavigationView {
-            VStack(alignment: .leading) {
-                Text("Latest Posts")
-                    .font(.title2)
-                    .bold()
-                    .padding([.top, .leading])
-                
-                if loadedPosts.count > 0 {
-                    Group {
-                        PostCard(post: loadedPosts[0], textSize: .title2)
-                        
-                        HStack(alignment: .top) {
-                            PostCard(post: loadedPosts[1], textSize: .subheadline)
-                            PostCard(post: loadedPosts[2], textSize: .subheadline)
+            ScrollView {
+                VStack(alignment: .leading) {
+                    Text("Latest Posts")
+                        .font(.title2)
+                        .bold()
+                        .padding([.top, .leading])
+                    
+                    if loadedPosts.count > 0 {
+                        Group {
+                            PostCard(post: loadedPosts[0], textSize: .title2)
+                            
+                            HStack(alignment: .top) {
+                                PostCard(post: loadedPosts[1], textSize: .subheadline)
+                                PostCard(post: loadedPosts[2], textSize: .subheadline)
+                            }
+                            
+                            PostRowView(postRow: loadedPosts[3], style: .normal)
+                            
                         }
-                        
-                        PostRowView(postRow: loadedPosts[3], style: .normal)
-                        
+                        .padding(.horizontal)
                     }
-                    .padding(.horizontal)
+                    
+                    
+                    Spacer()
                 }
-                
-                
-                Spacer()
-            }
-            .onAppear {
-                if loadedPosts.count == 0 {
-                    loadPosts()
+                .onAppear {
+                    if loadedPosts.count == 0 {
+                        loadPosts()
+                    }
                 }
+                .navigationBarTitle("Home", displayMode: .inline)
+                .navigationBarItems(trailing: ToolbarLogo())
             }
-            .navigationBarTitle("Home", displayMode: .inline)
-            .navigationBarItems(trailing: ToolbarLogo())
         }
     }
 }
