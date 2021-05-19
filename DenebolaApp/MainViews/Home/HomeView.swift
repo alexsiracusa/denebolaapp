@@ -23,7 +23,7 @@ struct HomeView: View {
             }
             .navigationBarTitle("Home", displayMode: .inline)
             .navigationBarItems(trailing: ToolbarLogo())
-            .background(Color(UIColor.lightGray).ignoresSafeArea().opacity(0.2).cornerRadius(5))
+            .background(Color(UIColor.lightGray).ignoresSafeArea().opacity(0.2))
         }
     }
 }
