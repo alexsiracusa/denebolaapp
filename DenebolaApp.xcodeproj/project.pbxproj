@@ -50,7 +50,10 @@
 		FA73AA30263E363600B6C8B6 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73AA2F263E363600B6C8B6 /* PostView.swift */; };
 		FA86EE422648BA09003BD44B /* ToolbarLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA86EE412648BA09003BD44B /* ToolbarLogo.swift */; };
 		FA86EE442648BC84003BD44B /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA86EE432648BC84003BD44B /* Search.swift */; };
+		FA87325E265586260094146C /* PodcastSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA87325D265586260094146C /* PodcastSection.swift */; };
 		FA97B956264A263D00E13209 /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97B955264A263D00E13209 /* PlayButton.swift */; };
+		FAE14C7526557AA7000635DB /* PostSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE14C7426557AA7000635DB /* PostSection.swift */; };
+		FAE14C7726557AFD000635DB /* PostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE14C7626557AFD000635DB /* PostCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,7 +121,10 @@
 		FA73AA2F263E363600B6C8B6 /* PostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		FA86EE412648BA09003BD44B /* ToolbarLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarLogo.swift; sourceTree = "<group>"; };
 		FA86EE432648BC84003BD44B /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		FA87325D265586260094146C /* PodcastSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastSection.swift; sourceTree = "<group>"; };
 		FA97B955264A263D00E13209 /* PlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
+		FAE14C7426557AA7000635DB /* PostSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSection.swift; sourceTree = "<group>"; };
+		FAE14C7626557AFD000635DB /* PostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,7 +240,7 @@
 		FA56AA44263F0B0E00B6D838 /* MainViews */ = {
 			isa = PBXGroup;
 			children = (
-				FA56AA49263F0B5100B6D838 /* HomeView.swift */,
+				FAE14C7326557A94000635DB /* Home */,
 				FA56AA45263F0B2300B6D838 /* CategoriesView.swift */,
 				FA56AA61263F2FD200B6D838 /* PostFeed.swift */,
 				FA56AA4B263F0B5A00B6D838 /* PodcastView.swift */,
@@ -288,6 +294,17 @@
 				FA4B7363264E335200516AC6 /* PlayerObject.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		FAE14C7326557A94000635DB /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				FA56AA49263F0B5100B6D838 /* HomeView.swift */,
+				FAE14C7426557AA7000635DB /* PostSection.swift */,
+				FA87325D265586260094146C /* PodcastSection.swift */,
+				FAE14C7626557AFD000635DB /* PostCard.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -436,12 +453,14 @@
 				CEAE3E352648CAC50066C825 /* DefaultViews.swift in Sources */,
 				FA56AA6A263F8F0F00B6D838 /* ScrollViewLoader.swift in Sources */,
 				FA56AA62263F2FD200B6D838 /* PostFeed.swift in Sources */,
+				FAE14C7726557AFD000635DB /* PostCard.swift in Sources */,
 				CEC03FB3263E354200FFCB45 /* ContentView.swift in Sources */,
 				CEAE3E3D2648D0CC0066C825 /* WebView.swift in Sources */,
 				FA4B7364264E335200516AC6 /* PlayerObject.swift in Sources */,
 				CE1E887C264748F700E1245E /* PageView.swift in Sources */,
 				FA4618C926496BBB0018522B /* BubbleText.swift in Sources */,
 				FA56AA51263F0BFF00B6D838 /* PhotoGalleryView.swift in Sources */,
+				FAE14C7526557AA7000635DB /* PostSection.swift in Sources */,
 				FA56AA60263F273A00B6D838 /* LoadedPost.swift in Sources */,
 				CEC03FB1263E354200FFCB45 /* DenebolaAppApp.swift in Sources */,
 				FA56AA4C263F0B5A00B6D838 /* PodcastView.swift in Sources */,
@@ -461,6 +480,7 @@
 				FA97B956264A263D00E13209 /* PlayButton.swift in Sources */,
 				FA56AA43263F080900B6D838 /* ViewController.swift in Sources */,
 				CEAE3E2D2648CA2F0066C825 /* Extensions.swift in Sources */,
+				FA87325E265586260094146C /* PodcastSection.swift in Sources */,
 				FA56AA5C263F246000B6D838 /* PostRowView.swift in Sources */,
 				CE1E88772647484300E1245E /* PageViewController.swift in Sources */,
 				FA56AA6C263F933700B6D838 /* PostRow.swift in Sources */,
