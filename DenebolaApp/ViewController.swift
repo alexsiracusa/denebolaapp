@@ -5,25 +5,26 @@
 //  Created by Alex Siracusa on 5/2/21.
 //
 
-import SwiftUI
 import MediaPlayer
+import SwiftUI
 
 struct ViewController: View {
     @EnvironmentObject var handler: APIHandler
+    @EnvironmentObject var viewModel: ViewModelData
+
+    @ObservedObject var player = PlayerObject()
+    @State var showingPodcastToolbar = false
+    
     var image: ImageView {
         return player.image
     }
-    //@State var playing = true
-    @ObservedObject var player: PlayerObject = PlayerObject()
-    @State var showingPodcastToolbar = false
 
     init() {
         UITabBar.appearance().barTintColor = UIColor.white
     }
-    
 
     var body: some View {
-        TabView {
+        TabView(selection: $viewModel.selectedTab) {
             GeometryReader { geometry in
                 HomeView()
                 if showingPodcastToolbar {
@@ -33,10 +34,12 @@ struct ViewController: View {
                         .transition(.move(edge: .bottom))
                 }
             }
-                .tabItem {
-                    Image(systemName: "house")
-                    Text("Home")
-                }
+            .tabItem {
+                Image(systemName: "house")
+                Text("Home")
+            }
+            .tag(1)
+
             GeometryReader { geometry in
                 MultimediaView()
                 if showingPodcastToolbar {
@@ -45,10 +48,12 @@ struct ViewController: View {
                         .position(x: geometry.size.width / 2, y: geometry.size.height - 25)
                 }
             }
-                .tabItem {
-                    Image(systemName: "video")
-                    Text("Multimedia")
-                }
+            .tabItem {
+                Image(systemName: "video")
+                Text("Multimedia")
+            }
+            .tag(2)
+
             GeometryReader { geometry in
                 CategoriesView()
                 if showingPodcastToolbar {
@@ -57,10 +62,12 @@ struct ViewController: View {
                         .position(x: geometry.size.width / 2, y: geometry.size.height - 25)
                 }
             }
-                .tabItem {
-                    Image(systemName: "newspaper")
-                    Text("Feed")
-                }
+            .tabItem {
+                Image(systemName: "newspaper")
+                Text("Feed")
+            }
+            .tag(3)
+
             GeometryReader { geometry in
                 PodcastView(player: player, showingToolbar: $showingPodcastToolbar)
                 if showingPodcastToolbar {
@@ -70,10 +77,11 @@ struct ViewController: View {
                         .transition(.move(edge: .bottom))
                 }
             }
-                .tabItem {
-                    Image(systemName: "headphones")
-                    Text("Podcast")
-                }
+            .tabItem {
+                Image(systemName: "headphones")
+                Text("Podcast")
+            }
+            .tag(4)
         }
         .accentColor(.orange)
     }

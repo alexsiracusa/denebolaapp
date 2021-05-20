@@ -25,12 +25,15 @@ struct PodcastView: View {
     @State var seeking = false
     @ObservedObject var player: PlayerObject
     @Binding var showingPodcastToolbar: Bool
+    
     var playing: Bool {
-        player.playing
+        self.player.playing
     }
+
     var audioPlayer: AVPlayer {
-        return player.player
+        return self.player.player
     }
+
     init(player: PlayerObject, showingToolbar: Binding<Bool>) {
         self.player = player
         self._showingPodcastToolbar = showingToolbar
@@ -43,7 +46,7 @@ struct PodcastView: View {
     }
     
     func seek(to: Double) {
-        audioPlayer.seek(to: CMTime(seconds: to, preferredTimescale: CMTimeScale(to))) {_ in 
+        self.audioPlayer.seek(to: CMTime(seconds: to, preferredTimescale: CMTimeScale(to))) { _ in
             seeking = false
         }
     }
@@ -132,10 +135,12 @@ struct PodcastView: View {
             }
         }
         .onAppear {
-            guard !loader.loaded else { return }
-            loader.load { podcasts in
-                self.podcasts = podcasts
-                currentPodcast = loader.podcasts[0]
+            if loader.loaded {
+                self.podcasts = loader.podcasts
+            } else {
+                loader.load { podcasts in
+                    self.podcasts = podcasts
+                }
             }
         }
     }
@@ -150,7 +155,7 @@ struct PodcastView: View {
         self.audioPlayer.replaceCurrentItem(with: nil)
         // Do not block the main thread loading audio
         self.loadingAsset.loadValuesAsynchronously(forKeys: ["playable"], completionHandler: {
-            var error: NSError? = nil
+            var error: NSError?
             let status = self.loadingAsset.statusOfValue(forKey: "playable", error: &error)
 
             switch status {
@@ -161,10 +166,10 @@ struct PodcastView: View {
                 case .failed:
                     fallthrough
                 case .cancelled:
-                    // TODO
-                    break;
+                    // TODO:
+                    break
                 default:
-                    break;
+                    break
             }
         })
     }
@@ -191,10 +196,10 @@ struct PodcastView: View {
     }
     
     func play() {
-        audioPlayer.play()
-        player.playing = true
-        player.image = ImageView(url: currentPodcast.imageURL!)
-        showingPodcastToolbar = true
+        self.audioPlayer.play()
+        self.player.playing = true
+        self.player.image = ImageView(url: self.currentPodcast.imageURL!)
+        self.showingPodcastToolbar = true
     }
     
     func pause() {
@@ -237,6 +242,6 @@ private struct PodcastRow: View {
             }
             Spacer()
         }
-        //.frame(
+        // .frame(
     }
 }

@@ -24,6 +24,8 @@
 		CEC03FC3263E354400FFCB45 /* DenebolaAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FC2263E354400FFCB45 /* DenebolaAppTests.swift */; };
 		CEC03FCE263E354400FFCB45 /* DenebolaAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FCD263E354400FFCB45 /* DenebolaAppUITests.swift */; };
 		CECE6EB7264DFFFC0068EFCE /* PostPreviewPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECE6EB6264DFFFC0068EFCE /* PostPreviewPages.swift */; };
+		CEFE4E7B26562EF2005A2DD4 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE4E7A26562EF2005A2DD4 /* ModelData.swift */; };
+		CEFE4E83265635B6005A2DD4 /* MultimediaSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE4E82265635B6005A2DD4 /* MultimediaSection.swift */; };
 		FA22FB7A264E2E6C009062FC /* PodcastToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA22FB79264E2E6C009062FC /* PodcastToolbar.swift */; };
 		FA4618C926496BBB0018522B /* BubbleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4618C826496BBB0018522B /* BubbleText.swift */; };
 		FA4618CC264980240018522B /* PodcastLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4618CB264980240018522B /* PodcastLoader.swift */; };
@@ -94,6 +96,8 @@
 		CEC03FCD263E354400FFCB45 /* DenebolaAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenebolaAppUITests.swift; sourceTree = "<group>"; };
 		CEC03FCF263E354400FFCB45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CECE6EB6264DFFFC0068EFCE /* PostPreviewPages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPreviewPages.swift; sourceTree = "<group>"; };
+		CEFE4E7A26562EF2005A2DD4 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
+		CEFE4E82265635B6005A2DD4 /* MultimediaSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultimediaSection.swift; sourceTree = "<group>"; };
 		FA22FB79264E2E6C009062FC /* PodcastToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastToolbar.swift; sourceTree = "<group>"; };
 		FA4618C826496BBB0018522B /* BubbleText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleText.swift; sourceTree = "<group>"; };
 		FA4618CB264980240018522B /* PodcastLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastLoader.swift; sourceTree = "<group>"; };
@@ -188,6 +192,7 @@
 				CEC03FB0263E354200FFCB45 /* DenebolaAppApp.swift */,
 				CEC03FB2263E354200FFCB45 /* ContentView.swift */,
 				FA56AA42263F080900B6D838 /* ViewController.swift */,
+				CEFE4E7A26562EF2005A2DD4 /* ModelData.swift */,
 				FA56AA44263F0B0E00B6D838 /* MainViews */,
 				FA56AA4F263F0BCA00B6D838 /* SubViews */,
 				FA56AA52263F0D2900B6D838 /* HelperViews */,
@@ -298,6 +303,7 @@
 			children = (
 				FA56AA49263F0B5100B6D838 /* HomeView.swift */,
 				FAE14C7426557AA7000635DB /* PostSection.swift */,
+				CEFE4E82265635B6005A2DD4 /* MultimediaSection.swift */,
 				FA87325D265586260094146C /* PodcastSection.swift */,
 				FAE14C7626557AFD000635DB /* PostCard.swift */,
 			);
@@ -449,11 +455,13 @@
 				FA56AA58263F1AC100B6D838 /* Categories.swift in Sources */,
 				CEAE3E352648CAC50066C825 /* DefaultViews.swift in Sources */,
 				FA56AA6A263F8F0F00B6D838 /* ScrollViewLoader.swift in Sources */,
+				CEFE4E7B26562EF2005A2DD4 /* ModelData.swift in Sources */,
 				FA56AA62263F2FD200B6D838 /* PostFeed.swift in Sources */,
 				FAE14C7726557AFD000635DB /* PostCard.swift in Sources */,
 				CEC03FB3263E354200FFCB45 /* ContentView.swift in Sources */,
 				CEAE3E3D2648D0CC0066C825 /* WebView.swift in Sources */,
 				FA4B7364264E335200516AC6 /* PlayerObject.swift in Sources */,
+				CEFE4E83265635B6005A2DD4 /* MultimediaSection.swift in Sources */,
 				CE1E887C264748F700E1245E /* PageView.swift in Sources */,
 				FA4618C926496BBB0018522B /* BubbleText.swift in Sources */,
 				FA56AA51263F0BFF00B6D838 /* PhotoGalleryView.swift in Sources */,

@@ -20,6 +20,7 @@ enum Categories: RawRepresentable, CaseIterable {
     case procrastinate_here
     case sports
     case athlete_of_the_week
+    case multimedia
 
     var id: Int {
         return self.rawValue.0
@@ -46,6 +47,7 @@ enum Categories: RawRepresentable, CaseIterable {
         case .procrastinate_here: return (182, "Procrastinate", Image("DenebolaLogo"))
         case .sports: return (10, "Sports", Image("DenebolaLogo"))
         case .athlete_of_the_week: return (399, "Athlete", Image("DenebolaLogo"))
+        case .multimedia: return (164, "Multimedia", Image("DenebolaLogo"))
         }
     }
 

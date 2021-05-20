@@ -5,25 +5,43 @@
 //  Created by Alex Siracusa on 5/2/21.
 //
 
-import FetchImage
-import LoaderUI
 import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject private var handler: APIHandler
-    @State private var loadedPosts = [PostRow]()
-    
+
+    @State private var latestPosts = [PostRow]()
+    @State private var multimediaPosts = [PostRow]()
+
+    func loadPosts() {
+        handler.loadPostPage(category: nil, page: 1, per_page: 5, embed: true, completionHandler: { posts, _ in
+            guard let posts = posts, posts.count > 0 else { return }
+            latestPosts = posts.map { $0.asPostRow(thumbnailSize: "large") }
+        })
+        handler.loadPostPage(category: Categories.multimedia.id, page: 1, per_page: 2, embed: true, completionHandler: { posts, _ in
+            guard let posts = posts, posts.count > 0 else { return }
+            multimediaPosts = posts.map { $0.asPostRow(thumbnailSize: "large") }
+        })
+    }
+
     var body: some View {
         NavigationView {
-            ScrollView {
-                PostSection()
-                    .padding(10)
-                PodcastSection()
-                    .padding(10)
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 30) {
+                    PostSection(posts: latestPosts)
+                    PodcastSection()
+                    MultimediaSection(posts: multimediaPosts)
+                }
             }
             .navigationBarTitle("Home", displayMode: .inline)
             .navigationBarItems(trailing: ToolbarLogo())
-            .background(Color(UIColor.lightGray).ignoresSafeArea().opacity(0.2))
+            .padding(.vertical, 10)
+            .padding(.horizontal, 20)
+
+        }.onAppear {
+            if latestPosts.count == 0 {
+                loadPosts()
+            }
         }
     }
 }
@@ -34,19 +52,3 @@ struct HomeView_Previews: PreviewProvider {
             .environmentObject(APIHandler())
     }
 }
-
-
-//struct PostCard: View {
-//    let post: PostRow
-//    let textSize: Font
-//
-//    var body: some View {
-//        VStack(alignment: .leading) {
-//            ImageView(url: post.thumbnailImageURL!, aspectRatio: 1.6)
-//            Text(post.title)
-//                .bold()
-//                .font(textSize)
-//            Text(post.date)
-//        }
-//    }
-//}

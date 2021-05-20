@@ -17,7 +17,6 @@ struct PostCard: View {
         VStack(alignment: .leading) {
             ImageView(url: post.thumbnailImageURL!, aspectRatio: 1.6)
                 .cornerRadius(5)
-                .aspectRatio(1.6, contentMode: .fit)
                 .fixedSize(horizontal: false, vertical: true)
             Text(post.title)
                 .bold()

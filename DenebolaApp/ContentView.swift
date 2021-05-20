@@ -23,8 +23,9 @@ struct ContentView: View {
     var body: some View {
         ViewController()
             .environmentObject(APIHandler())
-            .preferredColorScheme(.light) // Until we add dark mode custom theming
             .environmentObject(PodcastLoader())
+            .environmentObject(ViewModelData())
+            .preferredColorScheme(.light) // Until we add dark mode custom theming
     }
 }
 
