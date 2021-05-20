@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PodcastSection: View {
     @EnvironmentObject var loader: PodcastLoader
+    @EnvironmentObject private var viewModel: ViewModelData
     
     @State private var podcasts = [PodcastData]()
     
@@ -34,7 +35,9 @@ struct PodcastSection: View {
                 }
             }
             
-            Button(action: {}) {
+            Button(action: {
+                viewModel.selectedTab = 4
+            }) {
                 HStack {
                     Spacer()
                     Text("PREVIOUS DENEBACAST EPISODES")
@@ -61,5 +64,6 @@ struct PodcastSection: View {
 struct PodcastSection_Previews: PreviewProvider {
     static var previews: some View {
         PodcastSection()
+            .environmentObject(PodcastLoader())
     }
 }
