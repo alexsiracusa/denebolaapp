@@ -34,10 +34,10 @@ struct HomeView: View {
                     Divider()
                     MultimediaSection(posts: multimediaPosts)
                 }
+                .padding(.vertical, 10)
             }
             .navigationBarTitle("Home", displayMode: .inline)
             .navigationBarItems(trailing: ToolbarLogo())
-            .padding(.vertical, 10)
             .padding(.horizontal, 20)
 
         }.onAppear {
