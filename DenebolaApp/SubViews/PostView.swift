@@ -86,7 +86,7 @@ private struct ContentRenderer: View {
     var body: some View {
         WebView(webView: webviewStore.webView, pageViewIdealSize: $webviewHeight)
             // Resize to fit page or start at 500
-            .frame(height: webviewHeight, alignment: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/)
+            .frame(height: webviewHeight, alignment: .top)
             // Poll HTML through javascript for page height
             .onAppear {
                 // Setup webview

@@ -42,12 +42,13 @@ struct PostRowView: View {
             if postRow.hasMedia {
                 thumbnailImage?
                     .scaledToFill()
-                    .frame(width: style == .floating ? 160 : 100, height: 100)
-                    .aspectRatio(style == .floating ? 1.6 : 1.0, contentMode: .fit)
-                    .clipped()
+                    .frame(width: style == .floating ? 160 : 130, height: 100)
+                    .aspectRatio(style == .floating ? 1.6 : 1.3, contentMode: .fit)
+                    .cornerRadius(style == .floating ? 0.0 : 5.0)
             } else {
                 Image("DenebolaLogo")
                     .resizable()
+                    .cornerRadius(style == .floating ? 0.0 : 5.0)
                     .frame(width: 100, height: 100)
             }
 

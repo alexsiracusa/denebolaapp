@@ -18,7 +18,6 @@ struct ImageView: View {
         if let view = image.view {
             view
                 .resizable()
-                .clipped()
                 .onDisappear(perform: image.reset)
                 .aspectRatio(aspectRatio, contentMode: .fit)
         } else {

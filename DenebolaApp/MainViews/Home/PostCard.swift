@@ -16,6 +16,9 @@ struct PostCard: View {
     var body: some View {
         VStack(alignment: .leading) {
             ImageView(url: post.thumbnailImageURL!, aspectRatio: 1.6)
+                .cornerRadius(5)
+                .aspectRatio(1.6, contentMode: .fit)
+                .fixedSize(horizontal: false, vertical: true)
             Text(post.title)
                 .bold()
                 .font(textSize)
@@ -27,7 +30,6 @@ struct PostCard: View {
 struct PostCard_Previews: PreviewProvider {
     static var previews: some View {
         PostCard(post: PostRow.default, textSize: .subheadline)
-        //PostCard(textSize: .subheadline)
             .environmentObject(APIHandler())
     }
 }

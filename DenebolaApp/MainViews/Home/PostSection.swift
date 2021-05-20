@@ -47,15 +47,13 @@ struct PostSection: View {
                     }
                     
                     PostRowView(postRow: loadedPosts[3], style: .normal)
+                    PostRowView(postRow: loadedPosts[4], style: .normal)
                     
                 }
                 .padding([.leading, .trailing], 10)
                 .padding([.top, .bottom], 15)
-                .background(Color.white.ignoresSafeArea().cornerRadius(5))
+                .background(Color.white.ignoresSafeArea().cornerRadius(10))
             }
-            
-            
-            Spacer()
         }
         .onAppear {
             if loadedPosts.count == 0 {
