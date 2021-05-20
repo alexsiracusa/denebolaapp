@@ -12,8 +12,12 @@ struct ViewController: View {
     @EnvironmentObject var handler: APIHandler
     @EnvironmentObject var viewModel: ViewModelData
 
-    @ObservedObject var player = PlayerObject()
-    @State var showingPodcastToolbar = false
+    @EnvironmentObject var player: PlayerObject
+    var showingPodcastToolbar: Bool {
+        get {
+            return player.showingToolbar
+        }
+    }
     
     var image: ImageView {
         return player.image
@@ -28,7 +32,7 @@ struct ViewController: View {
             GeometryReader { geometry in
                 HomeView()
                 if showingPodcastToolbar {
-                    PodcastToolbar(image: image, player: player, showingPodcastToolbar: $showingPodcastToolbar)
+                    PodcastToolbar(image: image, player: player)
                         .frame(width: geometry.size.width, height: 50)
                         .position(x: geometry.size.width / 2, y: geometry.size.height - 25)
                         .transition(.move(edge: .bottom))
@@ -43,7 +47,7 @@ struct ViewController: View {
             GeometryReader { geometry in
                 MultimediaView()
                 if showingPodcastToolbar {
-                    PodcastToolbar(image: image, player: player, showingPodcastToolbar: $showingPodcastToolbar)
+                    PodcastToolbar(image: image, player: player)
                         .frame(width: geometry.size.width, height: 50)
                         .position(x: geometry.size.width / 2, y: geometry.size.height - 25)
                 }
@@ -57,7 +61,7 @@ struct ViewController: View {
             GeometryReader { geometry in
                 CategoriesView()
                 if showingPodcastToolbar {
-                    PodcastToolbar(image: image, player: player, showingPodcastToolbar: $showingPodcastToolbar)
+                    PodcastToolbar(image: image, player: player)
                         .frame(width: geometry.size.width, height: 50)
                         .position(x: geometry.size.width / 2, y: geometry.size.height - 25)
                 }
@@ -69,9 +73,10 @@ struct ViewController: View {
             .tag(3)
 
             GeometryReader { geometry in
-                PodcastView(player: player, showingToolbar: $showingPodcastToolbar)
+                PodcastView()
+                    .environmentObject(player)
                 if showingPodcastToolbar {
-                    PodcastToolbar(image: image, player: player, showingPodcastToolbar: $showingPodcastToolbar)
+                    PodcastToolbar(image: image, player: player)
                         .frame(width: geometry.size.width, height: 50)
                         .position(x: geometry.size.width / 2, y: geometry.size.height - 25)
                         .transition(.move(edge: .bottom))
@@ -92,5 +97,7 @@ struct ViewController_Previews: PreviewProvider {
         ViewController()
             .environmentObject(APIHandler())
             .environmentObject(PodcastLoader())
+            .environmentObject(ViewModelData())
+            .environmentObject(PlayerObject())
     }
 }

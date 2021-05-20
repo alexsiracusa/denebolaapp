@@ -23,8 +23,7 @@ struct PodcastView: View {
     @State var time = 0.0
     @State var audioLength = 0.0
     @State var seeking = false
-    @ObservedObject var player: PlayerObject
-    @Binding var showingPodcastToolbar: Bool
+    @EnvironmentObject var player: PlayerObject
     
     var playing: Bool {
         self.player.playing
@@ -34,11 +33,6 @@ struct PodcastView: View {
         return self.player.player
     }
 
-    init(player: PlayerObject, showingToolbar: Binding<Bool>) {
-        self.player = player
-        self._showingPodcastToolbar = showingToolbar
-        self.audioPlayer.automaticallyWaitsToMinimizeStalling = false
-    }
     
     func MediaControlImage(_ name: String) -> some View {
         return Image(systemName: name)
@@ -199,7 +193,7 @@ struct PodcastView: View {
         self.audioPlayer.play()
         self.player.playing = true
         self.player.image = ImageView(url: self.currentPodcast.imageURL!)
-        self.showingPodcastToolbar = true
+        player.showingToolbar = true
     }
     
     func pause() {
@@ -210,9 +204,10 @@ struct PodcastView: View {
 
 struct PodcastView_Previews: PreviewProvider {
     static var previews: some View {
-        PodcastView(player: PlayerObject(), showingToolbar: .constant(false))
+        PodcastView()
             .environmentObject(PodcastLoader())
             .environmentObject(APIHandler())
+            .environmentObject(PlayerObject())
     }
 }
 
