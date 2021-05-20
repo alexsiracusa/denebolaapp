@@ -29,7 +29,9 @@ struct HomeView: View {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 30) {
                     PostSection(posts: latestPosts)
+                    Divider()
                     PodcastSection()
+                    Divider()
                     MultimediaSection(posts: multimediaPosts)
                 }
             }
