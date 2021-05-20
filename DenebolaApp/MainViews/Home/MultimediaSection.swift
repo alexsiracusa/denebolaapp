@@ -44,3 +44,9 @@ struct MultimediaSection: View {
         }
     }
 }
+
+struct MultimediaSection_Previews: PreviewProvider {
+    static var previews: some View {
+        MultimediaSection(posts: [PostRow.default, PostRow.default])
+    }
+}

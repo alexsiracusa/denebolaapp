@@ -15,6 +15,6 @@ extension Post {
 
 extension PostRow {
     static var `default` : PostRow {
-        return PostRow(id: 25182, title: "Why We Need Stricter Gun Laws", author: "Author", date: "2021-05-02T11:47:00", fullImageURL: URL(string: "https://nshsdenebola.com/wp-content/uploads/2021/04/B4959F26-9095-49ED-BB78-A2A78CD5D9D5-1188x642.jpeg"), thumbnailImageURL: URL(string: "https://nshsdenebola.com/wp-content/uploads/2021/04/B4959F26-9095-49ED-BB78-A2A78CD5D9D5-1188x642.jpeg"), hasMedia: true)
+        return PostRow(id: 25182, title: "Why We Need Stricter Gun Laws", author: "Author", date: "May 9 , 2021", fullImageURL: URL(string: "https://nshsdenebola.com/wp-content/uploads/2021/04/B4959F26-9095-49ED-BB78-A2A78CD5D9D5-1188x642.jpeg"), thumbnailImageURL: URL(string: "https://nshsdenebola.com/wp-content/uploads/2021/04/B4959F26-9095-49ED-BB78-A2A78CD5D9D5-1188x642.jpeg"), hasMedia: true)
     }
 }
