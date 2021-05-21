@@ -80,8 +80,10 @@ struct PostRowView: View {
         .cornerRadius(style == .floating ? 10.0 : 0.0)
         .background(style == .floating ?
             RoundedRectangle(cornerRadius: 10.0)
+                        //.stroke(Color.gray, lineWidth: 0.2)
+                        //.background(Color.white)
                 .fill(Color.white)
-                .shadow(color: Color.gray.opacity(0.3), radius: 10.0, x: 0, y: 1.0)
+                        .shadow(color: Color.gray.opacity(0.3), radius: 2.0, x: 1.0, y: 1.0)
             : nil
         )
     }

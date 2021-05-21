@@ -25,6 +25,14 @@ struct ViewController: View {
 
     init() {
         UITabBar.appearance().barTintColor = UIColor.white
+        UITabBar.appearance().backgroundColor = UIColor.white
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = .white
+        
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
     }
 
     var body: some View {

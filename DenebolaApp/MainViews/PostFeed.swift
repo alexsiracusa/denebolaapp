@@ -17,14 +17,14 @@ struct PostFeed: View {
 
     var body: some View {
         if loader.posts.count != 0 {
-            LazyVStack {
+            LazyVStack(spacing: 10) {
                 ForEach(loader.posts) { postRow in
                     PostRowView(postRow: postRow)
                         .onAppear {
                             loader.loadMorePostsIfNeeded(currentItem: postRow)
                         }
                         .padding(.horizontal)
-                        .padding(.vertical, 2.0)
+                        .padding(.vertical, 0.0)
                 }
             }
         } else {
