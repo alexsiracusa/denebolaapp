@@ -20,9 +20,7 @@ struct CategoriesView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack() {
                             ForEach(Categories.allCases, id: \.rawValue.0) { category in
-                                CategoryButton(id: category.id, name: category.name, image: category.image, onSelect: {
-                                    selectedCategory = category.id
-                                })
+                                CategoryButton(category: category)
                             }
                             Rectangle()
                                 .frame(width: 20)
@@ -40,7 +38,7 @@ struct CategoriesView: View {
 
                     Spacer(minLength: 15)
 
-                    PostFeed(category: selectedCategory)
+                    PostFeed(category: nil)
                 }
             }
             .navigationBarTitle("Feed", displayMode: .inline)

@@ -33,25 +33,29 @@ enum Categories: RawRepresentable, CaseIterable {
     var image: Image {
         return self.rawValue.2
     }
+    
+    var banner: Image {
+        return self.rawValue.3
+    }
 
-    var rawValue: (Int, String, Image) {
+    var rawValue: (Int, String, Image, Image) {
         switch self {
-        case .arts: return (2, "Arts", Image("DenebolaLogo"))
-        case .photo_gallery: return (55, "Photos", Image("DenebolaLogo"))
-        case .videos: return (14, "Videos", Image("DenebolaLogo"))
-        case .news: return (6, "News", Image("DenebolaLogo"))
-        case .club_directory: return (371, "Clubs", Image("DenebolaLogo"))
-        case .features: return (255, "Features", Image("DenebolaLogo"))
-        case .humans_of_south: return (657, "South", Image("DenebolaLogo"))
-        case .opinions: return (7, "Opinions", Image("DenebolaLogo"))
-        case .procrastinate_here: return (182, "Procrastinate", Image("DenebolaLogo"))
-        case .sports: return (10, "Sports", Image("DenebolaLogo"))
-        case .athlete_of_the_week: return (399, "Athlete", Image("DenebolaLogo"))
-        case .multimedia: return (164, "Multimedia", Image("DenebolaLogo"))
+        case .arts: return (2, "Arts", Image("DenebolaLogo"), Image("DenebolaBanner"))
+        case .photo_gallery: return (55, "Photos", Image("DenebolaLogo"), Image("DenebolaBanner"))
+        case .videos: return (14, "Videos", Image("DenebolaLogo"), Image("DenebolaBanner"))
+        case .news: return (6, "News", Image("DenebolaLogo"), Image("DenebolaBanner"))
+        case .club_directory: return (371, "Clubs", Image("DenebolaLogo"), Image("DenebolaBanner"))
+        case .features: return (255, "Features", Image("DenebolaLogo"), Image("DenebolaBanner"))
+        case .humans_of_south: return (657, "South", Image("DenebolaLogo"), Image("DenebolaBanner"))
+        case .opinions: return (7, "Opinions", Image("DenebolaLogo"), Image("DenebolaBanner"))
+        case .procrastinate_here: return (182, "Procrastinate", Image("DenebolaLogo"), Image("DenebolaBanner"))
+        case .sports: return (10, "Sports", Image("DenebolaLogo"), Image("DenebolaBanner"))
+        case .athlete_of_the_week: return (399, "Athlete", Image("DenebolaLogo"), Image("DenebolaBanner"))
+        case .multimedia: return (164, "Multimedia", Image("DenebolaLogo"), Image("DenebolaBanner"))
         }
     }
 
-    init?(rawValue: (Int, String, Image)) {
+    init?(rawValue: (Int, String, Image, Image)) {
         self = .opinions
     }
 }

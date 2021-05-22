@@ -44,6 +44,8 @@
 		FA56AA6A263F8F0F00B6D838 /* ScrollViewLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA69263F8F0F00B6D838 /* ScrollViewLoader.swift */; };
 		FA56AA6C263F933700B6D838 /* PostRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA6B263F933700B6D838 /* PostRow.swift */; };
 		FA56AA6E263FA12200B6D838 /* LoadingPostRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA6D263FA12200B6D838 /* LoadingPostRowView.swift */; };
+		FA6526422658AB9C0043FDBA /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6526412658AB9C0043FDBA /* CategoryView.swift */; };
+		FA6526442658AEFC0043FDBA /* CategoryBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6526432658AEFC0043FDBA /* CategoryBanner.swift */; };
 		FA73AA2B263E361E00B6C8B6 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73AA27263E361E00B6C8B6 /* Media.swift */; };
 		FA73AA2C263E361E00B6C8B6 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73AA28263E361E00B6C8B6 /* Category.swift */; };
 		FA73AA2D263E361E00B6C8B6 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73AA29263E361E00B6C8B6 /* Post.swift */; };
@@ -116,6 +118,8 @@
 		FA56AA69263F8F0F00B6D838 /* ScrollViewLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewLoader.swift; sourceTree = "<group>"; };
 		FA56AA6B263F933700B6D838 /* PostRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRow.swift; sourceTree = "<group>"; };
 		FA56AA6D263FA12200B6D838 /* LoadingPostRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingPostRowView.swift; sourceTree = "<group>"; };
+		FA6526412658AB9C0043FDBA /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
+		FA6526432658AEFC0043FDBA /* CategoryBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryBanner.swift; sourceTree = "<group>"; };
 		FA73AA27263E361E00B6C8B6 /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		FA73AA28263E361E00B6C8B6 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		FA73AA29263E361E00B6C8B6 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -244,10 +248,10 @@
 			isa = PBXGroup;
 			children = (
 				FAE14C7326557A94000635DB /* Home */,
-				FA56AA45263F0B2300B6D838 /* CategoriesView.swift */,
-				FA56AA61263F2FD200B6D838 /* PostFeed.swift */,
-				FA56AA4B263F0B5A00B6D838 /* PodcastView.swift */,
 				FA56AA4D263F0B6700B6D838 /* MultimediaView.swift */,
+				FA56AA45263F0B2300B6D838 /* CategoriesView.swift */,
+				FA56AA4B263F0B5A00B6D838 /* PodcastView.swift */,
+				FA56AA61263F2FD200B6D838 /* PostFeed.swift */,
 			);
 			path = MainViews;
 			sourceTree = "<group>";
@@ -258,6 +262,7 @@
 				FA73AA2F263E363600B6C8B6 /* PostView.swift */,
 				FA56AA50263F0BFF00B6D838 /* PhotoGalleryView.swift */,
 				CE1E887B264748F700E1245E /* PageView.swift */,
+				FA6526412658AB9C0043FDBA /* CategoryView.swift */,
 				FA86EE432648BC84003BD44B /* Search.swift */,
 				CECE6EB6264DFFFC0068EFCE /* PostPreviewPages.swift */,
 			);
@@ -270,6 +275,7 @@
 				FA56AA5B263F246000B6D838 /* PostRowView.swift */,
 				FA56AA6D263FA12200B6D838 /* LoadingPostRowView.swift */,
 				FA56AA55263F0F2400B6D838 /* CategoryButton.swift */,
+				FA6526432658AEFC0043FDBA /* CategoryBanner.swift */,
 				FA4618C826496BBB0018522B /* BubbleText.swift */,
 				CE1E88762647484300E1245E /* PageViewController.swift */,
 				CE1E888026474BFC00E1245E /* PageControl.swift */,
@@ -450,6 +456,7 @@
 				FA86EE422648BA09003BD44B /* ToolbarLogo.swift in Sources */,
 				FA73AA30263E363600B6C8B6 /* PostView.swift in Sources */,
 				FA56AA6E263FA12200B6D838 /* LoadingPostRowView.swift in Sources */,
+				FA6526442658AEFC0043FDBA /* CategoryBanner.swift in Sources */,
 				FA22FB7A264E2E6C009062FC /* PodcastToolbar.swift in Sources */,
 				CECE6EB7264DFFFC0068EFCE /* PostPreviewPages.swift in Sources */,
 				FA56AA58263F1AC100B6D838 /* Categories.swift in Sources */,
@@ -482,6 +489,7 @@
 				FA73AA2C263E361E00B6C8B6 /* Category.swift in Sources */,
 				CE1E888126474BFC00E1245E /* PageControl.swift in Sources */,
 				FA97B956264A263D00E13209 /* PlayButton.swift in Sources */,
+				FA6526422658AB9C0043FDBA /* CategoryView.swift in Sources */,
 				FA56AA43263F080900B6D838 /* ViewController.swift in Sources */,
 				CEAE3E2D2648CA2F0066C825 /* Extensions.swift in Sources */,
 				FA87325E265586260094146C /* PodcastSection.swift in Sources */,
