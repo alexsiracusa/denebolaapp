@@ -40,7 +40,7 @@ struct PodcastSection: View {
             }) {
                 HStack {
                     Spacer()
-                    Text("PREVIOUS DENEBACAST EPISODES")
+                    Text("MORE EPISODES")
                         .bold()
                         .font(.subheadline)
                     Image(systemName: "arrowtriangle.right.fill")

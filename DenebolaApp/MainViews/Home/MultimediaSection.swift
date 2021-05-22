@@ -31,7 +31,7 @@ struct MultimediaSection: View {
             }) {
                 HStack {
                     Spacer()
-                    Text("MORE MULTIMEDIA POSTS")
+                    Text("MORE MULTIMEDIA")
                         .font(.subheadline)
                         .bold()
                         .frame(alignment: .trailing)

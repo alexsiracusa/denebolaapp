@@ -11,6 +11,7 @@ import SwiftUI
 struct PodcastView: View {
     @EnvironmentObject var loader: PodcastLoader
     @EnvironmentObject var handler: APIHandler
+    @EnvironmentObject private var viewModel: ViewModelData
     @State var currentPodcast = PodcastData.default {
         didSet {
             self.beginNewAudio(url: self.currentPodcast.audioURL!)
@@ -125,7 +126,13 @@ struct PodcastView: View {
                     }
                 }
                 .navigationBarTitle("Denebacast", displayMode: .inline)
-                .navigationBarItems(trailing: ToolbarLogo())
+                .navigationBarItems(trailing:
+                    Button {
+                        viewModel.selectedTab = 1
+                    } label: {
+                        ToolbarLogo()
+                    }
+                )
             }
         }
         .onAppear {

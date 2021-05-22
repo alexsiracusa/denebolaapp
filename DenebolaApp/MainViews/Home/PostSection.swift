@@ -39,7 +39,7 @@ struct PostSection: View {
             }) {
                 HStack {
                     Spacer()
-                    Text("MORE LATEST NEWS")
+                    Text("MORE NEWS")
                         .font(.subheadline)
                         .bold()
                         .frame(alignment: .trailing)

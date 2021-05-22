@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject private var handler: APIHandler
+    @EnvironmentObject private var viewModel: ViewModelData
 
     @State private var latestPosts = [PostRow]()
     @State private var multimediaPosts = [PostRow]()
@@ -43,7 +44,13 @@ struct HomeView: View {
                 .padding(.top, 10)
             }
             .navigationBarTitle("Home", displayMode: .inline)
-            .navigationBarItems(trailing: ToolbarLogo())
+            .navigationBarItems(trailing:
+                Button {
+                    viewModel.selectedTab = 1
+                } label: {
+                    ToolbarLogo()
+                }
+            )
 
         }.onAppear {
             if latestPosts.count == 0 {

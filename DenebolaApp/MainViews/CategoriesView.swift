@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CategoriesView: View {
     @EnvironmentObject var handler: APIHandler
+    @EnvironmentObject private var viewModel: ViewModelData
 
     @State var selectedCategory: Int? = nil
 
@@ -53,7 +54,11 @@ struct CategoriesView: View {
                 },
 
                 trailing:
-                ToolbarLogo()
+                Button {
+                    viewModel.selectedTab = 1
+                } label: {
+                    ToolbarLogo()
+                }
             )
         }
     }
