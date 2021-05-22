@@ -40,10 +40,6 @@ class PodcastLoader: NSObject, ObservableObject, XMLParserDelegate {
 
     // 1
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String: String] = [:]) {
-//        if elementName == "item" {
-//            title = String()
-//            //imageURL = String()
-//        }
         if elementName == "enclosure" {
             let attrsUrl = attributeDict as [String: NSString]
             let auidoURL = attrsUrl["url"]

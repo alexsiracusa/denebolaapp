@@ -8,8 +8,23 @@
 import SwiftUI
 
 struct MultimediaView: View {
+    @EnvironmentObject private var viewModel: ViewModelData
+    
     var body: some View {
-        Text("Multimedia")
+        NavigationView {
+            ScrollView {
+                Text("Multimedia")
+                    .padding()
+            }
+                .navigationBarTitle("Multimedia", displayMode: .inline)
+                .navigationBarItems(trailing:
+                    Button {
+                        viewModel.selectedTab = 1
+                    } label: {
+                        ToolbarLogo()
+                    }
+                )
+        }
     }
 }
 
