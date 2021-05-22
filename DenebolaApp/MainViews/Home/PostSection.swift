@@ -50,12 +50,14 @@ struct PostSection: View {
             
             .foregroundColor(.red)
         }
+        .padding(.horizontal, 20)
+        .padding(.bottom, 20)
     }
 }
 
 struct PostSection_Previews: PreviewProvider {
     static var previews: some View {
-        PostSection(posts: [])
+        PostSection(posts: [PostRow.default, PostRow.default, PostRow.default, PostRow.default, PostRow.default, PostRow.default])
             .environmentObject(ViewModelData())
     }
 }

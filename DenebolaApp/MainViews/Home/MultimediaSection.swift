@@ -42,6 +42,8 @@ struct MultimediaSection: View {
             
             .foregroundColor(.green)
         }
+        .padding(.horizontal, 20)
+        .padding(.bottom, 20)
     }
 }
 

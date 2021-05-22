@@ -12,6 +12,11 @@ struct HomeView: View {
 
     @State private var latestPosts = [PostRow]()
     @State private var multimediaPosts = [PostRow]()
+    
+    var gradient: some View {
+        LinearGradient(gradient: Gradient(colors: [.white, .black]), startPoint: UnitPoint(x: 0.5, y: 0.7), endPoint: .bottom)
+            .opacity(0.03)
+    }
 
     func loadPosts() {
         handler.loadPostPage(category: nil, page: 1, per_page: 5, embed: true, completionHandler: { posts, _ in
@@ -29,16 +34,16 @@ struct HomeView: View {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 30) {
                     PostSection(posts: latestPosts)
-                    Divider()
+                        .overlay(gradient)
                     PodcastSection()
-                    Divider()
+                        .overlay(gradient)
                     MultimediaSection(posts: multimediaPosts)
+                        .overlay(gradient)
                 }
-                .padding(.vertical, 10)
+                .padding(.top, 10)
             }
             .navigationBarTitle("Home", displayMode: .inline)
             .navigationBarItems(trailing: ToolbarLogo())
-            .padding(.horizontal, 20)
 
         }.onAppear {
             if latestPosts.count == 0 {

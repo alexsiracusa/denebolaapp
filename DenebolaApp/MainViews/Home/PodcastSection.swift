@@ -48,7 +48,8 @@ struct PodcastSection: View {
                 }
             }.foregroundColor(.blue)
         }
-        
+        .padding(.horizontal, 20)
+        .padding(.bottom, 20)
         .onAppear {
             if loader.loaded {
                 self.podcasts = loader.podcasts
