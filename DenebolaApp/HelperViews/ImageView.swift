@@ -20,6 +20,7 @@ struct ImageView: View {
                 .resizable()
                 .onDisappear(perform: image.reset)
                 .aspectRatio(aspectRatio, contentMode: .fit)
+                .clipped()
         } else {
             ZStack {
                 PlaceholderBackground()

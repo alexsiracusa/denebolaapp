@@ -28,7 +28,7 @@ struct SearchView: View {
                 SearchResults(searchFor: $updateSearch)
             }
         }
-        .padding([.leading, .trailing])
+        //.padding([.leading, .trailing])
         .navigationBarTitle("Feed", displayMode: .inline)
         .navigationBarItems(trailing:
             Button {
