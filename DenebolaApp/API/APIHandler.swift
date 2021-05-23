@@ -44,6 +44,16 @@ class APIHandler: ObservableObject {
         APIHandler.decodeJSON(url: url, completionHandler: completionHandler)
     }
     
+    func searchPosts(category: Int? = nil, text: String, page: Int = 1, per_page: Int = 10, embed: Bool = false, completion: @escaping ([Post]?, String?) -> Void) {
+        var url = domain + "/wp-json/wp/v2/posts?"
+        url += "search=\(text)"
+        url += "&per_page=\(per_page)"
+        if let category = category { url += "&categories=\(category)" }
+        url += "&page=\(page)"
+        if embed { url += "&_embed" }
+        APIHandler.decodeJSON(url: url, completionHandler: completion)
+    }
+    
     func loadFullPost(_ id: Int, embed: Bool, completionHandler: @escaping (Post?, Media?, URL?, String?) -> Void) {
         // loading post
         loadPost(id, embed: embed) { post, error in

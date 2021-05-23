@@ -11,14 +11,14 @@ class ScrollViewLoader: ObservableObject {
     @Published var posts = [PostRow]()
     @Published var isLoadingPage = false
     @Published var error: String?
-    private var per_page = 20
-    private var currentPage = 1
-    private var canLoadMorePages = true
+    var per_page = 20
+    var currentPage = 1
+    var canLoadMorePages = true
     
-    private var handler = APIHandler()
+    var handler = APIHandler()
     var category: Int?
     
-    init(category: Int?) {
+    init(category: Int? = nil) {
         self.category = category
         loadMorePosts()
     }

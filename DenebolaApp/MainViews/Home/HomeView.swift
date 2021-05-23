@@ -15,7 +15,7 @@ struct HomeView: View {
     @State private var multimediaPosts = [PostRow]()
     
     var gradient: some View {
-        LinearGradient(gradient: Gradient(colors: [.white, .black]), startPoint: UnitPoint(x: 0.5, y: 0.7), endPoint: .bottom)
+        LinearGradient(gradient: Gradient(colors: [.white, .black]), startPoint: UnitPoint(x: 0.5, y: 0.0), endPoint: .bottom)
             .opacity(0.03)
     }
 

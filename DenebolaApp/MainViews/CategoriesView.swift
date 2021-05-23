@@ -45,7 +45,8 @@ struct CategoriesView: View {
             .navigationBarItems(
                 leading:
                 NavigationLink(destination:
-                    Search()
+                    SearchView()
+                    //Search()
                 ) {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(.black)
