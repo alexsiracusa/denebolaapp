@@ -34,7 +34,10 @@ struct SearchResults: View {
             if let error = loader.error {
                 Text(error)
             }
-            Text("Loading")
+            Text("No Results")
+                .onChange(of: searchFor) { search in
+                    loader.searchFor(search)
+                }
         }
     }
 }

@@ -30,6 +30,7 @@
 		FA17F8DE2659DCB1008471BD /* SearchRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17F8DD2659DCB1008471BD /* SearchRow.swift */; };
 		FA17F8E02659DCEC008471BD /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17F8DF2659DCEC008471BD /* SearchView.swift */; };
 		FA17F8E22659DFCD008471BD /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17F8E12659DFCD008471BD /* SearchResults.swift */; };
+		FA17F8E42659E567008471BD /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17F8E32659E567008471BD /* SearchBar.swift */; };
 		FA22FB7A264E2E6C009062FC /* PodcastToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA22FB79264E2E6C009062FC /* PodcastToolbar.swift */; };
 		FA4618CC264980240018522B /* PodcastLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4618CB264980240018522B /* PodcastLoader.swift */; };
 		FA4B7364264E335200516AC6 /* PlayerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4B7363264E335200516AC6 /* PlayerObject.swift */; };
@@ -55,7 +56,6 @@
 		FA73AA2E263E361E00B6C8B6 /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73AA2A263E361E00B6C8B6 /* APIHandler.swift */; };
 		FA73AA30263E363600B6C8B6 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73AA2F263E363600B6C8B6 /* PostView.swift */; };
 		FA86EE422648BA09003BD44B /* ToolbarLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA86EE412648BA09003BD44B /* ToolbarLogo.swift */; };
-		FA86EE442648BC84003BD44B /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA86EE432648BC84003BD44B /* Search.swift */; };
 		FA87325E265586260094146C /* PodcastSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA87325D265586260094146C /* PodcastSection.swift */; };
 		FA97B956264A263D00E13209 /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97B955264A263D00E13209 /* PlayButton.swift */; };
 		FAE14C7526557AA7000635DB /* PostSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE14C7426557AA7000635DB /* PostSection.swift */; };
@@ -107,6 +107,7 @@
 		FA17F8DD2659DCB1008471BD /* SearchRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRow.swift; sourceTree = "<group>"; };
 		FA17F8DF2659DCEC008471BD /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		FA17F8E12659DFCD008471BD /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
+		FA17F8E32659E567008471BD /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		FA22FB79264E2E6C009062FC /* PodcastToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastToolbar.swift; sourceTree = "<group>"; };
 		FA4618CB264980240018522B /* PodcastLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastLoader.swift; sourceTree = "<group>"; };
 		FA4B7363264E335200516AC6 /* PlayerObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerObject.swift; sourceTree = "<group>"; };
@@ -132,7 +133,6 @@
 		FA73AA2A263E361E00B6C8B6 /* APIHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
 		FA73AA2F263E363600B6C8B6 /* PostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		FA86EE412648BA09003BD44B /* ToolbarLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarLogo.swift; sourceTree = "<group>"; };
-		FA86EE432648BC84003BD44B /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		FA87325D265586260094146C /* PodcastSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastSection.swift; sourceTree = "<group>"; };
 		FA97B955264A263D00E13209 /* PlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
 		FAE14C7426557AA7000635DB /* PostSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSection.swift; sourceTree = "<group>"; };
@@ -269,9 +269,9 @@
 				FA56AA50263F0BFF00B6D838 /* PhotoGalleryView.swift */,
 				CE1E887B264748F700E1245E /* PageView.swift */,
 				FA6526412658AB9C0043FDBA /* CategoryView.swift */,
-				FA86EE432648BC84003BD44B /* Search.swift */,
 				CECE6EB6264DFFFC0068EFCE /* PostPreviewPages.swift */,
 				FA17F8DF2659DCEC008471BD /* SearchView.swift */,
+				FA17F8E32659E567008471BD /* SearchBar.swift */,
 				FA17F8E12659DFCD008471BD /* SearchResults.swift */,
 			);
 			path = SubViews;
@@ -484,13 +484,13 @@
 				FAE14C7526557AA7000635DB /* PostSection.swift in Sources */,
 				CEC03FB1263E354200FFCB45 /* DenebolaAppApp.swift in Sources */,
 				FA56AA4C263F0B5A00B6D838 /* PodcastView.swift in Sources */,
-				FA86EE442648BC84003BD44B /* Search.swift in Sources */,
 				CE87B3EE264CCE8A009CAF44 /* Support.swift in Sources */,
 				FA56AA56263F0F2400B6D838 /* CategoryButton.swift in Sources */,
 				FA56AA4A263F0B5100B6D838 /* HomeView.swift in Sources */,
 				FA56AA64263F3F1A00B6D838 /* SamplePost.swift in Sources */,
 				FA56AA4E263F0B6700B6D838 /* MultimediaView.swift in Sources */,
 				FA73AA2B263E361E00B6C8B6 /* Media.swift in Sources */,
+				FA17F8E42659E567008471BD /* SearchBar.swift in Sources */,
 				CE1E88872647561600E1245E /* ImageView.swift in Sources */,
 				FA73AA2E263E361E00B6C8B6 /* APIHandler.swift in Sources */,
 				FA56AA46263F0B2300B6D838 /* CategoriesView.swift in Sources */,

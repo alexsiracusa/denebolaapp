@@ -19,16 +19,12 @@ struct SearchView: View {
     }
     
     var body: some View {
-        ScrollView {
-            VStack {
-                TextField(
-                    "Search",
-                     text: $searchFor
-                ) { isEditing in
-
-                } onCommit: {
-                    updateSearch = searchFor
-                }
+        VStack(spacing: 0) {
+            SearchBar(updateSearch: $updateSearch)
+            Divider()
+            
+            //results
+            ScrollView {
                 SearchResults(searchFor: $updateSearch)
             }
         }
