@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CategoryButton: View {
-    let size: CGFloat = 95.0
+    let size: CGFloat = 100
     let category: Categories
     var id: Int {return category.id}
     var name: String {return category.name}

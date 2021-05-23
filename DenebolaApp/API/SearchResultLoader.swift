@@ -23,6 +23,7 @@ class SearchResultLoader: ScrollViewLoader {
     
     override func loadMorePosts() {
         guard !isLoadingPage, canLoadMorePages else { return }
+        guard search != "" else { return }
         isLoadingPage = true
         handler.searchPosts(category: category, text: search, page: currentPage, per_page: per_page, embed: true) { posts, error in
             self.error = error

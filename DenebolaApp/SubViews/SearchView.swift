@@ -29,7 +29,7 @@ struct SearchView: View {
             }
         }
         //.padding([.leading, .trailing])
-        .navigationBarTitle("Feed", displayMode: .inline)
+        .navigationBarTitle("Search Posts", displayMode: .inline)
         .navigationBarItems(trailing:
             Button {
                 viewModel.selectedTab = 1

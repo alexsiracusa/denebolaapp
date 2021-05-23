@@ -34,10 +34,18 @@ struct SearchResults: View {
             if let error = loader.error {
                 Text(error)
             }
-            Text("No Results")
-                .onChange(of: searchFor) { search in
-                    loader.searchFor(search)
-                }
+            else if loader.isLoadingPage {
+                //TODO: make better loading screen
+                Text("Loading")
+                    .padding()
+            }
+            else {
+                Text("No Results")
+                    .onChange(of: searchFor) { search in
+                        loader.searchFor(search)
+                    }
+                    .padding()
+            }
         }
     }
 }
