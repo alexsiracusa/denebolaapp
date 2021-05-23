@@ -13,9 +13,11 @@ struct SearchView: View {
     @EnvironmentObject private var viewModel: ViewModelData
     @State var searchFor = ""
     @State var updateSearch = ""
+    var category: Categories?
 
-    init(category: Int? = nil) {
-        loader = SearchResultLoader()
+    init(category: Categories? = nil) {
+        loader = SearchResultLoader(category: category?.id)
+        self.category = category
     }
     
     var body: some View {
@@ -25,11 +27,11 @@ struct SearchView: View {
             
             //results
             ScrollView {
-                SearchResults(searchFor: $updateSearch)
+                SearchResults(category: loader.category, searchFor: $updateSearch)
             }
         }
         //.padding([.leading, .trailing])
-        .navigationBarTitle("Search Posts", displayMode: .inline)
+        .navigationBarTitle("Search \(category?.name ?? "Posts")", displayMode: .inline)
         .navigationBarItems(trailing:
             Button {
                 viewModel.selectedTab = 1
@@ -42,7 +44,7 @@ struct SearchView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView()
+        SearchView(category: .opinions)
             .environmentObject(APIHandler())
     }
 }

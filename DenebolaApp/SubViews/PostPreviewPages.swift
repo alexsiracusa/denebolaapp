@@ -71,7 +71,7 @@ private struct PostPreview: View {
                     }
                     
                     Text(post.title)
-                    Text("\(post.author)  \(post.date)")
+                    Text("\(post.author ?? "")  \(post.date)")
                 }
                 .foregroundColor(.white)
                 .padding([.leading, .trailing])

@@ -15,7 +15,7 @@ class SearchResultLoader: ScrollViewLoader {
         isLoadingPage = false
         canLoadMorePages = true
         error = nil
-        self.category = category
+        if let category = category {self.category = category}
         currentPage = 1
         self.search = text
         loadMorePosts()
@@ -29,6 +29,7 @@ class SearchResultLoader: ScrollViewLoader {
             self.error = error
             guard let posts = posts else {
                 self.canLoadMorePages = false
+                self.isLoadingPage = false
                 return
             }
             let newPosts = posts.map { $0.asPostRow() }

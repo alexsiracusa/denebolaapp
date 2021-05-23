@@ -43,20 +43,19 @@ struct CategoriesView: View {
             }
             .navigationBarTitle("Feed", displayMode: .inline)
             .navigationBarItems(
-                leading:
-                NavigationLink(destination:
-                    SearchView()
-                    //Search()
-                ) {
-                    Image(systemName: "magnifyingglass")
-                        .foregroundColor(.black)
-                },
-
                 trailing:
-                Button {
-                    viewModel.selectedTab = 1
-                } label: {
-                    ToolbarLogo()
+                HStack(spacing: 15) {
+                    NavigationLink(destination:
+                        SearchView()
+                    ) {
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(.black)
+                    }
+                    Button {
+                        viewModel.selectedTab = 1
+                    } label: {
+                        ToolbarLogo()
+                    }
                 }
             )
         }

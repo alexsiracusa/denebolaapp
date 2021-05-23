@@ -13,7 +13,7 @@ struct SearchResults: View {
     @Binding var searchFor: String
     
     init(category: Int? = nil, searchFor: Binding<String>) {
-        loader = SearchResultLoader()
+        loader = SearchResultLoader(category: category)
         self._searchFor = searchFor
     }
     

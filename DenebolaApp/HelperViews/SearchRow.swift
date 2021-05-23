@@ -19,7 +19,7 @@ struct SearchRow: View {
     }
 
     var author: String {
-        return postRow.author
+        return postRow.author ?? ""
     }
 
     var date: String {
@@ -29,7 +29,7 @@ struct SearchRow: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack(alignment: .center) {
-                if postRow.hasMedia {
+                if postRow.hasMedia && postRow.thumbnailImageURL != nil {
                     ImageView(url: postRow.thumbnailImageURL!)
                         .scaledToFill()
                         .frame(width: 136, height: 85)

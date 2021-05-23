@@ -22,7 +22,7 @@ struct PostRowView: View {
     }
 
     var author: String {
-        return postRow.author
+        return postRow.author ?? ""
     }
 
     var date: String {

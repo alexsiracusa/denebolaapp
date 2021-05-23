@@ -12,6 +12,8 @@ struct CategoryView: View {
     @EnvironmentObject private var viewModel: ViewModelData
     var category: Categories
     
+    @State var isActive = false
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
@@ -21,13 +23,30 @@ struct CategoryView: View {
                     .padding(.leading)
                 PostFeed(category: category.id)
             }
+            
+            //Navigation Link to SearchView
+            //need to do like this to avoid bugs
+            NavigationLink(
+                destination: SearchView(category: category),
+                isActive: $isActive,
+                label: { EmptyView()}
+            )
         }
         .navigationBarTitle(category.name, displayMode: .inline)
-        .navigationBarItems(trailing:
-            Button {
-                viewModel.selectedTab = 1
-            } label: {
-                ToolbarLogo()
+        .navigationBarItems(
+            trailing:
+            HStack(spacing: 15) {
+                Button {
+                    self.isActive = true
+                } label: {
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(.black)
+                }
+                Button {
+                    viewModel.selectedTab = 1
+                } label: {
+                    ToolbarLogo()
+                }
             }
         )
     }

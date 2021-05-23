@@ -27,12 +27,12 @@ struct Post: Codable, Equatable, Identifiable {
     }
     
     func asPostRow(thumbnailSize: String = "medium") -> PostRow {
-        return PostRow(id: self.id, title: self.renderedTitle, author: (self._embedded!.author![0].name)!, date: self.renderedDate, fullImageURL: self._embedded?.featuredMedia?[0].source_url?.asURL, thumbnailImageURL: self.getThumbnailSizeUrl(size: thumbnailSize), hasMedia: self.hasMedia)
+        return PostRow(id: self.id, title: self.renderedTitle, author: (self._embedded!.author![0].name), date: self.renderedDate, fullImageURL: self._embedded?.featuredMedia?[0].source_url?.asURL, thumbnailImageURL: self.getThumbnailSizeUrl(size: thumbnailSize), hasMedia: self.hasMedia)
     }
     
     /// Gets a image with the specified size string or the original size if it doesn't exist (might be smaller)
     func getThumbnailSizeUrl(size: String) -> URL? {
-        return self._embedded?.featuredMedia?[0].media_details.getSize(size)?.source_url.asURL ?? self._embedded?.featuredMedia?[0].source_url?.asURL
+        return self._embedded?.featuredMedia?[0].media_details?.getSize(size)?.source_url.asURL ?? self._embedded?.featuredMedia?[0].source_url?.asURL
     }
     
     var renderedContent: String { // TODO: remove?
@@ -104,7 +104,7 @@ struct Embeded: Codable {
 struct SimpleMedia: Codable {
     let id: Int?
     let source_url: String?
-    let media_details: MediaDetails
+    let media_details: MediaDetails?
 }
 
 struct MediaDetails: Codable {
