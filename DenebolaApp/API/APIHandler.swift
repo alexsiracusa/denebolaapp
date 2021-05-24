@@ -52,7 +52,6 @@ class APIHandler: ObservableObject {
         url += text.words.flatMap{$0 + ","}
         if let category = category { url += "&filter[cat]=\(category)" }
         if embed { url += "&_embed" }
-        print(url)
         APIHandler.decodeJSON(url: url, completionHandler: completion)
     }
     

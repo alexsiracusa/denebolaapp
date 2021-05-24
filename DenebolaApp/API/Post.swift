@@ -85,6 +85,14 @@ struct Post: Codable, Equatable, Identifiable {
     }
     
     var hasMedia: Bool {
+        if let embed = self._embedded {
+            if let media = embed.featuredMedia {
+                if media.count == 0 {return false}
+                if media[0].id == nil {return false}
+            } else {
+                return false
+            }
+        }
         return self.featured_media != 0
     }
 }
