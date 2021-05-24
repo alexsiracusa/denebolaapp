@@ -33,6 +33,10 @@ struct SearchResults: View {
         } else {
             if let error = loader.error {
                 Text(error)
+                    .onChange(of: searchFor) { search in
+                        loader.searchFor(search)
+                    }
+                    .padding()
             }
             else if loader.isLoadingPage {
                 //TODO: make better loading screen

@@ -48,9 +48,11 @@ class APIHandler: ObservableObject {
         var url = domain + "/wp-json/wp/v2/posts?"
         url += "per_page=\(per_page)"
         url += "&page=\(page)"
-        url += "&search=\(text)"
+        url += "&search="
+        url += text.words.flatMap{$0 + ","}
         if let category = category { url += "&filter[cat]=\(category)" }
         if embed { url += "&_embed" }
+        print(url)
         APIHandler.decodeJSON(url: url, completionHandler: completion)
     }
     
@@ -117,7 +119,10 @@ class APIHandler: ObservableObject {
     }
     
     static func decodeJSON<ResponseType: Codable>(url: String, completionHandler: @escaping (ResponseType?, String?) -> Void) {
-        guard let url = URL(string: url) else { return }
+        guard let url = URL(string: url) else {
+            completionHandler(nil, "Fetch failed: Invalid URL")
+            return
+        }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         
@@ -149,5 +154,11 @@ class APIHandler: ObservableObject {
         }
         
         task.resume()
+    }
+}
+
+extension String {
+    var words: [String] {
+        return self.split(separator: " ").map{String($0)}
     }
 }
