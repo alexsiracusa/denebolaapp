@@ -11,27 +11,49 @@ struct PodcastRow: View {
     @EnvironmentObject var player: PlayerObject
     var podcast: PodcastData
     
+    func MediaControlImage(_ name: String) -> some View {
+        return Image(systemName: name)
+            .font(.system(size: 60))
+    }
+    
     var body: some View {
         NavigationLink(destination:
             PodcastDetailView(podcast: podcast)
         ) {
-            HStack(alignment: .top) {
-                VStack(alignment: .leading) {
-                    Text(podcast.title)
-                        .foregroundColor(.black)
-                        .font(.headline)
-                        .lineLimit(2)
-                    Text(podcast.date)
-                        .foregroundColor(.gray)
-                        .font(.footnote)
-                    Text(podcast.description)
-                        .foregroundColor(.secondary)
-                        .lineLimit(1)
+            VStack(spacing: 0) {
+                HStack(alignment: .center, spacing: 0) {
+                    if podcast == player.currentPodcast {
+                        Button {
+                            if player.playing {
+                                player.pause()
+                            } else {
+                                player.play()
+                            }
+                        } label: {
+                            MediaControlImage(player.playing ? "pause.circle" : "play.circle")
+                        }
+                    }
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text(podcast.title)
+                            .foregroundColor(.black)
+                            .font(.headline)
+                            .lineLimit(2)
+                        Text(podcast.date)
+                            .foregroundColor(.gray)
+                            .font(.footnote)
+                    }
+                    .padding(.leading, 10)
+                    Spacer()
                 }
-                .background(podcast == player.currentPodcast ? Color.blue : Color.white)
-                Spacer()
+                .frame(height: 80)
+                Divider()
             }
-            .frame(height: 100)
+            .background(
+                Rectangle()
+                    .fill(podcast == player.currentPodcast ? Color.gray : Color.clear)
+                    .brightness(0.3)
+                    .frame(height: 80)
+            )
         }
     }
 }
