@@ -37,59 +37,29 @@ struct ViewController: View {
 
     var body: some View {
         TabView(selection: $viewModel.selectedTab) {
-            GeometryReader { geometry in
-                HomeView()
-                if showingPodcastToolbar {
-                    PodcastToolbar(image: image, player: player)
-                        .frame(width: geometry.size.width, height: 50)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height - 25)
-                        .transition(.move(edge: .bottom))
-                }
-            }
+            HomeView()
             .tabItem {
                 Image(systemName: "house")
                 Text("Home")
             }
             .tag(1)
 
-            GeometryReader { geometry in
-                MultimediaView()
-                if showingPodcastToolbar {
-                    PodcastToolbar(image: image, player: player)
-                        .frame(width: geometry.size.width, height: 50)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height - 25)
-                }
-            }
+            MultimediaView()
             .tabItem {
                 Image(systemName: "video")
                 Text("Multimedia")
             }
             .tag(2)
 
-            GeometryReader { geometry in
-                CategoriesView()
-                if showingPodcastToolbar {
-                    PodcastToolbar(image: image, player: player)
-                        .frame(width: geometry.size.width, height: 50)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height - 25)
-                }
-            }
+            CategoriesView()
             .tabItem {
                 Image(systemName: "newspaper")
                 Text("Feed")
             }
             .tag(3)
 
-            GeometryReader { geometry in
-                PodcastView()
-                    .environmentObject(player)
-                if showingPodcastToolbar {
-                    PodcastToolbar(image: image, player: player)
-                        .frame(width: geometry.size.width, height: 50)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height - 25)
-                        .transition(.move(edge: .bottom))
-                }
-            }
+            PodcastView()
+            .environmentObject(player)
             .tabItem {
                 Image(systemName: "headphones")
                 Text("Podcast")

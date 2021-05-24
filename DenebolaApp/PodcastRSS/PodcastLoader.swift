@@ -87,6 +87,15 @@ struct PodcastData: Identifiable {
     var imageURL: URL?
     var audioURL: URL?
     
+    static func ==(lhs: PodcastData, rhs: PodcastData?) -> Bool {
+        guard let rhs = rhs else {return false}
+        return lhs.id == rhs.id
+    }
+    
+    static func !=(lhs: PodcastData, rhs: PodcastData?) -> Bool {
+        return !(lhs == rhs)
+    }
+    
     static var `default`: PodcastData {
         let imageURL = URL(string: "https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded_nologo/2481705/2481705-1618286836680-cc0bfe519a5a9.jpg")
         let audioURL = URL(string: "https://anchor.fm/s/f635e84/podcast/play/32773030/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2F2021-4-4%2F182526282-44100-2-80c111c8f86be.m4a")

@@ -14,6 +14,7 @@ struct PostFeed: View {
     init(category: Int? = nil) {
         loader = ScrollViewLoader(category: category)
     }
+    
 
     var body: some View {
         if loader.posts.count != 0 {
