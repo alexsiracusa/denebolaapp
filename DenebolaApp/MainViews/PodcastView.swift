@@ -116,13 +116,7 @@ struct PodcastView: View {
                     }
                     
                     ForEach(podcasts) { podcast in
-                        PodcastRow(podcast: podcast) {
-                            withAnimation {
-                                value.scrollTo(1, anchor: .top)
-                            }
-                            currentPodcast = podcast
-                            play()
-                        }
+                        PodcastRow(podcast: podcast)
                     }
                 }
                 .navigationBarTitle("Denebacast", displayMode: .inline)
@@ -215,35 +209,5 @@ struct PodcastView_Previews: PreviewProvider {
             .environmentObject(PodcastLoader())
             .environmentObject(APIHandler())
             .environmentObject(PlayerObject())
-    }
-}
-
-private struct PodcastRow: View {
-    var podcast: PodcastData
-    var onSelect: () -> Void
-    
-    var body: some View {
-        HStack(alignment: .top) {
-            Button(action: onSelect) {
-                PlayButton()
-                    .padding(.leading, 5)
-            }
-            Button(action: onSelect) {
-                VStack(alignment: .leading) {
-                    Text(podcast.title)
-                        .foregroundColor(.black)
-                        .font(.headline)
-                        .lineLimit(2)
-                    Text(podcast.date)
-                        .foregroundColor(.gray)
-                        .font(.footnote)
-                    Text(podcast.description)
-                        .foregroundColor(.secondary)
-                        .lineLimit(1)
-                }
-            }
-            Spacer()
-        }
-        // .frame(
     }
 }

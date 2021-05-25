@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftDate
 
 struct Post: Codable, Equatable, Identifiable {
     let id: Int
@@ -27,7 +28,7 @@ struct Post: Codable, Equatable, Identifiable {
     }
     
     func asPostRow(thumbnailSize: String = "medium") -> PostRow {
-        return PostRow(id: self.id, title: self.renderedTitle, author: (self._embedded!.author![0].name), date: self.renderedDate, fullImageURL: self._embedded?.featuredMedia?[0].source_url?.asURL, thumbnailImageURL: self.getThumbnailSizeUrl(size: thumbnailSize), hasMedia: self.hasMedia)
+        return PostRow(id: self.id, title: self.renderedTitle, author: (self._embedded!.author![0].name), date: self.dateString ?? self.date, fullImageURL: self._embedded?.featuredMedia?[0].source_url?.asURL, thumbnailImageURL: self.getThumbnailSizeUrl(size: thumbnailSize), hasMedia: self.hasMedia)
     }
     
     /// Gets a image with the specified size string or the original size if it doesn't exist (might be smaller)
@@ -48,15 +49,8 @@ struct Post: Codable, Equatable, Identifiable {
         return self.title.rendered.html2AttributedString!
     }
     
-    var renderedDate: String {
-        let date = DateFormatter()
-        date.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        date.locale = Locale(identifier: "en_US")
-        
-        let parsedDate = date.date(from: self.date)!
-        date.setLocalizedDateFormatFromTemplate("MMMMdYYYY")
-        
-        return date.string(from: parsedDate)
+    var dateString: String? {
+        self.date.toISODate()?.toFormat(DATE_FORMAT)
     }
     
     var htmlContent: String {

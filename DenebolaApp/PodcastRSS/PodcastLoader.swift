@@ -87,6 +87,10 @@ struct PodcastData: Identifiable {
     var imageURL: URL?
     var audioURL: URL?
     
+    var dateString: String? {
+        self.date.toRSSDate(alt: false)?.toFormat(DATE_FORMAT)
+    }
+    
     static func ==(lhs: PodcastData, rhs: PodcastData?) -> Bool {
         guard let rhs = rhs else {return false}
         return lhs.id == rhs.id

@@ -24,6 +24,7 @@
 		CEC03FC3263E354400FFCB45 /* DenebolaAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FC2263E354400FFCB45 /* DenebolaAppTests.swift */; };
 		CEC03FCE263E354400FFCB45 /* DenebolaAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FCD263E354400FFCB45 /* DenebolaAppUITests.swift */; };
 		CECE6EB7264DFFFC0068EFCE /* PostPreviewPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECE6EB6264DFFFC0068EFCE /* PostPreviewPages.swift */; };
+		CED8EB21265CBD7C002922A3 /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = CED8EB20265CBD7C002922A3 /* SwiftDate */; };
 		CEFE4E7B26562EF2005A2DD4 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE4E7A26562EF2005A2DD4 /* ModelData.swift */; };
 		CEFE4E83265635B6005A2DD4 /* MultimediaSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE4E82265635B6005A2DD4 /* MultimediaSection.swift */; };
 		FA17F8DC2659DA1A008471BD /* SearchResultLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17F8DB2659DA1A008471BD /* SearchResultLoader.swift */; };
@@ -31,7 +32,6 @@
 		FA17F8E02659DCEC008471BD /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17F8DF2659DCEC008471BD /* SearchView.swift */; };
 		FA17F8E22659DFCD008471BD /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17F8E12659DFCD008471BD /* SearchResults.swift */; };
 		FA17F8E42659E567008471BD /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17F8E32659E567008471BD /* SearchBar.swift */; };
-		FA17F8E6265B314C008471BD /* PodcastDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17F8E5265B314C008471BD /* PodcastDetailView.swift */; };
 		FA17F8E8265B3473008471BD /* PodcastRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17F8E7265B3473008471BD /* PodcastRow.swift */; };
 		FA4618CC264980240018522B /* PodcastLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4618CB264980240018522B /* PodcastLoader.swift */; };
 		FA4B7364264E335200516AC6 /* PlayerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4B7363264E335200516AC6 /* PlayerObject.swift */; };
@@ -109,7 +109,6 @@
 		FA17F8DF2659DCEC008471BD /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		FA17F8E12659DFCD008471BD /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
 		FA17F8E32659E567008471BD /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
-		FA17F8E5265B314C008471BD /* PodcastDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailView.swift; sourceTree = "<group>"; };
 		FA17F8E7265B3473008471BD /* PodcastRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastRow.swift; sourceTree = "<group>"; };
 		FA4618CB264980240018522B /* PodcastLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastLoader.swift; sourceTree = "<group>"; };
 		FA4B7363264E335200516AC6 /* PlayerObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerObject.swift; sourceTree = "<group>"; };
@@ -148,6 +147,7 @@
 			files = (
 				CEB97FEF2645E90F00847FF9 /* FetchImage in Frameworks */,
 				CE4D2D4326489C6500C243CC /* LoaderUI in Frameworks */,
+				CED8EB21265CBD7C002922A3 /* SwiftDate in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,7 +280,6 @@
 			isa = PBXGroup;
 			children = (
 				FA73AA2F263E363600B6C8B6 /* PostView.swift */,
-				FA17F8E5265B314C008471BD /* PodcastDetailView.swift */,
 				FA56AA50263F0BFF00B6D838 /* PhotoGalleryView.swift */,
 				CE1E887B264748F700E1245E /* PageView.swift */,
 				FA6526412658AB9C0043FDBA /* CategoryView.swift */,
@@ -355,6 +354,7 @@
 			packageProductDependencies = (
 				CEB97FEE2645E90F00847FF9 /* FetchImage */,
 				CE4D2D4226489C6500C243CC /* LoaderUI */,
+				CED8EB20265CBD7C002922A3 /* SwiftDate */,
 			);
 			productName = DenebolaApp;
 			productReference = CEC03FAD263E354200FFCB45 /* Denebola.app */;
@@ -430,6 +430,7 @@
 			packageReferences = (
 				CEB97FED2645E90F00847FF9 /* XCRemoteSwiftPackageReference "FetchImage" */,
 				CE4D2D4126489C6500C243CC /* XCRemoteSwiftPackageReference "LoaderUI" */,
+				CED8EB1F265CBD7C002922A3 /* XCRemoteSwiftPackageReference "SwiftDate" */,
 			);
 			productRefGroup = CEC03FAE263E354200FFCB45 /* Products */;
 			projectDirPath = "";
@@ -519,7 +520,6 @@
 				FA56AA5C263F246000B6D838 /* PostRowView.swift in Sources */,
 				CE1E88772647484300E1245E /* PageViewController.swift in Sources */,
 				FA56AA6C263F933700B6D838 /* PostRow.swift in Sources */,
-				FA17F8E6265B314C008471BD /* PodcastDetailView.swift in Sources */,
 				FA73AA2D263E361E00B6C8B6 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -862,6 +862,14 @@
 				minimumVersion = 0.4.0;
 			};
 		};
+		CED8EB1F265CBD7C002922A3 /* XCRemoteSwiftPackageReference "SwiftDate" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/malcommac/SwiftDate";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.3.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -874,6 +882,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CEB97FED2645E90F00847FF9 /* XCRemoteSwiftPackageReference "FetchImage" */;
 			productName = FetchImage;
+		};
+		CED8EB20265CBD7C002922A3 /* SwiftDate */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CED8EB1F265CBD7C002922A3 /* XCRemoteSwiftPackageReference "SwiftDate" */;
+			productName = SwiftDate;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -7,6 +7,8 @@
 
 import Foundation
 
+let DATE_FORMAT = "MMMM d, YYYY"
+
 func getFormattedMinutesSeconds(_ seconds: Double) -> String {
     return String(format: "%02d:%02d", Int(seconds) / 60, Int(seconds) % 60)
 }
