@@ -18,9 +18,10 @@ struct Post: Codable, Equatable, Identifiable {
     let title: Render
     let content: Render
     let excerpt: Render
+    let attachments: [SimpleMedia]?
     let author: Int?
     let featured_media: Int
-    let categories: [Int]?
+    let categories: Set<Int>?
     let _embedded: Embeded?
     
     static func ==(lhs: Post, rhs: Post) -> Bool {

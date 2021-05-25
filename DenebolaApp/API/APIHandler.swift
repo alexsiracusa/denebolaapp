@@ -55,6 +55,11 @@ class APIHandler: ObservableObject {
         APIHandler.decodeJSON(url: url, completionHandler: completion)
     }
     
+    func loadAttachmentsForPost(_ id: Int, completionHandler: @escaping ([SimpleMedia]?, String?) -> Void) {
+        let url = domain + "/wp-json/wp/v2/media/?parent=" + "\(id)"
+        APIHandler.decodeJSON(url: url, completionHandler: completionHandler)
+    }
+    
     func loadFullPost(_ id: Int, embed: Bool, completionHandler: @escaping (Post?, Media?, URL?, String?) -> Void) {
         // loading post
         loadPost(id, embed: embed) { post, error in
