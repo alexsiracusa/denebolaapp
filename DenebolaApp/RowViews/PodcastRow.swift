@@ -10,12 +10,12 @@ import SwiftUI
 struct PodcastRow: View {
     @EnvironmentObject var player: PlayerObject
     var podcast: PodcastData
-    
+
     func MediaControlImage(_ name: String) -> some View {
         return Image(systemName: name)
             .font(.system(size: 60))
     }
-    
+
     var body: some View {
         NavigationLink(destination:
             PodcastDetailView(podcast: podcast)
@@ -62,5 +62,13 @@ struct PodcastRow_Previews: PreviewProvider {
     static var previews: some View {
         PodcastRow(podcast: PodcastData.default)
             .environmentObject(PlayerObject())
+    }
+}
+
+struct PodcastDetailView: View {
+    var podcast: PodcastData
+    
+    var body: some View {
+        Text("Hello World!")
     }
 }

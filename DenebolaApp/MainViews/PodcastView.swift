@@ -34,7 +34,6 @@ struct PodcastView: View {
         return self.player.player
     }
 
-    
     func MediaControlImage(_ name: String) -> some View {
         return Image(systemName: name)
             .font(.system(size: 30))
@@ -48,7 +47,7 @@ struct PodcastView: View {
     
     var body: some View {
         NavigationView {
-            ScrollViewReader { value in
+            ScrollViewReader { _ in
                 ScrollView {
                     // Current Podcast
                     VStack {
@@ -194,7 +193,7 @@ struct PodcastView: View {
         self.audioPlayer.play()
         self.player.playing = true
         self.player.image = ImageView(url: self.currentPodcast.imageURL!)
-        player.showingToolbar = true
+        self.player.showingToolbar = true
     }
     
     func pause() {

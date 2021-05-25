@@ -35,7 +35,7 @@ struct PostSection: View {
             }
             
             Button(action: {
-                viewModel.selectedTab = 3
+                viewModel.selectedTab = 2
             }) {
                 HStack {
                     Spacer()

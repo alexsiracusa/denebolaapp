@@ -14,11 +14,9 @@ struct ViewController: View {
 
     @EnvironmentObject var player: PlayerObject
     var showingPodcastToolbar: Bool {
-        get {
-            return player.showingToolbar
-        }
+        return player.showingToolbar
     }
-    
+
     var image: ImageView {
         return player.image
     }
@@ -26,10 +24,10 @@ struct ViewController: View {
     init() {
         UITabBar.appearance().barTintColor = UIColor.white
         UITabBar.appearance().backgroundColor = UIColor.white
-        
+
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = .white
-        
+
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         UINavigationBar.appearance().compactAppearance = appearance
@@ -38,33 +36,33 @@ struct ViewController: View {
     var body: some View {
         TabView(selection: $viewModel.selectedTab) {
             HomeView()
-            .tabItem {
-                Image(systemName: "house")
-                Text("Home")
-            }
-            .tag(1)
-
-            MultimediaView()
-            .tabItem {
-                Image(systemName: "video")
-                Text("Multimedia")
-            }
-            .tag(2)
+                .tabItem {
+                    Image(systemName: "house")
+                    Text("Home")
+                }
+                .tag(1)
 
             CategoriesView()
-            .tabItem {
-                Image(systemName: "newspaper")
-                Text("Feed")
-            }
-            .tag(3)
+                .tabItem {
+                    Image(systemName: "newspaper")
+                    Text("Feed")
+                }
+                .tag(2)
 
             PodcastView()
-            .environmentObject(player)
-            .tabItem {
-                Image(systemName: "headphones")
-                Text("Podcast")
-            }
-            .tag(4)
+                .environmentObject(player)
+                .tabItem {
+                    Image(systemName: "headphones")
+                    Text("Podcast")
+                }
+                .tag(3)
+
+            SocialView()
+                .tabItem {
+                    Image(systemName: "person")
+                    Text("South")
+                }
+                .tag(4)
         }
         .accentColor(.orange)
     }

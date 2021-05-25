@@ -27,7 +27,6 @@ struct MultimediaSection: View {
             }
             
             Button(action: {
-                viewModel.selectedTab = 2
             }) {
                 HStack {
                     Spacer()
