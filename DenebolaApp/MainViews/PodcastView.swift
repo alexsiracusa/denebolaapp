@@ -21,6 +21,8 @@ struct PodcastView: View {
     @State var seeking = false
     @EnvironmentObject var player: PlayerObject
     
+    @State var showingFullDescription = false
+    
     var playing: Bool {
         self.player.playing
     }
@@ -44,8 +46,38 @@ struct PodcastView: View {
         NavigationView {
                     
             ScrollView() {
-                VStack(spacing: 0) {
+                VStack(alignment: .leading, spacing: 0) {
+                    
+                    if loader.loaded == true {
+                        VStack(alignment: .leading, spacing: 0) {
+                            HStack(alignment: .top) {
+                                ImageView(url: URL(string: loader.podcastImageURL)!)
+                                    .frame(width: 100, height: 100)
+                                    .cornerRadius(5)
+                                Text(loader.podcastTitle)
+                                    .font(.headline)
+                                    .bold()
+                                    .foregroundColor(.secondary)
+                            }
+                            .padding(.bottom)
+                            Text(loader.podcastDiscription)
+                                .lineLimit(showingFullDescription ? nil : 4)
+                                .padding(.bottom, 5)
+                            if !showingFullDescription {
+                                Button {
+                                    showingFullDescription = true
+                                } label: {
+                                    Text("Show More")
+                                        .font(.subheadline)
+                                        .foregroundColor(.secondary)
+                                }
+                            }
+                        }
+                        .padding()
+                    }
+                    
                     Divider()
+                    
                     ForEach(podcasts) { podcast in
                         PodcastRow(podcast: podcast)
                     }

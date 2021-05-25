@@ -19,6 +19,10 @@ class PodcastLoader: NSObject, ObservableObject, XMLParserDelegate {
     var descrip = String()
     var date = String()
     
+    var podcastTitle = String()
+    var podcastDiscription = String()
+    var podcastImageURL = String()
+    
     var onEnd: ([PodcastData]) -> Void = {_ in }
     func parserDidEndDocument(_ parser: XMLParser) {
         onEnd(podcasts)
@@ -69,11 +73,19 @@ class PodcastLoader: NSObject, ObservableObject, XMLParserDelegate {
 
         if !data.isEmpty {
             if elementName == "title" {
+                if podcastTitle.isEmpty {
+                    podcastTitle = data
+                }
                 title = data
             } else if elementName == "description" {
+                if podcastDiscription.isEmpty {
+                    podcastDiscription = data.replacingOccurrences(of: "\n", with: " ")
+                }
                 descrip = data
             } else if elementName == "pubDate" {
                 date = data
+            } else if elementName == "url" {
+                podcastImageURL = data
             }
         }
     }
