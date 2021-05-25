@@ -65,10 +65,4 @@ struct PodcastRow_Previews: PreviewProvider {
     }
 }
 
-struct PodcastDetailView: View {
-    var podcast: PodcastData
-    
-    var body: some View {
-        Text("Hello World!")
-    }
-}
+
