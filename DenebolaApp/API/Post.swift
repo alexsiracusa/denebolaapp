@@ -15,9 +15,9 @@ struct Post: Codable, Equatable, Identifiable {
     let status: String?
     let type: String?
     let link: String?
-    let title: Render
+    let title: RenderHTML
     let content: Render
-    let excerpt: Render
+    let excerpt: RenderHTML
     let attachments: [SimpleMedia]?
     let author: Int?
     let featured_media: Int
@@ -28,33 +28,19 @@ struct Post: Codable, Equatable, Identifiable {
         return lhs.id == rhs.id
     }
     
-    func asPostRow(thumbnailSize: String = "medium") -> PostRow {
-        return PostRow(id: self.id, title: self.renderedTitle, author: (self._embedded!.author![0].name), date: self.dateString ?? self.date, fullImageURL: self._embedded?.featuredMedia?[0].source_url?.asURL, thumbnailImageURL: self.getThumbnailSizeUrl(size: thumbnailSize), hasMedia: self.hasMedia)
+    func getAuthor() -> String {
+        return self._embedded!.author![0].name!
     }
     
-    /// Gets a image with the specified size string or the original size if it doesn't exist (might be smaller)
-    func getThumbnailSizeUrl(size: String) -> URL? {
-        return self._embedded?.featuredMedia?[0].media_details?.getSize(size)?.source_url.asURL ?? self._embedded?.featuredMedia?[0].source_url?.asURL
+    func getDate() -> String {
+        self.date.toISODate()?.toFormat(DATE_FORMAT) ?? self.date
     }
     
-    var renderedContent: String { // TODO: remove?
-        return self.content.rendered.html2AttributedString!
-            .replacingOccurrences(of: "\n", with: "\n\n")
+    func getFeaturedImageUrl() -> URL? {
+        return self._embedded?.featuredMedia?[0].source_url?.asURL
     }
     
-    var renderedExcerpt: String {
-        return self.excerpt.rendered.html2AttributedString!
-    }
-    
-    var renderedTitle: String {
-        return self.title.rendered.html2AttributedString!
-    }
-    
-    var dateString: String? {
-        self.date.toISODate()?.toFormat(DATE_FORMAT)
-    }
-    
-    var htmlContent: String {
+    func getHtmlContent() -> String {
         return """
             <!DOCTYPE HTML>
             <head><meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'></meta></head>
@@ -79,16 +65,17 @@ struct Post: Codable, Equatable, Identifiable {
         """
     }
     
-    var hasMedia: Bool {
-        if let embed = self._embedded {
-            if let media = embed.featuredMedia {
-                if media.count == 0 {return false}
-                if media[0].id == nil {return false}
-            } else {
-                return false
-            }
-        }
-        return self.featured_media != 0
+    func getExcerpt() -> String {
+        return self.excerpt.rendered
+    }
+    
+    func getTitle() -> String {
+        return self.title.rendered
+    }
+    
+    /// Gets a image with the specified size string or the original size if it doesn't exist (might be smaller)
+    func getThumbnailSizeUrl(size: String) -> URL? {
+        return self._embedded?.featuredMedia?[0].media_details?.getSize(size)?.source_url.asURL ?? self._embedded?.featuredMedia?[0].source_url?.asURL
     }
 }
 
@@ -125,6 +112,26 @@ struct MediaSize: Codable {
 struct Author: Codable {
     let id: Int?
     let name: String?
+}
+
+struct RenderHTML: Codable {
+    let rendered: String
+    let originalContent: String
+
+    enum CodingKeys: CodingKey {
+        case rendered
+    }
+    
+    init(rendered: String) {
+        self.rendered = rendered
+        self.originalContent = rendered
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.originalContent = try container.decode(String.self, forKey: .rendered)
+        self.rendered = self.originalContent.html2AttributedString!
+    }
 }
 
 struct Render: Codable {

@@ -11,8 +11,8 @@ struct HomeView: View {
     @EnvironmentObject private var handler: APIHandler
     @EnvironmentObject private var viewModel: ViewModelData
 
-    @State private var latestPosts = [PostRow]()
-    @State private var multimediaPosts = [PostRow]()
+    @State private var latestPosts = [Post]()
+    @State private var multimediaPosts = [Post]()
     
     var gradient: some View {
         LinearGradient(gradient: Gradient(colors: [.white, .black]), startPoint: UnitPoint(x: 0.5, y: 0.0), endPoint: .bottom)
@@ -22,11 +22,11 @@ struct HomeView: View {
     func loadPosts() {
         handler.loadPostPage(category: nil, page: 1, per_page: 5, embed: true, completionHandler: { posts, _ in
             guard let posts = posts, posts.count > 0 else { return }
-            latestPosts = posts.map { $0.asPostRow(thumbnailSize: "large") }
+            latestPosts = posts
         })
         handler.loadPostPage(category: Categories.multimedia.id, page: 1, per_page: 2, embed: true, completionHandler: { posts, _ in
             guard let posts = posts, posts.count > 0 else { return }
-            multimediaPosts = posts.map { $0.asPostRow(thumbnailSize: "large") }
+            multimediaPosts = posts
         })
     }
 

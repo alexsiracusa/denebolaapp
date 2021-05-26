@@ -25,10 +25,9 @@ struct ImageView: View {
             ZStack {
                 PlaceholderBackground()
                     .onAppear { image.load(url) }
-                    .aspectRatio(aspectRatio, contentMode: .fit)
                 DefaultLoader()
                     .scaleEffect(0.1)
-            }
+            }.aspectRatio(aspectRatio, contentMode: .fit)
         }
     }
 }

@@ -19,10 +19,10 @@ struct PostFeed: View {
     var body: some View {
         if loader.posts.count != 0 {
             LazyVStack(spacing: 10) {
-                ForEach(loader.posts) { postRow in
-                    PostRowView(postRow: postRow)
+                ForEach(loader.posts) { post in
+                    PostRowView(post: post)
                         .onAppear {
-                            loader.loadMorePostsIfNeeded(currentItem: postRow)
+                            loader.loadMorePostsIfNeeded(currentItem: post)
                         }
                         .padding(.horizontal)
                         .padding(.vertical, 0.0)

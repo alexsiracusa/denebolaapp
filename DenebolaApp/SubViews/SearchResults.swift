@@ -20,10 +20,10 @@ struct SearchResults: View {
     var body: some View {
         if loader.posts.count != 0 {
             LazyVStack(spacing: 0) {
-                ForEach(loader.posts) { postRow in
-                    SearchRow(postRow: postRow)
+                ForEach(loader.posts) { post in
+                    SearchRow(post: post)
                         .onAppear {
-                            loader.loadMorePostsIfNeeded(currentItem: postRow)
+                            loader.loadMorePostsIfNeeded(currentItem: post)
                         }
                 }
             }

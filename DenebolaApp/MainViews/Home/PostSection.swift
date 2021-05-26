@@ -10,7 +10,7 @@ import SwiftUI
 struct PostSection: View {
     @EnvironmentObject private var viewModel: ViewModelData
     
-    var posts: [PostRow]
+    var posts: [Post]
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
@@ -29,8 +29,8 @@ struct PostSection: View {
                         PostCard(post: posts[2], textSize: .subheadline)
                     }
                     
-                    PostRowView(postRow: posts[3], style: .normal)
-                    PostRowView(postRow: posts[4], style: .normal)
+                    PostRowView(post: posts[3], style: .normal)
+                    PostRowView(post: posts[4], style: .normal)
                 }
             }
             
@@ -57,7 +57,7 @@ struct PostSection: View {
 
 struct PostSection_Previews: PreviewProvider {
     static var previews: some View {
-        PostSection(posts: [PostRow.default, PostRow.default, PostRow.default, PostRow.default, PostRow.default, PostRow.default])
+        PostSection(posts: [Post.default, Post.default, Post.default, Post.default, Post.default, Post.default])
             .environmentObject(ViewModelData())
     }
 }

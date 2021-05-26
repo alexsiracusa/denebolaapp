@@ -9,39 +9,18 @@ import FetchImage
 import SwiftUI
 
 struct PostRowView: View {
-    let postRow: PostRow
+    let post: Post
     var style: Style = .floating
-    
+
     enum Style {
         case floating
         case normal
     }
 
-    var title: String {
-        return postRow.title
-    }
-
-    var author: String {
-        return postRow.author ?? ""
-    }
-
-    var date: String {
-        return postRow.date
-    }
-
-    var thumbnailImage: ImageView? {
-        postRow.thumbnailImageURL.flatMap { ImageView(url: $0) }
-    }
-
-    var fullImage: ImageView? {
-        postRow.fullImageURL.flatMap { ImageView(url: $0) }
-    }
-
     var body: some View {
         HStack(alignment: .top) {
-            if postRow.hasMedia {
-                thumbnailImage?
-                    .scaledToFill()
+            if let thumbnailImageURL = post.getThumbnailSizeUrl(size: "medium") {
+                ImageView(url: thumbnailImageURL)
                     .frame(width: style == .floating ? 160 : 130, height: 100)
                     .aspectRatio(style == .floating ? 1.6 : 1.3, contentMode: .fit)
                     .cornerRadius(style == .floating ? 0.0 : 5.0)
@@ -53,22 +32,27 @@ struct PostRowView: View {
             }
 
             // title + author + date
-            NavigationLink(destination:
-                PostView(id: postRow.id, title: postRow.title, image: fullImage, author: postRow.author)
-                    .navigationBarTitle(Text(""), displayMode: .inline)
+//            NavigationLink(destination:
+//                PostView(post: post)
+//                    .navigationBarTitle(Text(""), displayMode: .inline)
+//            ) {
+
+//            }
+            NavigationLink(destination: PostView(post: post)
+                            .navigationBarTitle(Text(""), displayMode: .inline)
             ) {
                 VStack(alignment: .leading) {
                     // title
-                    Text(title)
+                    Text(post.getTitle())
                         .bold()
                         .font(.title3)
                         .lineLimit(nil)
                         .foregroundColor(.black)
                     Spacer(minLength: 0.0)
-                    Text(author)
+                    Text(post.getAuthor())
                         .font(.subheadline)
                         .foregroundColor(.black)
-                    Text(date)
+                    Text(post.getDate())
                         .foregroundColor(.gray)
                         .font(.subheadline)
                 }.padding(.vertical, 4.0)
@@ -80,20 +64,15 @@ struct PostRowView: View {
         .cornerRadius(style == .floating ? 10.0 : 0.0)
         .background(style == .floating ?
             RoundedRectangle(cornerRadius: 10.0)
-                        //.stroke(Color.gray, lineWidth: 0.2)
-                        //.background(Color.white)
-                .fill(Color.white)
-                        .shadow(color: Color.gray.opacity(0.3), radius: 2.0, x: 1.0, y: 1.0)
-            : nil
-        )
+            .fill(Color.white)
+            .shadow(color: Color.gray.opacity(0.3), radius: 2.0, x: 1.0, y: 1.0)
+            : nil)
     }
 }
 
 struct PostRowView_Previews: PreviewProvider {
     static var previews: some View {
-        let testURL = "http://nshsdenebola.com/wp-content/uploads/2021/02/https___cdn.cnn_.com_cnnnext_dam_assets_210121163502-joe-biden.jpg".asURL
-
-        PostRowView(postRow: PostRow(id: 1, title: "Title here long text multi line text very cool", author: "Alex Siracusa", date: "April 22, 2021", fullImageURL: testURL, thumbnailImageURL: testURL, hasMedia: true))
+        PostRowView(post: Post.default)
             .environmentObject(APIHandler())
     }
 }

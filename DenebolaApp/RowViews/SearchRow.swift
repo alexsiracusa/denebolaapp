@@ -8,54 +8,38 @@
 import SwiftUI
 
 struct SearchRow: View {
-    let postRow: PostRow
-    
-    var fullImage: ImageView? {
-        postRow.fullImageURL.flatMap { ImageView(url: $0) }
-    }
-    
-    var title: String {
-        return postRow.title
-    }
+    let post: Post
 
-    var author: String {
-        return postRow.author ?? ""
-    }
-
-    var date: String {
-        return postRow.date
-    }
-    
     var body: some View {
         VStack(spacing: 0) {
             HStack(alignment: .center) {
-                if postRow.hasMedia && postRow.thumbnailImageURL != nil {
-                    ImageView(url: postRow.thumbnailImageURL!)
+                if let thumbnailImageURL = post.getThumbnailSizeUrl(size: "medium") {
+                    ImageView(url: thumbnailImageURL)
                         .scaledToFill()
                         .frame(width: 136, height: 85)
                         .clipped()
                         .aspectRatio(1.6, contentMode: .fill)
-                }  else {
+                } else {
                     Image("DenebolaLogo")
                         .resizable()
                         .frame(width: 85, height: 85)
                 }
                 NavigationLink(destination:
-                    PostView(id: postRow.id, title: postRow.title, image: fullImage, author: postRow.author)
+                    PostView(post: post)
                         .navigationBarTitle(Text(""), displayMode: .inline)
                 ) {
                     VStack(alignment: .leading) {
-                        Text(title)
+                        Text(post.getTitle())
                             .bold()
                             .font(.headline)
                             .lineLimit(2)
                             .foregroundColor(.black)
                             .fixedSize(horizontal: false, vertical: true)
-                        Text(author)
+                        Text(post.getAuthor())
                             .font(.subheadline)
                             .foregroundColor(.black)
                             .lineLimit(1)
-                        Text(date)
+                        Text(post.getDate())
                             .foregroundColor(.gray)
                             .font(.subheadline)
                             .lineLimit(1)
@@ -72,6 +56,6 @@ struct SearchRow: View {
 
 struct SearchRow_Previews: PreviewProvider {
     static var previews: some View {
-        SearchRow(postRow: PostRow.default)
+        SearchRow(post: Post.default)
     }
 }

@@ -10,7 +10,7 @@ import SwiftUI
 struct MultimediaSection: View {
     @EnvironmentObject private var viewModel: ViewModelData
     
-    var posts: [PostRow]
+    var posts: [Post]
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
@@ -48,6 +48,6 @@ struct MultimediaSection: View {
 
 struct MultimediaSection_Previews: PreviewProvider {
     static var previews: some View {
-        MultimediaSection(posts: [PostRow.default, PostRow.default])
+        MultimediaSection(posts: [Post.default, Post.default])
     }
 }

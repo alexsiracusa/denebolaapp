@@ -11,7 +11,7 @@ class SearchResultLoader: ScrollViewLoader {
     private var search: String = ""
     
     func searchFor(_ text: String, category: Int? = nil) {
-        posts = [PostRow]()
+        posts = [Post]()
         isLoadingPage = false
         canLoadMorePages = true
         error = nil
@@ -32,8 +32,7 @@ class SearchResultLoader: ScrollViewLoader {
                 self.isLoadingPage = false
                 return
             }
-            let newPosts = posts.map { $0.asPostRow() }
-            self.posts += newPosts
+            self.posts += posts
             self.currentPage += 1
             self.isLoadingPage = false
         }

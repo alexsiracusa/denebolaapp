@@ -5,31 +5,32 @@
 //  Created by Alex Siracusa on 5/19/21.
 //
 
-import SwiftUI
-import LoaderUI
 import FetchImage
+import LoaderUI
+import SwiftUI
 
 struct PostCard: View {
-    let post: PostRow
+    let post: Post
     let textSize: Font
-    
-    var fullImage: ImageView? {
-        post.fullImageURL.flatMap { ImageView(url: $0) }
-    }
-    
+
     var body: some View {
         NavigationLink(destination:
-            PostView(id: post.id, title: post.title, image: fullImage, author: post.author)
+            PostView(post: post)
                 .navigationBarTitle(Text(""), displayMode: .inline)
         ) {
             VStack(alignment: .leading) {
-                ImageView(url: post.thumbnailImageURL!, aspectRatio: 1.6)
-                    .cornerRadius(5)
-                    .fixedSize(horizontal: false, vertical: true)
-                Text(post.title)
+                if let imageURL = post.getFeaturedImageUrl() {
+                    ImageView(url: imageURL, aspectRatio: 1.6)
+                        .cornerRadius(5)
+                        .fixedSize(horizontal: false, vertical: true)
+                } else {
+                    // TODO:
+                }
+
+                Text(post.getTitle())
                     .bold()
                     .font(textSize)
-                Text(post.date)
+                Text(post.getDate())
             }
             .foregroundColor(.black)
         }
@@ -38,7 +39,7 @@ struct PostCard: View {
 
 struct PostCard_Previews: PreviewProvider {
     static var previews: some View {
-        PostCard(post: PostRow.default, textSize: .subheadline)
+        PostCard(post: Post.default, textSize: .subheadline)
             .environmentObject(APIHandler())
     }
 }

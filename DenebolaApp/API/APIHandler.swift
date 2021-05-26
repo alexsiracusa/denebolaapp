@@ -85,23 +85,6 @@ class APIHandler: ObservableObject {
         }
     }
     
-    func loadPostForDisplay(_ id: Int, completionHandler: @escaping (Post?, URL?, String?) -> Void) {
-        loadPost(id, embed: true) { post, error in
-            guard let post = post, error == nil else {
-                completionHandler(nil, nil, error)
-                return
-            }
-            
-            guard post.hasMedia else {
-                completionHandler(post, nil, error)
-                return
-            }
-            
-            let imageUrl = post._embedded?.featuredMedia?[0].source_url?.asURL
-            completionHandler(post, imageUrl, error)
-        }
-    }
-    
     func loadData(url: URL, completionHandler: @escaping (Data?, String?) -> Void) {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"

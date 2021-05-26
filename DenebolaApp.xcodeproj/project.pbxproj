@@ -26,7 +26,6 @@
 		CEC03FB8263E354400FFCB45 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC03FB7263E354400FFCB45 /* Preview Assets.xcassets */; };
 		CEC03FC3263E354400FFCB45 /* DenebolaAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FC2263E354400FFCB45 /* DenebolaAppTests.swift */; };
 		CEC03FCE263E354400FFCB45 /* DenebolaAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FCD263E354400FFCB45 /* DenebolaAppUITests.swift */; };
-		CECE6EB7264DFFFC0068EFCE /* PostPreviewPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECE6EB6264DFFFC0068EFCE /* PostPreviewPages.swift */; };
 		CED8EB21265CBD7C002922A3 /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = CED8EB20265CBD7C002922A3 /* SwiftDate */; };
 		CEFE4E7B26562EF2005A2DD4 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE4E7A26562EF2005A2DD4 /* ModelData.swift */; };
 		CEFE4E83265635B6005A2DD4 /* MultimediaSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE4E82265635B6005A2DD4 /* MultimediaSection.swift */; };
@@ -107,7 +106,6 @@
 		CEC03FC9263E354400FFCB45 /* DenebolaAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DenebolaAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC03FCD263E354400FFCB45 /* DenebolaAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenebolaAppUITests.swift; sourceTree = "<group>"; };
 		CEC03FCF263E354400FFCB45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CECE6EB6264DFFFC0068EFCE /* PostPreviewPages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPreviewPages.swift; sourceTree = "<group>"; };
 		CEFE4E7A26562EF2005A2DD4 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		CEFE4E82265635B6005A2DD4 /* MultimediaSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultimediaSection.swift; sourceTree = "<group>"; };
 		FA17F8DB2659DA1A008471BD /* SearchResultLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultLoader.swift; sourceTree = "<group>"; };
@@ -299,7 +297,6 @@
 				FA56AA50263F0BFF00B6D838 /* PhotoGalleryView.swift */,
 				CE1E887B264748F700E1245E /* PageView.swift */,
 				FA6526412658AB9C0043FDBA /* CategoryView.swift */,
-				CECE6EB6264DFFFC0068EFCE /* PostPreviewPages.swift */,
 				FA17F8DF2659DCEC008471BD /* SearchView.swift */,
 				FA17F8E32659E567008471BD /* SearchBar.swift */,
 				FA17F8E12659DFCD008471BD /* SearchResults.swift */,
@@ -496,7 +493,6 @@
 				FA56AA6E263FA12200B6D838 /* LoadingPostRowView.swift in Sources */,
 				FA6526442658AEFC0043FDBA /* CategoryBanner.swift in Sources */,
 				FA17F8E22659DFCD008471BD /* SearchResults.swift in Sources */,
-				CECE6EB7264DFFFC0068EFCE /* PostPreviewPages.swift in Sources */,
 				FA56AA58263F1AC100B6D838 /* Categories.swift in Sources */,
 				CEAE3E352648CAC50066C825 /* DefaultViews.swift in Sources */,
 				FA56AA6A263F8F0F00B6D838 /* ScrollViewLoader.swift in Sources */,
