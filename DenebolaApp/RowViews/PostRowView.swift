@@ -21,6 +21,7 @@ struct PostRowView: View {
         HStack(alignment: .top) {
             if let thumbnailImageURL = post.getThumbnailSizeUrl(size: "medium") {
                 ImageView(url: thumbnailImageURL)
+                    .scaledToFill()
                     .frame(width: style == .floating ? 160 : 130, height: 100)
                     .aspectRatio(style == .floating ? 1.6 : 1.3, contentMode: .fit)
                     .cornerRadius(style == .floating ? 0.0 : 5.0)

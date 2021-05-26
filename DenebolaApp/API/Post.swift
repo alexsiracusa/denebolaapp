@@ -116,7 +116,6 @@ struct Author: Codable {
 
 struct RenderHTML: Codable {
     let rendered: String
-    let originalContent: String
 
     enum CodingKeys: CodingKey {
         case rendered
@@ -124,13 +123,11 @@ struct RenderHTML: Codable {
     
     init(rendered: String) {
         self.rendered = rendered
-        self.originalContent = rendered
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.originalContent = try container.decode(String.self, forKey: .rendered)
-        self.rendered = self.originalContent.html2AttributedString!
+        self.rendered = try container.decode(String.self, forKey: .rendered).html2AttributedString!
     }
 }
 
