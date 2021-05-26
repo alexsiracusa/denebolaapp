@@ -63,14 +63,12 @@ struct PodcastView: View {
                             Text(loader.podcastDiscription)
                                 .lineLimit(showingFullDescription ? nil : 4)
                                 .padding(.bottom, 5)
-                            if !showingFullDescription {
-                                Button {
-                                    showingFullDescription = true
-                                } label: {
-                                    Text("Show More")
-                                        .font(.subheadline)
-                                        .foregroundColor(.secondary)
-                                }
+                            Button {
+                                showingFullDescription.toggle()
+                            } label: {
+                                Text(showingFullDescription ? "Show Less" : "Show More")
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
                             }
                         }
                         .padding()
