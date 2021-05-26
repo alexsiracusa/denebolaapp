@@ -9,10 +9,10 @@ import SwiftUI
 
 struct PostFeed: View {
     @EnvironmentObject var handler: APIHandler
-    @ObservedObject var loader: ScrollViewLoader
+    @StateObject private var loader: ScrollViewLoader
 
     init(category: Int? = nil) {
-        loader = ScrollViewLoader(category: category)
+        _loader = StateObject(wrappedValue: ScrollViewLoader(category: category))
     }
     
 
