@@ -13,7 +13,7 @@ struct HomeView: View {
 
     @State private var latestPosts = [Post]()
     @State private var multimediaPosts = [Post]()
-    
+
     var gradient: some View {
         LinearGradient(gradient: Gradient(colors: [.white, .black]), startPoint: UnitPoint(x: 0.5, y: 0.0), endPoint: .bottom)
             .opacity(0.03)
@@ -44,13 +44,7 @@ struct HomeView: View {
                 .padding(.top, 10)
             }
             .navigationBarTitle("Home", displayMode: .inline)
-            .navigationBarItems(trailing:
-                Button {
-                    viewModel.selectedTab = 1
-                } label: {
-                    ToolbarLogo()
-                }
-            )
+            .navigationBarItems(trailing: LogoButton())
 
         }.onAppear {
             if latestPosts.count == 0 {

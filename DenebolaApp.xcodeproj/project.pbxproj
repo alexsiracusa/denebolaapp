@@ -14,6 +14,7 @@
 		CE2C6138265E5C7E003E32E6 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C6137265E5C7E003E32E6 /* ScheduleView.swift */; };
 		CE2C613D265E5C86003E32E6 /* ScheduleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C613C265E5C86003E32E6 /* ScheduleListView.swift */; };
 		CE4D2D4326489C6500C243CC /* LoaderUI in Frameworks */ = {isa = PBXBuildFile; productRef = CE4D2D4226489C6500C243CC /* LoaderUI */; };
+		CE74689326605535007321FD /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE74689226605535007321FD /* AboutView.swift */; };
 		CE87B3EE264CCE8A009CAF44 /* Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE87B3ED264CCE8A009CAF44 /* Support.swift */; };
 		CE9BD098265CC9AB00231689 /* SocialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9BD097265CC9AB00231689 /* SocialView.swift */; };
 		CEAE3E2D2648CA2F0066C825 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE3E2C2648CA2F0066C825 /* Extensions.swift */; };
@@ -89,6 +90,7 @@
 		CE1E88862647561600E1245E /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		CE2C6137265E5C7E003E32E6 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
 		CE2C613C265E5C86003E32E6 /* ScheduleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleListView.swift; sourceTree = "<group>"; };
+		CE74689226605535007321FD /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		CE87B3ED264CCE8A009CAF44 /* Support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Support.swift; sourceTree = "<group>"; };
 		CE9BD097265CC9AB00231689 /* SocialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialView.swift; sourceTree = "<group>"; };
 		CEAE3E2C2648CA2F0066C825 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 				FA17F8E32659E567008471BD /* SearchBar.swift */,
 				FA17F8E12659DFCD008471BD /* SearchResults.swift */,
 				FAA53892265D6C270050617F /* PodcastDetailView.swift */,
+				CE74689226605535007321FD /* AboutView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -532,6 +535,7 @@
 				CEAE3E2D2648CA2F0066C825 /* Extensions.swift in Sources */,
 				FA87325E265586260094146C /* PodcastSection.swift in Sources */,
 				FA56AA5C263F246000B6D838 /* PostRowView.swift in Sources */,
+				CE74689326605535007321FD /* AboutView.swift in Sources */,
 				CE2C613D265E5C86003E32E6 /* ScheduleListView.swift in Sources */,
 				CE1E88772647484300E1245E /* PageViewController.swift in Sources */,
 				FA56AA6C263F933700B6D838 /* PostRow.swift in Sources */,
@@ -696,7 +700,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DenebolaApp/Preview Content\"";
-				DEVELOPMENT_TEAM = 9LZB553FST;
+				DEVELOPMENT_TEAM = 6ZFN3Y2T93;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DenebolaApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -704,7 +708,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = siracusa.org.denebolaapp.app;
+				PRODUCT_BUNDLE_IDENTIFIER = sequal.denebola;
 				PRODUCT_NAME = Denebola;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -720,7 +724,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DenebolaApp/Preview Content\"";
-				DEVELOPMENT_TEAM = 9LZB553FST;
+				DEVELOPMENT_TEAM = 6ZFN3Y2T93;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DenebolaApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -728,7 +732,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = siracusa.org.denebolaapp.app;
+				PRODUCT_BUNDLE_IDENTIFIER = seqy.app;
 				PRODUCT_NAME = Denebola;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

@@ -44,10 +44,8 @@ struct PodcastView: View {
     
     var body: some View {
         NavigationView {
-                    
-            ScrollView() {
+            ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
-                    
                     if loader.loaded == true {
                         VStack(alignment: .leading, spacing: 0) {
                             HStack(alignment: .top) {
@@ -81,14 +79,7 @@ struct PodcastView: View {
                 }
             }
             .navigationBarTitle("Denebacast", displayMode: .inline)
-            .navigationBarItems(trailing:
-                Button {
-                    viewModel.selectedTab = 1
-                } label: {
-                    ToolbarLogo()
-                }
-            )
-            
+            .navigationBarItems(trailing: LogoButton())
         }
         .onAppear {
             if loader.loaded {
@@ -102,7 +93,6 @@ struct PodcastView: View {
     }
 }
     
-
 struct PodcastView_Previews: PreviewProvider {
     static var previews: some View {
         PodcastView()

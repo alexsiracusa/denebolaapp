@@ -35,7 +35,7 @@ struct PostView: View {
         }
         .padding([.leading, .trailing])
         .navigationTitle(post.getTitle())
-        .navigationBarItems(trailing: ToolbarLogo())
+        .navigationBarItems(trailing: LogoButton())
     }
 }
 
@@ -46,11 +46,12 @@ struct PostView_Previews: PreviewProvider {
     }
 }
 
-private struct ContentRenderer: View {
+struct ContentRenderer: View {
     @StateObject private var webviewStore = WebViewStore()
     @State private var webviewHeight: CGFloat = 500
 
-    var htmlContent: String
+    var htmlContent: String?
+    var url: URL?
 
     var body: some View {
         WebView(webView: webviewStore.webView, pageViewIdealSize: $webviewHeight)
@@ -61,7 +62,12 @@ private struct ContentRenderer: View {
                 // Setup webview
                 webviewStore.webView.scrollView.isScrollEnabled = false
                 webviewStore.webView.scrollView.bounces = false
-                webviewStore.webView.loadHTMLString(htmlContent, baseURL: URL(string: "https://www.nshsdenebola.com"))
+
+                if let htmlContent = htmlContent {
+                    webviewStore.webView.loadHTMLString(htmlContent, baseURL: URL(string: "https://www.nshsdenebola.com"))
+                } else if let url = url {
+                    webviewStore.webView.load(URLRequest(url: url))
+                }
             }
     }
 }

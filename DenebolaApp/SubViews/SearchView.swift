@@ -32,13 +32,7 @@ struct SearchView: View {
         }
         //.padding([.leading, .trailing])
         .navigationBarTitle("Search \(category?.name ?? "Posts")", displayMode: .inline)
-        .navigationBarItems(trailing:
-            Button {
-                viewModel.selectedTab = 1
-            } label: {
-                ToolbarLogo()
-            }
-        )
+        .navigationBarItems(trailing: LogoButton())
     }
 }
 

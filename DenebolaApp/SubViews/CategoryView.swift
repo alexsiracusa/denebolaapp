@@ -42,11 +42,7 @@ struct CategoryView: View {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(.black)
                 }
-                Button {
-                    viewModel.selectedTab = 1
-                } label: {
-                    ToolbarLogo()
-                }
+                LogoButton()
             }
         )
     }

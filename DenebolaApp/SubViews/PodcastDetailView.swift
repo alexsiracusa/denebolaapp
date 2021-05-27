@@ -126,13 +126,7 @@ struct PodcastDetailView: View {
             }
         }
         .navigationBarTitle("", displayMode: .inline)
-        .navigationBarItems(trailing:
-            Button {
-                viewModel.selectedTab = 1
-            } label: {
-                ToolbarLogo()
-            }
-        )
+        .navigationBarItems(trailing: LogoButton())
     }
     
     func seek(to: Double) {

@@ -51,13 +51,7 @@ struct SocialView: View {
                 .padding()
             }
             .navigationBarTitle("South", displayMode: .inline)
-            .navigationBarItems(trailing:
-                Button {
-                    viewModel.selectedTab = 1
-                } label: {
-                    ToolbarLogo()
-                }
-            )
+            .navigationBarItems(trailing: LogoButton())
         }
     }
 }
@@ -263,7 +257,7 @@ struct CancelledRow: View {
     @State private var showingMore = false
     let cancelled: CancelledBlock
     let width: CGFloat
-    
+
     var body: some View {
         HStack(alignment: .center) {
             Text(cancelled.teacher.lastName.uppercased())
