@@ -16,37 +16,49 @@ struct SocialView: View {
 
     var body: some View {
         NavigationView {
-            ScrollView(/*@START_MENU_TOKEN@*/ .vertical/*@END_MENU_TOKEN@*/, showsIndicators: false) {
-                VStack(alignment: .leading) {
-                    Group {
-                        HStack {
-                            Text("Your Schedule")
-                                .font(.title)
-                                .bold()
-                            Spacer()
-                            Button(action: {showingSchedule.toggle()}) {
-                                Image(systemName: showingSchedule ? "calendar" : "list.dash")
+            GeometryReader { reader in
+                ScrollView(/*@START_MENU_TOKEN@*/ .vertical/*@END_MENU_TOKEN@*/, showsIndicators: false) {
+                    VStack(alignment: .leading) {
+                        Group {
+                            HStack {
+                                Text("Your Schedule")
+                                    .font(.title)
+                                    .bold()
+                                    .padding(.vertical, 5)
+                                Spacer()
+                                Button(action: { showingSchedule.toggle() }) {
+                                    Image(systemName: showingSchedule ? "calendar" : "list.dash")
+                                }
+                            }
+
+                            if showingSchedule {
+                                ScheduleListView(blockTimes: BlockTimes.blocksDay, blocks: ScheduleData.testMap, viewingIndex: $showingScheduleDay)
+                            } else {
+                                ScheduleView(blockTimes: BlockTimes.blocksDay, onDayTap: { showingScheduleDay = $0; showingSchedule = true })
                             }
                         }
-                        
 
-                        if showingSchedule {
-                            ScheduleListView(blockTimes: BlockTimes.blocksDay, blocks: ScheduleData.testMap, viewingIndex: $showingScheduleDay)
-                        } else {
-                            ScheduleView(blockTimes: BlockTimes.blocksDay, onDayTap: { showingScheduleDay = $0; showingSchedule = true })
+                        Group {
+                            Text("Cancelled Classes")
+                                .font(.title)
+                                .bold()
+                                .padding(.vertical, 5)
+
+                            CancelledList(list: CancelledBlock.test, width: reader.size.width * 0.5)
                         }
                     }
                 }
-            }.padding()
-        }
-        .navigationBarTitle("South", displayMode: .inline)
-        .navigationBarItems(trailing:
-            Button {
-                viewModel.selectedTab = 1
-            } label: {
-                ToolbarLogo()
+                .padding()
             }
-        )
+            .navigationBarTitle("South", displayMode: .inline)
+            .navigationBarItems(trailing:
+                Button {
+                    viewModel.selectedTab = 1
+                } label: {
+                    ToolbarLogo()
+                }
+            )
+        }
     }
 }
 
@@ -60,9 +72,13 @@ struct ScheduleData { // TEMPORARY
     var blocks: [BlockData]
 
     static let test = [
-        BlockData(block: "A", courseName: "Math", roomNumber: "103", teacher: "Donovan K"),
-        BlockData(block: "B", courseName: "Bio", roomNumber: "104", teacher: "Julia Yuru", status: .canceled),
-        BlockData(block: "C", courseName: "Directed Study", roomNumber: "9000", teacher: "Samuel Adams")
+        BlockData(block: "A", courseName: "Honors Precalculus", roomNumber: "4207", teacher: "Culpepper, Sarah"),
+        BlockData(block: "B", courseName: "Honors Biology (Lab)", roomNumber: "2102", teacher: "Estrada, Molly; McLaren, James", status: .canceled),
+        BlockData(block: "C", courseName: "Honors Junior English", roomNumber: "2304", teacher: "Arnaboldi, Dana"),
+        BlockData(block: "D", courseName: "Honors Chinese 5", roomNumber: "6116", teacher: "Chen, Lan Lan"),
+        BlockData(block: "E", courseName: "U.S. History ACP", roomNumber: "1306", teacher: "Kozuch, Michael"),
+        BlockData(block: "F", courseName: "Junior and Senior Wellness", roomNumber: "5138", teacher: "Aransky, Amy"),
+        BlockData(block: "G", courseName: "Honors Intro iOS Program Swift", roomNumber: "7107", teacher: "Stulin, Jeffrey")
     ]
 
     static var testMap: [String: BlockData] {
@@ -119,7 +135,7 @@ enum BlockTimes {
             BlockTime(block: "Flex", startTime: "3:10 PM", endTime: "3:55 PM")!
         ]
     ]
-    
+
     static let days: [String] = [
         "Monday",
         "Tuesday",
@@ -155,5 +171,122 @@ struct BlockTime: Identifiable {
             self.startTime = startTime
             self.endTime = endTime
         } else { return nil }
+    }
+}
+
+struct CancelledBlock: Identifiable {
+    enum BlocksCancelled {
+        case specific([String])
+        case all
+    }
+
+    let id = UUID()
+
+    let teacher: Teacher
+    let blocks: BlocksCancelled
+
+    static let test: [CancelledBlock] = [
+        CancelledBlock(teacher: Teacher(firstName: "ELIZABETH", lastName: "ASTONE"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "DAVID", lastName: "BEUTEL"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "ANNEMARIE", lastName: "BUSHEY"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "LAURIE", lastName: "CALLAHAN"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "FAYE", lastName: "CASSELL"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "SARAH", lastName: "CULPEPPER"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "JOHN", lastName: "CURLEY"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "LUCIA", lastName: "CURRAN"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "Kimberly", lastName: "Curtis"), blocks: .specific(["E", "G", "Community"])),
+        CancelledBlock(teacher: Teacher(firstName: "CHRISTINE", lastName: "DEPARI"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "ANN", lastName: "DINSMORE"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "SUZY", lastName: "DRUREY"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "NAOMI", lastName: "GABOVITCH"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "Talia", lastName: "Gallagher"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "DEBORAH", lastName: "HAHN"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "KELLY", lastName: "HENDERSON"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "GABRIELLE", lastName: "HURLEY"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "JEFFREY", lastName: "KNOEDLER"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "DIANNA", lastName: "KOBAYASHI"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "CATERINA MARIA", lastName: "LEONE"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "AARON", lastName: "LEWIS"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "RACHAEL", lastName: "MCNALLY"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "JAMES", lastName: "MEDEIROS"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "MICHAEL", lastName: "MOSBROOKER"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "ALLISON", lastName: "MURFIN MOYER"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "ALEXANDER", lastName: "PALILUNAS"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "MEGAN", lastName: "PAPPAS"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "THOMAS", lastName: "RAUBACH"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "JEANNETTE", lastName: "ROBERTSON"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "ALAN", lastName: "ROTATORI"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "CARA", lastName: "SHOREY"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "DANIELLA", lastName: "SPEZIALE"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "SARAH", lastName: "STYLE"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "ALEXANDRA", lastName: "VAN BUREN"), blocks: .all),
+        CancelledBlock(teacher: Teacher(firstName: "DAVID", lastName: "WEINTRAUB"), blocks: .all)
+    ]
+}
+
+struct Teacher: Identifiable {
+    let id = UUID()
+
+    let firstName: String
+    let lastName: String
+}
+
+struct CancelledList: View {
+    let list: [CancelledBlock]
+    let width: CGFloat
+
+    @State var alertShown = false
+    @State var selectedBlock: CancelledBlock? = nil
+
+    func getTextForSelectedBlock() -> Text {
+        switch self.selectedBlock!.blocks {
+            case .specific(let blocks):
+                return Text(blocks.joined(separator: ", "))
+            case .all:
+                return Text("All Blocks")
+        }
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            ForEach(list) { cancelled in
+
+                CancelledRow(cancelled: cancelled, width: width)
+
+                Divider()
+            }
+        }
+    }
+}
+
+struct CancelledRow: View {
+    @State private var showingMore = false
+    let cancelled: CancelledBlock
+    let width: CGFloat
+    
+    var body: some View {
+        HStack(alignment: .center) {
+            Text(cancelled.teacher.lastName.uppercased())
+                .frame(width: width, height: 0, alignment: .leading)
+            Text(cancelled.teacher.firstName.uppercased())
+
+            Spacer()
+
+            Image(systemName: showingMore ? "chevron.down" : "chevron.right")
+        }
+        .onTapGesture {
+            showingMore.toggle()
+        }
+
+        if showingMore {
+            switch cancelled.blocks {
+                case .specific(let blocks):
+                    Text(blocks.joined(separator: ", "))
+                        .foregroundColor(.secondary)
+                case .all:
+                    Text("All Blocks")
+                        .foregroundColor(.secondary)
+            }
+        }
     }
 }

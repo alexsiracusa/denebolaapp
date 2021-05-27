@@ -57,7 +57,6 @@ struct PodcastView: View {
                                 Text(loader.podcastTitle)
                                     .font(.headline)
                                     .bold()
-                                    .foregroundColor(.secondary)
                             }
                             .padding(.bottom)
                             Text(loader.podcastDiscription)

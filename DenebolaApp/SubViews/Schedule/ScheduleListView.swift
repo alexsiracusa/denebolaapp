@@ -18,7 +18,7 @@ struct ScheduleListView: View {
             Text(BlockTimes.days[viewingIndex])
             Spacer()
 
-            Button(action: { viewingIndex = (viewingIndex - 1) % blockTimes.count }) {
+            Button(action: { viewingIndex = (viewingIndex - 1 + blockTimes.count) % blockTimes.count }) {
                 Image(systemName: "arrow.left")
             }
             Button(action: { viewingIndex = (viewingIndex + 1) % blockTimes.count }) {
