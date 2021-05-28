@@ -36,7 +36,7 @@ struct PodcastSection: View {
             }
             
             Button(action: {
-                viewModel.selectedTab = 4
+                viewModel.selectedTab = 3
             }) {
                 HStack {
                     Spacer()

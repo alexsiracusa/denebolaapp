@@ -44,7 +44,7 @@ struct SocialView: View {
                                 .bold()
                                 .padding(.vertical, 5)
 
-                            CancelledList(list: CancelledBlock.test, width: reader.size.width * 0.5)
+                            CancelledList(list: CancelledBlock.test, width: reader.size.width * 0.4)
                         }
                     }
                 }
@@ -169,52 +169,56 @@ struct BlockTime: Identifiable {
 }
 
 struct CancelledBlock: Identifiable {
-    enum BlocksCancelled {
-        case specific([String])
-        case all
+    enum CancelledType {
+        case partial
+        case full
     }
 
     let id = UUID()
-
+    
     let teacher: Teacher
-    let blocks: BlocksCancelled
+    let cancelledType: CancelledType
+    let remarks: String
 
     static let test: [CancelledBlock] = [
-        CancelledBlock(teacher: Teacher(firstName: "ELIZABETH", lastName: "ASTONE"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "DAVID", lastName: "BEUTEL"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "ANNEMARIE", lastName: "BUSHEY"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "LAURIE", lastName: "CALLAHAN"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "FAYE", lastName: "CASSELL"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "SARAH", lastName: "CULPEPPER"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "JOHN", lastName: "CURLEY"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "LUCIA", lastName: "CURRAN"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "Kimberly", lastName: "Curtis"), blocks: .specific(["E", "G", "Community"])),
-        CancelledBlock(teacher: Teacher(firstName: "CHRISTINE", lastName: "DEPARI"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "ANN", lastName: "DINSMORE"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "SUZY", lastName: "DRUREY"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "NAOMI", lastName: "GABOVITCH"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "Talia", lastName: "Gallagher"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "DEBORAH", lastName: "HAHN"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "KELLY", lastName: "HENDERSON"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "GABRIELLE", lastName: "HURLEY"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "JEFFREY", lastName: "KNOEDLER"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "DIANNA", lastName: "KOBAYASHI"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "CATERINA MARIA", lastName: "LEONE"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "AARON", lastName: "LEWIS"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "RACHAEL", lastName: "MCNALLY"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "JAMES", lastName: "MEDEIROS"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "MICHAEL", lastName: "MOSBROOKER"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "ALLISON", lastName: "MURFIN MOYER"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "ALEXANDER", lastName: "PALILUNAS"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "MEGAN", lastName: "PAPPAS"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "THOMAS", lastName: "RAUBACH"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "JEANNETTE", lastName: "ROBERTSON"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "ALAN", lastName: "ROTATORI"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "CARA", lastName: "SHOREY"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "DANIELLA", lastName: "SPEZIALE"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "SARAH", lastName: "STYLE"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "ALEXANDRA", lastName: "VAN BUREN"), blocks: .all),
-        CancelledBlock(teacher: Teacher(firstName: "DAVID", lastName: "WEINTRAUB"), blocks: .all)
+        CancelledBlock(teacher: Teacher(firstName: "ARANSKY", lastName: "AMY"), cancelledType: .full, remarks: "E, F cancelled, in-person to library, check Schoology for update"),
+        CancelledBlock(teacher: Teacher(firstName: "ASTONE", lastName: "ELIZABETH"), cancelledType: .full, remarks: ""),
+        CancelledBlock(teacher: Teacher(firstName: "BEUTEL", lastName: "DAVID"), cancelledType: .full, remarks: "Classes canceled. In person students to library."),
+        CancelledBlock(teacher: Teacher(firstName: "BUSHEY", lastName: "ANNEMARIE"), cancelledType: .full, remarks: ""),
+        CancelledBlock(teacher: Teacher(firstName: "CallAHAN", lastName: "LAURIE"), cancelledType: .full, remarks: ""),
+        CancelledBlock(teacher: Teacher(firstName: "CASSELL", lastName: "FAYE"), cancelledType: .full, remarks: ""),
+        CancelledBlock(teacher: Teacher(firstName: "CULPEPPER", lastName: "SARAH"), cancelledType: .full, remarks: "E block and Community canceled (go to the library)"),
+        CancelledBlock(teacher: Teacher(firstName: "CURLEY", lastName: "JOHN"), cancelledType: .full, remarks: ""),
+        CancelledBlock(teacher: Teacher(firstName: "CURRAN", lastName: "LUCIA"), cancelledType: .full, remarks: ""),
+        CancelledBlock(teacher: Teacher(firstName: "Curtis", lastName: "Kimberly"), cancelledType: .full, remarks: "E, G, Community Cancelled, go to library"),
+        CancelledBlock(teacher: Teacher(firstName: "DEPARI", lastName: "CHRISTINE"), cancelledType: .full, remarks: ""),
+        CancelledBlock(teacher: Teacher(firstName: "DINSMORE", lastName: "ANN"), cancelledType: .full, remarks: ""),
+        CancelledBlock(teacher: Teacher(firstName: "DRUREY", lastName: "SUZY"), cancelledType: .full, remarks: "F,G blocks cancelled to library, 3rd lunch, Advisory to Gym B"),
+        CancelledBlock(teacher: Teacher(firstName: "GABOVITCH", lastName: "NAOMI"), cancelledType: .partial, remarks: ""),
+        CancelledBlock(teacher: Teacher(firstName: "Gallagher", lastName: "Talia"), cancelledType: .full, remarks: "F Block cancelled, go to the library and take 3rd lunch"),
+        CancelledBlock(teacher: Teacher(firstName: "HAHN", lastName: "DEBORAH"), cancelledType: .partial, remarks: "Morning absence only. F block in-person students to Library. F block students check Schoology for assignments. G block and Community WILL be held in person."),
+        CancelledBlock(teacher: Teacher(firstName: "HENDERSON", lastName: "KELLY"), cancelledType: .full, remarks: "E and G canceled - in person folks go to library."),
+        CancelledBlock(teacher: Teacher(firstName: "HURLEY", lastName: "GABRIELLE"), cancelledType: .full, remarks: ""),
+        CancelledBlock(teacher: Teacher(firstName: "KNOEDLER", lastName: "JEFFREY"), cancelledType: .full, remarks: "E block canceled report to library"),
+        CancelledBlock(teacher: Teacher(firstName: "KOBAYASHI", lastName: "DIANNA"), cancelledType: .full, remarks: "E Block and Community canceled. Report to library."),
+        CancelledBlock(teacher: Teacher(firstName: "LEWIS", lastName: "AARON"), cancelledType: .full, remarks: ""),
+        CancelledBlock(teacher: Teacher(firstName: "MCNallY", lastName: "RACHAEL"), cancelledType: .full, remarks: "Wed. FLEX Power History - see Schoology for instructions :-)"),
+        CancelledBlock(teacher: Teacher(firstName: "MEDEIROS", lastName: "JAMES"), cancelledType: .full, remarks: ""),
+        CancelledBlock(teacher: Teacher(firstName: "MOSBROOKER", lastName: "MICHAEL"), cancelledType: .full, remarks: "Classes/community cancelled report to library"),
+        CancelledBlock(teacher: Teacher(firstName: "MOYER", lastName: "allISON"), cancelledType: .partial, remarks: "E-block is canceled - go to room 6268. Contact Mr. Foster if you need assistance."),
+        CancelledBlock(teacher: Teacher(firstName: "PALILUNAS", lastName: "ALEXANDER"), cancelledType: .full, remarks: "G Block and Community Remote report to library"),
+        CancelledBlock(teacher: Teacher(firstName: "PAPPAS", lastName: "MEGAN"), cancelledType: .full, remarks: ""),
+        CancelledBlock(teacher: Teacher(firstName: "RAUBACH", lastName: "THOMAS"), cancelledType: .full, remarks: "F block and Commmunity canceled (Library) / FLEX on Zoom"),
+        CancelledBlock(teacher: Teacher(firstName: "ROBERTSON", lastName: "JEANNETTE"), cancelledType: .full, remarks: "all classes below are in room 2306: F Block (10th Honors English):cancelled, to library, 3rd lunchG Block (Seniors-Women in Lit): cancelled, go to library or go homeCommunity (10th): cancelled; go to library or go home.Flex: cancelled"),
+        CancelledBlock(teacher: Teacher(firstName: "ROTATORI", lastName: "ALAN"), cancelledType: .full, remarks: ""),
+        CancelledBlock(teacher: Teacher(firstName: "SHOREY", lastName: "CARA"), cancelledType: .full, remarks: "all classes cancelled, report to library. E, F, G Blocks see Weekly Learning Plan."),
+        CancelledBlock(teacher: Teacher(firstName: "SPEZIALE", lastName: "DANIELLA"), cancelledType: .full, remarks: "E block Cancelled class G block Cancelled classReport to Library"),
+        CancelledBlock(teacher: Teacher(firstName: "STYLE", lastName: "SARAH"), cancelledType: .full, remarks: ""),
+        CancelledBlock(teacher: Teacher(firstName: "BUREN", lastName: "ALEXANDRA"), cancelledType: .full, remarks: "G Block and Community Cancelled report to library"),
+        CancelledBlock(teacher: Teacher(firstName: "WEINTRAUB", lastName: "DAVID"), cancelledType: .full, remarks: "Community canceled. G-Block students should work on their projects report to library"),
+
+
+
     ]
 }
 
@@ -231,15 +235,6 @@ struct CancelledList: View {
 
     @State var alertShown = false
     @State var selectedBlock: CancelledBlock? = nil
-
-    func getTextForSelectedBlock() -> Text {
-        switch self.selectedBlock!.blocks {
-            case .specific(let blocks):
-                return Text(blocks.joined(separator: ", "))
-            case .all:
-                return Text("All Blocks")
-        }
-    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
@@ -260,6 +255,10 @@ struct CancelledRow: View {
 
     var body: some View {
         HStack(alignment: .center) {
+            Circle()
+                .foregroundColor(cancelled.cancelledType == .full ? .red : .yellow)
+                .frame(width: 10, height: 10)
+            
             Text(cancelled.teacher.lastName.uppercased())
                 .frame(width: width, height: 0, alignment: .leading)
             Text(cancelled.teacher.firstName.uppercased())
@@ -273,12 +272,12 @@ struct CancelledRow: View {
         }
 
         if showingMore {
-            switch cancelled.blocks {
-                case .specific(let blocks):
-                    Text(blocks.joined(separator: ", "))
+            switch cancelled.cancelledType {
+                case .full:
+                    Text("All Blocks Cancelled")
                         .foregroundColor(.secondary)
-                case .all:
-                    Text("All Blocks")
+                case .partial:
+                    Text(cancelled.remarks)
                         .foregroundColor(.secondary)
             }
         }
