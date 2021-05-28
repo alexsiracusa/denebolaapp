@@ -30,7 +30,7 @@ struct AboutView: View {
 
     @ViewBuilder private func Underline() -> some View {
         Rectangle()
-            .frame(height: 2)
+            .frame(height: 1)
             .frame(width: width)
             .foregroundColor(.accentColor)
             .padding(.leading, offset)
@@ -41,12 +41,23 @@ struct AboutView: View {
             HStack(alignment: .top) {
                 Spacer()
                 ForEach(TAB_NAMES, id: \.self) { name in
-                    VStack(spacing: 0) {
+
+                    Button(action: {
+                        currentPage = name
+                    }) {
                         Text(name)
                             .foregroundColor(.accentColor)
-                            .overlay(MoveUnderlineButton(offset: $offset, width: $width, onPressed: {
-                                currentPage = name
-                            }))
+                            .overlay(
+                                // Watch for page change and update offset/width
+                                GeometryReader { reader in
+                                    Spacer().onChange(of: currentPage) { _ in
+                                        if currentPage == name {
+                                            self.offset = reader.frame(in: .named("container")).minX
+                                            self.width = reader.size.width
+                                        }
+                                    }
+                                }
+                            )
                     }
 
                     Spacer()
@@ -85,7 +96,7 @@ struct AboutView: View {
                 }
                 .tag(TAB_NAMES[2])
             }
-            .tabViewStyle(PageTabViewStyle())
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
         }
         .padding()
         .onAppear {
@@ -93,24 +104,6 @@ struct AboutView: View {
                 guard let post = post else { return }
                 aboutPost = post
             })
-        }
-    }
-
-    private struct MoveUnderlineButton: View {
-        @Binding var offset: CGFloat
-        @Binding var width: CGFloat
-        var onPressed: () -> Void
-
-        var body: some View {
-            GeometryReader { geometry in
-                Button(action: {
-                    self.offset = geometry.frame(in: .named("container")).minX
-                    self.width = geometry.size.width
-                    onPressed()
-                }) {
-                    Rectangle().foregroundColor(.clear)
-                }
-            }
         }
     }
 }
