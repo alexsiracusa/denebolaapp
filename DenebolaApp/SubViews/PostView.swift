@@ -12,28 +12,34 @@ struct PostView: View {
     @EnvironmentObject var handler: APIHandler
     let post: Post
 
-    /// swiftui refuses to give any useful errors if it doesn't compile so just don't make errors
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading) {
                 // image
                 if let imageUrl = post.getFeaturedImageUrl() {
                     ImageView(url: imageUrl)
-                        .padding(.top)
                         .scaledToFill()
                 }
-                // title
-                Text(post.getTitle()).font(.largeTitle)
-                    .bold()
-                    .frame(alignment: .leading)
-                    .padding(.bottom, 5)
-                    .fixedSize(horizontal: false, vertical: true)
 
-                ContentRenderer(htmlContent: post.getHtmlContent())
-                    .padding(-5)
+                Group {
+                    // title
+                    Text(post.getTitle())
+                        .font(.largeTitle)
+                        .bold()
+                        .frame(alignment: .leading)
+                        .fixedSize(horizontal: false, vertical: true)
+                    
+                    Text(post.getDate())
+                        .fontWeight(.light)
+                        .padding(.bottom, 5)
+
+                    ContentRenderer(htmlContent: post.getHtmlContent())
+                        .padding(-6)
+                }
+                .padding(.horizontal)
             }
         }
-        .padding([.leading, .trailing])
+
         .navigationTitle(post.getTitle())
         .navigationBarItems(trailing: LogoButton())
     }
