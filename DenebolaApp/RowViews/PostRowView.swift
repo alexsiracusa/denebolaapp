@@ -53,7 +53,7 @@ struct PostRowView: View {
                     Text(post.getAuthor())
                         .font(.subheadline)
                         .foregroundColor(.black)
-                    Text(post.getDate())
+                    Text(post.getDateRelative())
                         .foregroundColor(.gray)
                         .font(.subheadline)
                 }.padding(.vertical, 4.0)

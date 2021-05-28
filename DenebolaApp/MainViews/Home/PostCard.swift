@@ -30,7 +30,9 @@ struct PostCard: View {
                 Text(post.getTitle())
                     .bold()
                     .font(textSize)
-                Text(post.getDate())
+                Text(post.getAuthor())
+                Text(post.getDateRelative())
+                    .foregroundColor(.secondary)
             }
             .foregroundColor(.black)
         }

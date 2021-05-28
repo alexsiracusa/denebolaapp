@@ -36,6 +36,10 @@ struct Post: Codable, Equatable, Identifiable {
         self.date.toISODate()?.toFormat(DATE_FORMAT) ?? self.date
     }
     
+    func getDateRelative() -> String {
+        self.date.toISODate()?.toRelative() ?? self.getDate()
+    }
+    
     func getFeaturedImageUrl() -> URL? {
         return self._embedded?.featuredMedia?[0].source_url?.asURL
     }
