@@ -14,50 +14,52 @@ struct ScheduleListView: View {
     @Binding var viewingIndex: Int
 
     var body: some View {
-        HStack {
-            Text(BlockTimes.days[viewingIndex])
-            Spacer()
+        VStack {
+            HStack {
+                Text(BlockTimes.days[viewingIndex])
+                Spacer()
 
-            Button(action: { viewingIndex = (viewingIndex - 1 + blockTimes.count) % blockTimes.count }) {
-                Image(systemName: "arrow.left")
-            }
-            Button(action: { viewingIndex = (viewingIndex + 1) % blockTimes.count }) {
-                Image(systemName: "arrow.right")
-            }
-        }.padding(.bottom, 15)
+                Button(action: { viewingIndex = (viewingIndex - 1 + blockTimes.count) % blockTimes.count }) {
+                    Image(systemName: "arrow.left")
+                }
+                Button(action: { viewingIndex = (viewingIndex + 1) % blockTimes.count }) {
+                    Image(systemName: "arrow.right")
+                }
+            }.padding(.bottom, 15)
 
-        VStack(alignment: .leading, spacing: 10) {
-            ForEach(blockTimes[viewingIndex]) { blockTime in
-                HStack(alignment: .top) {
-                    Text(blockTime.block)
-                        .bold()
-                        .padding(.trailing, 5)
+            VStack(alignment: .leading, spacing: 10) {
+                ForEach(blockTimes[viewingIndex]) { blockTime in
+                    HStack(alignment: .top) {
+                        Text(blockTime.block)
+                            .bold()
+                            .padding(.trailing, 5)
 
-                    if let block = blocks[blockTime.block] {
-                        VStack(alignment: .leading) {
-                            HStack {
-                                switch block.status {
-                                    case .normal:
-                                        Text(block.courseName)
-                                    case .canceled:
-                                        HStack {
+                        if let block = blocks[blockTime.block] {
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    switch block.status {
+                                        case .normal:
                                             Text(block.courseName)
-                                                .strikethrough(color: .red)
-                                            Text("Cancelled")
-                                                .foregroundColor(.red)
-                                        }
+                                        case .canceled:
+                                            HStack {
+                                                Text(block.courseName)
+                                                    .strikethrough(color: .red)
+                                                Text("Cancelled")
+                                                    .foregroundColor(.red)
+                                            }
+                                    }
                                 }
-                            }
-                            HStack {
-                                Text(block.teacher)
-                                Spacer()
-                                Text(block.roomNumber)
+                                HStack {
+                                    Text(block.teacher)
+                                    Spacer()
+                                    Text(block.roomNumber)
+                                }
                             }
                         }
                     }
-                }
 
-                Divider()
+                    Divider()
+                }
             }
         }
     }

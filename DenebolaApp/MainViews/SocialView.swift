@@ -17,9 +17,9 @@ struct SocialView: View {
     var body: some View {
         NavigationView {
             GeometryReader { reader in
-                ScrollView(/*@START_MENU_TOKEN@*/ .vertical/*@END_MENU_TOKEN@*/, showsIndicators: false) {
-                    VStack(alignment: .leading) {
-                        Group {
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack(alignment: .leading, spacing: 0) {
+                        VStack {
                             HStack {
                                 Text("Your Schedule")
                                     .font(.title)
@@ -37,6 +37,7 @@ struct SocialView: View {
                                 ScheduleView(blockTimes: BlockTimes.blocksDay, onDayTap: { showingScheduleDay = $0; showingSchedule = true })
                             }
                         }
+                        .padding(.bottom, 40)
 
                         Group {
                             Text("Cancelled Classes")
@@ -48,7 +49,7 @@ struct SocialView: View {
                         }
                     }
                 }
-                .padding()
+                .padding(.horizontal)
             }
             .navigationBarTitle("South", displayMode: .inline)
             .navigationBarItems(trailing: LogoButton())
