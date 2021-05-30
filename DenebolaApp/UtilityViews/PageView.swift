@@ -15,7 +15,7 @@ struct PageView<Page: View>: View {
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             PageViewController(pages: pages, currentPage: $currentPage)
-            
+
             if usePageIndicator {
                 PageControl(numberOfPages: pages.count, currentPage: $currentPage)
             }

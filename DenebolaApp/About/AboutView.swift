@@ -87,7 +87,6 @@ struct AboutView: View {
                 } label: {
                     ToolbarLogo()
                 }
-                //LogoButton()
         )
     }
 }
