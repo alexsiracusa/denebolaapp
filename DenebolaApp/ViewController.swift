@@ -32,37 +32,18 @@ struct ViewController: View {
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         UINavigationBar.appearance().compactAppearance = appearance
     }
+    
+    let tabs : [Tab] = [HomeTab(), FeedTab(), PodcastTab(), ScheduleTab()]
 
     var body: some View {
         TabView(selection: $viewModel.selectedTab) {
-            HomeView()
-                .tabItem {
-                    Image(systemName: "house")
-                    Text("Home")
-                }
-                .tag(1)
-
-            CategoriesView()
-                .tabItem {
-                    Image(systemName: "newspaper")
-                    Text("Feed")
-                }
-                .tag(2)
-
-            PodcastView()
-                .environmentObject(player)
-                .tabItem {
-                    Image(systemName: "headphones")
-                    Text("Podcast")
-                }
-                .tag(3)
-
-            SocialView()
-                .tabItem {
-                    Image(systemName: "person")
-                    Text("South")
-                }
-                .tag(4)
+            ForEach(0..<tabs.count, id: \.self) { n in
+                let tab = tabs[n]
+                tab.content
+                    .tabItem {
+                        tab.tabIcon
+                    }
+            }
         }
         .accentColor(.orange)
     }
