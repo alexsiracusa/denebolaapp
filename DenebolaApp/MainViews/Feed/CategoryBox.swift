@@ -37,8 +37,9 @@ struct CategoryBox: View {
                     CategoryView(category: category, style: style)
                 ) {
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.gray)
+                        .fill(Color.white)
                         .brightness(0.3)
+                        .shadow(color: Color.black.opacity(0.3), radius: 2.0, x: 1.0, y: 1.0)
                 }
             }
         }

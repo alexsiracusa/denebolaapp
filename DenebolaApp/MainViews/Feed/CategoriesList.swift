@@ -28,6 +28,7 @@ struct CategoriesList: View {
                                 CategoryBox(category: Categories.allCases[2 * n + 1], style: feedStyle)
                             }
                         }
+                        .padding([.top, .bottom])
                         .fixedSize()
                     }
                 }
