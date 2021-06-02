@@ -9,13 +9,18 @@ import Foundation
 import SwiftUI
 
 class PodcastTab: Tab {
-    override var tabIcon: AnyView {
+    var tab_icon: AnyView = PodcastTab.tab_icon_default
+    static var tab_icon_default: AnyView {
         AnyView(
             VStack {
                 Image(systemName: "headphones")
                 Text("Podcast")
             }
         )
+    }
+    
+    override var tabIcon: AnyView {
+        tab_icon
     }
     override var content: AnyView {
         AnyView(

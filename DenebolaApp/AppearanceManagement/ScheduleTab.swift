@@ -9,13 +9,18 @@ import Foundation
 import SwiftUI
 
 class ScheduleTab: Tab {
-    override var tabIcon: AnyView {
+    var tab_icon: AnyView = ScheduleTab.tab_icon_default
+    static var tab_icon_default: AnyView {
         AnyView(
             VStack {
                 Image(systemName: "person")
                 Text("South")
             }
         )
+    }
+    
+    override var tabIcon: AnyView {
+        tab_icon
     }
     override var content: AnyView {
         AnyView(

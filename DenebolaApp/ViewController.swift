@@ -31,9 +31,21 @@ struct ViewController: View {
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         UINavigationBar.appearance().compactAppearance = appearance
+        
+        //setting up tab styles
+        let home = HomeTab()
+        
+        let feed = FeedTab()
+        feed.feedStyle = .normal
+        
+        let podcast = PodcastTab()
+        
+        let schedule = ScheduleTab()
+        
+        self.tabs = [home, feed, podcast, schedule]
     }
     
-    let tabs : [Tab] = [HomeTab(), FeedTab(), PodcastTab(), ScheduleTab()]
+    var tabs : [Tab]
 
     var body: some View {
         TabView(selection: $viewModel.selectedTab) {

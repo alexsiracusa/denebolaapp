@@ -12,6 +12,7 @@ struct CategoriesView: View {
     @EnvironmentObject private var viewModel: ViewModelData
 
     @State var selectedCategory: Int? = nil
+    var style: FeedStyle = .normal
 
     var body: some View {
         NavigationView {
@@ -20,7 +21,7 @@ struct CategoriesView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack() {
                             ForEach(Categories.allCases, id: \.rawValue.0) { category in
-                                CategoryButton(category: category)
+                                CategoryButton(category: category, style: style)
                             }
                             Rectangle()
                                 .frame(width: 20)
@@ -38,7 +39,7 @@ struct CategoriesView: View {
 
                     Spacer(minLength: 15)
 
-                    PostFeed(category: nil)
+                    PostFeed(category: nil, style: style)
                 }
             }
             .navigationBarTitle("Feed", displayMode: .inline)

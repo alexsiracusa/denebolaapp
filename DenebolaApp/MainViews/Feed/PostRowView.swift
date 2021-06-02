@@ -10,37 +10,24 @@ import SwiftUI
 
 struct PostRowView: View {
     let post: Post
-    var style: Style = .floating
-
-    enum Style {
-        case floating
-        case normal
-    }
+    var style: FeedStyle = .floating
 
     var body: some View {
         HStack(alignment: .top) {
             if let thumbnailImageURL = post.getThumbnailSizeUrl(size: "medium") {
                 ImageView(url: thumbnailImageURL)
                     .scaledToFill()
-                    .frame(width: style == .floating ? 160 : 130, height: 100)
-                    .aspectRatio(style == .floating ? 1.6 : 1.3, contentMode: .fit)
-                    .cornerRadius(style == .floating ? 0.0 : 5.0)
+                    .frame(width: style == .floating || style == .normal ? 160 : nil, height: 100)
+                    .aspectRatio(style == .floating || style == .normal ? 1.6 : nil, contentMode: .fit)
+                    .cornerRadius(style == .normal ? 5.0 : 0.0)
             } else {
                 Image("DenebolaLogo")
                     .resizable()
                     .cornerRadius(style == .floating ? 0.0 : 5.0)
                     .frame(width: 100, height: 100)
             }
-
-            // title + author + date
-//            NavigationLink(destination:
-//                PostView(post: post)
-//                    .navigationBarTitle(Text(""), displayMode: .inline)
-//            ) {
-
-//            }
             NavigationLink(destination: PostView(post: post)
-                            .navigationBarTitle(Text(""), displayMode: .inline)
+                .navigationBarTitle(Text(""), displayMode: .inline)
             ) {
                 VStack(alignment: .leading) {
                     // title
@@ -73,7 +60,9 @@ struct PostRowView: View {
 
 struct PostRowView_Previews: PreviewProvider {
     static var previews: some View {
-        PostRowView(post: Post.default)
+        PostRowView(post: Post.default, style: .floating)
+            .environmentObject(APIHandler())
+        PostRowView(post: Post.default, style: .normal)
             .environmentObject(APIHandler())
     }
 }
