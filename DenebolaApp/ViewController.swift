@@ -33,22 +33,15 @@ struct ViewController: View {
         UINavigationBar.appearance().compactAppearance = appearance
         
         //setting up tab styles
-        let home = HomeTab()
-        
-        let feed = FeedTab()
-        feed.feedStyle = .normal
-        //feed.feedStyle = .floating
-        feed.categoriesStyle = .image
-        //feed.categoriesStyle = .box
-        
-        let podcast = PodcastTab()
-        
-        let schedule = ScheduleTab()
-        
-        self.tabs = [home, feed, podcast, schedule]
+        self.tabManager = TabManager()
+        tabManager.feedStyle = .normal
+        tabManager.categoriesStyle = .image
     }
     
-    var tabs : [Tab]
+    @State var tabManager: TabManager
+    var tabs : [Tab] {
+        return tabManager.tabs
+    }
 
     var body: some View {
         TabView(selection: $viewModel.selectedTab) {
@@ -59,6 +52,12 @@ struct ViewController: View {
                         tab.tabIcon
                     }
             }
+            SettingsView(manager: tabManager)
+                .tabItem {
+                    Image(systemName: "gearshape")
+                    Text("Settings")
+                }
+                .tag(20)
         }
         .accentColor(.orange)
     }

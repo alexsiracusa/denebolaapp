@@ -31,12 +31,12 @@ class FeedTab: Tab {
     }
 }
 
-enum FeedStyle {
-    case floating
-    case normal
+enum FeedStyle: String, CaseIterable {
+    case normal = "normal"
+    case floating = "floating"
 }
 
-enum CategoriesStyle {
-    case image
-    case box
+enum CategoriesStyle: String, CaseIterable {
+    case image = "image"
+    case box = "box"
 }
