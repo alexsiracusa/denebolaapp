@@ -37,6 +37,9 @@ struct ViewController: View {
         
         let feed = FeedTab()
         feed.feedStyle = .normal
+        //feed.feedStyle = .floating
+        feed.categoriesStyle = .image
+        //feed.categoriesStyle = .box
         
         let podcast = PodcastTab()
         

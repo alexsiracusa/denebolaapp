@@ -26,7 +26,7 @@ class FeedTab: Tab {
     }
     override var content: AnyView {
         AnyView(
-            CategoriesView(style: feedStyle)
+            CategoriesView(style: feedStyle, categoriesStyle: categoriesStyle)
         )
     }
 }

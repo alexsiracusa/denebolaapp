@@ -13,23 +13,13 @@ struct CategoriesView: View {
 
     @State var selectedCategory: Int? = nil
     var style: FeedStyle = .normal
+    var categoriesStyle = CategoriesStyle.image
 
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading) {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack() {
-                            ForEach(Categories.allCases, id: \.rawValue.0) { category in
-                                CategoryButton(category: category, style: style)
-                            }
-                            Rectangle()
-                                .frame(width: 20)
-                                .foregroundColor(.clear)
-                        }
-                        .padding(.top, 15)
-                        .padding([.leading, .trailing])
-                    }
+                    CategoriesList(style: categoriesStyle, feedStyle: style)
                     
                     Spacer(minLength: 15)
 
@@ -41,6 +31,7 @@ struct CategoriesView: View {
 
                     PostFeed(category: nil, style: style)
                 }
+                .padding([.top, .bottom], 15)
             }
             .navigationBarTitle("Feed", displayMode: .inline)
             .navigationBarItems(
