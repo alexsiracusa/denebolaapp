@@ -29,8 +29,8 @@ struct PostSection: View {
                         PostCard(post: posts[2], textSize: .subheadline)
                     }
                     
-                    PostRowView(post: posts[3], style: .normal)
-                    PostRowView(post: posts[4], style: .normal)
+                    PostRowView(post: posts[3])
+                    PostRowView(post: posts[4])
                 }
             }
             

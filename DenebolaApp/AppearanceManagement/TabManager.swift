@@ -14,11 +14,6 @@ class TabManager: ObservableObject {
     var podcast: PodcastTab? = PodcastTab()
     var schedule: ScheduleTab? = ScheduleTab()
     
-    var feedStyle: FeedStyle = .normal {
-        didSet {
-            self.feed?.feedStyle = feedStyle
-        }
-    }
     var categoriesStyle: CategoriesStyle = .image {
         didSet {
             self.feed?.categoriesStyle = categoriesStyle

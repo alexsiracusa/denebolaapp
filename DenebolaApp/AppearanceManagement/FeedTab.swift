@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 class FeedTab: Tab {
-    var feedStyle = FeedStyle.normal
     var categoriesStyle = CategoriesStyle.image
     var tab_icon: AnyView = FeedTab.tab_icon_default
     static var tab_icon_default: AnyView {
@@ -26,14 +25,9 @@ class FeedTab: Tab {
     }
     override var content: AnyView {
         AnyView(
-            CategoriesView(style: feedStyle, categoriesStyle: categoriesStyle)
+            CategoriesView(categoriesStyle: categoriesStyle)
         )
     }
-}
-
-enum FeedStyle: String, CaseIterable {
-    case normal = "normal"
-    case floating = "floating"
 }
 
 enum CategoriesStyle: String, CaseIterable {

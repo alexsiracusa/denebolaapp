@@ -10,11 +10,9 @@ import SwiftUI
 struct PostFeed: View {
     @EnvironmentObject var handler: APIHandler
     @StateObject private var loader: ScrollViewLoader
-    var style: FeedStyle = .normal
 
-    init(category: Int? = nil, style: FeedStyle = .normal) {
+    init(category: Int? = nil) {
         _loader = StateObject(wrappedValue: ScrollViewLoader(category: category))
-        self.style = style
     }
     
 
@@ -22,7 +20,7 @@ struct PostFeed: View {
         if loader.posts.count != 0 {
             LazyVStack(spacing: 10) {
                 ForEach(loader.posts) { post in
-                    PostRowView(post: post, style: style)
+                    PostRowView(post: post)
                         .onAppear {
                             loader.loadMorePostsIfNeeded(currentItem: post)
                         }

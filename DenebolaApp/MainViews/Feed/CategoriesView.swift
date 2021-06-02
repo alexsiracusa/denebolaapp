@@ -12,14 +12,13 @@ struct CategoriesView: View {
     @EnvironmentObject private var viewModel: ViewModelData
 
     @State var selectedCategory: Int? = nil
-    var style: FeedStyle = .normal
     var categoriesStyle = CategoriesStyle.image
 
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading) {
-                    CategoriesList(style: categoriesStyle, feedStyle: style)
+                    CategoriesList(style: categoriesStyle)
                     
                     Spacer(minLength: 15)
 
@@ -29,7 +28,7 @@ struct CategoriesView: View {
 
                     Spacer(minLength: 15)
 
-                    PostFeed(category: nil, style: style)
+                    PostFeed(category: nil)
                 }
                 .padding([.top, .bottom], 15)
             }

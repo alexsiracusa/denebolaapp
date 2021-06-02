@@ -34,7 +34,6 @@ struct ViewController: View {
         
         //setting up tab styles
         self.tabManager = TabManager()
-        tabManager.feedStyle = .normal
         tabManager.categoriesStyle = .image
     }
     

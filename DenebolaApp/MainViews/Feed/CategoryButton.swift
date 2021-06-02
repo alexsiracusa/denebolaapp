@@ -10,7 +10,6 @@ import SwiftUI
 struct CategoryButton: View {
     let size: CGFloat = 100
     let category: Categories
-    var style: FeedStyle = .normal
     var id: Int {
         return category.id
     }
@@ -34,7 +33,7 @@ struct CategoryButton: View {
                 }
                 .zIndex(2)
                 NavigationLink(destination:
-                    CategoryView(category: category, style: style)
+                    CategoryView(category: category)
                 ) {
                     image
                         .resizable()

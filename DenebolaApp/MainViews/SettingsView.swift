@@ -12,12 +12,6 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             Form {
-                Picker(selection: $manager.feedStyle, label: Text("Feed Style")) {
-                    ForEach(FeedStyle.allCases, id: \.self) {
-                        Text("\($0.rawValue)").tag($0)
-                    }
-                }
-                .pickerStyle(SegmentedPickerStyle())
                 
                 Picker(selection: $manager.categoriesStyle, label: Text("Categories Style")) {
                     ForEach(CategoriesStyle.allCases, id: \.self) {

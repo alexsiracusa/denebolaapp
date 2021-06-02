@@ -10,20 +10,19 @@ import SwiftUI
 
 struct PostRowView: View {
     let post: Post
-    var style: FeedStyle = .floating
 
     var body: some View {
         HStack(alignment: .top) {
             if let thumbnailImageURL = post.getThumbnailSizeUrl(size: "medium") {
                 ImageView(url: thumbnailImageURL)
                     .scaledToFill()
-                    .frame(width: style == .floating || style == .normal ? 160 : nil, height: 100)
-                    .aspectRatio(style == .floating || style == .normal ? 1.6 : nil, contentMode: .fit)
-                    .cornerRadius(style == .normal ? 5.0 : 0.0)
+                    .frame(width: 160, height: 100)
+                    .aspectRatio(1.6, contentMode: .fit)
+                    .cornerRadius(5.0)
             } else {
                 Image("DenebolaLogo")
                     .resizable()
-                    .cornerRadius(style == .floating ? 0.0 : 5.0)
+                    //.cornerRadius(style == .floating ? 0.0 : 5.0)
                     .frame(width: 100, height: 100)
             }
             NavigationLink(destination: PostView(post: post)
@@ -49,20 +48,20 @@ struct PostRowView: View {
             }
         }
         .frame(height: 100)
-        .cornerRadius(style == .floating ? 10.0 : 0.0)
-        .background(style == .floating ?
-            RoundedRectangle(cornerRadius: 10.0)
-            .fill(Color.white)
-            .shadow(color: Color.gray.opacity(0.3), radius: 2.0, x: 1.0, y: 1.0)
-            : nil)
+//        .cornerRadius(style == .floating ? 10.0 : 0.0)
+//        .background(style == .floating ?
+//            RoundedRectangle(cornerRadius: 10.0)
+//            .fill(Color.white)
+//            .shadow(color: Color.gray.opacity(0.3), radius: 2.0, x: 1.0, y: 1.0)
+//            : nil)
     }
 }
 
 struct PostRowView_Previews: PreviewProvider {
     static var previews: some View {
-        PostRowView(post: Post.default, style: .floating)
+        PostRowView(post: Post.default)
             .environmentObject(APIHandler())
-        PostRowView(post: Post.default, style: .normal)
+        PostRowView(post: Post.default)
             .environmentObject(APIHandler())
     }
 }

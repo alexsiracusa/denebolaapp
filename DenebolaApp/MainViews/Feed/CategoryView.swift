@@ -11,7 +11,6 @@ struct CategoryView: View {
     @EnvironmentObject var handler: APIHandler
     @EnvironmentObject private var viewModel: ViewModelData
     var category: Categories
-    var style: FeedStyle = .normal
     
     @State var isActive = false
     
@@ -22,7 +21,7 @@ struct CategoryView: View {
                 Text("Latest Posts")
                     .font(.headline)
                     .padding(.leading)
-                PostFeed(category: category.id, style: style)
+                PostFeed(category: category.id)
             }
             
             //Navigation Link to SearchView

@@ -10,7 +10,6 @@ import SwiftUI
 struct CategoryBox: View {
     let size: CGFloat = 135
     let category: Categories
-    var style: FeedStyle = .normal
     var id: Int {
         return category.id
     }
@@ -34,7 +33,7 @@ struct CategoryBox: View {
                 }
                 .zIndex(2)
                 NavigationLink(destination:
-                    CategoryView(category: category, style: style)
+                    CategoryView(category: category)
                 ) {
                     RoundedRectangle(cornerRadius: 10)
                         .fill(Color.white)
