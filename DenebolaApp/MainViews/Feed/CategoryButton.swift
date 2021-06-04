@@ -11,21 +11,11 @@ struct CategoryButton: View {
     @EnvironmentObject var defaultImage: DefaultImage
     let size: CGFloat = 100
     let category: SimpleCategory
-    @State var image: Image?
     var id: Int {
         return category.id
     }
     var name: String {
         return category.name
-    }
-    var imageURL: URL {
-        guard let strURL = category.image?.url else {
-            return URL(string: "")!
-        }
-        guard let url = URL(string: strURL) else {
-            return URL(string: "")!
-        }
-        return url
     }
 
     var body: some View {
@@ -41,49 +31,39 @@ struct CategoryButton: View {
                 }
                 .zIndex(2)
                 NavigationLink(destination:
-                    CategoryView(category: category, image: image)
+                    CategoryView(category: category, imageURL: category.imageURL == nil ? defaultImage.imageURL : category.imageURL!)
                 ) {
-                    if let image = image {
-                        image
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: size, height: size)
-                            .aspectRatio(1.0, contentMode: .fit)
-                            .clipped()
-                            .cornerRadius(10)
-                            .zIndex(1)
-                            .overlay(LinearGradient(gradient: Gradient(colors: [.clear, .black]), startPoint: UnitPoint(x: 0.5, y: 0.8), endPoint: .bottom)
-                                .cornerRadius(10)
-                                .opacity(0.25)
-                                // .brightness(0.7)
-                            )
+                    if let url = category.imageURL {
+                        ImageView(url: url)
+                            .asCategoryButton(size: size)
                     } else {
-                        defaultImage.image
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: size, height: size)
-                            .aspectRatio(1.0, contentMode: .fit)
-                            .clipped()
-                            .cornerRadius(10)
-                            .zIndex(1)
-                            .overlay(LinearGradient(gradient: Gradient(colors: [.clear, .black]), startPoint: UnitPoint(x: 0.5, y: 0.8), endPoint: .bottom)
-                                .cornerRadius(10)
-                                .opacity(0.25)
-                                // .brightness(0.7)
-                            )
+                        ImageView(url: defaultImage.imageURL)
+                            .asCategoryButton(size: size)
                     }
                 }
             }
         }
         .frame(width: size, height: size)
         .onAppear {
-            if let url = category.imageURL {
-                JSONLoader.loadImage(url: url) {image, error in
-                    guard let image = image else {return}
-                    self.image = image
-                }
-            }
         }
+    }
+}
+
+extension View {
+    func asCategoryButton(size: CGFloat) -> AnyView {
+        AnyView(
+            self
+                .scaledToFill()
+                .frame(width: size, height: size)
+                .aspectRatio(1.0, contentMode: .fit)
+                .clipped()
+                .cornerRadius(10)
+                .zIndex(1)
+                .overlay(LinearGradient(gradient: Gradient(colors: [.clear, .black]), startPoint: UnitPoint(x: 0.5, y: 0.8), endPoint: .bottom)
+                    .cornerRadius(10)
+                    .opacity(0.25)
+                )
+        )
     }
 }
 

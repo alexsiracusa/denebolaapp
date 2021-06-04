@@ -9,10 +9,11 @@ import Foundation
 import SwiftUI
 
 class DefaultImage: ObservableObject {
-    @Published var image: Image = Image("DenebolaLogoNoBackground")
+    @Published var imageURL: URL = URL(string: "https://lh3.googleusercontent.com/proxy/RXdtlKqWTwdbnHZ4JEL6j-eezStBHbtX5pS7Sy3mXZu_sV4e3kw8FYYhO6vkv7b5uTOEHa9sJjbSavSaYZsxa7Ih9Ds70g7wGxlZCoH226z7rk4LbYo2WRFeZo7hr4dRaxPgw7ItfbLa")!
     
     init() {}
-    init(_ image: Image) {
-        self.image = image
+    init(_ url: String) {
+        guard let url = URL(string: url) else {return}
+        self.imageURL = url
     }
 }

@@ -54,6 +54,5 @@ struct PostFeed: View {
 struct PostFeed_Previews: PreviewProvider {
     static var previews: some View {
         PostFeed(domain: "https://nshsdenebola.com")
-            .environmentObject(WordpressAPIHandler())
     }
 }

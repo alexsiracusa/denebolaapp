@@ -12,14 +12,14 @@ struct CategoryView: View {
     @EnvironmentObject private var viewModel: ViewModelData
     @EnvironmentObject var defaultImage: DefaultImage
     var category: SimpleCategory
-    var image: Image?
+    var imageURL: URL
     
     @State var isActive = false
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                CategoryBanner(category: category, image: image == nil ? defaultImage.image : image!)
+                CategoryBanner(category: category, imageURL: imageURL)
                 Text("Latest Posts")
                     .font(.headline)
                     .padding(.leading)
@@ -52,7 +52,7 @@ struct CategoryView: View {
 
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryView(category: SimpleCategory(id: 7, name: "Opinions", image: nil))
+        CategoryView(category: SimpleCategory(id: 7, name: "Opinions", image: nil), imageURL: DefaultImage().imageURL)
             .environmentObject(WordpressAPIHandler())
             .environmentObject(DefaultImage())
     }

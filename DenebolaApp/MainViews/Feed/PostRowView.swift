@@ -21,8 +21,8 @@ struct PostRowView: View {
                     .aspectRatio(1.6, contentMode: .fit)
                     .cornerRadius(5.0)
             } else {
-                defaultImage.image
-                    .resizable()
+                ImageView(url: defaultImage.imageURL)
+                    //.resizable()
                     .cornerRadius(5.0)
                     .frame(width: 100, height: 100)
             }

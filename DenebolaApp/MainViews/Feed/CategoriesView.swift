@@ -80,12 +80,7 @@ struct CategoriesView: View {
         handler.domain = site.url
         currentURL = site.url
         if let url = URL(string: site.defaultImage.url) {
-            JSONLoader.loadImage(url: url) {image, error in
-                guard let image = image else {return}
-                DispatchQueue.main.async {
-                    self.defaultImage.image = image
-                }
-            }
+            defaultImage.imageURL = url
         }
     }
     

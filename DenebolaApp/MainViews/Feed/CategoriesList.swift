@@ -25,7 +25,6 @@ struct CategoriesList: View {
 
 struct CategoriesList_Previews: PreviewProvider {
     static var previews: some View {
-        //CategoriesList(style: .image, feedStyle: .normal)
         CategoriesList(categories: Wordpress.default.featuredCategories)
             .environmentObject(DefaultImage())
     }

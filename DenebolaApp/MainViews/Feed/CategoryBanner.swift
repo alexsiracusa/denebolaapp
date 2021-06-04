@@ -9,11 +9,11 @@ import SwiftUI
 
 struct CategoryBanner: View {
     let category: SimpleCategory
-    let image: Image
+    let imageURL: URL
     
     var body: some View {
-        image
-            .resizable()
+        ImageView(url: imageURL)
+            //.resizable()
             .scaledToFill()
             .frame(height: 200)
             .aspectRatio(2.0, contentMode: .fit)
@@ -40,6 +40,6 @@ struct CategoryBanner: View {
 
 struct CategoryBanner_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryBanner(category: SimpleCategory(id: 7, name: "Opinions", image: nil), image: Image("DenebolaLogo"))
+        CategoryBanner(category: SimpleCategory(id: 7, name: "Opinions", image: nil), imageURL: DefaultImage().imageURL)
     }
 }
