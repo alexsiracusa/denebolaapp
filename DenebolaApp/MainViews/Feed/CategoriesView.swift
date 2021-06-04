@@ -19,7 +19,7 @@ struct CategoriesView: View {
             updateWordpress()
         }
     }
-    @State var selectedCategory: Int? = nil
+    @State var loader: ScrollViewLoader = ScrollViewLoader(domain: "")
     
     init(sites: [Wordpress]) {
         self.sites = sites
@@ -40,7 +40,6 @@ struct CategoriesView: View {
                 .pickerStyle(MenuPickerStyle())
                 if let site = currentSite {
                     VStack(alignment: .leading) {
-                        Text(currentURL)
                         CategoriesList(categories: site.featuredCategories)
                         
                         Spacer(minLength: 15)
@@ -51,13 +50,12 @@ struct CategoriesView: View {
                         
                         Spacer(minLength: 15)
                         
-                        PostFeed(domain: currentURL)
+                        //PostFeed(domain: site.url)
+                        PostFeed(loader: loader)
                     }
                     .padding([.top, .bottom], 15)
                 } else {
                     Text("There are no sites for this school")
-                    Text("\(sites.count)")
-                    Text("\(currentSite == nil ? "true" : "false")")
                 }
             }
             .navigationBarTitle("Feed", displayMode: .inline)
@@ -83,6 +81,7 @@ struct CategoriesView: View {
         guard let site = currentSite else {return}
         handler.domain = site.url
         currentURL = site.url
+        self.loader = ScrollViewLoader(domain: currentURL)
         if let url = URL(string: site.defaultImage.url) {
             JSONLoader.loadImage(url: url) {image, error in
                 guard let image = image else {return}
