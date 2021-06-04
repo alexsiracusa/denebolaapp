@@ -44,6 +44,8 @@ struct CategoryButton: View {
                 ) {
                     image
                         .resizable()
+                        .aspectRatio(1.0, contentMode: .fit)
+                        .clipped()
                         .cornerRadius(10)
                         .zIndex(1)
                         .overlay(LinearGradient(gradient: Gradient(colors: [.clear, .black]), startPoint: UnitPoint(x: 0.5, y: 0.8), endPoint: .bottom)

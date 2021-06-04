@@ -14,7 +14,10 @@ struct CategoryBanner: View {
     var body: some View {
         image
             .resizable()
-            .scaledToFit()
+            .scaledToFill()
+            .frame(height: 200)
+            .aspectRatio(2.0, contentMode: .fit)
+            .clipped()
             .overlay(
                 LinearGradient(gradient: Gradient(colors: [.clear, .black]), startPoint: UnitPoint(x: 0.5, y: 0.6), endPoint: .bottom)
                 .opacity(0.25)
