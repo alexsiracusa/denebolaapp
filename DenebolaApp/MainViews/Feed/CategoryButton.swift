@@ -11,9 +11,6 @@ struct CategoryButton: View {
     @EnvironmentObject var defaultImage: DefaultImage
     let size: CGFloat = 100
     let category: SimpleCategory
-    var id: Int {
-        return category.id
-    }
     var name: String {
         return category.name
     }
@@ -37,7 +34,7 @@ struct CategoryButton: View {
                         ImageView(url: url)
                             .asCategoryButton(size: size)
                     } else {
-                        ImageView(url: defaultImage.imageURL)
+                        ImageView(url: self.defaultImage.imageURL)
                             .asCategoryButton(size: size)
                     }
                 }

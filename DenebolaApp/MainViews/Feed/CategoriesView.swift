@@ -14,11 +14,7 @@ struct CategoriesView: View {
 
     @State var sites: [Wordpress]
     @State var currentURL: String = ""
-    @State var currentSite: Wordpress? = nil {
-        didSet {
-            updateWordpress()
-        }
-    }
+    @State var currentSite: Wordpress? = nil
     
     init(sites: [Wordpress]) {
         self.sites = sites
@@ -72,6 +68,7 @@ struct CategoriesView: View {
         }
         .onAppear {
             load()
+            updateWordpress()
         }
     }
     

@@ -9,7 +9,7 @@ import FetchImage
 import SwiftUI
 
 struct ImageView: View {
-    let url: URL
+    var url: URL
 
     @StateObject private var image = FetchImage()
     var aspectRatio: CGFloat? = nil
@@ -29,6 +29,10 @@ struct ImageView: View {
                     .scaleEffect(0.1)
             }.aspectRatio(aspectRatio, contentMode: .fit)
         }
+    }
+    
+    func update(url: URL) {
+        image.load(url)
     }
 }
 

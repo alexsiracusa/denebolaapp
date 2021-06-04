@@ -46,6 +46,10 @@ struct SimpleCategory: Codable, Identifiable {
         guard let image = image else {return nil}
         return URL(string: image.url)
     }
+    
+    func hasImage() -> Bool {
+        return image != nil
+    }
 }
 
 struct ImageData: Codable {
