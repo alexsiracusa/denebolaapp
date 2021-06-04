@@ -40,7 +40,7 @@ struct CategoryButton: View {
                 }
                 .zIndex(2)
                 NavigationLink(destination:
-                    CategoryView(category: category)
+                    CategoryView(category: category, image: image)
                 ) {
                     image
                         .resizable()
