@@ -8,18 +8,17 @@
 import SwiftUI
 
 struct PostFeed: View {
-    @EnvironmentObject var handler: WordpressAPIHandler
-    @ObservedObject private var loader: ScrollViewLoader = ScrollViewLoader(domain: "")
+    @StateObject private var loader: ScrollViewLoader = ScrollViewLoader(domain: "")
     var domain: String
 
     init(category: Int? = nil, domain: String) {
         self.domain = domain
-        loader = ScrollViewLoader(domain: domain, category: category)
+        _loader = StateObject(wrappedValue: ScrollViewLoader(domain: domain, category: category))
     }
     
     init(loader: ScrollViewLoader) {
         self.domain = loader.handler.domain
-        self.loader = loader
+        _loader = StateObject(wrappedValue: loader)
     }
     
 
@@ -35,6 +34,9 @@ struct PostFeed: View {
                         .padding(.vertical, 0.0)
                 }
             }
+            .onChange(of: domain, perform: { value in
+                loader.setDomain(value)
+            })
         } else {
             if let error = loader.error {
                 Text(error)
@@ -51,7 +53,7 @@ struct PostFeed: View {
 
 struct PostFeed_Previews: PreviewProvider {
     static var previews: some View {
-        PostFeed(domain: "https://nshsdenebola.comm")
+        PostFeed(domain: "https://nshsdenebola.com")
             .environmentObject(WordpressAPIHandler())
     }
 }

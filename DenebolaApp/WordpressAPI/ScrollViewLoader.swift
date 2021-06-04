@@ -26,6 +26,7 @@ class ScrollViewLoader: ObservableObject {
     
     func setDomain(_ domain: String) {
         self.handler = WordpressAPIHandler(domain: domain)
+        self.posts = []
         currentPage = 1
         canLoadMorePages = true
         error = nil
