@@ -19,7 +19,6 @@ struct CategoriesView: View {
             updateWordpress()
         }
     }
-    @State var loader: ScrollViewLoader = ScrollViewLoader(domain: "")
     
     init(sites: [Wordpress]) {
         self.sites = sites
@@ -50,8 +49,7 @@ struct CategoriesView: View {
                         
                         Spacer(minLength: 15)
                         
-                        //PostFeed(domain: site.url)
-                        PostFeed(loader: loader)
+                        PostFeed(domain: site.url)
                     }
                     .padding([.top, .bottom], 15)
                 } else {
@@ -81,7 +79,6 @@ struct CategoriesView: View {
         guard let site = currentSite else {return}
         handler.domain = site.url
         currentURL = site.url
-        self.loader = ScrollViewLoader(domain: currentURL)
         if let url = URL(string: site.defaultImage.url) {
             JSONLoader.loadImage(url: url) {image, error in
                 guard let image = image else {return}
