@@ -20,7 +20,7 @@ extension School {
     
     func feedTab() -> FeedTab? {
         guard home.enabledSections.contains("wordpress") else {return nil}
-        return FeedTab(site: wordpress[0])
+        return FeedTab(sites: wordpress)
     }
     
     func scheduleTab() -> ScheduleTab? {

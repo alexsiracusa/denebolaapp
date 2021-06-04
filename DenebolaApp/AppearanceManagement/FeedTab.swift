@@ -9,10 +9,10 @@ import Foundation
 import SwiftUI
 
 class FeedTab: Tab {
-    init(site: Wordpress) {
-        self.wordpress = site
+    init(sites: [Wordpress]) {
+        self.sites = sites
     }
-    var wordpress: Wordpress
+    var sites: [Wordpress]
     var tab_icon: AnyView = FeedTab.tab_icon_default
     static var tab_icon_default: AnyView {
         AnyView(
@@ -28,7 +28,7 @@ class FeedTab: Tab {
     }
     override var content: AnyView {
         AnyView(
-            CategoriesView(wordpress: wordpress)
+            CategoriesView(sites: sites)
         )
     }
 }

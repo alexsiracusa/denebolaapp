@@ -12,26 +12,53 @@ struct CategoriesView: View {
     @EnvironmentObject private var viewModel: ViewModelData
     @EnvironmentObject var defaultImage: DefaultImage
 
-    @State var wordpress: Wordpress
+    @State var sites: [Wordpress]
+    @State var currentURL: String = ""
+    @State var currentSite: Wordpress? = nil {
+        didSet {
+            updateWordpress()
+        }
+    }
     @State var selectedCategory: Int? = nil
+    
+    init(sites: [Wordpress]) {
+        self.sites = sites
+    }
     
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(alignment: .leading) {
-                    CategoriesList(categories: wordpress.featuredCategories, defaultImage: defaultImage.image)
-                    
-                    Spacer(minLength: 15)
-
-                    Text("Latest Posts")
-                        .font(.headline)
-                        .padding(.leading)
-
-                    Spacer(minLength: 15)
-
-                    PostFeed(category: nil, domain: handler.domain)
+                Picker("Current Site:", selection: $currentSite) {
+                    ForEach(sites) { site in
+                        Text(site.name)
+                            .tag(site as Wordpress?)
+                    }
                 }
-                .padding([.top, .bottom], 15)
+                .onChange(of: currentSite, perform: { value in
+                    updateWordpress()
+                })
+                .pickerStyle(MenuPickerStyle())
+                if let site = currentSite {
+                    VStack(alignment: .leading) {
+                        Text(currentURL)
+                        CategoriesList(categories: site.featuredCategories)
+                        
+                        Spacer(minLength: 15)
+
+                        Text("Latest Posts")
+                            .font(.headline)
+                            .padding(.leading)
+                        
+                        Spacer(minLength: 15)
+                        
+                        PostFeed(domain: currentURL)
+                    }
+                    .padding([.top, .bottom], 15)
+                } else {
+                    Text("There are no sites for this school")
+                    Text("\(sites.count)")
+                    Text("\(currentSite == nil ? "true" : "false")")
+                }
             }
             .navigationBarTitle("Feed", displayMode: .inline)
             .navigationBarItems(
@@ -52,14 +79,30 @@ struct CategoriesView: View {
         }
     }
     
+    func updateWordpress() {
+        guard let site = currentSite else {return}
+        handler.domain = site.url
+        currentURL = site.url
+        if let url = URL(string: site.defaultImage.url) {
+            JSONLoader.loadImage(url: url) {image, error in
+                guard let image = image else {return}
+                DispatchQueue.main.async {
+                    self.defaultImage.image = image
+                }
+            }
+        }
+    }
+    
     func load() {
-        handler.domain = wordpress.url
+        if sites.count > 0 {
+            currentSite = sites[0]
+        }
     }
 }
 
 struct CategoriesView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoriesView(wordpress: Wordpress.default)
+        CategoriesView(sites: [Wordpress.default, Wordpress.default])
             .environmentObject(WordpressAPIHandler())
             .environmentObject(DefaultImage())
     }

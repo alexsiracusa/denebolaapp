@@ -69,17 +69,6 @@ struct ViewController: View {
             self.error = error
             guard let school = school else {return}
             self.tabManager = TabManager(school.allTabs())
-            if school.wordpress.count == 0 {return}
-            let site = school.wordpress[0]
-            handler.domain = site.url
-            if let url = URL(string: site.defaultImage.url) {
-                JSONLoader.loadImage(url: url) {image, error in
-                    guard let image = image else {return}
-                    DispatchQueue.main.async {
-                        self.defaultImage.image = image
-                    }
-                }
-            }
             
             if error == nil {loaded = true}
         }

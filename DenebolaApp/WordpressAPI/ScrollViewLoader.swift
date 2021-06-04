@@ -24,6 +24,15 @@ class ScrollViewLoader: ObservableObject {
         loadMorePosts()
     }
     
+    func setDomain(_ domain: String) {
+        self.handler = WordpressAPIHandler(domain: domain)
+        currentPage = 1
+        canLoadMorePages = true
+        error = nil
+        isLoadingPage = false
+        loadMorePosts()
+    }
+    
     func loadMorePostsIfNeeded(currentItem: Post) {
         let index = posts.firstIndex(where: { currentItem.id == $0.id })
         let thresholdIndex = posts.index(posts.endIndex, offsetBy: -per_page)

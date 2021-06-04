@@ -9,13 +9,13 @@ import SwiftUI
 
 struct CategoriesList: View {
     let categories: [SimpleCategory]
-    let defaultImage: Image
+    @EnvironmentObject var defaultImage: DefaultImage
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(alignment: .top) {
                 ForEach(categories) { category in
-                    CategoryButton(category: category, image: defaultImage)
+                    CategoryButton(category: category)
                 }
             }
             .padding([.leading, .trailing])
@@ -26,6 +26,7 @@ struct CategoriesList: View {
 struct CategoriesList_Previews: PreviewProvider {
     static var previews: some View {
         //CategoriesList(style: .image, feedStyle: .normal)
-        CategoriesList(categories: Wordpress.default.featuredCategories, defaultImage: Image("DenebolaLogo"))
+        CategoriesList(categories: Wordpress.default.featuredCategories)
+            .environmentObject(DefaultImage())
     }
 }

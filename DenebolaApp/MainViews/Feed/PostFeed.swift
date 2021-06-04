@@ -10,19 +10,19 @@ import SwiftUI
 struct PostFeed: View {
     @EnvironmentObject var handler: WordpressAPIHandler
     @StateObject private var loader: ScrollViewLoader = ScrollViewLoader(domain: "")
+    var domain: String
 
     init(category: Int? = nil, domain: String) {
-        //_loader = StateObject(wrappedValue: ScrollViewLoader(domain: "https://nshsdenebola.comm", category: category))
+        self.domain = domain
        _loader = StateObject(wrappedValue: ScrollViewLoader(domain: domain, category: category))
-        
-//        loader = ScrollViewLoader(domain: "", category: category)
-//        loader = ScrollViewLoader(domain: handler.domain, category: category)
     }
     
 
     var body: some View {
         if loader.posts.count != 0 {
             LazyVStack(spacing: 10) {
+                Text(domain)
+                Text(loader.handler.domain)
                 ForEach(loader.posts) { post in
                     PostRowView(post: post)
                         .onAppear {

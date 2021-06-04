@@ -9,6 +9,7 @@ import FetchImage
 import SwiftUI
 
 struct PostRowView: View {
+    @EnvironmentObject var defaultImage: DefaultImage
     let post: Post
 
     var body: some View {
@@ -20,9 +21,9 @@ struct PostRowView: View {
                     .aspectRatio(1.6, contentMode: .fit)
                     .cornerRadius(5.0)
             } else {
-                Image("DenebolaLogo")
+                defaultImage.image
                     .resizable()
-                    //.cornerRadius(style == .floating ? 0.0 : 5.0)
+                    .cornerRadius(5.0)
                     .frame(width: 100, height: 100)
             }
             NavigationLink(destination: PostView(post: post)
@@ -48,12 +49,6 @@ struct PostRowView: View {
             }
         }
         .frame(height: 100)
-//        .cornerRadius(style == .floating ? 10.0 : 0.0)
-//        .background(style == .floating ?
-//            RoundedRectangle(cornerRadius: 10.0)
-//            .fill(Color.white)
-//            .shadow(color: Color.gray.opacity(0.3), radius: 2.0, x: 1.0, y: 1.0)
-//            : nil)
     }
 }
 
@@ -61,7 +56,6 @@ struct PostRowView_Previews: PreviewProvider {
     static var previews: some View {
         PostRowView(post: Post.default)
             .environmentObject(WordpressAPIHandler())
-        PostRowView(post: Post.default)
-            .environmentObject(WordpressAPIHandler())
+            .environmentObject(DefaultImage())
     }
 }

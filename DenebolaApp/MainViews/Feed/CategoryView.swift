@@ -10,15 +10,16 @@ import SwiftUI
 struct CategoryView: View {
     @EnvironmentObject var handler: WordpressAPIHandler
     @EnvironmentObject private var viewModel: ViewModelData
+    @EnvironmentObject var defaultImage: DefaultImage
     var category: SimpleCategory
-    var image: Image
+    var image: Image?
     
     @State var isActive = false
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                CategoryBanner(category: category, image: image)
+                CategoryBanner(category: category, image: image == nil ? defaultImage.image : image!)
                 Text("Latest Posts")
                     .font(.headline)
                     .padding(.leading)
@@ -51,7 +52,8 @@ struct CategoryView: View {
 
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryView(category: SimpleCategory(id: 7, name: "Opinions", image: nil), image: Image("DenebolaLogo"))
+        CategoryView(category: SimpleCategory(id: 7, name: "Opinions", image: nil))
             .environmentObject(WordpressAPIHandler())
+            .environmentObject(DefaultImage())
     }
 }

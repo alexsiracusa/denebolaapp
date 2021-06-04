@@ -11,7 +11,7 @@ import SwiftUI
 class WordpressAPIHandler: ObservableObject {
     @Published var domain: String
     
-    init(domain: String = "https://nshsdenebola.comm") {
+    init(domain: String = "https://nshsdenebola.com") {
         self.domain = domain
     }
     

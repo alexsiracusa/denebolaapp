@@ -14,7 +14,15 @@ struct School: Codable {
     let wordpress: [Wordpress]
 }
 
-struct Wordpress: Codable {
+struct Wordpress: Codable, Identifiable, Hashable {
+    static func == (lhs: Wordpress, rhs: Wordpress) -> Bool {
+        lhs.id == rhs.id
+    }
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(name)
+    }
+    
     let id: Int
     let enabled: Bool
     let url: String

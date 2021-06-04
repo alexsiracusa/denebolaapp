@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct CategoryButton: View {
+    @EnvironmentObject var defaultImage: DefaultImage
     let size: CGFloat = 100
     let category: SimpleCategory
-    @State var image: Image
+    @State var image: Image?
     var id: Int {
         return category.id
     }
@@ -42,19 +43,35 @@ struct CategoryButton: View {
                 NavigationLink(destination:
                     CategoryView(category: category, image: image)
                 ) {
-                    image
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: size, height: size)
-                        .aspectRatio(1.0, contentMode: .fit)
-                        .clipped()
-                        .cornerRadius(10)
-                        .zIndex(1)
-                        .overlay(LinearGradient(gradient: Gradient(colors: [.clear, .black]), startPoint: UnitPoint(x: 0.5, y: 0.8), endPoint: .bottom)
+                    if let image = image {
+                        image
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: size, height: size)
+                            .aspectRatio(1.0, contentMode: .fit)
+                            .clipped()
                             .cornerRadius(10)
-                            .opacity(0.25)
-                            // .brightness(0.7)
-                        )
+                            .zIndex(1)
+                            .overlay(LinearGradient(gradient: Gradient(colors: [.clear, .black]), startPoint: UnitPoint(x: 0.5, y: 0.8), endPoint: .bottom)
+                                .cornerRadius(10)
+                                .opacity(0.25)
+                                // .brightness(0.7)
+                            )
+                    } else {
+                        defaultImage.image
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: size, height: size)
+                            .aspectRatio(1.0, contentMode: .fit)
+                            .clipped()
+                            .cornerRadius(10)
+                            .zIndex(1)
+                            .overlay(LinearGradient(gradient: Gradient(colors: [.clear, .black]), startPoint: UnitPoint(x: 0.5, y: 0.8), endPoint: .bottom)
+                                .cornerRadius(10)
+                                .opacity(0.25)
+                                // .brightness(0.7)
+                            )
+                    }
                 }
             }
         }
@@ -72,6 +89,7 @@ struct CategoryButton: View {
 
 struct CategoryButton_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryButton(category: SimpleCategory(id: 7, name: "Opinions", image: nil), image: Image("DenebolaLogo"))
+        CategoryButton(category: SimpleCategory(id: 7, name: "Opinions", image: nil))
+            .environmentObject(DefaultImage())
     }
 }
