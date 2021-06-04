@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @EnvironmentObject private var handler: APIHandler
+    @EnvironmentObject private var handler: WordpressAPIHandler
     @EnvironmentObject private var viewModel: ViewModelData
 
     @State private var latestPosts = [Post]()
@@ -24,7 +24,7 @@ struct HomeView: View {
             guard let posts = posts, posts.count > 0 else { return }
             latestPosts = posts
         })
-        handler.loadPostPage(category: Categories.multimedia.id, page: 1, per_page: 2, embed: true, completionHandler: { posts, _ in
+        handler.loadPostPage(category: 164, page: 1, per_page: 2, embed: true, completionHandler: { posts, _ in
             guard let posts = posts, posts.count > 0 else { return }
             multimediaPosts = posts
         })
@@ -57,7 +57,7 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
-            .environmentObject(APIHandler())
+            .environmentObject(WordpressAPIHandler())
             .environmentObject(PodcastLoader())
     }
 }

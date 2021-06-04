@@ -22,10 +22,12 @@ struct ContentView: View {
     
     var body: some View {
         ViewController()
-            .environmentObject(APIHandler())
+            .environmentObject(WordpressAPIHandler())
             .environmentObject(PodcastLoader())
             .environmentObject(ViewModelData())
             .environmentObject(PlayerObject())
+            .environmentObject(ServerAPIHandler())
+            .environmentObject(DefaultImage())
             .preferredColorScheme(.light) // Until we add dark mode custom theming
     }
 }

@@ -8,23 +8,27 @@
 import Foundation
 import SwiftUI
 
-class APIHandler: ObservableObject {
-    let domain = "https://nshsdenebola.com"
+class WordpressAPIHandler: ObservableObject {
+    @Published var domain: String
+    
+    init(domain: String = "https://nshsdenebola.comm") {
+        self.domain = domain
+    }
     
     func loadPost(_ id: Int, embed: Bool, completionHandler: @escaping (Post?, String?) -> Void) {
         var url = domain + "/wp-json/wp/v2/posts/" + "\(id)"
         if embed { url += "?_embed" }
-        APIHandler.decodeJSON(url: url, completionHandler: completionHandler)
+        JSONLoader.decodeJSON(url: url, completionHandler: completionHandler)
     }
     
     func loadMedia(_ id: Int, completionHandler: @escaping (Media?, String?) -> Void) {
         let url = domain + "/wp-json/wp/v2/media/" + "\(id)"
-        APIHandler.decodeJSON(url: url, completionHandler: completionHandler)
+        JSONLoader.decodeJSON(url: url, completionHandler: completionHandler)
     }
     
     func loadCategory(_ id: Int, completionHandler: @escaping (Category?, String?) -> Void) {
         let url = domain + "/wp-json/wp/v2/categories/" + "\(id)"
-        APIHandler.decodeJSON(url: url, completionHandler: completionHandler)
+        JSONLoader.decodeJSON(url: url, completionHandler: completionHandler)
     }
     
     func loadCategoryList(page: Int = 1, per_page: Int = 100, embed: Bool, completionHandler: @escaping ([Category]?, String?) -> Void) {
@@ -32,7 +36,7 @@ class APIHandler: ObservableObject {
         url += "&page=\(page)"
         url += "&per_page=\(per_page)"
         if embed { url += "&_embed" }
-        APIHandler.decodeJSON(url: url, completionHandler: completionHandler)
+        JSONLoader.decodeJSON(url: url, completionHandler: completionHandler)
     }
     
     func loadPostPage(category: Int? = nil, page: Int = 1, per_page: Int = 10, embed: Bool, completionHandler: @escaping ([Post]?, String?) -> Void) {
@@ -41,7 +45,7 @@ class APIHandler: ObservableObject {
         if let category = category { url += "&categories=\(category)" }
         url += "&page=\(page)"
         if embed { url += "&_embed" }
-        APIHandler.decodeJSON(url: url, completionHandler: completionHandler)
+        JSONLoader.decodeJSON(url: url, completionHandler: completionHandler)
     }
     
     func searchPosts(category: Int? = nil, text: String, page: Int = 1, per_page: Int = 10, embed: Bool = false, completion: @escaping ([Post]?, String?) -> Void) {
@@ -52,12 +56,12 @@ class APIHandler: ObservableObject {
         url += text.words.flatMap{$0 + ","}
         if let category = category { url += "&filter[cat]=\(category)" }
         if embed { url += "&_embed" }
-        APIHandler.decodeJSON(url: url, completionHandler: completion)
+        JSONLoader.decodeJSON(url: url, completionHandler: completion)
     }
     
     func loadAttachmentsForPost(_ id: Int, completionHandler: @escaping ([SimpleMedia]?, String?) -> Void) {
         let url = domain + "/wp-json/wp/v2/media/?parent=" + "\(id)"
-        APIHandler.decodeJSON(url: url, completionHandler: completionHandler)
+        JSONLoader.decodeJSON(url: url, completionHandler: completionHandler)
     }
     
     func loadFullPost(_ id: Int, embed: Bool, completionHandler: @escaping (Post?, Media?, URL?, String?) -> Void) {
@@ -85,7 +89,16 @@ class APIHandler: ObservableObject {
         }
     }
     
-    func loadData(url: URL, completionHandler: @escaping (Data?, String?) -> Void) {
+}
+
+extension String {
+    var words: [String] {
+        return self.split(separator: " ").map{String($0)}
+    }
+}
+
+class JSONLoader {
+    static func loadData(url: URL, completionHandler: @escaping (Data?, String?) -> Void) {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         
@@ -103,6 +116,25 @@ class APIHandler: ObservableObject {
         }
         
         task.resume()
+    }
+    
+    static func loadImage(url: URL, completion: @escaping (Image?, String?) -> ()) {
+        JSONLoader.loadData(url: url) {data, error in
+            guard error == nil else {
+                completion(nil, error)
+                return
+            }
+            guard let data = data else {
+                completion(nil, "Bad Data")
+                return
+            }
+            guard let uiImage = UIImage(data: data) else {
+                completion(nil, "could not convert to image")
+                return
+            }
+            let image = Image(uiImage: uiImage)
+            completion(image, error)
+        }
     }
     
     static func decodeJSON<ResponseType: Codable>(url: String, completionHandler: @escaping (ResponseType?, String?) -> Void) {
@@ -141,11 +173,5 @@ class APIHandler: ObservableObject {
         }
         
         task.resume()
-    }
-}
-
-extension String {
-    var words: [String] {
-        return self.split(separator: " ").map{String($0)}
     }
 }

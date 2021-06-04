@@ -60,8 +60,8 @@ struct PostRowView: View {
 struct PostRowView_Previews: PreviewProvider {
     static var previews: some View {
         PostRowView(post: Post.default)
-            .environmentObject(APIHandler())
+            .environmentObject(WordpressAPIHandler())
         PostRowView(post: Post.default)
-            .environmentObject(APIHandler())
+            .environmentObject(WordpressAPIHandler())
     }
 }

@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct CategoryBanner: View {
-    let category: Categories
+    let category: SimpleCategory
+    let image: Image
     
     var body: some View {
-        category.banner
+        image
             .resizable()
             .scaledToFit()
             .overlay(
@@ -36,6 +37,6 @@ struct CategoryBanner: View {
 
 struct CategoryBanner_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryBanner(category: .opinions)
+        CategoryBanner(category: SimpleCategory(id: 7, name: "Opinions", image: nil), image: Image("DenebolaLogo"))
     }
 }

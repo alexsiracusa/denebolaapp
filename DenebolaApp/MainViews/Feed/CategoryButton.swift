@@ -9,15 +9,22 @@ import SwiftUI
 
 struct CategoryButton: View {
     let size: CGFloat = 100
-    let category: Categories
+    let category: SimpleCategory
+    @State var image: Image
     var id: Int {
         return category.id
     }
     var name: String {
         return category.name
     }
-    var image: Image {
-        return category.image
+    var imageURL: URL {
+        guard let strURL = category.image?.url else {
+            return URL(string: "")!
+        }
+        guard let url = URL(string: strURL) else {
+            return URL(string: "")!
+        }
+        return url
     }
 
     var body: some View {
@@ -48,11 +55,19 @@ struct CategoryButton: View {
             }
         }
         .frame(width: size, height: size)
+        .onAppear {
+            if let url = category.imageURL {
+                JSONLoader.loadImage(url: url) {image, error in
+                    guard let image = image else {return}
+                    self.image = image
+                }
+            }
+        }
     }
 }
 
 struct CategoryButton_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryButton(category: .opinions)
+        CategoryButton(category: SimpleCategory(id: 7, name: "Opinions", image: nil), image: Image("DenebolaLogo"))
     }
 }

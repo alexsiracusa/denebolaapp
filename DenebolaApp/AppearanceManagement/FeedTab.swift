@@ -9,7 +9,10 @@ import Foundation
 import SwiftUI
 
 class FeedTab: Tab {
-    var categoriesStyle = CategoriesStyle.image
+    init(site: Wordpress) {
+        self.wordpress = site
+    }
+    var wordpress: Wordpress
     var tab_icon: AnyView = FeedTab.tab_icon_default
     static var tab_icon_default: AnyView {
         AnyView(
@@ -25,12 +28,8 @@ class FeedTab: Tab {
     }
     override var content: AnyView {
         AnyView(
-            CategoriesView(categoriesStyle: categoriesStyle)
+            CategoriesView(wordpress: wordpress)
         )
     }
 }
 
-enum CategoriesStyle: String, CaseIterable {
-    case image = "image"
-    case box = "box"
-}

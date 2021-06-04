@@ -8,17 +8,18 @@
 import SwiftUI
 
 struct CategoriesView: View {
-    @EnvironmentObject var handler: APIHandler
+    @EnvironmentObject var handler: WordpressAPIHandler
     @EnvironmentObject private var viewModel: ViewModelData
+    @EnvironmentObject var defaultImage: DefaultImage
 
+    @State var wordpress: Wordpress
     @State var selectedCategory: Int? = nil
-    var categoriesStyle = CategoriesStyle.image
-
+    
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading) {
-                    CategoriesList(style: categoriesStyle)
+                    CategoriesList(categories: wordpress.featuredCategories, defaultImage: defaultImage.image)
                     
                     Spacer(minLength: 15)
 
@@ -28,7 +29,7 @@ struct CategoriesView: View {
 
                     Spacer(minLength: 15)
 
-                    PostFeed(category: nil)
+                    PostFeed(category: nil, domain: handler.domain)
                 }
                 .padding([.top, .bottom], 15)
             }
@@ -37,7 +38,7 @@ struct CategoriesView: View {
                 trailing:
                 HStack(spacing: 15) {
                     NavigationLink(destination:
-                        SearchView()
+                        SearchView(domain: handler.domain)
                     ) {
                         Image(systemName: "magnifyingglass")
                             .foregroundColor(.black)
@@ -46,12 +47,20 @@ struct CategoriesView: View {
                 }
             )
         }
+        .onAppear {
+            load()
+        }
+    }
+    
+    func load() {
+        handler.domain = wordpress.url
     }
 }
 
 struct CategoriesView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoriesView()
-            .environmentObject(APIHandler())
+        CategoriesView(wordpress: Wordpress.default)
+            .environmentObject(WordpressAPIHandler())
+            .environmentObject(DefaultImage())
     }
 }

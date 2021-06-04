@@ -9,18 +9,8 @@ import Foundation
 
 class TabManager: ObservableObject {
     var tabs: [Tab] = []
-    var home: HomeTab? = HomeTab()
-    var feed: FeedTab? = FeedTab()
-    var podcast: PodcastTab? = PodcastTab()
-    var schedule: ScheduleTab? = ScheduleTab()
     
-    var categoriesStyle: CategoriesStyle = .image {
-        didSet {
-            self.feed?.categoriesStyle = categoriesStyle
-        }
-    }
-    
-    init() {
-        self.tabs = [home!, feed!, podcast!, schedule!]
+    init(_ tabs: [Tab]) {
+        self.tabs = tabs
     }
 }

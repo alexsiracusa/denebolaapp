@@ -15,11 +15,12 @@ class ScrollViewLoader: ObservableObject {
     var currentPage = 1
     var canLoadMorePages = true
     
-    var handler = APIHandler()
+    var handler: WordpressAPIHandler
     var category: Int?
     
-    init(category: Int? = nil) {
+    init(domain: String, category: Int? = nil) {
         self.category = category
+        self.handler = WordpressAPIHandler(domain: domain)
         loadMorePosts()
     }
     

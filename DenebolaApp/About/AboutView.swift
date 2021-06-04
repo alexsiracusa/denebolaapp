@@ -10,7 +10,7 @@ import SwiftUI
 private let TAB_NAMES = ["About", "Meet The Staff", "Submit Idea"]
 
 struct AboutView: View {
-    @EnvironmentObject private var handler: APIHandler
+    @EnvironmentObject private var handler: WordpressAPIHandler
     @Environment(\.presentationMode) var presentationMode
 
     @State private var currentPage = TAB_NAMES[0]
@@ -94,6 +94,6 @@ struct AboutView: View {
 struct AboutView_Previews: PreviewProvider {
     static var previews: some View {
         AboutView()
-            .environmentObject(APIHandler())
+            .environmentObject(WordpressAPIHandler())
     }
 }

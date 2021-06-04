@@ -8,26 +8,26 @@
 import SwiftUI
 
 struct CategoryView: View {
-    @EnvironmentObject var handler: APIHandler
+    @EnvironmentObject var handler: WordpressAPIHandler
     @EnvironmentObject private var viewModel: ViewModelData
-    var category: Categories
+    var category: SimpleCategory
     
     @State var isActive = false
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                CategoryBanner(category: category)
+                CategoryBanner(category: category, image: Image("DenebolaLogo"))
                 Text("Latest Posts")
                     .font(.headline)
                     .padding(.leading)
-                PostFeed(category: category.id)
+                PostFeed(category: category.id, domain: handler.domain)
             }
             
             //Navigation Link to SearchView
             //need to do like this to avoid bugs
             NavigationLink(
-                destination: SearchView(category: category),
+                destination: SearchView(category: category, domain: handler.domain),
                 isActive: $isActive,
                 label: { EmptyView()}
             )
@@ -50,7 +50,7 @@ struct CategoryView: View {
 
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryView(category: .arts)
-            .environmentObject(APIHandler())
+        CategoryView(category: SimpleCategory(id: 7, name: "Opinions", image: nil))
+            .environmentObject(WordpressAPIHandler())
     }
 }

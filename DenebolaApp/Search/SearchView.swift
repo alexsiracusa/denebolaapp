@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct SearchView: View {
-    @EnvironmentObject var handler: APIHandler
+    @EnvironmentObject var handler: WordpressAPIHandler
     @ObservedObject var loader: SearchResultLoader
     @EnvironmentObject private var viewModel: ViewModelData
     @State var searchFor = ""
     @State var updateSearch = ""
-    var category: Categories?
+    var category: SimpleCategory?
 
-    init(category: Categories? = nil) {
-        loader = SearchResultLoader(category: category?.id)
+    init(category: SimpleCategory? = nil, domain: String) {
         self.category = category
+        loader = SearchResultLoader(domain: domain, category: category?.id)
     }
     
     var body: some View {
@@ -27,7 +27,7 @@ struct SearchView: View {
             
             //results
             ScrollView {
-                SearchResults(category: loader.category, searchFor: $updateSearch)
+                SearchResults(category: loader.category, domain: handler.domain, searchFor: $updateSearch)
             }
         }
         //.padding([.leading, .trailing])
@@ -38,7 +38,7 @@ struct SearchView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView(category: .opinions)
-            .environmentObject(APIHandler())
+        SearchView(category: SimpleCategory(id: 7, name: "Opinions", image: nil), domain: "https://nshsdenebola.com")
+            .environmentObject(WordpressAPIHandler())
     }
 }

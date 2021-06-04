@@ -9,17 +9,14 @@ import MediaPlayer
 import SwiftUI
 
 struct ViewController: View {
-    @EnvironmentObject var handler: APIHandler
+    @EnvironmentObject var handler: WordpressAPIHandler
     @EnvironmentObject var viewModel: ViewModelData
-
     @EnvironmentObject var player: PlayerObject
-    var showingPodcastToolbar: Bool {
-        return player.showingToolbar
-    }
-
-    var image: ImageView {
-        return player.image
-    }
+    
+    @State var loaded = false
+    @EnvironmentObject var serverLoader: ServerAPIHandler
+    @EnvironmentObject var defaultImage: DefaultImage
+    @State var school: School? = nil
 
     init() {
         UITabBar.appearance().barTintColor = UIColor.white
@@ -33,41 +30,70 @@ struct ViewController: View {
         UINavigationBar.appearance().compactAppearance = appearance
         
         //setting up tab styles
-        self.tabManager = TabManager()
-        tabManager.categoriesStyle = .image
     }
     
-    @State var tabManager: TabManager
+    @State var tabManager: TabManager? = nil
     var tabs : [Tab] {
-        return tabManager.tabs
+        return tabManager!.tabs
     }
 
+    @State var error: String? = nil
     var body: some View {
-        TabView(selection: $viewModel.selectedTab) {
-            ForEach(0..<tabs.count, id: \.self) { n in
-                let tab = tabs[n]
-                tab.content
-                    .tabItem {
-                        tab.tabIcon
-                    }
-            }
-            SettingsView(manager: tabManager)
-                .tabItem {
-                    Image(systemName: "gearshape")
-                    Text("Settings")
+        if loaded {
+            TabView(selection: $viewModel.selectedTab) {
+                ForEach(0..<tabs.count, id: \.self) { n in
+                    let tab = tabs[n]
+                    tab.content
+                        .tabItem {
+                            tab.tabIcon
+                        }
                 }
-                .tag(20)
+            }
+            .accentColor(.orange)
+        } else {
+            VStack {
+                if let error = error {
+                    Text(error)
+                }
+                Text("loading")
+            }
+            .onAppear {
+                loadTabs()
+            }
         }
-        .accentColor(.orange)
+    }
+    
+    func loadTabs() {
+        serverLoader.loadSchool(0) { school, error in
+            self.school = school
+            self.error = error
+            guard let school = school else {return}
+            self.tabManager = TabManager(school.allTabs())
+            if school.wordpress.count == 0 {return}
+            let site = school.wordpress[0]
+            handler.domain = site.url
+            if let url = URL(string: site.defaultImage.url) {
+                JSONLoader.loadImage(url: url) {image, error in
+                    guard let image = image else {return}
+                    DispatchQueue.main.async {
+                        self.defaultImage.image = image
+                    }
+                }
+            }
+            
+            if error == nil {loaded = true}
+        }
     }
 }
 
 struct ViewController_Previews: PreviewProvider {
     static var previews: some View {
         ViewController()
-            .environmentObject(APIHandler())
+            .environmentObject(WordpressAPIHandler())
             .environmentObject(PodcastLoader())
             .environmentObject(ViewModelData())
             .environmentObject(PlayerObject())
+            .environmentObject(ServerAPIHandler())
+            .environmentObject(DefaultImage())
     }
 }

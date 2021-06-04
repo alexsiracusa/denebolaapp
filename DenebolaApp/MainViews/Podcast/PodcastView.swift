@@ -10,7 +10,7 @@ import SwiftUI
 
 struct PodcastView: View {
     @EnvironmentObject var loader: PodcastLoader
-    @EnvironmentObject var handler: APIHandler
+    @EnvironmentObject var handler: WordpressAPIHandler
     @EnvironmentObject private var viewModel: ViewModelData
 
     @State var podcasts = [PodcastData]()
@@ -97,7 +97,7 @@ struct PodcastView_Previews: PreviewProvider {
     static var previews: some View {
         PodcastView()
             .environmentObject(PodcastLoader())
-            .environmentObject(APIHandler())
+            .environmentObject(WordpressAPIHandler())
             .environmentObject(PlayerObject())
     }
 }

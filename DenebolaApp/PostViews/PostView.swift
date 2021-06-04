@@ -9,7 +9,7 @@ import LoaderUI
 import SwiftUI
 
 struct PostView: View {
-    @EnvironmentObject var handler: APIHandler
+    @EnvironmentObject var handler: WordpressAPIHandler
     let post: Post
 
     var body: some View {
@@ -48,7 +48,7 @@ struct PostView: View {
 struct PostView_Previews: PreviewProvider {
     static var previews: some View {
         PostView(post: Post.default)
-            .environmentObject(APIHandler())
+            .environmentObject(WordpressAPIHandler())
     }
 }
 
