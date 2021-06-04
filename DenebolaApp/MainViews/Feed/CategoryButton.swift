@@ -44,6 +44,8 @@ struct CategoryButton: View {
                 ) {
                     image
                         .resizable()
+                        .scaledToFill()
+                        .frame(width: size, height: size)
                         .aspectRatio(1.0, contentMode: .fit)
                         .clipped()
                         .cornerRadius(10)
