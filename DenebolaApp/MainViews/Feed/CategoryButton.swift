@@ -14,6 +14,13 @@ struct CategoryButton: View {
     var name: String {
         return category.name
     }
+    
+    var imageURL: URL {
+        if let url = category.imageURL {
+            return url
+        }
+        return siteImages.defaultImageURL
+    }
 
     var body: some View {
         ZStack {
@@ -30,19 +37,12 @@ struct CategoryButton: View {
                 NavigationLink(destination:
                     CategoryView(category: category, imageURL: category.imageURL == nil ? siteImages.defaultImageURL : category.imageURL!)
                 ) {
-                    if let url = category.imageURL {
-                        ImageView(url: url)
-                            .asCategoryButton(size: size)
-                    } else {
-                        ImageView(url: self.siteImages.defaultImageURL)
-                            .asCategoryButton(size: size)
-                    }
+                    ImageView(url: imageURL)
+                        .asCategoryButton(size: size)
                 }
             }
         }
         .frame(width: size, height: size)
-        .onAppear {
-        }
     }
 }
 
