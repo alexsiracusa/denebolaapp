@@ -86,7 +86,7 @@ struct AboutView: View {
                 Button {
                     presentationMode.wrappedValue.dismiss()
                 } label: {
-                    Logo()
+                    Logo(url: $siteImages.logoURL)
                 }
         )
     }

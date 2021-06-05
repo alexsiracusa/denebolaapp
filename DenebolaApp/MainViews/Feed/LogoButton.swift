@@ -9,17 +9,19 @@ import SwiftUI
 
 struct LogoButton: View {
     @EnvironmentObject var siteImages: SiteImages
+    @Binding var url: URL
     
     var body: some View {
         NavigationLink(destination: AboutView()) {
-            Logo()
+            ImageView(url: url)
+                .frame(width: 30, height: 30)
         }
     }
 }
 
 struct LogoButton_Previews: PreviewProvider {
     static var previews: some View {
-        LogoButton()
+        LogoButton(url: .constant(SiteImages().logoURL))
             .environmentObject(SiteImages())
     }
 }

@@ -33,7 +33,7 @@ struct SearchView: View {
         }
         //.padding([.leading, .trailing])
         .navigationBarTitle("Search \(category?.name ?? "Posts")", displayMode: .inline)
-        .navigationBarItems(trailing: LogoButton())
+        .navigationBarItems(trailing: LogoButton(url: $siteImages.logoURL))
     }
 }
 
