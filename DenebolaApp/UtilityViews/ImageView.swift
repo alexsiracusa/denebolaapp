@@ -13,8 +13,6 @@ struct ImageView: View {
 
     @StateObject private var image = FetchImage()
     var aspectRatio: CGFloat? = nil
-    
-    let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
 
     var body: some View {
         if let view = image.view {
@@ -33,9 +31,11 @@ struct ImageView: View {
                     .scaleEffect(0.1)
             }
             .aspectRatio(aspectRatio, contentMode: .fit)
-            .onAppear { image.load(url) }
-            .onReceive(timer) { time in
+            .onAppear {
                 image.load(url)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    image.load(url)
+                }
             }
         }
     }
