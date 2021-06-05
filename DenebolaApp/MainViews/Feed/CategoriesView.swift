@@ -35,7 +35,7 @@ struct CategoriesView: View {
                 .pickerStyle(MenuPickerStyle())
                 if let site = currentSite {
                     VStack(alignment: .leading) {
-                        CategoriesList(categories: site.featuredCategories)
+                        CategoriesList(categories: site.featuredCategoriesWithImage)
                         
                         Spacer(minLength: 15)
 
