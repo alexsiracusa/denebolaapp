@@ -51,9 +51,9 @@ extension View {
                 .clipped()
                 .cornerRadius(10)
                 .zIndex(1)
-                .overlay(LinearGradient(gradient: Gradient(colors: [.clear, .black]), startPoint: UnitPoint(x: 0.5, y: 0.8), endPoint: .bottom)
+                .overlay(LinearGradient(gradient: Gradient(colors: [.clear, .black]), startPoint: UnitPoint(x: 0.5, y: 0.7), endPoint: .bottom)
                     .cornerRadius(10)
-                    .opacity(0.25)
+                    .opacity(0.3)
                 )
         )
     }

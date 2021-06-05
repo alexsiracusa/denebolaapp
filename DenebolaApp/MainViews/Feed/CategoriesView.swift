@@ -28,7 +28,7 @@ struct CategoriesView: View {
                         } label: {
                             SiteBanner(site: site)
                         }
-                        CategoriesList(categories: site.featuredCategories)
+                        CategoriesList(categories: site.featuredCategoriesWithImage)
                         Spacer(minLength: 15)
                         Text("Latest Posts")
                             .font(.headline)

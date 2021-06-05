@@ -21,14 +21,22 @@ struct ImageView: View {
                 .aspectRatio(aspectRatio, contentMode: .fit)
                 .clipped()
                 .onDisappear(perform: image.reset)
-                .onAppear {image.load(url)}
+                .onChange(of: url, perform: { value in
+                                    image.reset()
+                                })
         } else {
             ZStack {
                 PlaceholderBackground()
-                    .onAppear { image.load(url) }
                 DefaultLoader()
                     .scaleEffect(0.1)
-            }.aspectRatio(aspectRatio, contentMode: .fit)
+            }
+            .aspectRatio(aspectRatio, contentMode: .fit)
+            .onAppear {
+                image.load(url)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    image.load(url)
+                }
+            }
         }
     }
 }

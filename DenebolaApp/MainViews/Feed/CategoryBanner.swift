@@ -13,7 +13,6 @@ struct CategoryBanner: View {
     
     var body: some View {
         ImageView(url: imageURL)
-            //.resizable()
             .scaledToFill()
             .frame(height: 200)
             .aspectRatio(2.0, contentMode: .fit)
