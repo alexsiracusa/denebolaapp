@@ -8,11 +8,7 @@
 import Foundation
 import SwiftUI
 
-class Tab {
-    var tabIcon: AnyView {
-        AnyView(EmptyView())
-    }
-    var content: AnyView {
-        AnyView(EmptyView())
-    }
+protocol Tab {
+    var tabIcon: AnyView { get }
+    var content: AnyView { get }
 }

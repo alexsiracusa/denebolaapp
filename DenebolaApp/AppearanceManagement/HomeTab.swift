@@ -8,23 +8,17 @@
 import Foundation
 import SwiftUI
 
-class HomeTab: Tab {
-    var tab_icon: AnyView = HomeTab.tab_icon_default
-    static var tab_icon_default: AnyView {
+struct HomeTab: Tab {
+    var content: AnyView {
+        AnyView(HomeView())
+    }
+
+    var tabIcon: AnyView {
         AnyView(
             VStack {
                 Image(systemName: "house")
                 Text("Home")
             }
-        )
-    }
-    
-    override var tabIcon: AnyView {
-        tab_icon
-    }
-    override var content: AnyView {
-        AnyView(
-            HomeView()
         )
     }
 }

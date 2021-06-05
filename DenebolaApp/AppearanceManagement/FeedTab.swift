@@ -8,13 +8,16 @@
 import Foundation
 import SwiftUI
 
-class FeedTab: Tab {
-    init(sites: [Wordpress]) {
-        self.sites = sites
-    }
+struct FeedTab: Tab {
+    
     var sites: [Wordpress]
-    var tab_icon: AnyView = FeedTab.tab_icon_default
-    static var tab_icon_default: AnyView {
+    var content: AnyView {
+        AnyView(
+            CategoriesView(sites: sites)
+        )
+    }
+
+    var tabIcon: AnyView {
         AnyView(
             VStack {
                 Image(systemName: "newspaper")
@@ -22,14 +25,4 @@ class FeedTab: Tab {
             }
         )
     }
-    
-    override var tabIcon: AnyView {
-        tab_icon
-    }
-    override var content: AnyView {
-        AnyView(
-            CategoriesView(sites: sites)
-        )
-    }
 }
-
