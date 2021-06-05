@@ -12,6 +12,7 @@ private let TAB_NAMES = ["About", "Meet The Staff", "Submit Idea"]
 struct AboutView: View {
     @EnvironmentObject private var handler: WordpressAPIHandler
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var siteImages: SiteImages
 
     @State private var currentPage = TAB_NAMES[0]
 
@@ -85,7 +86,7 @@ struct AboutView: View {
                 Button {
                     presentationMode.wrappedValue.dismiss()
                 } label: {
-                    ToolbarLogo()
+                    Logo()
                 }
         )
     }
@@ -95,5 +96,6 @@ struct AboutView_Previews: PreviewProvider {
     static var previews: some View {
         AboutView()
             .environmentObject(WordpressAPIHandler())
+            .environmentObject(SiteImages())
     }
 }

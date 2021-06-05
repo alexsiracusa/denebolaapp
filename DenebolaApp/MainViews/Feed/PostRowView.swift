@@ -9,7 +9,7 @@ import FetchImage
 import SwiftUI
 
 struct PostRowView: View {
-    @EnvironmentObject var defaultImage: DefaultImage
+    @EnvironmentObject var siteImages: SiteImages
     let post: Post
 
     var body: some View {
@@ -21,7 +21,7 @@ struct PostRowView: View {
                     .aspectRatio(1.6, contentMode: .fit)
                     .cornerRadius(5.0)
             } else {
-                ImageView(url: defaultImage.imageURL)
+                ImageView(url: siteImages.defaultImageURL)
                     //.resizable()
                     .cornerRadius(5.0)
                     .frame(width: 100, height: 100)
@@ -36,7 +36,6 @@ struct PostRowView: View {
                         .font(.title3)
                         .lineLimit(nil)
                         .foregroundColor(.black)
-                    Spacer(minLength: 0.0)
                     Text(post.getAuthor())
                         .font(.subheadline)
                         .foregroundColor(.black)
@@ -56,6 +55,6 @@ struct PostRowView_Previews: PreviewProvider {
     static var previews: some View {
         PostRowView(post: Post.default)
             .environmentObject(WordpressAPIHandler())
-            .environmentObject(DefaultImage())
+            .environmentObject(SiteImages())
     }
 }

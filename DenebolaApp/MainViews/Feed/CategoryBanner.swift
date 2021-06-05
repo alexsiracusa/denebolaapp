@@ -40,6 +40,6 @@ struct CategoryBanner: View {
 
 struct CategoryBanner_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryBanner(category: SimpleCategory(id: 7, name: "Opinions", image: nil), imageURL: DefaultImage().imageURL)
+        CategoryBanner(category: SimpleCategory(id: 7, name: "Opinions", image: nil), imageURL: SiteImages().defaultImageURL)
     }
 }

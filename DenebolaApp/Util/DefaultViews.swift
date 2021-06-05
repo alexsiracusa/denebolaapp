@@ -27,8 +27,3 @@ func PlaceholderBackground() -> some View {
         .brightness(0.3)
 }
 
-func LogoButton() -> some View {
-    return NavigationLink(destination: AboutView()) {
-        ToolbarLogo()
-    }
-}

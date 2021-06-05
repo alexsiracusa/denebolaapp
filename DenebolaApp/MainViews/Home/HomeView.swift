@@ -44,7 +44,6 @@ struct HomeView: View {
                 .padding(.top, 10)
             }
             .navigationBarTitle("Home", displayMode: .inline)
-            .navigationBarItems(trailing: LogoButton())
 
         }.onAppear {
             if latestPosts.count == 0 {

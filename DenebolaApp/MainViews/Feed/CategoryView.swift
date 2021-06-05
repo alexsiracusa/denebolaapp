@@ -10,7 +10,7 @@ import SwiftUI
 struct CategoryView: View {
     @EnvironmentObject var handler: WordpressAPIHandler
     @EnvironmentObject private var viewModel: ViewModelData
-    @EnvironmentObject var defaultImage: DefaultImage
+    @EnvironmentObject var siteImages: SiteImages
     var category: SimpleCategory
     var imageURL: URL
     
@@ -52,8 +52,8 @@ struct CategoryView: View {
 
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryView(category: SimpleCategory(id: 7, name: "Opinions", image: nil), imageURL: DefaultImage().imageURL)
+        CategoryView(category: SimpleCategory(id: 7, name: "Opinions", image: nil), imageURL: SiteImages().defaultImageURL)
             .environmentObject(WordpressAPIHandler())
-            .environmentObject(DefaultImage())
+            .environmentObject(SiteImages())
     }
 }

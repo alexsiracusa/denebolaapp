@@ -52,7 +52,6 @@ struct SocialView: View {
                 .padding(.horizontal)
             }
             .navigationBarTitle("South", displayMode: .inline)
-            .navigationBarItems(trailing: LogoButton())
         }
     }
 }

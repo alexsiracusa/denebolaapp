@@ -27,7 +27,7 @@ struct ContentView: View {
             .environmentObject(ViewModelData())
             .environmentObject(PlayerObject())
             .environmentObject(ServerAPIHandler())
-            .environmentObject(DefaultImage())
+            .environmentObject(SiteImages())
             .preferredColorScheme(.light) // Until we add dark mode custom theming
     }
 }

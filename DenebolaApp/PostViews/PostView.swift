@@ -10,6 +10,7 @@ import SwiftUI
 
 struct PostView: View {
     @EnvironmentObject var handler: WordpressAPIHandler
+    @EnvironmentObject var siteImages: SiteImages
     let post: Post
 
     var body: some View {
@@ -49,6 +50,7 @@ struct PostView_Previews: PreviewProvider {
     static var previews: some View {
         PostView(post: Post.default)
             .environmentObject(WordpressAPIHandler())
+            .environmentObject(SiteImages())
     }
 }
 

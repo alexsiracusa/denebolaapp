@@ -11,6 +11,7 @@ struct SearchView: View {
     @EnvironmentObject var handler: WordpressAPIHandler
     @ObservedObject var loader: SearchResultLoader
     @EnvironmentObject private var viewModel: ViewModelData
+    @EnvironmentObject var siteImages: SiteImages
     @State var searchFor = ""
     @State var updateSearch = ""
     var category: SimpleCategory?
@@ -40,5 +41,6 @@ struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
         SearchView(category: SimpleCategory(id: 7, name: "Opinions", image: nil), domain: "https://nshsdenebola.com")
             .environmentObject(WordpressAPIHandler())
+            .environmentObject(SiteImages())
     }
 }

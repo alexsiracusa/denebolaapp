@@ -15,7 +15,7 @@ struct ViewController: View {
     
     @State var loaded = false
     @EnvironmentObject var serverLoader: ServerAPIHandler
-    @EnvironmentObject var defaultImage: DefaultImage
+    @EnvironmentObject var defaultImage: SiteImages
     @State var school: School? = nil
 
     init() {
@@ -83,6 +83,6 @@ struct ViewController_Previews: PreviewProvider {
             .environmentObject(ViewModelData())
             .environmentObject(PlayerObject())
             .environmentObject(ServerAPIHandler())
-            .environmentObject(DefaultImage())
+            .environmentObject(SiteImages())
     }
 }

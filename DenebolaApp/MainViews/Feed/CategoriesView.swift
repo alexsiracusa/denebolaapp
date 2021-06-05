@@ -10,7 +10,7 @@ import SwiftUI
 struct CategoriesView: View {
     @EnvironmentObject var handler: WordpressAPIHandler
     @EnvironmentObject private var viewModel: ViewModelData
-    @EnvironmentObject var defaultImage: DefaultImage
+    @EnvironmentObject var siteImages: SiteImages
 
     @State var sites: [Wordpress]
     @State var currentURL: String = ""
@@ -36,7 +36,7 @@ struct CategoriesView: View {
                 if let site = currentSite {
                     VStack(alignment: .leading) {
                         CategoriesList(categories: site.featuredCategoriesWithImage)
-                        
+                        Text(siteImages.logoURL.absoluteString)
                         Spacer(minLength: 15)
 
                         Text("Latest Posts")
@@ -77,7 +77,10 @@ struct CategoriesView: View {
         handler.domain = site.url
         currentURL = site.url
         if let url = URL(string: site.defaultImage.url) {
-            defaultImage.imageURL = url
+            siteImages.defaultImageURL = url
+        }
+        if let url = URL(string: site.logo.url) {
+            siteImages.logoURL = url
         }
     }
     
@@ -92,6 +95,6 @@ struct CategoriesView_Previews: PreviewProvider {
     static var previews: some View {
         CategoriesView(sites: [Wordpress.default, Wordpress.default])
             .environmentObject(WordpressAPIHandler())
-            .environmentObject(DefaultImage())
+            .environmentObject(SiteImages())
     }
 }

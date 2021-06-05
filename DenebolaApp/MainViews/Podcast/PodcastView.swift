@@ -79,7 +79,6 @@ struct PodcastView: View {
                 }
             }
             .navigationBarTitle("Denebacast", displayMode: .inline)
-            .navigationBarItems(trailing: LogoButton())
         }
         .onAppear {
             if loader.loaded {

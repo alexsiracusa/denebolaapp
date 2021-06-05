@@ -126,7 +126,6 @@ struct PodcastDetailView: View {
             }
         }
         .navigationBarTitle("", displayMode: .inline)
-        .navigationBarItems(trailing: LogoButton())
     }
     
     func seek(to: Double) {

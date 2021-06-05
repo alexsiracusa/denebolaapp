@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CategoryButton: View {
-    @EnvironmentObject var defaultImage: DefaultImage
+    @EnvironmentObject var siteImages: SiteImages
     let size: CGFloat = 100
     let category: SimpleCategory
     var name: String {
@@ -28,13 +28,13 @@ struct CategoryButton: View {
                 }
                 .zIndex(2)
                 NavigationLink(destination:
-                    CategoryView(category: category, imageURL: category.imageURL == nil ? defaultImage.imageURL : category.imageURL!)
+                    CategoryView(category: category, imageURL: category.imageURL == nil ? siteImages.defaultImageURL : category.imageURL!)
                 ) {
                     if let url = category.imageURL {
                         ImageView(url: url)
                             .asCategoryButton(size: size)
                     } else {
-                        ImageView(url: self.defaultImage.imageURL)
+                        ImageView(url: self.siteImages.defaultImageURL)
                             .asCategoryButton(size: size)
                     }
                 }
@@ -67,6 +67,6 @@ extension View {
 struct CategoryButton_Previews: PreviewProvider {
     static var previews: some View {
         CategoryButton(category: SimpleCategory(id: 7, name: "Opinions", image: nil))
-            .environmentObject(DefaultImage())
+            .environmentObject(SiteImages())
     }
 }
