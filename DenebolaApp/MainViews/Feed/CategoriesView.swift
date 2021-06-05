@@ -98,7 +98,7 @@ struct CategoriesView: View {
     }
     
     func load() {
-        if sites.count > 0 {
+        if sites.count > 0 && currentSite == nil {
             currentSite = sites[0]
         }
     }
