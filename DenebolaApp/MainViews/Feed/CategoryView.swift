@@ -44,7 +44,7 @@ struct CategoryView: View {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(.black)
                 }
-                LogoButton(url: $siteImages.logoURL)
+                LogoButton(url: siteImages.logoURL)
             }
         )
     }

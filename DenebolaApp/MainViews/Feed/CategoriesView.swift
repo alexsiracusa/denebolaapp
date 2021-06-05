@@ -37,7 +37,6 @@ struct CategoriesView: View {
                     VStack(alignment: .leading) {
                         CategoriesList(categories: site.featuredCategoriesWithImage)
                         Spacer(minLength: 15)
-
                         Text("Latest Posts")
                             .font(.headline)
                             .padding(.leading)
@@ -61,7 +60,10 @@ struct CategoriesView: View {
                         Image(systemName: "magnifyingglass")
                             .foregroundColor(.black)
                     }
-                    LogoButton(url: $siteImages.logoURL)
+                    if let site = currentSite {
+                        //Text(site.logoURL!.absoluteString)
+                        LogoButton(url: site.logoURL!)
+                    }
                 }
             )
         }

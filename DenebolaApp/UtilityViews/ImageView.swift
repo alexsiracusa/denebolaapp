@@ -13,6 +13,8 @@ struct ImageView: View {
 
     @StateObject private var image = FetchImage()
     var aspectRatio: CGFloat? = nil
+    
+    let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
 
     var body: some View {
         if let view = image.view {
@@ -21,13 +23,20 @@ struct ImageView: View {
                 .onDisappear(perform: image.reset)
                 .aspectRatio(aspectRatio, contentMode: .fit)
                 .clipped()
+                .onChange(of: url, perform: { value in
+                    image.reset()
+                })
         } else {
             ZStack {
                 PlaceholderBackground()
-                    .onAppear { image.load(url) }
                 DefaultLoader()
                     .scaleEffect(0.1)
-            }.aspectRatio(aspectRatio, contentMode: .fit)
+            }
+            .aspectRatio(aspectRatio, contentMode: .fit)
+            .onAppear { image.load(url) }
+            .onReceive(timer) { time in
+                image.load(url)
+            }
         }
     }
     
