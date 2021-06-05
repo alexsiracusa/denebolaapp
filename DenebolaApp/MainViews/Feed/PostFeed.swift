@@ -47,6 +47,9 @@ struct PostFeed: View {
                         .padding(.top, 5)
                 }
             }
+            .onChange(of: domain, perform: { value in
+                loader.setDomain(value)
+            })
         }
     }
 }
