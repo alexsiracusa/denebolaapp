@@ -16,10 +16,6 @@ struct CategoriesView: View {
     @State var currentURL: String = ""
     @State var currentSite: Wordpress? = nil
     
-    init(sites: [Wordpress]) {
-        self.sites = sites
-    }
-    
     @State var displayPicker = false
     
     var body: some View {
@@ -82,11 +78,11 @@ struct CategoriesView: View {
                 }
                 .padding([.top, .bottom])
             }
-            .onChange(of: currentSite, perform: { value in
-                updateWordpress()
-            })
             .pickerStyle(MenuPickerStyle())
         }
+        .onChange(of: currentSite, perform: { value in
+            updateWordpress()
+        })
     }
     
     func updateWordpress() {
