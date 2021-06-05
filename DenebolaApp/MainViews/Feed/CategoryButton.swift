@@ -9,17 +9,12 @@ import SwiftUI
 
 struct CategoryButton: View {
     @EnvironmentObject var siteImages: SiteImages
+    
     let size: CGFloat = 100
     let category: SimpleCategory
-    var name: String {
-        return category.name
-    }
     
     var imageURL: URL {
-        if let url = category.imageURL {
-            return url
-        }
-        return siteImages.defaultImageURL
+        category.imageURL ?? siteImages.defaultImageURL
     }
 
     var body: some View {
@@ -27,7 +22,7 @@ struct CategoryButton: View {
             GeometryReader { _ in
                 VStack {
                     Spacer()
-                    Text(name)
+                    Text(category.name)
                         .bold()
                         .font(.caption)
                         .padding(5)
@@ -35,7 +30,7 @@ struct CategoryButton: View {
                 }
                 .zIndex(2)
                 NavigationLink(destination:
-                    CategoryView(category: category, imageURL: category.imageURL == nil ? siteImages.defaultImageURL : category.imageURL!)
+                    CategoryView(category: category, imageURL: imageURL)
                 ) {
                     ImageView(url: imageURL)
                         .asCategoryButton(size: size)

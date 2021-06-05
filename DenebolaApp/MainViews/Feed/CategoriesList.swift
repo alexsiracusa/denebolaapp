@@ -9,7 +9,6 @@ import SwiftUI
 
 struct CategoriesList: View {
     let categories: [SimpleCategory]
-    @EnvironmentObject var siteImages: SiteImages
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -26,6 +25,5 @@ struct CategoriesList: View {
 struct CategoriesList_Previews: PreviewProvider {
     static var previews: some View {
         CategoriesList(categories: Wordpress.default.featuredCategories)
-            .environmentObject(SiteImages())
     }
 }

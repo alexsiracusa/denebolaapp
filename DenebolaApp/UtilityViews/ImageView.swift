@@ -9,7 +9,7 @@ import FetchImage
 import SwiftUI
 
 struct ImageView: View {
-    var url: URL
+    let url: URL
 
     @StateObject private var image = FetchImage()
     var aspectRatio: CGFloat? = nil
@@ -18,30 +18,18 @@ struct ImageView: View {
         if let view = image.view {
             view
                 .resizable()
-                .onDisappear(perform: image.reset)
                 .aspectRatio(aspectRatio, contentMode: .fit)
                 .clipped()
-                .onChange(of: url, perform: { value in
-                    image.reset()
-                })
+                .onDisappear(perform: image.reset)
+                .onAppear {image.load(url)}
         } else {
             ZStack {
                 PlaceholderBackground()
+                    .onAppear { image.load(url) }
                 DefaultLoader()
                     .scaleEffect(0.1)
-            }
-            .aspectRatio(aspectRatio, contentMode: .fit)
-            .onAppear {
-                image.load(url)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    image.load(url)
-                }
-            }
+            }.aspectRatio(aspectRatio, contentMode: .fit)
         }
-    }
-    
-    func update(url: URL) {
-        image.load(url)
     }
 }
 
