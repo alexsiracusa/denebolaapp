@@ -20,21 +20,18 @@ struct CategoriesView: View {
         self.sites = sites
     }
     
+    @State var displayPicker = false
+    
     var body: some View {
         NavigationView {
             ScrollView {
-                Picker("Current Site:", selection: $currentSite) {
-                    ForEach(sites) { site in
-                        Text(site.name)
-                            .tag(site as Wordpress?)
-                    }
-                }
-                .onChange(of: currentSite, perform: { value in
-                    updateWordpress()
-                })
-                .pickerStyle(MenuPickerStyle())
                 if let site = currentSite {
                     VStack(alignment: .leading) {
+                        Button {
+                            displayPicker = true
+                        } label: {
+                            SiteBanner(site: site)
+                        }
                         CategoriesList(categories: site.featuredCategoriesWithImage)
                         Spacer(minLength: 15)
                         Text("Latest Posts")
@@ -45,7 +42,8 @@ struct CategoriesView: View {
                         
                         PostFeed(domain: site.url)
                     }
-                    .padding([.top, .bottom], 15)
+                    .padding(.top, 10)
+                    .padding(.bottom, 15)
                 } else {
                     Text("There are no sites for this school")
                 }
@@ -61,7 +59,6 @@ struct CategoriesView: View {
                             .foregroundColor(.black)
                     }
                     if let site = currentSite {
-                        //Text(site.logoURL!.absoluteString)
                         LogoButton(url: site.logoURL!)
                     }
                 }
@@ -70,6 +67,25 @@ struct CategoriesView: View {
         .onAppear {
             load()
             updateWordpress()
+        }
+        .sheet(isPresented: $displayPicker) {
+            ScrollView {
+                VStack(spacing: 15) {
+                    ForEach(sites) { site in
+                        Button {
+                            currentSite = site
+                            displayPicker = false
+                        } label: {
+                            SiteBanner(site: site)
+                        }
+                    }
+                }
+                .padding([.top, .bottom])
+            }
+            .onChange(of: currentSite, perform: { value in
+                updateWordpress()
+            })
+            .pickerStyle(MenuPickerStyle())
         }
     }
     
