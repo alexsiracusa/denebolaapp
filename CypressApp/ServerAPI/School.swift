@@ -70,7 +70,7 @@ struct ImageData: Codable {
     let url: String
 }
 
-struct Podcast: Codable {
+struct Podcast: Codable, Identifiable, Hashable {
     let id: Int
     let enabled: Bool
     let rssUrl: String

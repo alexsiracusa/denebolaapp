@@ -14,8 +14,8 @@ struct PodcastView: View {
     @EnvironmentObject private var viewModel: ViewModelData
 
     @State var podcasts: [Podcast]
-    @State var episodes = [PodcastEpisode]()
     @State var currentPodcast: Podcast? = nil
+    @State var episodes = [PodcastEpisode]()
     @State var loadingAsset: AVAsset! = nil
     
     @State var time = 0.0
@@ -55,30 +55,43 @@ struct PodcastView: View {
                                     ImageView(url: URL(string: loader.podcastImageURL)!)
                                         .frame(width: 100, height: 100)
                                         .cornerRadius(5)
-                                    Text(loader.podcastTitle)
-                                        .font(.headline)
-                                        .bold()
+                                    Picker(selection: $currentPodcast,
+                                        label:
+                                            Text(loader.podcastTitle)
+                                            .font(.headline)
+                                            .foregroundColor(.black),
+                                        content: {
+                                        ForEach(podcasts) {podcast in
+                                            Text(podcast.rssUrl)
+                                                .tag(podcast as Podcast?)
+                                        }
+                                    })
+                                    .pickerStyle(MenuPickerStyle())
+                                    .disabled(podcasts.count == 1)
+                                    .onChange(of: currentPodcast) {value in
+                                        guard let podcast = currentPodcast else {
+                                            return
+                                        }
+                                        loadPodcast(podcast)
+                                    }
                                 }
                                 .padding(.bottom)
                                 Text(loader.podcastDiscription)
                                     .lineLimit(showingFullDescription ? nil : 4)
                                     .padding(.bottom, 5)
-                                Button {
-                                    showingFullDescription.toggle()
-                                } label: {
-                                    Text(showingFullDescription ? "Show Less" : "Show More")
-                                        .font(.subheadline)
-                                        .foregroundColor(.secondary)
-                                }
+                                toggleButton
                             }
                             .padding()
+                            
+                            Divider()
+                            
+                            ForEach(loader.episodes) { podcast in
+                                PodcastRow(podcast: podcast)
+                            }
+                        } else {
+                            Text("Loading")
                         }
                         
-                        Divider()
-                        
-                        ForEach(loader.episodes) { podcast in
-                            PodcastRow(podcast: podcast)
-                        }
                     }
                 } else {
                     Text("This School has no podcasts")
@@ -87,18 +100,46 @@ struct PodcastView: View {
             .navigationBarTitle("Denebacast", displayMode: .inline)
         }
         .onAppear {
-            if loader.loaded {
-                self.episodes = loader.episodes
-            } else {
+            load()
+            loader.shouldKeepReloading = true
+        }
+        .onDisappear {
+            loader.shouldKeepReloading = false
+        }
+    }
+    
+    var toggleButton: some View {
+        Button(action: { self.showingFullDescription.toggle() }) {
+            Text(self.showingFullDescription ? "Show less" : "Show more")
+                .font(.caption)
+                .foregroundColor(.secondary)
+        }
+    }
+    
+    func load() {
+        if loader.loaded {
+            self.episodes = loader.episodes
+        } else {
+            if currentPodcast == nil {
+                currentPodcast = podcasts[0]
+            }
+            if !loader.loaded {
                 if podcasts.count > 0 {
                     loader.setRSS(podcasts[0].rssUrl)
+                    currentPodcast = podcasts[0]
                     loader.load()
                 }
             }
         }
     }
-}
     
+    func loadPodcast(_ podcast: Podcast) {
+        currentPodcast = podcast
+        player.reset()
+        loader.setRSS(podcast.rssUrl)
+    }
+}
+
 struct PodcastView_Previews: PreviewProvider {
     static var previews: some View {
         PodcastView(podcasts: [Podcast.default])

@@ -31,4 +31,9 @@ class PlayerObject: ObservableObject {
         self.player.pause()
         self.playing = false
     }
+    
+    func reset() {
+        player.pause()
+        self.player = AVPlayer()
+    }
 }

@@ -21,12 +21,17 @@ class PodcastLoader: NSObject, ObservableObject, XMLParserDelegate {
     var descrip = String()
     var date = String()
 
-    var podcastTitle = String()
-    var podcastDiscription = String()
-    var podcastImageURL = String()
+    @Published var podcastTitle = String()
+    @Published var podcastDiscription = String()
+    @Published var podcastImageURL = String()
+    
+    @Published var shouldKeepReloading = true
     
     func setRSS(_ rss: String) {
         parser?.abortParsing()
+        podcastTitle = String()
+        podcastDiscription = String()
+        podcastImageURL = String()
         loaded = false
         self.rss = rss
         self.episodes = []
@@ -45,11 +50,37 @@ class PodcastLoader: NSObject, ObservableObject, XMLParserDelegate {
         episodes = []
         loadFeed(url: url)
     }
+    
+    func loadRSS(url: URL, completion: @escaping  (Data?, String?) -> Void) {
+        JSONLoader.loadData(url: url) { data, error in
+            completion(data, error)
+        }
+    }
 
     private func loadFeed(url: URL) {
-        self.parser = XMLParser(contentsOf: url)!
-        parser.delegate = self
-        parser.parse()
+        loadRSS(url: url) {data, error in
+            guard error == nil  else {
+                if self.shouldKeepReloading && url.absoluteString == self.rss {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                        self.loadFeed(url: url)
+                    }
+                }
+                return
+            }
+            guard let data = data else {
+                return
+            }
+            if url.absoluteString == self.rss {
+                DispatchQueue.main.async {
+                    self.parser = XMLParser(data: data)
+                    self.parser.delegate = self
+                    self.parser.parse()
+                }
+            }
+        }
+//        self.parser = XMLParser(contentsOf: url)!
+//        parser.delegate = self
+//        parser.parse()
     }
 
     // 1
@@ -62,6 +93,11 @@ class PodcastLoader: NSObject, ObservableObject, XMLParserDelegate {
         if elementName == "itunes:image" {
             let attrsUrl = attributeDict as [String: NSString]
             let imageURL = attrsUrl["href"]
+            if podcastImageURL.isEmpty {
+                if let _ = URL(string: imageURL! as String) {
+                    podcastImageURL = imageURL! as String
+                }
+            }
             self.imageURL = imageURL! as String
         }
         self.elementName = elementName
