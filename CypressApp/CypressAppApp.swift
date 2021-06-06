@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct DenebolaAppApp: App {
+struct CypressAppApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()

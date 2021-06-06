@@ -21,12 +21,12 @@
 		CEAE3E2D2648CA2F0066C825 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE3E2C2648CA2F0066C825 /* Extensions.swift */; };
 		CEAE3E352648CAC50066C825 /* DefaultViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE3E342648CAC50066C825 /* DefaultViews.swift */; };
 		CEAE3E3D2648D0CC0066C825 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE3E3C2648D0CC0066C825 /* WebView.swift */; };
-		CEC03FB1263E354200FFCB45 /* DenebolaAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FB0263E354200FFCB45 /* DenebolaAppApp.swift */; };
+		CEC03FB1263E354200FFCB45 /* CypressAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FB0263E354200FFCB45 /* CypressAppApp.swift */; };
 		CEC03FB3263E354200FFCB45 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FB2263E354200FFCB45 /* ContentView.swift */; };
 		CEC03FB5263E354400FFCB45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC03FB4263E354400FFCB45 /* Assets.xcassets */; };
 		CEC03FB8263E354400FFCB45 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC03FB7263E354400FFCB45 /* Preview Assets.xcassets */; };
 		CEC03FC3263E354400FFCB45 /* DenebolaAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FC2263E354400FFCB45 /* DenebolaAppTests.swift */; };
-		CEC03FCE263E354400FFCB45 /* DenebolaAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FCD263E354400FFCB45 /* DenebolaAppUITests.swift */; };
+		CEC03FCE263E354400FFCB45 /* CypressAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FCD263E354400FFCB45 /* CypressAppUITests.swift */; };
 		CED8EB21265CBD7C002922A3 /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = CED8EB20265CBD7C002922A3 /* SwiftDate */; };
 		CEFE4E7B26562EF2005A2DD4 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE4E7A26562EF2005A2DD4 /* ModelData.swift */; };
 		CEFE4E83265635B6005A2DD4 /* MultimediaSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE4E82265635B6005A2DD4 /* MultimediaSection.swift */; };
@@ -112,17 +112,17 @@
 		CEAE3E2C2648CA2F0066C825 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		CEAE3E342648CAC50066C825 /* DefaultViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultViews.swift; sourceTree = "<group>"; };
 		CEAE3E3C2648D0CC0066C825 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
-		CEC03FAD263E354200FFCB45 /* Denebola.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Denebola.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		CEC03FB0263E354200FFCB45 /* DenebolaAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenebolaAppApp.swift; sourceTree = "<group>"; };
+		CEC03FAD263E354200FFCB45 /* Cypress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cypress.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEC03FB0263E354200FFCB45 /* CypressAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CypressAppApp.swift; sourceTree = "<group>"; };
 		CEC03FB2263E354200FFCB45 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CEC03FB4263E354400FFCB45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEC03FB7263E354400FFCB45 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CEC03FB9263E354400FFCB45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CEC03FBE263E354400FFCB45 /* DenebolaAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DenebolaAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEC03FBE263E354400FFCB45 /* CypressAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CypressAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC03FC2263E354400FFCB45 /* DenebolaAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenebolaAppTests.swift; sourceTree = "<group>"; };
 		CEC03FC4263E354400FFCB45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CEC03FC9263E354400FFCB45 /* DenebolaAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DenebolaAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CEC03FCD263E354400FFCB45 /* DenebolaAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenebolaAppUITests.swift; sourceTree = "<group>"; };
+		CEC03FC9263E354400FFCB45 /* CypressAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CypressAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEC03FCD263E354400FFCB45 /* CypressAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CypressAppUITests.swift; sourceTree = "<group>"; };
 		CEC03FCF263E354400FFCB45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEFE4E7A26562EF2005A2DD4 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		CEFE4E82265635B6005A2DD4 /* MultimediaSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultimediaSection.swift; sourceTree = "<group>"; };
@@ -219,9 +219,9 @@
 		CEC03FA4263E354200FFCB45 = {
 			isa = PBXGroup;
 			children = (
-				CEC03FAF263E354200FFCB45 /* DenebolaApp */,
-				CEC03FC1263E354400FFCB45 /* DenebolaAppTests */,
-				CEC03FCC263E354400FFCB45 /* DenebolaAppUITests */,
+				CEC03FAF263E354200FFCB45 /* CypressApp */,
+				CEC03FC1263E354400FFCB45 /* CypressAppTests */,
+				CEC03FCC263E354400FFCB45 /* CypressAppUITests */,
 				CEC03FAE263E354200FFCB45 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -229,17 +229,17 @@
 		CEC03FAE263E354200FFCB45 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CEC03FAD263E354200FFCB45 /* Denebola.app */,
-				CEC03FBE263E354400FFCB45 /* DenebolaAppTests.xctest */,
-				CEC03FC9263E354400FFCB45 /* DenebolaAppUITests.xctest */,
+				CEC03FAD263E354200FFCB45 /* Cypress.app */,
+				CEC03FBE263E354400FFCB45 /* CypressAppTests.xctest */,
+				CEC03FC9263E354400FFCB45 /* CypressAppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CEC03FAF263E354200FFCB45 /* DenebolaApp */ = {
+		CEC03FAF263E354200FFCB45 /* CypressApp */ = {
 			isa = PBXGroup;
 			children = (
-				CEC03FB0263E354200FFCB45 /* DenebolaAppApp.swift */,
+				CEC03FB0263E354200FFCB45 /* CypressAppApp.swift */,
 				CEC03FB2263E354200FFCB45 /* ContentView.swift */,
 				FA56AA42263F080900B6D838 /* ViewController.swift */,
 				CEFE4E7A26562EF2005A2DD4 /* ModelData.swift */,
@@ -257,7 +257,7 @@
 				CEC03FB9263E354400FFCB45 /* Info.plist */,
 				CEC03FB6263E354400FFCB45 /* Preview Content */,
 			);
-			path = DenebolaApp;
+			path = CypressApp;
 			sourceTree = "<group>";
 		};
 		CEC03FB6263E354400FFCB45 /* Preview Content */ = {
@@ -268,22 +268,22 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		CEC03FC1263E354400FFCB45 /* DenebolaAppTests */ = {
+		CEC03FC1263E354400FFCB45 /* CypressAppTests */ = {
 			isa = PBXGroup;
 			children = (
 				CEC03FC2263E354400FFCB45 /* DenebolaAppTests.swift */,
 				CEC03FC4263E354400FFCB45 /* Info.plist */,
 			);
-			path = DenebolaAppTests;
+			path = CypressAppTests;
 			sourceTree = "<group>";
 		};
-		CEC03FCC263E354400FFCB45 /* DenebolaAppUITests */ = {
+		CEC03FCC263E354400FFCB45 /* CypressAppUITests */ = {
 			isa = PBXGroup;
 			children = (
-				CEC03FCD263E354400FFCB45 /* DenebolaAppUITests.swift */,
+				CEC03FCD263E354400FFCB45 /* CypressAppUITests.swift */,
 				CEC03FCF263E354400FFCB45 /* Info.plist */,
 			);
-			path = DenebolaAppUITests;
+			path = CypressAppUITests;
 			sourceTree = "<group>";
 		};
 		FA0CB83F2664306F009FE7A3 /* PostViews */ = {
@@ -451,9 +451,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CEC03FAC263E354200FFCB45 /* DenebolaApp */ = {
+		CEC03FAC263E354200FFCB45 /* CypressApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CEC03FD2263E354400FFCB45 /* Build configuration list for PBXNativeTarget "DenebolaApp" */;
+			buildConfigurationList = CEC03FD2263E354400FFCB45 /* Build configuration list for PBXNativeTarget "CypressApp" */;
 			buildPhases = (
 				CEC03FA9263E354200FFCB45 /* Sources */,
 				CEC03FAA263E354200FFCB45 /* Frameworks */,
@@ -463,19 +463,19 @@
 			);
 			dependencies = (
 			);
-			name = DenebolaApp;
+			name = CypressApp;
 			packageProductDependencies = (
 				CE4D2D4226489C6500C243CC /* LoaderUI */,
 				CED8EB20265CBD7C002922A3 /* SwiftDate */,
 				CE073A47266C4B650030DB1A /* Nuke */,
 			);
 			productName = DenebolaApp;
-			productReference = CEC03FAD263E354200FFCB45 /* Denebola.app */;
+			productReference = CEC03FAD263E354200FFCB45 /* Cypress.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CEC03FBD263E354400FFCB45 /* DenebolaAppTests */ = {
+		CEC03FBD263E354400FFCB45 /* CypressAppTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CEC03FD5263E354400FFCB45 /* Build configuration list for PBXNativeTarget "DenebolaAppTests" */;
+			buildConfigurationList = CEC03FD5263E354400FFCB45 /* Build configuration list for PBXNativeTarget "CypressAppTests" */;
 			buildPhases = (
 				CEC03FBA263E354400FFCB45 /* Sources */,
 				CEC03FBB263E354400FFCB45 /* Frameworks */,
@@ -486,14 +486,14 @@
 			dependencies = (
 				CEC03FC0263E354400FFCB45 /* PBXTargetDependency */,
 			);
-			name = DenebolaAppTests;
+			name = CypressAppTests;
 			productName = DenebolaAppTests;
-			productReference = CEC03FBE263E354400FFCB45 /* DenebolaAppTests.xctest */;
+			productReference = CEC03FBE263E354400FFCB45 /* CypressAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		CEC03FC8263E354400FFCB45 /* DenebolaAppUITests */ = {
+		CEC03FC8263E354400FFCB45 /* CypressAppUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CEC03FD8263E354400FFCB45 /* Build configuration list for PBXNativeTarget "DenebolaAppUITests" */;
+			buildConfigurationList = CEC03FD8263E354400FFCB45 /* Build configuration list for PBXNativeTarget "CypressAppUITests" */;
 			buildPhases = (
 				CEC03FC5263E354400FFCB45 /* Sources */,
 				CEC03FC6263E354400FFCB45 /* Frameworks */,
@@ -504,9 +504,9 @@
 			dependencies = (
 				CEC03FCB263E354400FFCB45 /* PBXTargetDependency */,
 			);
-			name = DenebolaAppUITests;
+			name = CypressAppUITests;
 			productName = DenebolaAppUITests;
-			productReference = CEC03FC9263E354400FFCB45 /* DenebolaAppUITests.xctest */;
+			productReference = CEC03FC9263E354400FFCB45 /* CypressAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -549,9 +549,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CEC03FAC263E354200FFCB45 /* DenebolaApp */,
-				CEC03FBD263E354400FFCB45 /* DenebolaAppTests */,
-				CEC03FC8263E354400FFCB45 /* DenebolaAppUITests */,
+				CEC03FAC263E354200FFCB45 /* CypressApp */,
+				CEC03FBD263E354400FFCB45 /* CypressAppTests */,
+				CEC03FC8263E354400FFCB45 /* CypressAppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -609,7 +609,7 @@
 				FA56AA51263F0BFF00B6D838 /* PhotoGalleryView.swift in Sources */,
 				FAE14C7526557AA7000635DB /* PostSection.swift in Sources */,
 				FAAE7E022669C34B00DE708A /* SiteImages.swift in Sources */,
-				CEC03FB1263E354200FFCB45 /* DenebolaAppApp.swift in Sources */,
+				CEC03FB1263E354200FFCB45 /* CypressAppApp.swift in Sources */,
 				FA0CB85A2667302E009FE7A3 /* TabManager.swift in Sources */,
 				FA56AA4C263F0B5A00B6D838 /* PodcastView.swift in Sources */,
 				CE87B3EE264CCE8A009CAF44 /* Support.swift in Sources */,
@@ -668,7 +668,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEC03FCE263E354400FFCB45 /* DenebolaAppUITests.swift in Sources */,
+				CEC03FCE263E354400FFCB45 /* CypressAppUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -677,12 +677,12 @@
 /* Begin PBXTargetDependency section */
 		CEC03FC0263E354400FFCB45 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CEC03FAC263E354200FFCB45 /* DenebolaApp */;
+			target = CEC03FAC263E354200FFCB45 /* CypressApp */;
 			targetProxy = CEC03FBF263E354400FFCB45 /* PBXContainerItemProxy */;
 		};
 		CEC03FCB263E354400FFCB45 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CEC03FAC263E354200FFCB45 /* DenebolaApp */;
+			target = CEC03FAC263E354200FFCB45 /* CypressApp */;
 			targetProxy = CEC03FCA263E354400FFCB45 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -811,17 +811,17 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"DenebolaApp/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"CypressApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 9LZB553FST;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = DenebolaApp/Info.plist;
+				INFOPLIST_FILE = CypressApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.siracusafamily.denebolaapp.app;
-				PRODUCT_NAME = Denebola;
+				PRODUCT_BUNDLE_IDENTIFIER = org.siracusafamily.cypressapp.app;
+				PRODUCT_NAME = Cypress;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -835,17 +835,17 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"DenebolaApp/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"CypressApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 9LZB553FST;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = DenebolaApp/Info.plist;
+				INFOPLIST_FILE = CypressApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.siracusafamily.denebolaapp.app;
-				PRODUCT_NAME = Denebola;
+				PRODUCT_BUNDLE_IDENTIFIER = org.siracusafamily.cypressapp.app;
+				PRODUCT_NAME = Cypress;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -948,7 +948,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CEC03FD2263E354400FFCB45 /* Build configuration list for PBXNativeTarget "DenebolaApp" */ = {
+		CEC03FD2263E354400FFCB45 /* Build configuration list for PBXNativeTarget "CypressApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CEC03FD3263E354400FFCB45 /* Debug */,
@@ -957,7 +957,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CEC03FD5263E354400FFCB45 /* Build configuration list for PBXNativeTarget "DenebolaAppTests" */ = {
+		CEC03FD5263E354400FFCB45 /* Build configuration list for PBXNativeTarget "CypressAppTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CEC03FD6263E354400FFCB45 /* Debug */,
@@ -966,7 +966,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CEC03FD8263E354400FFCB45 /* Build configuration list for PBXNativeTarget "DenebolaAppUITests" */ = {
+		CEC03FD8263E354400FFCB45 /* Build configuration list for PBXNativeTarget "CypressAppUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CEC03FD9263E354400FFCB45 /* Debug */,
