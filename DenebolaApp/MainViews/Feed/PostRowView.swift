@@ -5,7 +5,6 @@
 //  Created by Alex Siracusa on 5/2/21.
 //
 
-import FetchImage
 import SwiftUI
 
 struct PostRowView: View {

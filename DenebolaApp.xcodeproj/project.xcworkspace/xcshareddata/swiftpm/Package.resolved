@@ -2,15 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "FetchImage",
-        "repositoryURL": "https://github.com/kean/FetchImage",
-        "state": {
-          "branch": null,
-          "revision": "cac844a0dea908c6e068fc8c6a0f949179c7f876",
-          "version": "0.4.0"
-        }
-      },
-      {
         "package": "LoaderUI",
         "repositoryURL": "https://github.com/ninjaprox/LoaderUI",
         "state": {
@@ -24,8 +15,8 @@
         "repositoryURL": "https://github.com/kean/Nuke.git",
         "state": {
           "branch": null,
-          "revision": "8e0f42d1d9f30d816f3c565aa6193d9363325157",
-          "version": "9.6.0"
+          "revision": "e1e9d056fedafa486508759923a0db61ce46f1bc",
+          "version": "10.1.0"
         }
       },
       {

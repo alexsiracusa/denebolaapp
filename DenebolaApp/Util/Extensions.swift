@@ -5,16 +5,8 @@
 //  Created by Connor Tam on 5/9/21.
 //
 
-import FetchImage
 import Foundation
 import SwiftUI
-
-extension FetchImage {
-    var displayImage: Image? {
-        guard let image = self.image else { return nil }
-        return Image(uiImage: image.imageWithoutBaseline())
-    }
-}
 
 extension String {
     var html2AttributedString: String? {

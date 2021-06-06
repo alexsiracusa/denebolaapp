@@ -5,7 +5,6 @@
 //  Created by Alex Siracusa on 5/19/21.
 //
 
-import FetchImage
 import LoaderUI
 import SwiftUI
 
