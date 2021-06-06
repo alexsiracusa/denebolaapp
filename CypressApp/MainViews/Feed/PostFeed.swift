@@ -36,6 +36,12 @@ struct PostFeed: View {
             .onChange(of: domain, perform: { value in
                 loader.setDomain(value)
             })
+            .onAppear {
+                loader.shouldKeepReloading = true
+            }
+            .onDisappear {
+                loader.shouldKeepReloading = false
+            }
         } else {
             if let error = loader.error {
                 VStack {
@@ -56,6 +62,12 @@ struct PostFeed: View {
             .onChange(of: domain, perform: { value in
                 loader.setDomain(value)
             })
+            .onAppear {
+                loader.shouldKeepReloading = true
+            }
+            .onDisappear {
+                loader.shouldKeepReloading = false
+            }
         }
     }
 }

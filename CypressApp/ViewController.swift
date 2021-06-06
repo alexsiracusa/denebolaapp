@@ -67,6 +67,12 @@ struct ViewController: View {
         serverLoader.loadSchool(0) { school, error in
             self.school = school
             self.error = error
+            guard error == nil else {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                    loadTabs()
+                }
+                return
+            }
             guard let school = school else { return }
             self.tabManager = TabManager(school.allTabs())
 

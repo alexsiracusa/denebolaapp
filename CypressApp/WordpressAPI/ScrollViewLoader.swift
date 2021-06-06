@@ -11,6 +11,7 @@ class ScrollViewLoader: ObservableObject {
     @Published var posts = [Post]()
     @Published var isLoadingPage = false
     @Published var error: String?
+    @Published var shouldKeepReloading = true
     var per_page = 20
     var currentPage = 1
     var canLoadMorePages = true
@@ -50,8 +51,10 @@ class ScrollViewLoader: ObservableObject {
             self.isLoadingPage = false
             self.error = error
             guard error == nil else {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                    self.loadMorePosts()
+                if self.shouldKeepReloading {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                        self.loadMorePosts()
+                    }
                 }
                 return
             }
