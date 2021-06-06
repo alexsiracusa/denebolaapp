@@ -11,7 +11,7 @@ struct SiteBanner: View {
     let site: Wordpress
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            ImageView(url: site.defaultImageURL!)
+            ImageView(url: site.bannerURL!)
                 .scaledToFill()
                 .frame(height: 60)
                 .aspectRatio(6.0, contentMode: .fit)

@@ -95,6 +95,9 @@ struct CategoriesView: View {
         if let url = URL(string: site.logo.url) {
             siteImages.logoURL = url
         }
+        if let url = URL(string: site.logoBanner.url) {
+            siteImages.bannerURL = url
+        }
     }
     
     func load() {

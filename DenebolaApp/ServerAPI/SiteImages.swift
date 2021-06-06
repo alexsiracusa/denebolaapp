@@ -12,6 +12,7 @@ import SwiftUI
 class SiteImages: ObservableObject {
     @Published var defaultImageURL = URL(string: "https://lh3.googleusercontent.com/proxy/RXdtlKqWTwdbnHZ4JEL6j-eezStBHbtX5pS7Sy3mXZu_sV4e3kw8FYYhO6vkv7b5uTOEHa9sJjbSavSaYZsxa7Ih9Ds70g7wGxlZCoH226z7rk4LbYo2WRFeZo7hr4dRaxPgw7ItfbLa")!
     @Published var logoURL = URL(string: "https://lh3.googleusercontent.com/proxy/RXdtlKqWTwdbnHZ4JEL6j-eezStBHbtX5pS7Sy3mXZu_sV4e3kw8FYYhO6vkv7b5uTOEHa9sJjbSavSaYZsxa7Ih9Ds70g7wGxlZCoH226z7rk4LbYo2WRFeZo7hr4dRaxPgw7ItfbLa")!
+    @Published var bannerURL: URL = URL(string: "https://lh3.googleusercontent.com/proxy/RXdtlKqWTwdbnHZ4JEL6j-eezStBHbtX5pS7Sy3mXZu_sV4e3kw8FYYhO6vkv7b5uTOEHa9sJjbSavSaYZsxa7Ih9Ds70g7wGxlZCoH226z7rk4LbYo2WRFeZo7hr4dRaxPgw7ItfbLa")!
 
     init() {}
     init(_ url: String) {
