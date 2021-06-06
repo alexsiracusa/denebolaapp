@@ -531,7 +531,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CEC03FA8263E354200FFCB45 /* Build configuration list for PBXProject "DenebolaApp" */;
+			buildConfigurationList = CEC03FA8263E354200FFCB45 /* Build configuration list for PBXProject "CypressApp" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -939,7 +939,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CEC03FA8263E354200FFCB45 /* Build configuration list for PBXProject "DenebolaApp" */ = {
+		CEC03FA8263E354200FFCB45 /* Build configuration list for PBXProject "CypressApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CEC03FD0263E354400FFCB45 /* Debug */,

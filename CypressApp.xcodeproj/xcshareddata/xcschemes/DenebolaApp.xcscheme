@@ -17,7 +17,7 @@
                BlueprintIdentifier = "CEC03FAC263E354200FFCB45"
                BuildableName = "Denebola.app"
                BlueprintName = "DenebolaApp"
-               ReferencedContainer = "container:DenebolaApp.xcodeproj">
+               ReferencedContainer = "container:CypressApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "CEC03FBD263E354400FFCB45"
                BuildableName = "DenebolaAppTests.xctest"
                BlueprintName = "DenebolaAppTests"
-               ReferencedContainer = "container:DenebolaApp.xcodeproj">
+               ReferencedContainer = "container:CypressApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -45,7 +45,7 @@
                BlueprintIdentifier = "CEC03FC8263E354400FFCB45"
                BuildableName = "DenebolaAppUITests.xctest"
                BlueprintName = "DenebolaAppUITests"
-               ReferencedContainer = "container:DenebolaApp.xcodeproj">
+               ReferencedContainer = "container:CypressApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -67,7 +67,7 @@
             BlueprintIdentifier = "CEC03FAC263E354200FFCB45"
             BuildableName = "Denebola.app"
             BlueprintName = "DenebolaApp"
-            ReferencedContainer = "container:DenebolaApp.xcodeproj">
+            ReferencedContainer = "container:CypressApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -84,7 +84,7 @@
             BlueprintIdentifier = "CEC03FAC263E354200FFCB45"
             BuildableName = "Denebola.app"
             BlueprintName = "DenebolaApp"
-            ReferencedContainer = "container:DenebolaApp.xcodeproj">
+            ReferencedContainer = "container:CypressApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
