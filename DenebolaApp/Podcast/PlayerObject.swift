@@ -13,7 +13,7 @@ class PlayerObject: ObservableObject {
     @Published var playing: Bool
     @Published var showingToolbar: Bool
     @Published var image: ImageView
-    @Published var currentPodcast: PodcastData? = nil
+    @Published var currentPodcast: PodcastEpisode? = nil
 
     init() {
         self.player = AVPlayer()

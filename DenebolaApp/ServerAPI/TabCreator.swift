@@ -15,7 +15,7 @@ extension School {
     
     func podcastsTab() -> PodcastTab? {
         guard home.enabledSections.contains("podcast") else { return nil }
-        return PodcastTab()
+        return PodcastTab(podcasts: podcasts)
     }
     
     func feedTab() -> FeedTab? {

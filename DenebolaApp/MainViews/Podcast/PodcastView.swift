@@ -13,7 +13,9 @@ struct PodcastView: View {
     @EnvironmentObject var handler: WordpressAPIHandler
     @EnvironmentObject private var viewModel: ViewModelData
 
-    @State var podcasts = [PodcastData]()
+    @State var podcasts: [Podcast]
+    @State var episodes = [PodcastEpisode]()
+    @State var currentPodcast: Podcast? = nil
     @State var loadingAsset: AVAsset! = nil
     
     @State var time = 0.0
@@ -45,47 +47,52 @@ struct PodcastView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(alignment: .leading, spacing: 0) {
-                    if loader.loaded == true {
-                        VStack(alignment: .leading, spacing: 0) {
-                            HStack(alignment: .top) {
-                                ImageView(url: URL(string: loader.podcastImageURL)!)
-                                    .frame(width: 100, height: 100)
-                                    .cornerRadius(5)
-                                Text(loader.podcastTitle)
-                                    .font(.headline)
-                                    .bold()
+                if podcasts.count > 0 {
+                    VStack(alignment: .leading, spacing: 0) {
+                        if loader.loaded == true {
+                            VStack(alignment: .leading, spacing: 0) {
+                                HStack(alignment: .top) {
+                                    ImageView(url: URL(string: loader.podcastImageURL)!)
+                                        .frame(width: 100, height: 100)
+                                        .cornerRadius(5)
+                                    Text(loader.podcastTitle)
+                                        .font(.headline)
+                                        .bold()
+                                }
+                                .padding(.bottom)
+                                Text(loader.podcastDiscription)
+                                    .lineLimit(showingFullDescription ? nil : 4)
+                                    .padding(.bottom, 5)
+                                Button {
+                                    showingFullDescription.toggle()
+                                } label: {
+                                    Text(showingFullDescription ? "Show Less" : "Show More")
+                                        .font(.subheadline)
+                                        .foregroundColor(.secondary)
+                                }
                             }
-                            .padding(.bottom)
-                            Text(loader.podcastDiscription)
-                                .lineLimit(showingFullDescription ? nil : 4)
-                                .padding(.bottom, 5)
-                            Button {
-                                showingFullDescription.toggle()
-                            } label: {
-                                Text(showingFullDescription ? "Show Less" : "Show More")
-                                    .font(.subheadline)
-                                    .foregroundColor(.secondary)
-                            }
+                            .padding()
                         }
-                        .padding()
+                        
+                        Divider()
+                        
+                        ForEach(loader.episodes) { podcast in
+                            PodcastRow(podcast: podcast)
+                        }
                     }
-                    
-                    Divider()
-                    
-                    ForEach(podcasts) { podcast in
-                        PodcastRow(podcast: podcast)
-                    }
+                } else {
+                    Text("This School has no podcasts")
                 }
             }
             .navigationBarTitle("Denebacast", displayMode: .inline)
         }
         .onAppear {
             if loader.loaded {
-                self.podcasts = loader.podcasts
+                self.episodes = loader.episodes
             } else {
-                loader.load { podcasts in
-                    self.podcasts = podcasts
+                if podcasts.count > 0 {
+                    loader.setRSS(podcasts[0].rssUrl)
+                    loader.load()
                 }
             }
         }
@@ -94,7 +101,7 @@ struct PodcastView: View {
     
 struct PodcastView_Previews: PreviewProvider {
     static var previews: some View {
-        PodcastView()
+        PodcastView(podcasts: [Podcast.default])
             .environmentObject(PodcastLoader())
             .environmentObject(WordpressAPIHandler())
             .environmentObject(PlayerObject())

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PodcastRow: View {
     @EnvironmentObject var player: PlayerObject
-    var podcast: PodcastData
+    var podcast: PodcastEpisode
 
     func MediaControlImage(_ name: String) -> some View {
         return Image(systemName: name)
@@ -60,7 +60,7 @@ struct PodcastRow: View {
 
 struct PodcastRow_Previews: PreviewProvider {
     static var previews: some View {
-        PodcastRow(podcast: PodcastData.default)
+        PodcastRow(podcast: PodcastEpisode.default)
             .environmentObject(PlayerObject())
     }
 }

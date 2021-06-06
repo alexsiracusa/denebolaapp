@@ -74,6 +74,10 @@ struct Podcast: Codable {
     let id: Int
     let enabled: Bool
     let rssUrl: String
+    
+    static var `default`: Podcast {
+        return Podcast(id: 0, enabled: true, rssUrl: "https://anchor.fm/s/f635e84/podcast/rss")
+    }
 }
 
 struct Home: Codable {

@@ -9,9 +9,10 @@ import Foundation
 import SwiftUI
 
 struct PodcastTab: Tab {
+    var podcasts: [Podcast]
     var content: AnyView {
         AnyView(
-            PodcastView()
+            PodcastView(podcasts: podcasts)
         )
     }
 

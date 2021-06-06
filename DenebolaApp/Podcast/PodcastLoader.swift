@@ -8,8 +8,10 @@
 import Foundation
 
 class PodcastLoader: NSObject, ObservableObject, XMLParserDelegate {
-    let rss = "https://anchor.fm/s/f635e84/podcast/rss"
-    @Published var podcasts: [PodcastData] = []
+    //var rss = "https://anchor.fm/s/f635e84/podcast/rss"
+    var rss = ""
+    private var parser: XMLParser!
+    @Published var episodes: [PodcastEpisode] = []
     @Published var time = 0.0
     @Published var loaded = false
     var elementName = String()
@@ -22,22 +24,30 @@ class PodcastLoader: NSObject, ObservableObject, XMLParserDelegate {
     var podcastTitle = String()
     var podcastDiscription = String()
     var podcastImageURL = String()
-
-    var onEnd: ([PodcastData]) -> Void = { _ in }
-    func parserDidEndDocument(_ parser: XMLParser) {
-        onEnd(podcasts)
+    
+    func setRSS(_ rss: String) {
+        parser?.abortParsing()
+        loaded = false
+        self.rss = rss
+        self.episodes = []
+        load()
     }
 
-    func load(completion: @escaping ([PodcastData]) -> Void) {
-        guard let url = URL(string: rss) else { return }
-        onEnd = completion
-        podcasts = []
-        loadFeed(url: url)
+    var onEnd: ([PodcastEpisode]) -> Void = { _ in }
+    func parserDidEndDocument(_ parser: XMLParser) {
+        onEnd(episodes)
         loaded = true
     }
 
+    func load() {
+        guard let url = URL(string: rss) else { return }
+        //onEnd = completion
+        episodes = []
+        loadFeed(url: url)
+    }
+
     private func loadFeed(url: URL) {
-        let parser = XMLParser(contentsOf: url)!
+        self.parser = XMLParser(contentsOf: url)!
         parser.delegate = self
         parser.parse()
     }
@@ -62,8 +72,8 @@ class PodcastLoader: NSObject, ObservableObject, XMLParserDelegate {
         if elementName == "item" {
             let imageURL = URL(string: self.imageURL)
             let audioURL = URL(string: self.audioURL)
-            let podcast = PodcastData(title: title, description: descrip, date: date, imageURL: imageURL, audioURL: audioURL)
-            podcasts.append(podcast)
+            let podcast = PodcastEpisode(title: title, description: descrip, date: date, imageURL: imageURL, audioURL: audioURL)
+            episodes.append(podcast)
         }
     }
 
@@ -89,4 +99,5 @@ class PodcastLoader: NSObject, ObservableObject, XMLParserDelegate {
             }
         }
     }
+    
 }

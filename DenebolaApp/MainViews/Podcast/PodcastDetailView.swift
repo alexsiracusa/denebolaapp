@@ -10,7 +10,7 @@ import SwiftUI
 
 struct PodcastDetailView: View {
     @EnvironmentObject private var viewModel: ViewModelData
-    @State var podcast: PodcastData {
+    @State var podcast: PodcastEpisode {
         didSet {
             self.beginNewAudio(url: self.podcast.audioURL!)
         }
@@ -207,7 +207,7 @@ struct PodcastDetailView: View {
 
 struct PodcastDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        PodcastDetailView(podcast: PodcastData.default)
+        PodcastDetailView(podcast: PodcastEpisode.default)
             .environmentObject(PlayerObject())
     }
 }

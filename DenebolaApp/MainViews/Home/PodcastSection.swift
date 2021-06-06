@@ -11,7 +11,7 @@ struct PodcastSection: View {
     @EnvironmentObject var loader: PodcastLoader
     @EnvironmentObject private var viewModel: ViewModelData
 
-    @State private var podcasts = [PodcastData]()
+    @State private var podcasts = [PodcastEpisode]()
 
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
@@ -52,11 +52,9 @@ struct PodcastSection: View {
         .padding(.bottom, 20)
         .onAppear {
             if loader.loaded {
-                self.podcasts = loader.podcasts
+                self.podcasts = loader.episodes
             } else {
-                loader.load { podcasts in
-                    self.podcasts = podcasts
-                }
+                loader.load()
             }
         }
     }
