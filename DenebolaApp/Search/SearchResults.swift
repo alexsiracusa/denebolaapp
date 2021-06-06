@@ -11,12 +11,12 @@ struct SearchResults: View {
     @EnvironmentObject var handler: WordpressAPIHandler
     @ObservedObject var loader: SearchResultLoader
     @Binding var searchFor: String
-    
+
     init(category: Int? = nil, domain: String, searchFor: Binding<String>) {
-        self._searchFor = searchFor
+        _searchFor = searchFor
         loader = SearchResultLoader(domain: domain, category: category)
     }
-    
+
     var body: some View {
         if loader.posts.count != 0 {
             LazyVStack(spacing: 0) {
@@ -30,7 +30,8 @@ struct SearchResults: View {
             .onChange(of: searchFor) { search in
                 loader.searchFor(search)
             }
-        } else {
+        }
+        else {
             if let error = loader.error {
                 Text(error)
                     .onChange(of: searchFor) { search in
@@ -39,7 +40,7 @@ struct SearchResults: View {
                     .padding()
             }
             else if loader.isLoadingPage {
-                //TODO: make better loading screen
+                // TODO: make better loading screen
                 Text("Loading")
                     .padding()
             }

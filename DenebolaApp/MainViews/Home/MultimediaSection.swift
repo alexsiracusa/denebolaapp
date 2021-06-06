@@ -26,8 +26,7 @@ struct MultimediaSection: View {
                 }
             }
             
-            Button(action: {
-            }) {
+            Button(action: {}) {
                 HStack {
                     Spacer()
                     Text("MORE MULTIMEDIA")

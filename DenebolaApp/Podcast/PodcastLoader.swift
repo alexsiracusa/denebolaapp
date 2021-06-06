@@ -18,12 +18,12 @@ class PodcastLoader: NSObject, ObservableObject, XMLParserDelegate {
     var audioURL = String()
     var descrip = String()
     var date = String()
-    
+
     var podcastTitle = String()
     var podcastDiscription = String()
     var podcastImageURL = String()
-    
-    var onEnd: ([PodcastData]) -> Void = {_ in }
+
+    var onEnd: ([PodcastData]) -> Void = { _ in }
     func parserDidEndDocument(_ parser: XMLParser) {
         onEnd(podcasts)
     }

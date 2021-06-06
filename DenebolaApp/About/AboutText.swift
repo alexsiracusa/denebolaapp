@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AboutText: View {
     var body: some View {
-        ScrollView() {
+        ScrollView {
             VStack(alignment: .leading, spacing: 5) {
                 Text("About")
                     .font(.title)

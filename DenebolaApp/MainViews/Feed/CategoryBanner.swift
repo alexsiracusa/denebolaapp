@@ -10,7 +10,7 @@ import SwiftUI
 struct CategoryBanner: View {
     let category: SimpleCategory
     let imageURL: URL
-    
+
     var body: some View {
         ImageView(url: imageURL)
             .scaledToFill()
@@ -19,7 +19,7 @@ struct CategoryBanner: View {
             .clipped()
             .overlay(
                 LinearGradient(gradient: Gradient(colors: [.clear, .black]), startPoint: UnitPoint(x: 0.5, y: 0.6), endPoint: .bottom)
-                .opacity(0.25)
+                    .opacity(0.25)
             )
             .overlay(
                 HStack {

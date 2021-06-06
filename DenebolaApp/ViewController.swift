@@ -12,7 +12,7 @@ struct ViewController: View {
     @EnvironmentObject var handler: WordpressAPIHandler
     @EnvironmentObject var viewModel: ViewModelData
     @EnvironmentObject var player: PlayerObject
-    
+
     @State var loaded = false
     @EnvironmentObject var serverLoader: ServerAPIHandler
     @EnvironmentObject var defaultImage: SiteImages
@@ -28,12 +28,12 @@ struct ViewController: View {
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         UINavigationBar.appearance().compactAppearance = appearance
-        
-        //setting up tab styles
+
+        // setting up tab styles
     }
-    
+
     @State var tabManager: TabManager? = nil
-    var tabs : [Tab] {
+    var tabs: [Tab] {
         return tabManager!.tabs
     }
 
@@ -41,7 +41,7 @@ struct ViewController: View {
     var body: some View {
         if loaded {
             TabView(selection: $viewModel.selectedTab) {
-                ForEach(0..<tabs.count, id: \.self) { n in
+                ForEach(0 ..< tabs.count, id: \.self) { n in
                     let tab = tabs[n]
                     tab.content
                         .tabItem {
@@ -62,15 +62,15 @@ struct ViewController: View {
             }
         }
     }
-    
+
     func loadTabs() {
         serverLoader.loadSchool(0) { school, error in
             self.school = school
             self.error = error
-            guard let school = school else {return}
+            guard let school = school else { return }
             self.tabManager = TabManager(school.allTabs())
-            
-            if error == nil {loaded = true}
+
+            if error == nil { loaded = true }
         }
     }
 }

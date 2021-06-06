@@ -15,7 +15,7 @@ func getFormattedMinutesSeconds(_ seconds: Double) -> String {
 
 func hourToAmPm(_ hour: Int) -> String {
     if hour > 12 {
-        return "\(hour-12) PM"
+        return "\(hour - 12) PM"
     } else {
         return "\(hour) AM"
     }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LogoButton: View {
     let url: URL
-    
+
     var body: some View {
         NavigationLink(destination: AboutView()) {
             ImageView(url: url)

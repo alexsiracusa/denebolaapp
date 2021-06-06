@@ -21,7 +21,7 @@ struct PostRowView: View {
                     .cornerRadius(5.0)
             } else {
                 ImageView(url: siteImages.defaultImageURL)
-                    //.resizable()
+                    // .resizable()
                     .cornerRadius(5.0)
                     .frame(width: 100, height: 100)
             }

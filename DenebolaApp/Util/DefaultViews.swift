@@ -26,4 +26,3 @@ func PlaceholderBackground() -> some View {
         .fill(Color.gray)
         .brightness(0.3)
 }
-

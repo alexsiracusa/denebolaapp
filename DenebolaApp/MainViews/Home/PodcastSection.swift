@@ -10,9 +10,9 @@ import SwiftUI
 struct PodcastSection: View {
     @EnvironmentObject var loader: PodcastLoader
     @EnvironmentObject private var viewModel: ViewModelData
-    
+
     @State private var podcasts = [PodcastData]()
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             Text("Denebacast")
@@ -20,7 +20,7 @@ struct PodcastSection: View {
                 .fontWeight(.black)
                 .foregroundColor(.blue)
                 .padding(.bottom)
-            
+
             if podcasts.count >= 3 {
                 ForEach(0 ..< 3) { index in
                     HStack {
@@ -34,7 +34,7 @@ struct PodcastSection: View {
                     }
                 }
             }
-            
+
             Button(action: {
                 viewModel.selectedTab = 3
             }) {

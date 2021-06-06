@@ -9,10 +9,10 @@ import SwiftUI
 
 struct CategoryButton: View {
     @EnvironmentObject var siteImages: SiteImages
-    
+
     let size: CGFloat = 100
     let category: SimpleCategory
-    
+
     var imageURL: URL {
         category.imageURL ?? siteImages.defaultImageURL
     }
@@ -44,8 +44,7 @@ struct CategoryButton: View {
 extension View {
     func asCategoryButton(size: CGFloat) -> AnyView {
         AnyView(
-            self
-                .scaledToFill()
+            scaledToFill()
                 .frame(width: size, height: size)
                 .aspectRatio(1.0, contentMode: .fit)
                 .clipped()

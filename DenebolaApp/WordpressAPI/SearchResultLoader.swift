@@ -9,18 +9,18 @@ import Foundation
 
 class SearchResultLoader: ScrollViewLoader {
     private var search: String = ""
-    
+
     func searchFor(_ text: String, category: Int? = nil) {
         posts = [Post]()
         isLoadingPage = false
         canLoadMorePages = true
         error = nil
-        if let category = category {self.category = category}
+        if let category = category { self.category = category }
         currentPage = 1
-        self.search = text
+        search = text
         loadMorePosts()
     }
-    
+
     override func loadMorePosts() {
         guard !isLoadingPage, canLoadMorePages else { return }
         guard search != "" else { return }

@@ -11,13 +11,13 @@ struct SearchBar: View {
     @State var searchFor: String = ""
     @Binding var updateSearch: String
     @State var isEditing = false
-    
+
     var body: some View {
         HStack(spacing: 0) {
             HStack(spacing: 0) {
                 TextField(
                     "Search",
-                     text: $searchFor
+                    text: $searchFor
                 ) { isEditing in
                     withAnimation {
                         self.isEditing = isEditing

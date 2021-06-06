@@ -175,7 +175,7 @@ struct CancelledBlock: Identifiable {
     }
 
     let id = UUID()
-    
+
     let teacher: Teacher
     let cancelledType: CancelledType
     let remarks: String
@@ -215,10 +215,7 @@ struct CancelledBlock: Identifiable {
         CancelledBlock(teacher: Teacher(firstName: "SPEZIALE", lastName: "DANIELLA"), cancelledType: .full, remarks: "E block Cancelled class G block Cancelled classReport to Library"),
         CancelledBlock(teacher: Teacher(firstName: "STYLE", lastName: "SARAH"), cancelledType: .full, remarks: ""),
         CancelledBlock(teacher: Teacher(firstName: "BUREN", lastName: "ALEXANDRA"), cancelledType: .full, remarks: "G Block and Community Cancelled report to library"),
-        CancelledBlock(teacher: Teacher(firstName: "WEINTRAUB", lastName: "DAVID"), cancelledType: .full, remarks: "Community canceled. G-Block students should work on their projects report to library"),
-
-
-
+        CancelledBlock(teacher: Teacher(firstName: "WEINTRAUB", lastName: "DAVID"), cancelledType: .full, remarks: "Community canceled. G-Block students should work on their projects report to library")
     ]
 }
 
@@ -258,7 +255,7 @@ struct CancelledRow: View {
             Circle()
                 .foregroundColor(cancelled.cancelledType == .full ? .red : .yellow)
                 .frame(width: 10, height: 10)
-            
+
             Text(cancelled.teacher.lastName.uppercased())
                 .frame(width: width, height: 0, alignment: .leading)
             Text(cancelled.teacher.firstName.uppercased())

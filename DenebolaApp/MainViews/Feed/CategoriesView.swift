@@ -80,13 +80,13 @@ struct CategoriesView: View {
             }
             .pickerStyle(MenuPickerStyle())
         }
-        .onChange(of: currentSite, perform: { value in
+        .onChange(of: currentSite, perform: { _ in
             updateWordpress()
         })
     }
     
     func updateWordpress() {
-        guard let site = currentSite else {return}
+        guard let site = currentSite else { return }
         handler.domain = site.url
         currentURL = site.url
         if let url = URL(string: site.defaultImage.url) {
@@ -98,7 +98,7 @@ struct CategoriesView: View {
     }
     
     func load() {
-        if sites.count > 0 && currentSite == nil {
+        if sites.count > 0, currentSite == nil {
             currentSite = sites[0]
         }
     }

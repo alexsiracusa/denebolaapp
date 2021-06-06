@@ -12,14 +12,13 @@ struct ContentView: View {
     init() {
         // Initial program code to be run once
         do {
-            
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
-            
+
         } catch {
             // report for an error
         }
     }
-    
+
     var body: some View {
         ViewController()
             .environmentObject(WordpressAPIHandler())

@@ -53,7 +53,7 @@ class WordpressAPIHandler: ObservableObject {
         url += "per_page=\(per_page)"
         url += "&page=\(page)"
         url += "&search="
-        url += text.words.flatMap{$0 + ","}
+        url += text.words.flatMap { $0 + "," }
         if let category = category { url += "&filter[cat]=\(category)" }
         if embed { url += "&_embed" }
         JSONLoader.decodeJSON(url: url, completionHandler: completion)
@@ -88,16 +88,15 @@ class WordpressAPIHandler: ObservableObject {
             }
         }
     }
-    
 }
 
 extension String {
     var words: [String] {
-        return self.split(separator: " ").map{String($0)}
+        return split(separator: " ").map { String($0) }
     }
 }
 
-class JSONLoader {
+enum JSONLoader {
     static func loadData(url: URL, completionHandler: @escaping (Data?, String?) -> Void) {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -118,8 +117,8 @@ class JSONLoader {
         task.resume()
     }
     
-    static func loadImage(url: URL, completion: @escaping (Image?, String?) -> ()) {
-        JSONLoader.loadData(url: url) {data, error in
+    static func loadImage(url: URL, completion: @escaping (Image?, String?) -> Void) {
+        JSONLoader.loadData(url: url) { data, error in
             guard error == nil else {
                 completion(nil, error)
                 return

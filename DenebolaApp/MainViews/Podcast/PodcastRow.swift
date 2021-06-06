@@ -64,5 +64,3 @@ struct PodcastRow_Previews: PreviewProvider {
             .environmentObject(PlayerObject())
     }
 }
-
-

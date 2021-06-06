@@ -5,10 +5,10 @@
 ////  Created by Alex Siracusa on 5/2/21.
 ////
 //
-//import Foundation
-//import SwiftUI
+// import Foundation
+// import SwiftUI
 //
-//enum Categories: RawRepresentable, CaseIterable {
+// enum Categories: RawRepresentable, CaseIterable {
 //    case arts
 //    case photo_gallery
 //    case videos
@@ -33,7 +33,7 @@
 //    var image: Image {
 //        return self.rawValue.2
 //    }
-//    
+//
 //    var banner: Image {
 //        return self.rawValue.3
 //    }
@@ -58,4 +58,4 @@
 //    init?(rawValue: (Int, String, Image, Image)) {
 //        self = .opinions
 //    }
-//}
+// }

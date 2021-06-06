@@ -14,19 +14,19 @@ class PlayerObject: ObservableObject {
     @Published var showingToolbar: Bool
     @Published var image: ImageView
     @Published var currentPodcast: PodcastData? = nil
-    
+
     init() {
         self.player = AVPlayer()
         self.playing = false
-        showingToolbar = false
+        self.showingToolbar = false
         self.image = ImageView(url: URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png")!)
     }
-    
+
     func play() {
         self.player.play()
         self.playing = true
     }
-    
+
     func pause() {
         self.player.pause()
         self.playing = false

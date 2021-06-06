@@ -13,9 +13,9 @@ struct CategoryView: View {
     @EnvironmentObject var siteImages: SiteImages
     var category: SimpleCategory
     var imageURL: URL
-    
+
     @State var isActive = false
-    
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
@@ -25,13 +25,13 @@ struct CategoryView: View {
                     .padding(.leading)
                 PostFeed(category: category.id, domain: handler.domain)
             }
-            
-            //Navigation Link to SearchView
-            //need to do like this to avoid bugs
+
+            // Navigation Link to SearchView
+            // need to do like this to avoid bugs
             NavigationLink(
                 destination: SearchView(category: category, domain: handler.domain),
                 isActive: $isActive,
-                label: { EmptyView()}
+                label: { EmptyView() }
             )
         }
         .navigationBarTitle(category.name, displayMode: .inline)

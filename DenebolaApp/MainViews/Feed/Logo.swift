@@ -10,7 +10,7 @@ import SwiftUI
 struct Logo: View {
     @EnvironmentObject var siteImages: SiteImages
     @Binding var url: URL
-    
+
     var body: some View {
         ImageView(url: url)
             .frame(width: 30, height: 30)

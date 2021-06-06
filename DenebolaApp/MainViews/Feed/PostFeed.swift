@@ -8,19 +8,18 @@
 import SwiftUI
 
 struct PostFeed: View {
-    @StateObject private var loader: ScrollViewLoader = ScrollViewLoader(domain: "")
+    @StateObject private var loader = ScrollViewLoader(domain: "")
     var domain: String
 
     init(category: Int? = nil, domain: String) {
         self.domain = domain
         _loader = StateObject(wrappedValue: ScrollViewLoader(domain: domain, category: category))
     }
-    
+
     init(loader: ScrollViewLoader) {
         self.domain = loader.handler.domain
         _loader = StateObject(wrappedValue: loader)
     }
-    
 
     var body: some View {
         if loader.posts.count != 0 {

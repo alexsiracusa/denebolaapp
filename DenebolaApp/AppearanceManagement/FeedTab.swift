@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 struct FeedTab: Tab {
-    
     var sites: [Wordpress]
     var content: AnyView {
         AnyView(

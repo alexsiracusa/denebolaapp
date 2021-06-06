@@ -20,18 +20,18 @@ struct SearchView: View {
         self.category = category
         loader = SearchResultLoader(domain: domain, category: category?.id)
     }
-    
+
     var body: some View {
         VStack(spacing: 0) {
             SearchBar(updateSearch: $updateSearch)
             Divider()
-            
-            //results
+
+            // results
             ScrollView {
                 SearchResults(category: loader.category, domain: handler.domain, searchFor: $updateSearch)
             }
         }
-        //.padding([.leading, .trailing])
+        // .padding([.leading, .trailing])
         .navigationBarTitle("Search \(category?.name ?? "Posts")", displayMode: .inline)
         .navigationBarItems(trailing: LogoButton(url: siteImages.logoURL))
     }

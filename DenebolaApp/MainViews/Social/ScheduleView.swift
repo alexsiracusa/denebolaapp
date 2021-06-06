@@ -15,11 +15,10 @@ struct ScheduleView: View {
         HStack(alignment: .top, spacing: 0) {
             ForEach(0 ..< BlockTimes.blocksDay.count) { index in
                 VStack(spacing: 0) {
-                    
                     Text("\(BlockTimes.days[index])")
                         .font(.system(size: 10))
                         .padding(.bottom, 5)
-                    
+
                     ForEach(BlockTimes.blocksDay[index]) { block in
                         ZStack {
                             Rectangle()
@@ -35,7 +34,7 @@ struct ScheduleView: View {
                             }.padding(.horizontal, 2)
                         }
                     }
-                    
+
                 }.onTapGesture {
                     onDayTap(index)
                 }
@@ -46,6 +45,6 @@ struct ScheduleView: View {
 
 struct ScheduleView_Previews: PreviewProvider {
     static var previews: some View {
-        ScheduleView(blockTimes: BlockTimes.blocksDay, onDayTap: {_ in})
+        ScheduleView(blockTimes: BlockTimes.blocksDay, onDayTap: { _ in })
     }
 }

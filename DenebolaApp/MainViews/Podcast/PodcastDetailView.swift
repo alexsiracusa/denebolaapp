@@ -5,8 +5,8 @@
 //  Created by Alex Siracusa on 5/23/21.
 //
 
-import SwiftUI
 import MediaPlayer
+import SwiftUI
 
 struct PodcastDetailView: View {
     @EnvironmentObject private var viewModel: ViewModelData
@@ -15,6 +15,7 @@ struct PodcastDetailView: View {
             self.beginNewAudio(url: self.podcast.audioURL!)
         }
     }
+
     @EnvironmentObject var player: PlayerObject
     @State var loadingAsset: AVAsset! = nil
     
@@ -102,7 +103,7 @@ struct PodcastDetailView: View {
                     Text(podcast.description)
                     Spacer()
                 }
-                //Spacer()
+                // Spacer()
             }
             .padding(.top)
             .padding(.bottom, 30)
@@ -141,7 +142,7 @@ struct PodcastDetailView: View {
         }
         
         self.loadingAsset = AVAsset(url: url)
-        self.player.currentPodcast = podcast
+        self.player.currentPodcast = self.podcast
         
         self.audioPlayer.replaceCurrentItem(with: nil)
         // Do not block the main thread loading audio
@@ -163,8 +164,6 @@ struct PodcastDetailView: View {
                     break
             }
         })
-        
-        
     }
     
     func loadAsset() {
@@ -189,14 +188,14 @@ struct PodcastDetailView: View {
     }
     
     func play() {
-        if loadingAsset == nil {
-            self.beginNewAudio(url: podcast.audioURL!)
+        if self.loadingAsset == nil {
+            self.beginNewAudio(url: self.podcast.audioURL!)
         }
         self.audioPlayer.play()
         self.player.playing = true
         self.playing = true
         self.player.image = ImageView(url: self.podcast.imageURL!)
-        player.showingToolbar = true
+        self.player.showingToolbar = true
     }
     
     func pause() {

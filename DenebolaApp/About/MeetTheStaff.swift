@@ -10,7 +10,7 @@ import SwiftUI
 struct MeetTheStaff: View {
     @EnvironmentObject private var handler: WordpressAPIHandler
     @State var aboutPost: Post? = nil
-    
+
     var body: some View {
         ScrollView {
             if aboutPost != nil {
@@ -19,9 +19,8 @@ struct MeetTheStaff: View {
             } else {
                 Text("Loading")
                     .onAppear {
-                        handler.loadPost(25274, embed: true) { post, error in
+                        handler.loadPost(25274, embed: true) { post, _ in
                             aboutPost = post
-                            
                         }
                     }
             }

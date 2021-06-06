@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CategoriesList: View {
     let categories: [SimpleCategory]
-    
+
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(alignment: .top) {

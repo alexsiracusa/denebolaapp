@@ -26,7 +26,6 @@ struct AboutView: View {
             .foregroundColor(.accentColor)
             .padding(.leading, offset)
     }
-    
 
     var body: some View {
         VStack(spacing: 0) {
@@ -43,14 +42,13 @@ struct AboutView: View {
                                 .overlay(
                                     // Watch for page change and update offset/width
                                     GeometryReader { reader in
-                                        
+
                                         Spacer().onChange(of: currentPage) { _ in
                                             if currentPage == name {
                                                 self.offset = reader.frame(in: .named("container")).minX
                                                 self.width = reader.size.width
                                             }
                                         }
-                                        
                                     }
                                 )
                         }
@@ -83,11 +81,11 @@ struct AboutView: View {
         .navigationBarTitle("About", displayMode: .inline)
         .navigationBarItems(
             trailing:
-                Button {
-                    presentationMode.wrappedValue.dismiss()
-                } label: {
-                    Logo(url: $siteImages.logoURL)
-                }
+            Button {
+                presentationMode.wrappedValue.dismiss()
+            } label: {
+                Logo(url: $siteImages.logoURL)
+            }
         )
     }
 }

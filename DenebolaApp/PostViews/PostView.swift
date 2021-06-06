@@ -29,7 +29,7 @@ struct PostView: View {
                         .bold()
                         .frame(alignment: .leading)
                         .fixedSize(horizontal: false, vertical: true)
-                    
+
                     Text(post.getDate())
                         .fontWeight(.light)
                         .padding(.bottom, 5)
