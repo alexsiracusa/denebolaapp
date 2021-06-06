@@ -47,8 +47,18 @@ class ScrollViewLoader: ObservableObject {
         isLoadingPage = true
         let loadingDomain = handler.domain
         handler.loadPostPage(category: category, page: currentPage, per_page: per_page, embed: true) { posts, error in
+            self.isLoadingPage = false
             self.error = error
+            guard error == nil else {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                    self.loadMorePosts()
+                }
+                return
+            }
             guard let posts = posts else {
+                return
+            }
+            guard posts.count > 0 else {
                 self.canLoadMorePages = false
                 return
             }
@@ -56,7 +66,6 @@ class ScrollViewLoader: ObservableObject {
                 self.posts += posts
                 self.currentPage += 1
             }
-            self.isLoadingPage = false
         }
     }
 }

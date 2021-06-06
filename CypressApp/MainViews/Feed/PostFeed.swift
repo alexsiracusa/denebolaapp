@@ -38,7 +38,14 @@ struct PostFeed: View {
             })
         } else {
             if let error = loader.error {
-                Text(error)
+                VStack {
+                    Button {
+                        loader.loadMorePosts()
+                    } label: {
+                        Text("Reload")
+                    }
+                    Text(error)
+                }
             }
             VStack {
                 ForEach(0 ..< 8) { _ in
