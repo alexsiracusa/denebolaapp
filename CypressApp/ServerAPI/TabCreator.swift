@@ -9,17 +9,18 @@ import Foundation
 
 extension School {
     func homeTab() -> HomeTab? {
-        // guard home.enabledSections.contains("home") else {return nil}
         return HomeTab()
     }
     
     func podcastsTab() -> PodcastTab? {
-        guard home.enabledSections.contains("podcast") else { return nil }
+        let podcasts = podcasts.filter{$0.enabled}
+        guard podcasts.count > 0 else {return nil}
         return PodcastTab(podcasts: podcasts)
     }
     
     func feedTab() -> FeedTab? {
-        guard home.enabledSections.contains("wordpress") else { return nil }
+        let sites = wordpress.filter{$0.enabled}
+        guard sites.count > 0 else {return nil}
         return FeedTab(sites: wordpress)
     }
     
