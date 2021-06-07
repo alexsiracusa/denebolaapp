@@ -97,7 +97,7 @@ struct PodcastView: View {
                     Text("This School has no podcasts")
                 }
             }
-            .navigationBarTitle("Denebacast", displayMode: .inline)
+            .navigationBarTitle("Podcasts", displayMode: .inline)
         }
         .onAppear {
             load()
@@ -109,7 +109,11 @@ struct PodcastView: View {
     }
     
     var toggleButton: some View {
-        Button(action: { self.showingFullDescription.toggle() }) {
+        Button {
+            withAnimation(Animation.easeInOut) {
+                self.showingFullDescription.toggle()
+            }
+        } label: {
             Text(self.showingFullDescription ? "Show less" : "Show more")
                 .font(.caption)
                 .foregroundColor(.secondary)
