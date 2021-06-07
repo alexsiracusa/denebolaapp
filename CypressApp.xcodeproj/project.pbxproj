@@ -812,7 +812,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"CypressApp/Preview Content\"";
-				DEVELOPMENT_TEAM = 9LZB553FST;
+				DEVELOPMENT_TEAM = 6ZFN3Y2T93;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = CypressApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -820,7 +820,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.siracusafamily.cypressapp.app;
+				PRODUCT_BUNDLE_IDENTIFIER = sequal.cypressapp;
 				PRODUCT_NAME = Cypress;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -836,7 +836,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"CypressApp/Preview Content\"";
-				DEVELOPMENT_TEAM = 9LZB553FST;
+				DEVELOPMENT_TEAM = 6ZFN3Y2T93;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = CypressApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -844,7 +844,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.siracusafamily.cypressapp.app;
+				PRODUCT_BUNDLE_IDENTIFIER = sequal.cypressapp;
 				PRODUCT_NAME = Cypress;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

@@ -9,11 +9,20 @@ import Nuke
 import SwiftUI
 
 struct ImageView: View {
+    @StateObject private var image: FetchImage = FetchImage()
     let url: URL
-
-    @StateObject private var image = FetchImage()
     var aspectRatio: CGFloat?
-
+    
+    func setup() {
+        if image.onFailure != nil {return}
+        image.onFailure = {error in
+            // Retry loading image after 5 seconds
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                image.load(url)
+            }
+        }
+    }
+    
     func load(_ url: URL) {
         image.load(url)
     }
@@ -31,7 +40,7 @@ struct ImageView: View {
             }
         }
         .aspectRatio(aspectRatio, contentMode: .fit)
-        .onAppear { load(url) }
+        .onAppear { load(url); setup(); }
         .onChange(of: url, perform: load)
     }
 }
