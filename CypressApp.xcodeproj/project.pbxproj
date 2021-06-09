@@ -47,6 +47,8 @@
 		FA17F8E8265B3473008471BD /* PodcastRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17F8E7265B3473008471BD /* PodcastRow.swift */; };
 		FA4618CC264980240018522B /* PodcastLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4618CB264980240018522B /* PodcastLoader.swift */; };
 		FA4B7364264E335200516AC6 /* PlayerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4B7363264E335200516AC6 /* PlayerObject.swift */; };
+		FA5068D4267043C100E0BBAE /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = FA5068D3267043C100E0BBAE /* Alamofire */; };
+		FA5068D7267043E000E0BBAE /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = FA5068D6267043E000E0BBAE /* FeedKit */; };
 		FA56AA43263F080900B6D838 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA42263F080900B6D838 /* ViewController.swift */; };
 		FA56AA46263F0B2300B6D838 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA45263F0B2300B6D838 /* CategoriesView.swift */; };
 		FA56AA4A263F0B5100B6D838 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA49263F0B5100B6D838 /* HomeView.swift */; };
@@ -184,6 +186,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE073A48266C4B650030DB1A /* Nuke in Frameworks */,
+				FA5068D7267043E000E0BBAE /* FeedKit in Frameworks */,
+				FA5068D4267043C100E0BBAE /* Alamofire in Frameworks */,
 				CE4D2D4326489C6500C243CC /* LoaderUI in Frameworks */,
 				CED8EB21265CBD7C002922A3 /* SwiftDate in Frameworks */,
 			);
@@ -468,6 +472,8 @@
 				CE4D2D4226489C6500C243CC /* LoaderUI */,
 				CED8EB20265CBD7C002922A3 /* SwiftDate */,
 				CE073A47266C4B650030DB1A /* Nuke */,
+				FA5068D3267043C100E0BBAE /* Alamofire */,
+				FA5068D6267043E000E0BBAE /* FeedKit */,
 			);
 			productName = DenebolaApp;
 			productReference = CEC03FAD263E354200FFCB45 /* Cypress.app */;
@@ -544,6 +550,8 @@
 				CE4D2D4126489C6500C243CC /* XCRemoteSwiftPackageReference "LoaderUI" */,
 				CED8EB1F265CBD7C002922A3 /* XCRemoteSwiftPackageReference "SwiftDate" */,
 				CE073A46266C4B650030DB1A /* XCRemoteSwiftPackageReference "Nuke" */,
+				FA5068D2267043C100E0BBAE /* XCRemoteSwiftPackageReference "Alamofire" */,
+				FA5068D5267043E000E0BBAE /* XCRemoteSwiftPackageReference "FeedKit" */,
 			);
 			productRefGroup = CEC03FAE263E354200FFCB45 /* Products */;
 			projectDirPath = "";
@@ -1002,6 +1010,22 @@
 				minimumVersion = 6.3.1;
 			};
 		};
+		FA5068D2267043C100E0BBAE /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.3;
+			};
+		};
+		FA5068D5267043E000E0BBAE /* XCRemoteSwiftPackageReference "FeedKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nmdias/FeedKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.1.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1019,6 +1043,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CED8EB1F265CBD7C002922A3 /* XCRemoteSwiftPackageReference "SwiftDate" */;
 			productName = SwiftDate;
+		};
+		FA5068D3267043C100E0BBAE /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA5068D2267043C100E0BBAE /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		FA5068D6267043E000E0BBAE /* FeedKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA5068D5267043E000E0BBAE /* XCRemoteSwiftPackageReference "FeedKit" */;
+			productName = FeedKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
