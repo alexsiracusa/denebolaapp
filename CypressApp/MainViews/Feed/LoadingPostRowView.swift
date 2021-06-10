@@ -28,7 +28,7 @@ struct LoadingPostRowView: View {
                 Spacer()
             }
             .foregroundColor(.black)
-            Spacer()
+            Spacer(minLength: 0)
         }
         .frame(height: 100)
         .padding([.leading, .trailing], 10)

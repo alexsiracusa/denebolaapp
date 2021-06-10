@@ -45,6 +45,7 @@ struct PostRowView: View {
 
                 Spacer()
             }
+            Spacer(minLength: 0)
         }
         .frame(height: 100)
     }
