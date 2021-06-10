@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct PostRow: Identifiable {
-    let id: Int
-    let title: String
-    let author: String?
-    let date: String
-    let fullImageURL: URL?
-    let thumbnailImageURL: URL?
-    let hasMedia: Bool
-}
+//struct PostRow: Identifiable {
+//    let id: Int
+//    let title: String
+//    let author: String?
+//    let date: String
+//    let fullImageURL: URL?
+//    let thumbnailImageURL: URL?
+//    let hasMedia: Bool
+//}

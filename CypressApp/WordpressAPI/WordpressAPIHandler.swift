@@ -15,22 +15,26 @@ class WordpressAPIHandler: ObservableObject {
         self.domain = domain
     }
     
+    // done
     func loadPost(_ id: Int, embed: Bool, completionHandler: @escaping (Post?, String?) -> Void) {
         var url = domain + "/wp-json/wp/v2/posts/" + "\(id)"
         if embed { url += "?_embed" }
         JSONLoader.decodeJSON(url: url, completionHandler: completionHandler)
     }
     
+    // not used
     func loadMedia(_ id: Int, completionHandler: @escaping (Media?, String?) -> Void) {
         let url = domain + "/wp-json/wp/v2/media/" + "\(id)"
         JSONLoader.decodeJSON(url: url, completionHandler: completionHandler)
     }
     
+    // not used
     func loadCategory(_ id: Int, completionHandler: @escaping (Category?, String?) -> Void) {
         let url = domain + "/wp-json/wp/v2/categories/" + "\(id)"
         JSONLoader.decodeJSON(url: url, completionHandler: completionHandler)
     }
     
+    // not used
     func loadCategoryList(page: Int = 1, per_page: Int = 100, embed: Bool, completionHandler: @escaping ([Category]?, String?) -> Void) {
         var url = domain + "/?rest_route=/wp/v2/categories"
         url += "&page=\(page)"
@@ -39,6 +43,7 @@ class WordpressAPIHandler: ObservableObject {
         JSONLoader.decodeJSON(url: url, completionHandler: completionHandler)
     }
     
+    // done
     func loadPostPage(category: Int? = nil, page: Int = 1, per_page: Int = 10, embed: Bool, completionHandler: @escaping ([Post]?, String?) -> Void) {
         var url = domain + "/?rest_route=/wp/v2/posts"
         url += "&per_page=\(per_page)"
@@ -48,6 +53,7 @@ class WordpressAPIHandler: ObservableObject {
         JSONLoader.decodeJSON(url: url, completionHandler: completionHandler)
     }
     
+    // done
     func searchPosts(category: Int? = nil, text: String, page: Int = 1, per_page: Int = 10, embed: Bool = false, completion: @escaping ([Post]?, String?) -> Void) {
         var url = domain + "/wp-json/wp/v2/posts?"
         url += "per_page=\(per_page)"
@@ -59,11 +65,13 @@ class WordpressAPIHandler: ObservableObject {
         JSONLoader.decodeJSON(url: url, completionHandler: completion)
     }
     
+    // not used
     func loadAttachmentsForPost(_ id: Int, completionHandler: @escaping ([SimpleMedia]?, String?) -> Void) {
         let url = domain + "/wp-json/wp/v2/media/?parent=" + "\(id)"
         JSONLoader.decodeJSON(url: url, completionHandler: completionHandler)
     }
     
+    // not used
     func loadFullPost(_ id: Int, embed: Bool, completionHandler: @escaping (Post?, Media?, URL?, String?) -> Void) {
         // loading post
         loadPost(id, embed: embed) { post, error in
@@ -95,6 +103,7 @@ extension String {
         return split(separator: " ").map { String($0) }
     }
 }
+
 
 enum JSONLoader {
     static func loadData(url: URL, completionHandler: @escaping (Data?, String?) -> Void) {

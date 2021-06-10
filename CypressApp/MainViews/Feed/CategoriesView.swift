@@ -99,6 +99,16 @@ struct CategoriesView: View {
         if let url = URL(string: site.logoBanner.url) {
             siteImages.bannerURL = url
         }
+        
+        site.getPost(25122, embed: true) { result in
+            
+        }
+        site.getPostPage(category: 7, page: 1, per_page: 10, embed: true) { result in
+            
+        }
+        site.searchPosts(category: nil, text: "Football photo", page: 1, per_page: 10, embed: true) { response in
+            
+        }
     }
     
     func load() {
