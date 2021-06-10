@@ -62,7 +62,7 @@ struct ViewController: View {
                                 self.request = nil
                             case .failure(let error):
                                 self.error = error.errorDescription
-                                AF.retryRequest(request!, withDelay: 10)
+                                self.request = nil
                             }
                         }
                     } label: {
@@ -92,23 +92,10 @@ struct ViewController: View {
                 self.request = nil
             case .failure(let error):
                 self.error = error.errorDescription
-                AF.retryRequest(request!, withDelay: 3)
-                AF.retryRequest(request!, withDelay: 3)
+                self.request = nil
             }
         }
     }
-    
-//    func schoolCompletion(_ result: Result<[School], AFError>) -> Void {
-//        switch result {
-//        case .success(let schools):
-//            self.schools = schools
-//            self.request = nil
-//        case .failure(let error):
-//            self.error = error.errorDescription
-//            AF.retryRequest(request!, withDelay: 3)
-//            AF.retryResult(for: request!, dueTo: error) { res}
-//        }
-//    }
     
 }
 
