@@ -71,6 +71,7 @@
 		FA61213A266097F400126A1F /* MeetTheStaff.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA612139266097F400126A1F /* MeetTheStaff.swift */; };
 		FA6526422658AB9C0043FDBA /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6526412658AB9C0043FDBA /* CategoryView.swift */; };
 		FA6526442658AEFC0043FDBA /* CategoryBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6526432658AEFC0043FDBA /* CategoryBanner.swift */; };
+		FA7320E32672A55A0012C3EC /* RequestRetrySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7320E22672A55A0012C3EC /* RequestRetrySettings.swift */; };
 		FA73AA2B263E361E00B6C8B6 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73AA27263E361E00B6C8B6 /* Media.swift */; };
 		FA73AA2C263E361E00B6C8B6 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73AA28263E361E00B6C8B6 /* Category.swift */; };
 		FA73AA2D263E361E00B6C8B6 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73AA29263E361E00B6C8B6 /* Post.swift */; };
@@ -169,6 +170,7 @@
 		FA612139266097F400126A1F /* MeetTheStaff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetTheStaff.swift; sourceTree = "<group>"; };
 		FA6526412658AB9C0043FDBA /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		FA6526432658AEFC0043FDBA /* CategoryBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryBanner.swift; sourceTree = "<group>"; };
+		FA7320E22672A55A0012C3EC /* RequestRetrySettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestRetrySettings.swift; sourceTree = "<group>"; };
 		FA73AA27263E361E00B6C8B6 /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		FA73AA28263E361E00B6C8B6 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		FA73AA29263E361E00B6C8B6 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -379,6 +381,7 @@
 			children = (
 				FAAE7DFB2669B44F00DE708A /* ServerAPI.swift */,
 				FA03D1B726719D72005A760F /* WordpressAPI.swift */,
+				FA7320E22672A55A0012C3EC /* RequestRetrySettings.swift */,
 				FA03D1B526719D24005A760F /* WordpressCodable.swift */,
 				FAAE7DF72669B3E200DE708A /* SchoolConfig.swift */,
 				FAAE7DFD2669BB1600DE708A /* TabCreator.swift */,
@@ -666,6 +669,7 @@
 				FA0CB84C26671926009FE7A3 /* FeedTab.swift in Sources */,
 				FA0CB848266716BE009FE7A3 /* Tab.swift in Sources */,
 				FAA53893265D6C270050617F /* PodcastDetailView.swift in Sources */,
+				FA7320E32672A55A0012C3EC /* RequestRetrySettings.swift in Sources */,
 				FAAE7DFE2669BB1600DE708A /* TabCreator.swift in Sources */,
 				FA0CB84A26671810009FE7A3 /* HomeTab.swift in Sources */,
 				FA73AA2D263E361E00B6C8B6 /* Post.swift in Sources */,

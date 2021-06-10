@@ -22,7 +22,7 @@ extension Wordpress {
         let parms: [String: String] = [
             "_embed" : embed ? "true" : "false"
         ]
-        return AF.request("\(self.url)/wp-json/wp/v2/posts/\(id)", method: .get, parameters: parms).responseDecodable(of: Post.self) { response in
+        return AF.request("\(self.url)/wp-json/wp/v2/posts/\(id)", method: .get, parameters: parms, interceptor: Retry()).validate().responseDecodable(of: Post.self) { response in
             completion(response.result)
             print(response.request!.url!.absoluteString)
         }
@@ -35,7 +35,7 @@ extension Wordpress {
             "_embed" : embed ? "true" : "false"
         ]
         if let cat = category { parms["categories"] = "\(cat)" }
-        return AF.request("\(self.url)/?rest_route=/wp/v2/posts", method: .get, parameters: parms).responseDecodable(of: [Post].self) { response in
+        return AF.request("\(self.url)/?rest_route=/wp/v2/posts", method: .get, parameters: parms, interceptor: Retry()).validate().responseDecodable(of: [Post].self) { response in
             completion(response.result)
             print(response.request!.url!.absoluteString)
         }
@@ -49,7 +49,7 @@ extension Wordpress {
             "_embed" : embed ? "true" : "false"
         ]
         if let category = category { parms["filter[cat]"] = "\(category)" }
-        return AF.request("\(self.url)/?rest_route=/wp/v2/posts", method: .get, parameters: parms).responseDecodable(of: [Post].self) { response in
+        return AF.request("\(self.url)/?rest_route=/wp/v2/posts", method: .get, parameters: parms, interceptor: Retry()).validate().responseDecodable(of: [Post].self) { response in
             completion(response.result)
             print(response.request!.url!.absoluteString)
         }

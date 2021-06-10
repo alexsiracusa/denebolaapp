@@ -59,10 +59,11 @@ struct ViewController: View {
                             case .success(let config):
                                 self.tabManager = TabManager(config.allTabs())
                                 self.school = config
+                                self.request = nil
                             case .failure(let error):
                                 self.error = error.errorDescription
+                                AF.retryRequest(request!, withDelay: 10)
                             }
-                            self.request = nil
                         }
                     } label: {
                         Text(school.name)
@@ -83,15 +84,31 @@ struct ViewController: View {
     }
     
     func loadSchools() {
-        ServerAPI.getSchools() { result in
+        guard request == nil else {return}
+        self.request = ServerAPI.getSchools() { result in
             switch result {
             case .success(let schools):
                 self.schools = schools
+                self.request = nil
             case .failure(let error):
                 self.error = error.errorDescription
+                AF.retryRequest(request!, withDelay: 3)
+                AF.retryRequest(request!, withDelay: 3)
             }
         }
     }
+    
+//    func schoolCompletion(_ result: Result<[School], AFError>) -> Void {
+//        switch result {
+//        case .success(let schools):
+//            self.schools = schools
+//            self.request = nil
+//        case .failure(let error):
+//            self.error = error.errorDescription
+//            AF.retryRequest(request!, withDelay: 3)
+//            AF.retryResult(for: request!, dueTo: error) { res}
+//        }
+//    }
     
 }
 
