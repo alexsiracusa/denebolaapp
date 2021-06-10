@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftUI
-
+/*
 class WordpressAPIHandler: ObservableObject {
     @Published var domain: String
     
@@ -97,7 +97,7 @@ class WordpressAPIHandler: ObservableObject {
         }
     }
 }
-
+*/
 extension String {
     var words: [String] {
         return split(separator: " ").map { String($0) }

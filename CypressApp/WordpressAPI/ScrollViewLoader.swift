@@ -6,32 +6,37 @@
 //
 
 import Foundation
+import Alamofire
 
 class ScrollViewLoader: ObservableObject {
     @Published var posts = [Post]()
-    @Published var isLoadingPage = false
+    var isLoadingPage: Bool {
+        return currentRequest != nil
+    }
     @Published var error: String?
     @Published var shouldKeepReloading = true
     var per_page = 20
     var currentPage = 1
     var canLoadMorePages = true
     
-    var handler: WordpressAPIHandler
+    var site: Wordpress
     var category: Int?
+    var currentRequest: Request? = nil
     
-    init(domain: String, category: Int? = nil) {
+    init(site: Wordpress, category: Int? = nil) {
         self.category = category
-        self.handler = WordpressAPIHandler(domain: domain)
+        self.site = site
         loadMorePosts()
     }
     
-    func setDomain(_ domain: String) {
-        handler = WordpressAPIHandler(domain: domain)
+    func setSite(_ site: Wordpress) {
+        self.site = site
         posts = []
         currentPage = 1
         canLoadMorePages = true
         error = nil
-        isLoadingPage = false
+        currentRequest?.cancel()
+        currentRequest = nil
         loadMorePosts()
     }
     
@@ -45,30 +50,19 @@ class ScrollViewLoader: ObservableObject {
     
     func loadMorePosts() {
         guard !isLoadingPage, canLoadMorePages else { return }
-        isLoadingPage = true
-        let loadingDomain = handler.domain
-        handler.loadPostPage(category: category, page: currentPage, per_page: per_page, embed: true) { posts, error in
-            self.isLoadingPage = false
-            self.error = error
-            guard error == nil else {
-                if self.shouldKeepReloading {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                        self.loadMorePosts()
-                    }
+        currentRequest = site.getPostPage(category: category, page: currentPage, per_page: per_page, embed: true) { result in
+            switch result {
+            case .success(let posts):
+                if posts.count == 0 {
+                    self.canLoadMorePages = false
+                    break
                 }
-                return
-            }
-            guard let posts = posts else {
-                return
-            }
-            guard posts.count > 0 else {
-                self.canLoadMorePages = false
-                return
-            }
-            if loadingDomain == self.handler.domain {
                 self.posts += posts
                 self.currentPage += 1
+            case .failure(let error):
+                self.error = error.errorDescription
             }
+            self.currentRequest = nil
         }
     }
 }

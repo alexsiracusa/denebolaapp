@@ -9,7 +9,7 @@ import Foundation
 
 extension School {
     func homeTab() -> HomeTab? {
-        return HomeTab()
+        return HomeTab(sites: self.wordpress, podcasts: self.podcasts)
     }
     
     func podcastsTab() -> PodcastTab? {

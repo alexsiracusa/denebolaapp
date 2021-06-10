@@ -10,7 +10,7 @@ import SwiftUI
 private let TAB_NAMES = ["About", "Meet The Staff", "Submit Idea"]
 
 struct AboutView: View {
-    @EnvironmentObject private var handler: WordpressAPIHandler
+    //@EnvironmentObject private var handler: WordpressAPIHandler
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var siteImages: SiteImages
 
@@ -69,7 +69,7 @@ struct AboutView: View {
 
                 MeetTheStaff()
                     .tag(TAB_NAMES[1])
-                    .environmentObject(handler)
+                    //.environmentObject(handler)
 
                 ScrollView {
                     ContentRenderer(url: "https://docs.google.com/forms/d/e/1FAIpQLSeSz4MLlH9YAeXSaROQWMoW1NKdKoTJaXXyWy2QADKA-v8STQ/viewform?c=0&w=1".asURL)
@@ -93,7 +93,7 @@ struct AboutView: View {
 struct AboutView_Previews: PreviewProvider {
     static var previews: some View {
         AboutView()
-            .environmentObject(WordpressAPIHandler())
+            //.environmentObject(WordpressAPIHandler())
             .environmentObject(SiteImages())
     }
 }

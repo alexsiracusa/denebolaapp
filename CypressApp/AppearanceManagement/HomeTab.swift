@@ -9,8 +9,10 @@ import Foundation
 import SwiftUI
 
 struct HomeTab: Tab {
+    let sites: [Wordpress]
+    let podcasts: [Podcast]
     var content: AnyView {
-        AnyView(HomeView())
+        AnyView(HomeView(sites: sites, podcasts: podcasts))
     }
 
     var tabIcon: AnyView {

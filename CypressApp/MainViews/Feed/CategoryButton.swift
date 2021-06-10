@@ -11,6 +11,7 @@ struct CategoryButton: View {
     @EnvironmentObject var siteImages: SiteImages
 
     let size: CGFloat = 100
+    let site: Wordpress
     let category: SimpleCategory
 
     var imageURL: URL {
@@ -30,7 +31,7 @@ struct CategoryButton: View {
                 }
                 .zIndex(2)
                 NavigationLink(destination:
-                    CategoryView(category: category, imageURL: imageURL)
+                    CategoryView(site: site, category: category, imageURL: imageURL)
                 ) {
                     ImageView(url: imageURL)
                         .asCategoryButton(size: size)
@@ -60,7 +61,7 @@ extension View {
 
 struct CategoryButton_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryButton(category: SimpleCategory(id: 7, name: "Opinions", image: nil))
+        CategoryButton(site: Wordpress.default, category: SimpleCategory(id: 7, name: "Opinions", image: nil))
             .environmentObject(SiteImages())
     }
 }

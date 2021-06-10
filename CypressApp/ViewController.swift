@@ -9,7 +9,7 @@ import MediaPlayer
 import SwiftUI
 
 struct ViewController: View {
-    @EnvironmentObject var handler: WordpressAPIHandler
+    //@EnvironmentObject var handler: WordpressAPIHandler
     @EnvironmentObject var viewModel: ViewModelData
     @EnvironmentObject var player: PlayerObject
 
@@ -84,7 +84,7 @@ struct ViewController: View {
 struct ViewController_Previews: PreviewProvider {
     static var previews: some View {
         ViewController()
-            .environmentObject(WordpressAPIHandler())
+            //.environmentObject(WordpressAPIHandler())
             .environmentObject(PodcastLoader())
             .environmentObject(ViewModelData())
             .environmentObject(PlayerObject())

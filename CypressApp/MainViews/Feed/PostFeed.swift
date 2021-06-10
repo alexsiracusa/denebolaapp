@@ -8,17 +8,12 @@
 import SwiftUI
 
 struct PostFeed: View {
-    @StateObject private var loader = ScrollViewLoader(domain: "")
-    var domain: String
+    @StateObject private var loader: ScrollViewLoader
+    let site: Wordpress
 
-    init(category: Int? = nil, domain: String) {
-        self.domain = domain
-        _loader = StateObject(wrappedValue: ScrollViewLoader(domain: domain, category: category))
-    }
-
-    init(loader: ScrollViewLoader) {
-        self.domain = loader.handler.domain
-        _loader = StateObject(wrappedValue: loader)
+    init(site: Wordpress, category: Int? = nil) {
+        self.site = site
+        _loader = StateObject(wrappedValue: ScrollViewLoader(site: site, category: category))
     }
 
     var body: some View {
@@ -33,8 +28,8 @@ struct PostFeed: View {
                         .padding(.vertical, 0.0)
                 }
             }
-            .onChange(of: domain, perform: { value in
-                loader.setDomain(value)
+            .onChange(of: site, perform: { value in
+                loader.setSite(value)
             })
             .onAppear {
                 loader.shouldKeepReloading = true
@@ -59,8 +54,8 @@ struct PostFeed: View {
                         .padding(.top, 5)
                 }
             }
-            .onChange(of: domain, perform: { value in
-                loader.setDomain(value)
+            .onChange(of: site, perform: { value in
+                loader.setSite(value)
             })
             .onAppear {
                 loader.shouldKeepReloading = true
@@ -74,6 +69,6 @@ struct PostFeed: View {
 
 struct PostFeed_Previews: PreviewProvider {
     static var previews: some View {
-        PostFeed(domain: "https://nshsdenebola.com")
+        PostFeed(site: Wordpress.default)
     }
 }

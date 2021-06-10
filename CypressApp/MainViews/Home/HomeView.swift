@@ -8,11 +8,19 @@
 import SwiftUI
 
 struct HomeView: View {
-    @EnvironmentObject private var handler: WordpressAPIHandler
+    //@EnvironmentObject private var handler: WordpressAPIHandler
     @EnvironmentObject private var viewModel: ViewModelData
 
     @State private var latestPosts = [Post]()
     @State private var multimediaPosts = [Post]()
+    
+    let sites: [Wordpress]
+    let podcasts: [Podcast]
+    
+    init(sites: [Wordpress], podcasts: [Podcast]) {
+        self.sites = sites
+        self.podcasts = podcasts
+    }
 
     var gradient: some View {
         LinearGradient(gradient: Gradient(colors: [.white, .black]), startPoint: UnitPoint(x: 0.5, y: 0.0), endPoint: .bottom)
@@ -20,14 +28,16 @@ struct HomeView: View {
     }
 
     func loadPosts() {
-        handler.loadPostPage(category: nil, page: 1, per_page: 5, embed: true, completionHandler: { posts, _ in
-            guard let posts = posts, posts.count > 0 else { return }
-            latestPosts = posts
-        })
-        handler.loadPostPage(category: 164, page: 1, per_page: 2, embed: true, completionHandler: { posts, _ in
-            guard let posts = posts, posts.count > 0 else { return }
-            multimediaPosts = posts
-        })
+        sites[0].getPostPage(category: nil, page: 1, per_page: 5, embed: true) { result in
+            switch result {
+            case .success(let posts):
+                latestPosts = posts
+            case .failure(let error):
+                let _ = 0
+            }
+        }
+        
+        // no more multimedia section since not all websites will have that as a category
     }
 
     var body: some View {
@@ -55,8 +65,8 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
-            .environmentObject(WordpressAPIHandler())
+        HomeView(sites: [Wordpress.default], podcasts: [Podcast.default])
+            //.environmentObject(WordpressAPIHandler())
             .environmentObject(PodcastLoader())
     }
 }

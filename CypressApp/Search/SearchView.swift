@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SearchView: View {
-    @EnvironmentObject var handler: WordpressAPIHandler
+    //@EnvironmentObject var handler: WordpressAPIHandler
     @ObservedObject var loader: SearchResultLoader
     @EnvironmentObject private var viewModel: ViewModelData
     @EnvironmentObject var siteImages: SiteImages
@@ -16,9 +16,9 @@ struct SearchView: View {
     @State var updateSearch = ""
     var category: SimpleCategory?
 
-    init(category: SimpleCategory? = nil, domain: String) {
+    init(site: Wordpress, category: SimpleCategory? = nil) {
         self.category = category
-        loader = SearchResultLoader(domain: domain, category: category?.id)
+        loader = SearchResultLoader(site: site, category: category?.id)
     }
 
     var body: some View {
@@ -28,7 +28,7 @@ struct SearchView: View {
 
             // results
             ScrollView {
-                SearchResults(category: loader.category, domain: handler.domain, searchFor: $updateSearch)
+                SearchResults(loader: loader, searchFor: $updateSearch)
             }
         }
         // .padding([.leading, .trailing])
@@ -39,8 +39,8 @@ struct SearchView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView(category: SimpleCategory(id: 7, name: "Opinions", image: nil), domain: "https://nshsdenebola.com")
-            .environmentObject(WordpressAPIHandler())
+        SearchView(site: Wordpress.default, category: SimpleCategory(id: 7, name: "Opinions", image: nil))
+            //.environmentObject(WordpressAPIHandler())
             .environmentObject(SiteImages())
     }
 }

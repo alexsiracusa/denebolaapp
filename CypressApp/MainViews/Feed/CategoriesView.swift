@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CategoriesView: View {
-    @EnvironmentObject var handler: WordpressAPIHandler
+    //@EnvironmentObject var handler: WordpressAPIHandler
     @EnvironmentObject private var viewModel: ViewModelData
     @EnvironmentObject var siteImages: SiteImages
 
@@ -17,6 +17,11 @@ struct CategoriesView: View {
     @State var currentSite: Wordpress? = nil
     
     @State var displayPicker = false
+    
+    init(sites: [Wordpress]) {
+        self.sites = sites
+        self.currentSite = sites[0]
+    }
     
     var body: some View {
         NavigationView {
@@ -29,7 +34,7 @@ struct CategoriesView: View {
                             SiteBanner(site: site)
                         }
                         .disabled(sites.count == 1)
-                        CategoriesList(categories: site.featuredCategories)
+                        CategoriesList(site: site, categories: site.featuredCategories)
                         Spacer(minLength: 15)
                         Text("Latest Posts")
                             .font(.headline)
@@ -37,7 +42,7 @@ struct CategoriesView: View {
                         
                         Spacer(minLength: 15)
                         
-                        PostFeed(domain: site.url)
+                        PostFeed(site: site)
                     }
                     .padding(.top, 10)
                     .padding(.bottom, 15)
@@ -50,7 +55,7 @@ struct CategoriesView: View {
                 trailing:
                 HStack(spacing: 15) {
                     NavigationLink(destination:
-                        SearchView(domain: handler.domain)
+                        SearchView(site: currentSite ?? Wordpress.default)
                     ) {
                         Image(systemName: "magnifyingglass")
                             .foregroundColor(.black)
@@ -88,7 +93,6 @@ struct CategoriesView: View {
     
     func updateWordpress() {
         guard let site = currentSite else { return }
-        handler.domain = site.url
         currentURL = site.url
         if let url = URL(string: site.defaultImage.url) {
             siteImages.defaultImageURL = url
@@ -98,16 +102,6 @@ struct CategoriesView: View {
         }
         if let url = URL(string: site.logoBanner.url) {
             siteImages.bannerURL = url
-        }
-        
-        site.getPost(25122, embed: true) { result in
-            
-        }
-        site.getPostPage(category: 7, page: 1, per_page: 10, embed: true) { result in
-            
-        }
-        site.searchPosts(category: nil, text: "Football photo", page: 1, per_page: 10, embed: true) { response in
-            
         }
     }
     
@@ -121,7 +115,7 @@ struct CategoriesView: View {
 struct CategoriesView_Previews: PreviewProvider {
     static var previews: some View {
         CategoriesView(sites: [Wordpress.default, Wordpress.default])
-            .environmentObject(WordpressAPIHandler())
+            //.environmentObject(WordpressAPIHandler())
             .environmentObject(SiteImages())
     }
 }

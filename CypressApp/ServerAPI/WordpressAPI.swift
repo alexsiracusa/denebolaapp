@@ -18,30 +18,30 @@ extension Wordpress {
         hasher.combine(name)
     }
     
-    func getPost(_ id: Int, embed: Bool, completion: @escaping (Result<Post, AFError>) -> Void) {
+    func getPost(_ id: Int, embed: Bool, completion: @escaping (Result<Post, AFError>) -> Void) -> Request {
         let parms: [String: String] = [
             "_embed" : embed ? "true" : "false"
         ]
-        AF.request("\(self.url)/wp-json/wp/v2/posts/\(id)", method: .get, parameters: parms).responseDecodable(of: Post.self) { response in
+        return AF.request("\(self.url)/wp-json/wp/v2/posts/\(id)", method: .get, parameters: parms).responseDecodable(of: Post.self) { response in
             completion(response.result)
             print(response.request?.url?.absoluteString)
         }
     }
     
-    func getPostPage(category: Int? = nil, page: Int = 1, per_page: Int = 10, embed: Bool, completion: @escaping (Result<[Post], AFError>) -> Void) {
+    func getPostPage(category: Int? = nil, page: Int = 1, per_page: Int = 10, embed: Bool, completion: @escaping (Result<[Post], AFError>) -> Void) -> Request {
         var parms: [String: String] = [
             "page" : "\(page)",
             "per_page" : "\(per_page)",
             "_embed" : embed ? "true" : "false"
         ]
         if let cat = category { parms["categories"] = "\(cat)" }
-        AF.request("\(self.url)/?rest_route=/wp/v2/posts", method: .get, parameters: parms).responseDecodable(of: [Post].self) { response in
+        return AF.request("\(self.url)/?rest_route=/wp/v2/posts", method: .get, parameters: parms).responseDecodable(of: [Post].self) { response in
             completion(response.result)
             print(response.request?.url?.absoluteString)
         }
     }
     
-    func searchPosts(category: Int? = nil, text: String, page: Int = 1, per_page: Int = 10, embed: Bool = false, completion: @escaping (Result<[Post], AFError>) -> Void) {
+    func searchPosts(category: Int? = nil, text: String, page: Int = 1, per_page: Int = 10, embed: Bool = false, completion: @escaping (Result<[Post], AFError>) -> Void) -> Request {
         var parms: [String : String] = [
             "page" : "\(page)",
             "per_page" : "\(per_page)",
@@ -49,7 +49,7 @@ extension Wordpress {
             "_embed" : embed ? "true" : "false"
         ]
         if let category = category { parms["filter[cat]"] = "\(category)" }
-        AF.request("\(self.url)/?rest_route=/wp/v2/posts", method: .get, parameters: parms).responseDecodable(of: [Post].self) { response in
+        return AF.request("\(self.url)/?rest_route=/wp/v2/posts", method: .get, parameters: parms).responseDecodable(of: [Post].self) { response in
             completion(response.result)
             print(response.request?.url?.absoluteString)
         }

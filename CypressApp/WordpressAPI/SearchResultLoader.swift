@@ -12,7 +12,8 @@ class SearchResultLoader: ScrollViewLoader {
 
     func searchFor(_ text: String, category: Int? = nil) {
         posts = [Post]()
-        isLoadingPage = false
+        currentRequest?.cancel()
+        currentRequest = nil
         canLoadMorePages = true
         error = nil
         if let category = category { self.category = category }
@@ -23,18 +24,20 @@ class SearchResultLoader: ScrollViewLoader {
 
     override func loadMorePosts() {
         guard !isLoadingPage, canLoadMorePages else { return }
-        guard search != "" else { return }
-        isLoadingPage = true
-        handler.searchPosts(category: category, text: search, page: currentPage, per_page: per_page, embed: true) { posts, error in
-            self.error = error
-            guard let posts = posts else {
-                self.canLoadMorePages = false
-                self.isLoadingPage = false
-                return
+        guard search != "" else {return}
+        currentRequest = site.searchPosts(category: category, text: search, page: currentPage, per_page: per_page, embed: true) { result in
+            switch result {
+            case .success(let posts):
+                if posts.count == 0 {
+                    self.canLoadMorePages = false
+                    self.currentPage += 1
+                    break
+                }
+                self.posts += posts
+            case .failure(let error):
+                self.error = error.errorDescription
             }
-            self.posts += posts
-            self.currentPage += 1
-            self.isLoadingPage = false
         }
+        
     }
 }
