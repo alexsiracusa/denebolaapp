@@ -31,7 +31,6 @@ struct SearchView: View {
                 SearchResults(loader: loader, searchFor: $updateSearch)
             }
         }
-        // .padding([.leading, .trailing])
         .navigationBarTitle("Search \(category?.name ?? "Posts")", displayMode: .inline)
         .navigationBarItems(trailing: LogoButton(url: siteImages.logoURL))
     }

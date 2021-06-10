@@ -32,10 +32,10 @@ struct PostFeed: View {
                 loader.setSite(value)
             })
             .onAppear {
-                loader.shouldKeepReloading = true
+                loader.resume()
             }
             .onDisappear {
-                loader.shouldKeepReloading = false
+                loader.cancel()
             }
         } else {
             if let error = loader.error {
@@ -57,11 +57,10 @@ struct PostFeed: View {
             .onChange(of: site, perform: { value in
                 loader.setSite(value)
             })
-            .onAppear {
-                loader.shouldKeepReloading = true
-            }
             .onDisappear {
-                loader.shouldKeepReloading = false
+                if loader.currentRequest?.retryCount ?? 0 > 0 {
+                    loader.cancel()
+                }
             }
         }
     }

@@ -31,26 +31,41 @@ struct SearchResults: View {
             .onChange(of: searchFor) { search in
                 loader.searchFor(search)
             }
+            .onAppear {
+                loader.resume()
+            }
+            .onDisappear {
+                loader.cancel()
+                loader.searchFor("")
+            }
         }
         else {
-            if let error = loader.error {
-                Text(error)
-                    .onChange(of: searchFor) { search in
-                        loader.searchFor(search)
-                    }
-                    .padding()
+            Group {
+                if let error = loader.error {
+                    Text(error)
+                        .onChange(of: searchFor) { search in
+                            loader.searchFor(search)
+                        }
+                        .padding()
+                }
+                else if loader.isLoadingPage {
+                    // TODO: make better loading screen
+                    Text("Loading")
+                        .padding()
+                }
+                else {
+                    Text("No Results")
+                        .onChange(of: searchFor) { search in
+                            loader.searchFor(search)
+                        }
+                        .padding()
+                }
             }
-            else if loader.isLoadingPage {
-                // TODO: make better loading screen
-                Text("Loading")
-                    .padding()
-            }
-            else {
-                Text("No Results")
-                    .onChange(of: searchFor) { search in
-                        loader.searchFor(search)
-                    }
-                    .padding()
+            .onDisappear {
+                if loader.currentRequest?.retryCount ?? 0 > 0 {
+                    loader.cancel()
+                    loader.searchFor("")
+                }
             }
         }
     }

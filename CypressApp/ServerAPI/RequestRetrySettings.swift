@@ -10,7 +10,7 @@ import Alamofire
 
 class Retry: RetryPolicy {
     let delay: Double = 2.5
-    let maxRetryCount: UInt = 10
+    let maxRetryCount: UInt = UInt.max
 
     override func retry(_ request: Request,
                     for session: Session,

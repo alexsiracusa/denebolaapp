@@ -48,8 +48,16 @@ class ScrollViewLoader: ObservableObject {
         }
     }
     
+    func cancel() {
+        self.currentRequest?.cancel()
+    }
+    
+    func resume() {
+        self.currentRequest?.resume()
+    }
+    
     func loadMorePosts() {
-        guard !isLoadingPage, canLoadMorePages else { return }
+        guard currentRequest == nil, canLoadMorePages else { return }
         currentRequest = site.getPostPage(category: category, page: currentPage, per_page: per_page, embed: true) { result in
             switch result {
             case .success(let posts):

@@ -38,48 +38,53 @@ struct ViewController: View {
 
     @State var error: String? = nil
     var body: some View {
-        if school != nil {
-            TabView(selection: $viewModel.selectedTab) {
-                ForEach(0 ..< tabs.count, id: \.self) { n in
-                    let tab = tabs[n]
-                    tab.content
-                        .tabItem {
-                            tab.tabIcon
-                        }
-                }
-            }
-            .accentColor(.orange)
-        } else if let schools = schools {
-            ScrollView {
-                ForEach(schools) { school in
-                    Button {
-                        guard request == nil else {return}
-                        self.request = school.getConfig { result in
-                            switch result {
-                            case .success(let config):
-                                self.tabManager = TabManager(config.allTabs())
-                                self.school = config
-                                self.request = nil
-                            case .failure(let error):
-                                self.error = error.errorDescription
-                                self.request = nil
+        Group {
+            if school != nil {
+                TabView(selection: $viewModel.selectedTab) {
+                    ForEach(0 ..< tabs.count, id: \.self) { n in
+                        let tab = tabs[n]
+                        tab.content
+                            .tabItem {
+                                tab.tabIcon
                             }
-                        }
-                    } label: {
-                        Text(school.name)
                     }
                 }
-            }
-        } else if schools == nil {
-            VStack {
-                if let error = error {
-                    Text(error)
+                .accentColor(.orange)
+            } else if let schools = schools {
+                ScrollView {
+                    ForEach(schools) { school in
+                        Button {
+                            guard request == nil else {return}
+                            self.request = school.getConfig { result in
+                                switch result {
+                                case .success(let config):
+                                    self.tabManager = TabManager(config.allTabs())
+                                    self.school = config
+                                    self.request = nil
+                                case .failure(let error):
+                                    self.error = error.errorDescription
+                                    self.request = nil
+                                }
+                            }
+                        } label: {
+                            Text(school.name)
+                        }
+                    }
                 }
-                Text("loading")
+            } else if schools == nil {
+                VStack {
+                    if let error = error {
+                        Text(error)
+                    }
+                    Text("loading")
+                }
+                .onAppear {
+                    loadSchools()
+                }
             }
-            .onAppear {
-                loadSchools()
-            }
+        }
+        .onDisappear {
+            self.request = nil
         }
     }
     

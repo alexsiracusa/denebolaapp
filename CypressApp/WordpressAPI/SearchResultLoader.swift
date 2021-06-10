@@ -23,20 +23,24 @@ class SearchResultLoader: ScrollViewLoader {
     }
 
     override func loadMorePosts() {
-        guard !isLoadingPage, canLoadMorePages else { return }
-        guard search != "" else {return}
+        guard currentRequest == nil, canLoadMorePages else { return }
+        guard search != "" else {
+            self.posts = []
+            return
+        }
         currentRequest = site.searchPosts(category: category, text: search, page: currentPage, per_page: per_page, embed: true) { result in
             switch result {
             case .success(let posts):
                 if posts.count == 0 {
                     self.canLoadMorePages = false
-                    self.currentPage += 1
                     break
                 }
                 self.posts += posts
+                self.currentPage += 1
             case .failure(let error):
                 self.error = error.errorDescription
             }
+            self.currentRequest = nil
         }
         
     }
