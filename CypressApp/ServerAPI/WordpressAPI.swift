@@ -24,7 +24,7 @@ extension Wordpress {
         ]
         return AF.request("\(self.url)/wp-json/wp/v2/posts/\(id)", method: .get, parameters: parms).responseDecodable(of: Post.self) { response in
             completion(response.result)
-            print(response.request?.url?.absoluteString)
+            print(response.request!.url!.absoluteString)
         }
     }
     
@@ -37,7 +37,7 @@ extension Wordpress {
         if let cat = category { parms["categories"] = "\(cat)" }
         return AF.request("\(self.url)/?rest_route=/wp/v2/posts", method: .get, parameters: parms).responseDecodable(of: [Post].self) { response in
             completion(response.result)
-            print(response.request?.url?.absoluteString)
+            print(response.request!.url!.absoluteString)
         }
     }
     
@@ -51,7 +51,7 @@ extension Wordpress {
         if let category = category { parms["filter[cat]"] = "\(category)" }
         return AF.request("\(self.url)/?rest_route=/wp/v2/posts", method: .get, parameters: parms).responseDecodable(of: [Post].self) { response in
             completion(response.result)
-            print(response.request?.url?.absoluteString)
+            print(response.request!.url!.absoluteString)
         }
     }
     

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct School: Codable {
+struct SchoolConfig: Codable {
     let announcements: Announcement
     let home: Home
     let podcasts: [Podcast]

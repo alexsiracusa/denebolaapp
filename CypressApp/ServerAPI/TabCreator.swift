@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension School {
+extension SchoolConfig {
     func homeTab() -> HomeTab? {
         return HomeTab(sites: self.wordpress, podcasts: self.podcasts)
     }

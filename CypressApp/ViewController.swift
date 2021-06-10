@@ -16,7 +16,7 @@ struct ViewController: View {
     @State var loaded = false
     @EnvironmentObject var serverLoader: ServerAPIHandler
     @EnvironmentObject var defaultImage: SiteImages
-    @State var school: School? = nil
+    @State var school: SchoolConfig? = nil
 
     init() {
         UITabBar.appearance().barTintColor = UIColor.white
