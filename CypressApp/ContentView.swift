@@ -25,7 +25,6 @@ struct ContentView: View {
             .environmentObject(PodcastLoader())
             .environmentObject(ViewModelData())
             .environmentObject(PlayerObject())
-            .environmentObject(ServerAPIHandler())
             .environmentObject(SiteImages())
             .preferredColorScheme(.light) // Until we add dark mode custom theming
     }

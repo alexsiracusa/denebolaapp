@@ -7,16 +7,17 @@
 
 import MediaPlayer
 import SwiftUI
+import Alamofire
 
 struct ViewController: View {
     //@EnvironmentObject var handler: WordpressAPIHandler
     @EnvironmentObject var viewModel: ViewModelData
     @EnvironmentObject var player: PlayerObject
 
-    @State var loaded = false
-    @EnvironmentObject var serverLoader: ServerAPIHandler
-    @EnvironmentObject var defaultImage: SiteImages
+    @EnvironmentObject var siteImages: SiteImages
+    @State var schools: [School]? = nil
     @State var school: SchoolConfig? = nil
+    @State var request: Request? = nil
 
     init() {
         UITabBar.appearance().barTintColor = UIColor.white
@@ -28,8 +29,6 @@ struct ViewController: View {
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         UINavigationBar.appearance().compactAppearance = appearance
-
-        // setting up tab styles
     }
 
     @State var tabManager: TabManager? = nil
@@ -39,7 +38,7 @@ struct ViewController: View {
 
     @State var error: String? = nil
     var body: some View {
-        if loaded {
+        if school != nil {
             TabView(selection: $viewModel.selectedTab) {
                 ForEach(0 ..< tabs.count, id: \.self) { n in
                     let tab = tabs[n]
@@ -50,7 +49,27 @@ struct ViewController: View {
                 }
             }
             .accentColor(.orange)
-        } else {
+        } else if let schools = schools {
+            ScrollView {
+                ForEach(schools) { school in
+                    Button {
+                        guard request == nil else {return}
+                        self.request = school.getConfig { result in
+                            switch result {
+                            case .success(let config):
+                                self.tabManager = TabManager(config.allTabs())
+                                self.school = config
+                            case .failure(let error):
+                                self.error = error.errorDescription
+                            }
+                            self.request = nil
+                        }
+                    } label: {
+                        Text(school.name)
+                    }
+                }
+            }
+        } else if schools == nil {
             VStack {
                 if let error = error {
                     Text(error)
@@ -58,27 +77,22 @@ struct ViewController: View {
                 Text("loading")
             }
             .onAppear {
-                loadTabs()
+                loadSchools()
             }
         }
     }
-
-    func loadTabs() {
-        serverLoader.loadSchool(0) { school, error in
-            self.school = school
-            self.error = error
-            guard error == nil else {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                    loadTabs()
-                }
-                return
+    
+    func loadSchools() {
+        ServerAPI.getSchools() { result in
+            switch result {
+            case .success(let schools):
+                self.schools = schools
+            case .failure(let error):
+                self.error = error.errorDescription
             }
-            guard let school = school else { return }
-            self.tabManager = TabManager(school.allTabs())
-
-            if error == nil { loaded = true }
         }
     }
+    
 }
 
 struct ViewController_Previews: PreviewProvider {
@@ -88,7 +102,6 @@ struct ViewController_Previews: PreviewProvider {
             .environmentObject(PodcastLoader())
             .environmentObject(ViewModelData())
             .environmentObject(PlayerObject())
-            .environmentObject(ServerAPIHandler())
             .environmentObject(SiteImages())
     }
 }

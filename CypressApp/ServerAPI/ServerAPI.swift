@@ -8,19 +8,6 @@
 import Foundation
 import Alamofire
 
-class ServerAPIHandler: ObservableObject {
-    let domain: String
-
-    init(_ domain: String = "https://cypress.sequal.xyz") {
-        self.domain = domain
-    }
-
-    func loadSchool(_ id: Int, completion: @escaping (SchoolConfig?, String?) -> ()) {
-        let url = domain + "/schools/" + "\(id)" + "/config"
-        JSONLoader.decodeJSON(url: url, completionHandler: completion)
-    }
-}
-
 class ServerAPI {
     static func getSchools(completion: @escaping (Result<[School], AFError>) -> Void) -> Request {
         return AF.request("https://cypress.sequal.xyz/schools", method: .get).responseDecodable(of: [School].self) { response in
@@ -31,7 +18,7 @@ class ServerAPI {
     
 }
 
-struct School: Codable {
+struct School: Codable, Identifiable {
     let id: Int
     let name: String
     
