@@ -21,7 +21,6 @@ struct PostCard: View {
                 if let imageURL = post.getFeaturedImageUrl() {
                     ImageView(url: imageURL, aspectRatio: 1.6)
                         .cornerRadius(5)
-                        .fixedSize(horizontal: false, vertical: true)
                 } else {
                     // TODO:
                 }

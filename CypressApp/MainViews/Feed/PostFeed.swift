@@ -31,12 +31,6 @@ struct PostFeed: View {
             .onChange(of: site, perform: { value in
                 loader.setSite(value)
             })
-            .onAppear {
-                loader.resume()
-            }
-            .onDisappear {
-                loader.cancel()
-            }
         } else {
             if let error = loader.error {
                 VStack {
@@ -57,16 +51,6 @@ struct PostFeed: View {
             .onChange(of: site, perform: { value in
                 loader.setSite(value)
             })
-            .onDisappear {
-                if loader.currentRequest == nil {
-                    loader.cancel()
-                }
-            }
-            .onAppear {
-                loader.error = nil
-                loader.setSite(site)
-                loader.resume()
-            }
         }
     }
 }

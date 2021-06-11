@@ -12,6 +12,9 @@ struct ImageView: View {
     @StateObject private var image: FetchImage = FetchImage()
     let url: URL
     var aspectRatio: CGFloat?
+    var hasAspect: Bool {
+        return aspectRatio != nil
+    }
     
     func setup() {
         if image.onFailure != nil {return}
@@ -28,18 +31,27 @@ struct ImageView: View {
     }
 
     var body: some View {
-        ZStack {
-            if let view = image.view {
-                view
-                    .resizable()
+        Rectangle()
+            .fill(Color.clear)
+            .aspectRatio(aspectRatio, contentMode: .fit)
+            .overlay(
+                GeometryReader { geo in
+                    ZStack {
+                        if let view = image.view {
+                            view
+                                .resizable()
+                                
+                        } else {
+                            PlaceholderBackground()
+                            DefaultLoader()
+                                .scaleEffect(0.1)
+                        }
+                    }
+                    .scaledToFill()
+                    .frame(width: hasAspect ? geo.size.width : nil, height: hasAspect ? geo.size.width / aspectRatio! : nil)
                     .clipped()
-            } else {
-                PlaceholderBackground()
-                DefaultLoader()
-                    .scaleEffect(0.1)
-            }
-        }
-        .aspectRatio(aspectRatio, contentMode: .fit)
+                }
+            )
         .onAppear { load(url); setup(); }
         .onChange(of: url, perform: load)
     }

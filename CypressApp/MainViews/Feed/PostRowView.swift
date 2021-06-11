@@ -14,10 +14,8 @@ struct PostRowView: View {
     var body: some View {
         HStack(alignment: .top) {
             if let thumbnailImageURL = post.getThumbnailSizeUrl(size: "medium") {
-                ImageView(url: thumbnailImageURL)
-                    .scaledToFill()
-                    .frame(width: 160, height: 100)
-                    //.aspectRatio(1.6, contentMode: .fit)
+                ImageView(url: thumbnailImageURL, aspectRatio: 1.6)
+                    .frame(height: 100)
                     .cornerRadius(5.0)
             } else {
                 ImageView(url: siteImages.defaultImageURL)

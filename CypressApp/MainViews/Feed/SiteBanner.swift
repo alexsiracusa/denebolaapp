@@ -12,21 +12,11 @@ struct SiteBanner: View {
     let aspectRatio: CGFloat = 6.0
     
     var body: some View {
-        Rectangle()
-            .fill(Color.clear)
-            .aspectRatio(aspectRatio, contentMode: .fit)
-            .overlay(
-                GeometryReader { geo in
-                    ImageView(url: site.bannerURL!)
-                        .scaledToFill()
-                        .frame(width: geo.size.width, height: geo.size.width / aspectRatio)
-                        .clipped()
-                        .cornerRadius(10.0)
-                        .fixedSize()
-                        .tag(site as Wordpress?)
-                }
-            )
-        }
+        ImageView(url: site.bannerURL!, aspectRatio: 6.0)
+            .clipped()
+            .cornerRadius(10.0)
+            .tag(site as Wordpress?)
+    }
 }
 
 struct SiteBanner_Previews: PreviewProvider {
