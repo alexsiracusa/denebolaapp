@@ -31,34 +31,44 @@ struct ImageView: View {
     }
 
     var body: some View {
-        Rectangle()
-            .fill(Color.clear)
-            .aspectRatio(aspectRatio, contentMode: .fit)
-            .overlay(
-                GeometryReader { geo in
-                    ZStack {
-                        if let view = image.view {
-                            view
-                                .resizable()
-                                
-                        } else {
-                            PlaceholderBackground()
-                            DefaultLoader()
-                                .scaleEffect(0.1)
+        Group {
+            if let aspectRatio = aspectRatio {
+                Rectangle()
+                    .fill(Color.clear)
+                    .aspectRatio(aspectRatio, contentMode: .fit)
+                    .overlay(
+                        GeometryReader { geo in
+                            imageView
+                            .scaledToFill()
+                            .frame(width: geo.size.width, height: geo.size.width / aspectRatio)
+                            .clipped()
                         }
-                    }
-                    .scaledToFill()
-                    .frame(width: hasAspect ? geo.size.width : nil, height: hasAspect ? geo.size.width / aspectRatio! : nil)
-                    .clipped()
-                }
-            )
+                    )
+            } else {
+                imageView
+            }
+        }
         .onAppear { load(url); setup(); }
         .onChange(of: url, perform: load)
+    }
+    
+    var imageView: some View {
+        ZStack {
+            if let view = image.view {
+                view
+                    .resizable()
+                    
+            } else {
+                PlaceholderBackground()
+                DefaultLoader()
+                    .scaleEffect(0.1)
+            }
+        }
     }
 }
 
 struct ImageView_Previews: PreviewProvider {
     static var previews: some View {
-        ImageView(url: URL(string: "https://designshack.net/wp-content/uploads/placeholder-image.png")!, aspectRatio: 1.6)
+        ImageView(url: URL(string: "https://designshack.net/wp-content/uploads/placeholder-image.png")!)
     }
 }

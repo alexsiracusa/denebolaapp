@@ -19,7 +19,8 @@ struct PostView: View {
                 // image
                 if let imageUrl = post.getFeaturedImageUrl() {
                     ImageView(url: imageUrl)
-                        .scaledToFill()
+                        //.fixedSize()
+                        .scaledToFit()
                 }
 
                 Group {
