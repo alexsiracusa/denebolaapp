@@ -34,6 +34,7 @@ struct CategoriesView: View {
                             SiteBanner(site: site)
                         }
                         .disabled(sites.count == 1)
+                        .padding([.leading, .trailing], 15)
                         CategoriesList(site: site, categories: site.featuredCategories)
                         Spacer(minLength: 15)
                         Text("Latest Posts")

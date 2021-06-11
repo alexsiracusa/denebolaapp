@@ -50,7 +50,7 @@ struct PostSection: View {
             
             .foregroundColor(.red)
         }
-        .padding(.horizontal)
+        .padding([.leading, .trailing], 15)
         .padding(.bottom, 20)
     }
 }

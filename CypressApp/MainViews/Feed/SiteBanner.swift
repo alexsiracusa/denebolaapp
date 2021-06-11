@@ -9,17 +9,24 @@ import SwiftUI
 
 struct SiteBanner: View {
     let site: Wordpress
+    let aspectRatio: CGFloat = 6.0
+    
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            ImageView(url: site.bannerURL!)
-                .scaledToFill()
-                .frame(height: 60)
-                .aspectRatio(6.0, contentMode: .fit)
-                .cornerRadius(10.0)
-                .padding([.leading, .trailing])
-                .tag(site as Wordpress?)
+        Rectangle()
+            .fill(Color.clear)
+            .aspectRatio(aspectRatio, contentMode: .fit)
+            .overlay(
+                GeometryReader { geo in
+                    ImageView(url: site.bannerURL!)
+                        .scaledToFill()
+                        .frame(width: geo.size.width, height: geo.size.width / aspectRatio)
+                        .clipped()
+                        .cornerRadius(10.0)
+                        .fixedSize()
+                        .tag(site as Wordpress?)
+                }
+            )
         }
-    }
 }
 
 struct SiteBanner_Previews: PreviewProvider {

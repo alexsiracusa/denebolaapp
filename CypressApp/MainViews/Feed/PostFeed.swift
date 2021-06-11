@@ -24,7 +24,7 @@ struct PostFeed: View {
                         .onAppear {
                             loader.loadMorePostsIfNeeded(currentItem: post)
                         }
-                        .padding(.horizontal)
+                        .padding([.leading, .trailing], 15)
                         .padding(.vertical, 0.0)
                 }
             }
@@ -48,10 +48,10 @@ struct PostFeed: View {
                     Text(error)
                 }
             }
-            VStack {
+            VStack(spacing: 10) {
                 ForEach(0 ..< 8) { _ in
                     LoadingPostRowView()
-                        .padding(.top, 5)
+                        .padding([.leading, .trailing], 15)
                 }
             }
             .onChange(of: site, perform: { value in

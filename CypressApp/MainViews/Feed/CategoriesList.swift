@@ -18,7 +18,7 @@ struct CategoriesList: View {
                     CategoryButton(site: site, category: category)
                 }
             }
-            .padding([.leading, .trailing])
+            .padding([.leading, .trailing], 15)
         }
     }
 }

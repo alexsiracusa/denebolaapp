@@ -17,7 +17,7 @@ struct PostRowView: View {
                 ImageView(url: thumbnailImageURL)
                     .scaledToFill()
                     .frame(width: 160, height: 100)
-                    .aspectRatio(1.6, contentMode: .fit)
+                    //.aspectRatio(1.6, contentMode: .fit)
                     .cornerRadius(5.0)
             } else {
                 ImageView(url: siteImages.defaultImageURL)
