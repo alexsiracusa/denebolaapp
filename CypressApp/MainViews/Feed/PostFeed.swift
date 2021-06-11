@@ -58,9 +58,14 @@ struct PostFeed: View {
                 loader.setSite(value)
             })
             .onDisappear {
-                if loader.currentRequest?.retryCount ?? 0 > 0 {
+                if loader.currentRequest == nil {
                     loader.cancel()
                 }
+            }
+            .onAppear {
+                loader.error = nil
+                loader.setSite(site)
+                loader.resume()
             }
         }
     }

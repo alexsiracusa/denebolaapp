@@ -34,9 +34,9 @@ class ScrollViewLoader: ObservableObject {
         posts = []
         currentPage = 1
         canLoadMorePages = true
-        error = nil
         currentRequest?.cancel()
         currentRequest = nil
+        error = nil
         loadMorePosts()
     }
     
@@ -68,6 +68,10 @@ class ScrollViewLoader: ObservableObject {
                 self.posts += posts
                 self.currentPage += 1
             case .failure(let error):
+                if error.isExplicitlyCancelledError {
+                    print("REQUEST CANCELLED")
+                    break
+                }
                 self.error = error.errorDescription
             }
             self.currentRequest = nil
