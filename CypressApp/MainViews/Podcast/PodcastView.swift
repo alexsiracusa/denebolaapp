@@ -85,8 +85,10 @@ struct PodcastView: View {
                             
                             Divider()
                             
-                            ForEach(loader.episodes) { podcast in
-                                PodcastRow(podcast: podcast)
+                            LazyVStack {
+                                ForEach(loader.episodes) { podcast in
+                                    PodcastRow(podcast: podcast)
+                                }
                             }
                         } else {
                             Text("Loading")

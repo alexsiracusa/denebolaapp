@@ -46,6 +46,7 @@ struct ImageView: View {
                     )
             } else {
                 imageView
+                    .scaledToFit()
             }
         }
         .onAppear { load(url); setup(); }
