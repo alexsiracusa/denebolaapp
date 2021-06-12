@@ -10,17 +10,22 @@ import SwiftUI
 
 struct PodcastView: View {
     @EnvironmentObject var loader: PodcastLoader
-    //@EnvironmentObject var handler: WordpressAPIHandler
+    // @EnvironmentObject var handler: WordpressAPIHandler
     @EnvironmentObject private var viewModel: ViewModelData
 
     let podcasts: [Podcast]
     @State var loadingAsset: AVAsset! = nil
     @EnvironmentObject var player: PlayerObject
     
-    @State var showingFullDescription = false
+    @State private var showingFullDescription = false
+    @State private var didAppear = false
     
     init(_ podcasts: [Podcast]) {
         self.podcasts = podcasts
+    }
+    
+    func setPodcasts(_ podcasts: [Podcast]) {
+        loader.setFeeds(podcasts.map { $0.rssUrl })
     }
     
     var body: some View {
@@ -34,24 +39,25 @@ struct PodcastView: View {
             .navigationBarTitle("Podcasts", displayMode: .inline)
         }
         .onAppear {
-            loader.setFeeds(podcasts.map{$0.rssUrl})
+            guard !didAppear else { return }
+            didAppear = true
+            setPodcasts(podcasts)
+        }
+        .onChange(of: podcasts) { podcasts in
+            setPodcasts(podcasts)
         }
     }
     
-    func load() {
-        
-    }
+    func load() {}
     
-    func loadPodcast(_ podcast: Podcast) {
-        
-    }
+    func loadPodcast(_ podcast: Podcast) {}
 }
 
 struct PodcastView_Previews: PreviewProvider {
     static var previews: some View {
         PodcastView([Podcast(id: 0, enabled: true, rssUrl: "https://anchor.fm/s/f635e84/podcast/rss"), Podcast(id: 0, enabled: true, rssUrl: "https://atp.fm/rss")])
             .environmentObject(PodcastLoader(["https://anchor.fm/s/f635e84/podcast/rss", "https://atp.fm/rss"]))
-            //.environmentObject(WordpressAPIHandler())
+            // .environmentObject(WordpressAPIHandler())
             .environmentObject(PlayerObject())
     }
 }
