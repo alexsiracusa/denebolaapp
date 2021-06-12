@@ -78,11 +78,11 @@ struct LoadedPodcast: Identifiable {
     }
     
     static var empty: LoadedPodcast {
-        return LoadedPodcast(id: UUID(), title: "Empty", description: "", titleImageURL: nil, episodes: [])
+        return LoadedPodcast(id: UUID(), title: String(), description: "", titleImageURL: nil, episodes: [])
     }
     
     func isEmpty() -> Bool {
-        return self.title == "Empty"
+        return self.title.isEmpty
         //return self.id == LoadedPodcast.empty.id
     }
 }

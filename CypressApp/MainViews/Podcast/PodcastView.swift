@@ -29,9 +29,9 @@ struct PodcastView: View {
                 ForEach(loader.loadedFeeds) { podcast in
                     PodcastButton(podcast: podcast)
                 }
+                .padding()
             }
             .navigationBarTitle("Podcasts", displayMode: .inline)
-            .padding()
         }
         .onAppear {
             loader.setFeeds(podcasts.map{$0.rssUrl})
