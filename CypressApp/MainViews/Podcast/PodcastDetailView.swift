@@ -24,6 +24,7 @@ struct PodcastDetailView: View {
                             .foregroundColor(.black)
                         Spacer(minLength: 0)
                     }
+                    .padding(.bottom)
                     Text(podcast.description)
                         .lineLimit(showingFullDescription ? nil : 4)
                         .padding(.bottom, 5)
