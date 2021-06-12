@@ -15,9 +15,10 @@ class PodcastLoader: ObservableObject {
     init(_ feeds: [String]) {
         self.feeds = feeds
         self.loadedFeeds = []
+        
+        // don't remove this, it's needed to create unique id's
         for _ in 0..<feeds.count {
-            let n = LoadedPodcast.empty()
-            loadedFeeds.append(n)
+            loadedFeeds.append(LoadedPodcast.empty())
         }
         //self.loadedFeeds = Array(repeating: LoadedPodcast.empty(), count: feeds.count)
         loadPodcasts()
@@ -52,9 +53,10 @@ class PodcastLoader: ObservableObject {
         parsers = []
         self.feeds = feeds
         self.loadedFeeds = []
+        
+        // don't remove this, it's needed to create unique id's
         for _ in 0..<feeds.count {
-            let n = LoadedPodcast.empty()
-            loadedFeeds.append(n)
+            loadedFeeds.append(LoadedPodcast.empty())
         }
         //self.loadedFeeds = Array(repeating: LoadedPodcast.empty(), count: feeds.count)
         loadPodcasts()
