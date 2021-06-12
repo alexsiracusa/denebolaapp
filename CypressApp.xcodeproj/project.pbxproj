@@ -57,12 +57,10 @@
 		FA56AA4C263F0B5A00B6D838 /* PodcastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA4B263F0B5A00B6D838 /* PodcastView.swift */; };
 		FA56AA51263F0BFF00B6D838 /* PhotoGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA50263F0BFF00B6D838 /* PhotoGalleryView.swift */; };
 		FA56AA56263F0F2400B6D838 /* CategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA55263F0F2400B6D838 /* CategoryButton.swift */; };
-		FA56AA58263F1AC100B6D838 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA57263F1AC100B6D838 /* Categories.swift */; };
 		FA56AA5C263F246000B6D838 /* PostRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA5B263F246000B6D838 /* PostRowView.swift */; };
 		FA56AA62263F2FD200B6D838 /* PostFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA61263F2FD200B6D838 /* PostFeed.swift */; };
 		FA56AA64263F3F1A00B6D838 /* SamplePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA63263F3F1A00B6D838 /* SamplePost.swift */; };
 		FA56AA6A263F8F0F00B6D838 /* ScrollViewLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA69263F8F0F00B6D838 /* ScrollViewLoader.swift */; };
-		FA56AA6C263F933700B6D838 /* PostRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA6B263F933700B6D838 /* PostRow.swift */; };
 		FA56AA6E263FA12200B6D838 /* LoadingPostRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA6D263FA12200B6D838 /* LoadingPostRowView.swift */; };
 		FA5D35AB266B221A003B8D2F /* LogoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5D35AA266B221A003B8D2F /* LogoButton.swift */; };
 		FA5D35AD266B29E4003B8D2F /* Logo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5D35AC266B29E4003B8D2F /* Logo.swift */; };
@@ -159,12 +157,10 @@
 		FA56AA4B263F0B5A00B6D838 /* PodcastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastView.swift; sourceTree = "<group>"; };
 		FA56AA50263F0BFF00B6D838 /* PhotoGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryView.swift; sourceTree = "<group>"; };
 		FA56AA55263F0F2400B6D838 /* CategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButton.swift; sourceTree = "<group>"; };
-		FA56AA57263F1AC100B6D838 /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		FA56AA5B263F246000B6D838 /* PostRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRowView.swift; sourceTree = "<group>"; };
 		FA56AA61263F2FD200B6D838 /* PostFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFeed.swift; sourceTree = "<group>"; };
 		FA56AA63263F3F1A00B6D838 /* SamplePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePost.swift; sourceTree = "<group>"; };
 		FA56AA69263F8F0F00B6D838 /* ScrollViewLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewLoader.swift; sourceTree = "<group>"; };
-		FA56AA6B263F933700B6D838 /* PostRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRow.swift; sourceTree = "<group>"; };
 		FA56AA6D263FA12200B6D838 /* LoadingPostRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingPostRowView.swift; sourceTree = "<group>"; };
 		FA5D35AA266B221A003B8D2F /* LogoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoButton.swift; sourceTree = "<group>"; };
 		FA5D35AC266B29E4003B8D2F /* Logo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logo.swift; sourceTree = "<group>"; };
@@ -376,8 +372,6 @@
 				FA0CB8432664326E009FE7A3 /* Codable */,
 				FA56AA69263F8F0F00B6D838 /* ScrollViewLoader.swift */,
 				FA17F8DB2659DA1A008471BD /* SearchResultLoader.swift */,
-				FA56AA6B263F933700B6D838 /* PostRow.swift */,
-				FA56AA57263F1AC100B6D838 /* Categories.swift */,
 				FA56AA63263F3F1A00B6D838 /* SamplePost.swift */,
 			);
 			path = WordpressAPI;
@@ -622,7 +616,6 @@
 				FA6526442658AEFC0043FDBA /* CategoryBanner.swift in Sources */,
 				FA17F8E22659DFCD008471BD /* SearchResults.swift in Sources */,
 				FA7320E72674278A0012C3EC /* RSSLoader.swift in Sources */,
-				FA56AA58263F1AC100B6D838 /* Categories.swift in Sources */,
 				CEAE3E352648CAC50066C825 /* DefaultViews.swift in Sources */,
 				FA56AA6A263F8F0F00B6D838 /* ScrollViewLoader.swift in Sources */,
 				CEFE4E7B26562EF2005A2DD4 /* ModelData.swift in Sources */,
@@ -677,7 +670,6 @@
 				CE74689326605535007321FD /* AboutView.swift in Sources */,
 				CE2C613D265E5C86003E32E6 /* ScheduleListView.swift in Sources */,
 				CE1E88772647484300E1245E /* PageViewController.swift in Sources */,
-				FA56AA6C263F933700B6D838 /* PostRow.swift in Sources */,
 				FA0CB84C26671926009FE7A3 /* FeedTab.swift in Sources */,
 				FA0CB848266716BE009FE7A3 /* Tab.swift in Sources */,
 				FAA53893265D6C270050617F /* PodcastEpisodeView.swift in Sources */,
