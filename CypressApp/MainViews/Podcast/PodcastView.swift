@@ -28,13 +28,29 @@ struct PodcastView: View {
         loader.setFeeds(podcasts.map { $0.rssUrl })
     }
     
+    var items: [GridItem] {
+        Array(repeating: .init(.flexible()), count: 2)
+    }
+    
     var body: some View {
         NavigationView {
             ScrollView(showsIndicators: false) {
-                ForEach(loader.loadedFeeds) { podcast in
-                    PodcastButton(podcast: podcast)
+                if loader.feeds.count > 1 {
+                    LazyVGrid(columns: items, spacing: 10) {
+                        ForEach(loader.loadedFeeds) { podcast in
+                            PodcastButton(podcast: podcast)
+                        }
+                    }
+                    .padding(10)
+                } else if loader.feeds.count == 1 {
+                    if !loader.loadedFeeds[0].isEmpty() {
+                        PodcastDetailView(podcast: loader.loadedFeeds[0])
+                    } else {
+                        Text("loading")
+                    }
+                } else {
+                    Text("This school has no podcasts, something went wrong")
                 }
-                .padding()
             }
             .navigationBarTitle("Podcasts", displayMode: .inline)
         }
@@ -56,7 +72,7 @@ struct PodcastView: View {
 struct PodcastView_Previews: PreviewProvider {
     static var previews: some View {
         PodcastView([Podcast(id: 0, enabled: true, rssUrl: "https://anchor.fm/s/f635e84/podcast/rss"), Podcast(id: 0, enabled: true, rssUrl: "https://atp.fm/rss")])
-            .environmentObject(PodcastLoader(["https://anchor.fm/s/f635e84/podcast/rss", "https://atp.fm/rss"]))
+            .environmentObject(PodcastLoader(["https://anchor.fm/s/f635e84/podcast/rss"]))
             // .environmentObject(WordpressAPIHandler())
             .environmentObject(PlayerObject())
     }

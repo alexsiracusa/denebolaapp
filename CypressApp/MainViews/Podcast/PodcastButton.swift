@@ -12,19 +12,29 @@ struct PodcastButton: View {
     
     var body: some View {
         if podcast.isEmpty() {
-            ZStack {
-                PlaceholderBackground()
-                    .aspectRatio(1.0, contentMode: .fit)
-                    .cornerRadius(30)
-                DefaultLoader()
-                    .scaleEffect(0.1)
+            VStack(alignment: .leading, spacing: 5) {
+                ZStack {
+                    PlaceholderBackground()
+                        .aspectRatio(1.0, contentMode: .fit)
+                    DefaultLoader()
+                        .scaleEffect(0.1)
+                }
+                Text("")
+                    .font(Font.custom("headline", size: 10))
+                    .foregroundColor(.black)
+                    .lineLimit(1)
             }
         } else {
             NavigationLink(destination:
                 PodcastDetailView(podcast: podcast)
             ) {
-                ImageView(url: podcast.titleImageURL!, aspectRatio: 1.0)
-                    .cornerRadius(30)
+                VStack(alignment: .leading, spacing: 5) {
+                    ImageView(url: podcast.titleImageURL!, aspectRatio: 1.0)
+                    Text(podcast.title)
+                        .font(Font.custom("headline", size: 10))
+                        .foregroundColor(.black)
+                        .lineLimit(1)
+                }
             }
         }
     }

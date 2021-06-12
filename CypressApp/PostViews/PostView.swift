@@ -43,7 +43,6 @@ struct PostView: View {
         }
 
         .navigationTitle(post.getTitle())
-        .navigationBarItems(trailing: LogoButton(url: siteImages.logoURL))
     }
 }
 

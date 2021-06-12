@@ -14,7 +14,12 @@ class PodcastLoader: ObservableObject {
     
     init(_ feeds: [String]) {
         self.feeds = feeds
-        self.loadedFeeds = Array(repeating: LoadedPodcast.empty, count: feeds.count)
+        self.loadedFeeds = []
+        for _ in 0..<feeds.count {
+            let n = LoadedPodcast.empty()
+            loadedFeeds.append(n)
+        }
+        //self.loadedFeeds = Array(repeating: LoadedPodcast.empty(), count: feeds.count)
         loadPodcasts()
     }
     
@@ -22,7 +27,7 @@ class PodcastLoader: ObservableObject {
     
     func loadPodcasts() {
         for (index, rssURL) in feeds.enumerated() {
-            if loadedFeeds[index].id == LoadedPodcast.empty.id {
+            if !loadedFeeds[index].isEmpty() {
                 break
             }
             parsers.append(RSSLoader.loadPodcast(rssURL) { result in
@@ -46,7 +51,12 @@ class PodcastLoader: ObservableObject {
         }
         parsers = []
         self.feeds = feeds
-        self.loadedFeeds = Array(repeating: LoadedPodcast.empty, count: feeds.count)
+        self.loadedFeeds = []
+        for _ in 0..<feeds.count {
+            let n = LoadedPodcast.empty()
+            loadedFeeds.append(n)
+        }
+        //self.loadedFeeds = Array(repeating: LoadedPodcast.empty(), count: feeds.count)
         loadPodcasts()
     }
 }
