@@ -19,7 +19,7 @@ struct CategoriesView: View {
     @State var displayPicker = false
     
     init(sites: [Wordpress]) {
-        self.sites = sites
+        _sites = State(wrappedValue: sites)
         self.currentSite = sites[0]
     }
     

@@ -13,7 +13,7 @@ extension SchoolConfig {
     }
     
     func podcastsTab() -> PodcastTab? {
-        let podcasts = podcasts.filter{$0.enabled}
+        let podcasts = self.podcasts.filter{$0.enabled}
         guard podcasts.count > 0 else {return nil}
         return PodcastTab(podcasts: podcasts)
     }
