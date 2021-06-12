@@ -93,7 +93,7 @@ struct PodcastEpisodeView: View {
                 }
                 .padding(.bottom, 1)
                 HStack {
-                    Text(podcast.date)
+                    Text(podcast.dateString)
                         .foregroundColor(.gray)
                         .font(.footnote)
                     Spacer()

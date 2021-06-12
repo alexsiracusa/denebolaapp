@@ -10,7 +10,7 @@ import SwiftUI
 struct PodcastDetailView: View {
     let podcast: LoadedPodcast
     @State var showingFullDescription = false
-    
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
@@ -19,8 +19,8 @@ struct PodcastDetailView: View {
                         .frame(width: 100, height: 100)
                         .cornerRadius(5)
                     Text(podcast.title)
-                    .font(.headline)
-                    .foregroundColor(.black)
+                        .font(.headline)
+                        .foregroundColor(.black)
                     Spacer(minLength: 0)
                 }
                 .padding(.bottom)
@@ -30,9 +30,9 @@ struct PodcastDetailView: View {
                 toggleButton
             }
             .padding()
-            
+
             Divider()
-            
+
             LazyVStack {
                 ForEach(podcast.episodes) { podcast in
                     PodcastRow(podcast: podcast)
@@ -40,7 +40,7 @@ struct PodcastDetailView: View {
             }
         }
     }
-    
+
     var toggleButton: some View {
         Button {
             withAnimation(Animation.easeInOut) {
