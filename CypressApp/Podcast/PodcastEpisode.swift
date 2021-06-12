@@ -38,6 +38,7 @@ struct PodcastEpisode: Identifiable {
     
     static func fromRSSItem(_ item: RSSFeedItem, defaultImage: URL) -> PodcastEpisode? {
         let imageURL = try? item.iTunes?.iTunesImage?.attributes?.href?.asURL() ?? defaultImage
+        guard let imageURL = imageURL else { return nil }
         guard let title = item.title else { return nil }
         guard let desciption = item.description else { return nil }
         guard let date = (item.pubDate.flatMap { DateInRegion($0, region: .UTC) }) else { return nil }

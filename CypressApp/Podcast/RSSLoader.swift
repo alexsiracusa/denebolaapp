@@ -81,8 +81,7 @@ struct LoadedPodcast: Identifiable {
     }
 
     func isEmpty() -> Bool {
-        return self.title == "Empty"
-        // return self.id == LoadedPodcast.empty.id
+        return self.title.isEmpty
     }
 }
 
