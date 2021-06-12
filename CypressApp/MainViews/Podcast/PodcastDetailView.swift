@@ -13,29 +13,30 @@ struct PodcastDetailView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 0) {
-                HStack(alignment: .top) {
-                    ImageView(url: podcast.titleImageURL!)
-                        .frame(width: 100, height: 100)
-                        .cornerRadius(5)
-                    Text(podcast.title)
-                        .font(.headline)
-                        .foregroundColor(.black)
-                    Spacer(minLength: 0)
+            VStack(spacing: 0) {
+                VStack(alignment: .leading, spacing: 0) {
+                    HStack(alignment: .top) {
+                        ImageView(url: podcast.titleImageURL!)
+                            .frame(width: 100, height: 100)
+                            .cornerRadius(5)
+                        Text(podcast.title)
+                            .font(.headline)
+                            .foregroundColor(.black)
+                        Spacer(minLength: 0)
+                    }
+                    Text(podcast.description)
+                        .lineLimit(showingFullDescription ? nil : 4)
+                        .padding(.bottom, 5)
+                    toggleButton
                 }
-                .padding(.bottom)
-                Text(podcast.description)
-                    .lineLimit(showingFullDescription ? nil : 4)
-                    .padding(.bottom, 5)
-                toggleButton
-            }
-            .padding()
+                .padding()
 
-            Divider()
+                Divider()
 
-            LazyVStack {
-                ForEach(podcast.episodes) { podcast in
-                    PodcastRow(podcast: podcast)
+                LazyVStack(spacing: 0) {
+                    ForEach(podcast.episodes) { podcast in
+                        PodcastRow(podcast: podcast)
+                    }
                 }
             }
         }
