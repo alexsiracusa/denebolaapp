@@ -100,18 +100,6 @@ struct ViewController: View {
                 self.request = nil
             }
         }
-        RSSLoader.loadPodcast("https://anchor.fm/s/f635e84/podcast/rss") { result in
-            switch result {
-            case .success(let podcast):
-                print("********************************")
-                print(podcast.title)
-                print("********************************")
-            case .failure(let error):
-                print("********************************")
-                print(error.errorDescription)
-                print("********************************")
-            }
-        }
     }
     
 }
@@ -120,7 +108,7 @@ struct ViewController_Previews: PreviewProvider {
     static var previews: some View {
         ViewController()
             //.environmentObject(WordpressAPIHandler())
-            .environmentObject(PodcastLoader())
+            .environmentObject(PodcastLoader([]))
             .environmentObject(ViewModelData())
             .environmentObject(PlayerObject())
             .environmentObject(SiteImages())

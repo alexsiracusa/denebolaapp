@@ -22,7 +22,7 @@ struct ContentView: View {
     var body: some View {
         ViewController()
             //.environmentObject(WordpressAPIHandler())
-            .environmentObject(PodcastLoader())
+            .environmentObject(PodcastLoader([]))
             .environmentObject(ViewModelData())
             .environmentObject(PlayerObject())
             .environmentObject(SiteImages())

@@ -18,7 +18,7 @@ struct PodcastRow: View {
 
     var body: some View {
         NavigationLink(destination:
-            PodcastDetailView(podcast: podcast)
+            PodcastEpisodeView(podcast: podcast)
         ) {
             VStack(spacing: 0) {
                 HStack(alignment: .center, spacing: 0) {

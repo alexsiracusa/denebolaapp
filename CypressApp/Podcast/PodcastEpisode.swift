@@ -35,11 +35,17 @@ struct PodcastEpisode: Identifiable {
         return PodcastEpisode(title: "S3E3 - April vacation recap, 4 days a week in person, spring sports, and tik tok drama.", description: "On this weeks episode Freshman Neil Giesser joins the show to talk about his first year at South. Senior Jaden Friedman gives some nfl draft predictions. And the show is wrapped up with our take on tik tok and YouTube news.", date: "Tue, 04 May 2021 01:04:27 GMT", imageURL: imageURL, audioURL: audioURL)
     }
     
-    static func fromRSSItem(_ item: RSSFeedItem) -> PodcastEpisode? {
+    static func fromRSSItem(_ item: RSSFeedItem, defaultImage: URL) -> PodcastEpisode? {
         guard let title = item.title else { return nil }
         guard let desciption = item.description else { return nil }
-        guard let imageURLString = item.iTunes?.iTunesImage?.attributes?.href else { return nil }
-        guard let imageURL = URL(string: imageURLString) else { return nil }
+        var imageURL: URL? = nil
+        if let imageURLString = item.iTunes?.iTunesImage?.attributes?.href {
+            guard let url = URL(string: imageURLString) else { return nil }
+            imageURL = url
+        } else {
+            imageURL = defaultImage
+        }
+        guard let imageURL = imageURL else { return nil }
         guard let date = item.pubDate?.description else { return nil }
         guard let audioURLString = item.enclosure?.attributes?.url else { return nil }
         guard let audioURL = URL(string: audioURLString) else { return nil }

@@ -46,8 +46,8 @@ struct HomeView: View {
                 VStack(spacing: 30) {
                     PostSection(posts: latestPosts)
                         .overlay(gradient)
-                    PodcastSection()
-                        .overlay(gradient)
+//                    PodcastSection()
+//                        .overlay(gradient)
                     MultimediaSection(posts: multimediaPosts)
                         .overlay(gradient)
                 }
@@ -67,6 +67,5 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView(sites: [Wordpress.default], podcasts: [Podcast.default])
             //.environmentObject(WordpressAPIHandler())
-            .environmentObject(PodcastLoader())
     }
 }
