@@ -38,7 +38,7 @@ struct PodcastRow: View {
                             .foregroundColor(.black)
                             .font(.headline)
                             .lineLimit(2)
-                        Text(podcast.dateString ?? podcast.date.description)
+                        Text(podcast.dateString)
                             .foregroundColor(.gray)
                             .font(.footnote)
                     }

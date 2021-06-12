@@ -32,7 +32,7 @@ struct HomeView: View {
             switch result {
             case .success(let posts):
                 latestPosts = posts
-            case .failure(let error):
+            case .failure(_):
                 let _ = 0
             }
         }

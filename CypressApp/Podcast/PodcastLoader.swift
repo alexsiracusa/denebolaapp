@@ -31,7 +31,7 @@ class PodcastLoader: ObservableObject {
                     DispatchQueue.main.async {
                         self.loadedFeeds[index] = podcast
                     }
-                case .failure(let error):
+                case .failure(_):
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                         self.loadPodcasts()
                     }
