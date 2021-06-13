@@ -94,11 +94,13 @@ class PlayerObject: ObservableObject {
 
     func play() {
         self.playing = true
+        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = time
         self.player.play()
     }
 
     func pause() {
         self.playing = false
+        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = time
         self.player.pause()
     }
     
@@ -128,6 +130,7 @@ class PlayerObject: ObservableObject {
             return .commandFailed
         }
         
+        commandCenter.changePlaybackRateCommand.isEnabled = true
         commandCenter.changePlaybackPositionCommand.addTarget { [weak self](remoteEvent) -> MPRemoteCommandHandlerStatus in
             guard let self = self else {return .commandFailed}
             if let event = remoteEvent as? MPChangePlaybackPositionCommandEvent {
@@ -182,7 +185,8 @@ class PlayerObject: ObservableObject {
         nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentItem?.currentTime().seconds
         nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = player.currentItem!.asset.duration.seconds
         nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = 1.0
-        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = Float(CMTimeGetSeconds(player.currentItem!.currentTime()))
+        //nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = Float(CMTimeGetSeconds(player.currentItem!.currentTime()))
+        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = $time
 
         // Set the metadata
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
