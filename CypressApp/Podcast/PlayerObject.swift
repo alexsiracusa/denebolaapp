@@ -82,13 +82,18 @@ class PlayerObject: ObservableObject {
     
     func seek(to: Double) {
         guard player.currentItem != nil else { return }
-        player.seek(to: CMTime(seconds: to, preferredTimescale: CMTimeScale(to))) { _ in
+        player.seek(to: to < 0.5 ? .zero : CMTime(seconds: to, preferredTimescale: CMTimeScale(audioLength * 10))) { _ in
             self.seeking = false
         }
         self.time = to
+        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = time
     }
     
     func goForward(seconds: Double) {
+        if time + seconds <= 0 {
+            seek(to: 0.0)
+            return
+        }
         seek(to: time + seconds)
     }
 
@@ -114,20 +119,14 @@ class PlayerObject: ObservableObject {
         
         commandCenter.playCommand.isEnabled = true
         commandCenter.playCommand.addTarget { [unowned self] event in
-            if !self.playing {
-                self.play()
-                return .success
-            }
-            return .commandFailed
+            self.play()
+            return .success
         }
         
         commandCenter.pauseCommand.isEnabled = true
         commandCenter.pauseCommand.addTarget { [unowned self] event in
-            if self.playing {
-                self.pause()
-                return .success
-            }
-            return .commandFailed
+            self.pause()
+            return .success
         }
         
         commandCenter.changePlaybackRateCommand.isEnabled = true
@@ -185,8 +184,8 @@ class PlayerObject: ObservableObject {
         nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentItem?.currentTime().seconds
         nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = player.currentItem!.asset.duration.seconds
         nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = 1.0
-        //nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = Float(CMTimeGetSeconds(player.currentItem!.currentTime()))
-        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = $time
+        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = Float(CMTimeGetSeconds(player.currentItem!.currentTime()))
+        //nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = $time
 
         // Set the metadata
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
