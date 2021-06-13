@@ -18,21 +18,21 @@ struct PodcastRow: View {
 
     var body: some View {
         NavigationLink(destination:
-            PodcastEpisodeView(podcast: podcast)
+            PodcastEpisodeView(episode: podcast)
         ) {
             VStack(spacing: 0) {
                 HStack(alignment: .center, spacing: 0) {
-                    if podcast == player.currentPodcast {
-                        Button {
-                            if player.playing {
-                                player.pause()
-                            } else {
-                                player.play()
-                            }
-                        } label: {
-                            MediaControlImage(player.playing ? "pause.circle" : "play.circle")
-                        }
-                    }
+//                    if podcast == player.currentPodcast {
+//                        Button {
+//                            if player.playing {
+//                                player.pause()
+//                            } else {
+//                                player.play()
+//                            }
+//                        } label: {
+//                            MediaControlImage(player.playing ? "pause.circle" : "play.circle")
+//                        }
+//                    }
                     VStack(alignment: .leading, spacing: 5) {
                         Text(podcast.title)
                             .foregroundColor(.black)
@@ -48,12 +48,12 @@ struct PodcastRow: View {
                 .frame(height: 80)
                 Divider()
             }
-            .background(
-                Rectangle()
-                    .fill(podcast == player.currentPodcast ? Color.gray : Color.clear)
-                    .brightness(0.3)
-                    .frame(height: 80)
-            )
+//            .background(
+//                Rectangle()
+//                    .fill(podcast == player.currentPodcast ? Color.gray : Color.clear)
+//                    .brightness(0.3)
+//                    .frame(height: 80)
+//            )
         }
     }
 }
