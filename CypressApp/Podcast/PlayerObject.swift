@@ -76,6 +76,7 @@ class PlayerObject: ObservableObject {
         try! audioSession.setCategory(.playAndRecord, mode: .spokenAudio, options: [.defaultToSpeaker, .allowAirPlay, .allowBluetoothA2DP])
         try! AVAudioSession.sharedInstance().setActive(true)
         
+        self.loading = false
         setupRemoteTransportControls()
         setupNowPlaying()
     }

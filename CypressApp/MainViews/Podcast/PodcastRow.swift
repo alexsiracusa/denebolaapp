@@ -40,6 +40,7 @@ struct PodcastRow: View {
                 Divider()
             }
         }
+        .disabled(player.loading)
     }
 }
 
