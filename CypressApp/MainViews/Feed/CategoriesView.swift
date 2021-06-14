@@ -82,10 +82,10 @@ struct CategoriesView: View {
                             SiteBanner(site: site)
                         }
                     }
+                    .padding(.horizontal)
                 }
                 .padding([.top, .bottom])
             }
-            .pickerStyle(MenuPickerStyle())
         }
         .onChange(of: currentSite, perform: { _ in
             updateWordpress()
