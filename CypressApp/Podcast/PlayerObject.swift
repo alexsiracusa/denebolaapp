@@ -112,6 +112,7 @@ class PlayerObject: ObservableObject {
     func reset() {
         player.pause()
         self.player = AVPlayer()
+        episode = nil
     }
     
     func setupRemoteTransportControls() {

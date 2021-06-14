@@ -32,6 +32,7 @@
 		CEFE4E83265635B6005A2DD4 /* MultimediaSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE4E82265635B6005A2DD4 /* MultimediaSection.swift */; };
 		FA03D1B626719D24005A760F /* WordpressCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA03D1B526719D24005A760F /* WordpressCodable.swift */; };
 		FA03D1B826719D72005A760F /* WordpressAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA03D1B726719D72005A760F /* WordpressAPI.swift */; };
+		FA05BDAA2676CCF60026C903 /* NowPlayingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05BDA92676CCF60026C903 /* NowPlayingBar.swift */; };
 		FA0CB8422664320A009FE7A3 /* PodcastEpisode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0CB8412664320A009FE7A3 /* PodcastEpisode.swift */; };
 		FA0CB845266432DC009FE7A3 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0CB844266432DC009FE7A3 /* VideoView.swift */; };
 		FA0CB848266716BE009FE7A3 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0CB847266716BE009FE7A3 /* Tab.swift */; };
@@ -134,6 +135,7 @@
 		CEFE4E82265635B6005A2DD4 /* MultimediaSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultimediaSection.swift; sourceTree = "<group>"; };
 		FA03D1B526719D24005A760F /* WordpressCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordpressCodable.swift; sourceTree = "<group>"; };
 		FA03D1B726719D72005A760F /* WordpressAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordpressAPI.swift; sourceTree = "<group>"; };
+		FA05BDA92676CCF60026C903 /* NowPlayingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingBar.swift; sourceTree = "<group>"; };
 		FA0CB8412664320A009FE7A3 /* PodcastEpisode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastEpisode.swift; sourceTree = "<group>"; };
 		FA0CB844266432DC009FE7A3 /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
 		FA0CB847266716BE009FE7A3 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
@@ -399,6 +401,7 @@
 				FA17F8E7265B3473008471BD /* PodcastRow.swift */,
 				FA7320EA267438F00012C3EC /* PodcastDetailView.swift */,
 				FAA53892265D6C270050617F /* PodcastEpisodeView.swift */,
+				FA05BDA92676CCF60026C903 /* NowPlayingBar.swift */,
 			);
 			path = Podcast;
 			sourceTree = "<group>";
@@ -653,6 +656,7 @@
 				FA17F8E8265B3473008471BD /* PodcastRow.swift in Sources */,
 				FA5D35AF266BD982003B8D2F /* SiteBanner.swift in Sources */,
 				FA5D35AB266B221A003B8D2F /* LogoButton.swift in Sources */,
+				FA05BDAA2676CCF60026C903 /* NowPlayingBar.swift in Sources */,
 				FA4618CC264980240018522B /* PodcastLoader.swift in Sources */,
 				FA0CB85026671989009FE7A3 /* PodcastTab.swift in Sources */,
 				FA73AA2C263E361E00B6C8B6 /* Category.swift in Sources */,

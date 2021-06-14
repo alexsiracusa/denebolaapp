@@ -36,7 +36,7 @@ struct PodcastDetailView: View {
 
                 LazyVStack(spacing: 0) {
                     ForEach(podcast.episodes) { podcast in
-                        PodcastRow(podcast: podcast)
+                        PodcastRow(episode: podcast)
                     }
                 }
             }

@@ -43,7 +43,8 @@ struct ViewController: View {
                 TabView(selection: $viewModel.selectedTab) {
                     ForEach(0 ..< tabs.count, id: \.self) { n in
                         let tab = tabs[n]
-                        tab.content
+                        NowPlayingBar(content: tab.content, showingBar : $player.showingToolbar)
+                        //tab.content
                             .tabItem {
                                 tab.tabIcon
                             }

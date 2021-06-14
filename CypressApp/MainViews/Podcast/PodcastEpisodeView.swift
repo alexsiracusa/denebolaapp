@@ -10,23 +10,8 @@ import SwiftUI
 
 struct PodcastEpisodeView: View {
     @EnvironmentObject private var viewModel: ViewModelData
-    @State var episode: PodcastEpisode {
-        didSet {
-            self.beginNewAudio(url: self.episode.audioURL!)
-        }
-    }
-
     @EnvironmentObject var player: PlayerObject
-    @State var loadingAsset: AVAsset! = nil
-    
-    @State var time = 0.0
-    @State var audioLength = 0.0
-    @State var seeking = false
-    
-
-    var audioPlayer: AVPlayer {
-        return self.player.player
-    }
+    @Binding var showFullScreen: Bool
     
     func MediaControlImage(_ name: String) -> some View {
         return Image(systemName: name)
@@ -35,210 +20,111 @@ struct PodcastEpisodeView: View {
     
     var body: some View {
         ScrollView(showsIndicators: false) {
-            Button {
-                player.setAudio(episode)
-            } label: {
-                Text("Set Audio")
+            if let episode = player.episode {
+                VStack(spacing: 10) {
+                    HStack {
+                        Button {
+                            showFullScreen = false
+                        } label: {
+                            Image(systemName: "chevron.down")
+                        }
+                        Spacer()
+                    }
+                    ImageView(url: episode.imageURL!)
+                        .scaledToFit()
+                        .cornerRadius(10)
+                        .aspectRatio(1.0, contentMode: .fit)
+
+                    Slider(value: $player.time, in: 0 ... player.audioLength) { editing in
+                        if !editing {
+                            player.seek(to: player.time)
+                        } else {
+                            player.seeking = true
+                        }
+                    }
+
+                    HStack {
+                        Text(getFormattedMinutesSeconds(player.time))
+                            .font(.caption)
+                        Spacer()
+                        Text(getFormattedMinutesSeconds(player.audioLength))
+                            .font(.caption)
+                    }
+                    .padding([.leading, .trailing])
+
+                    HStack(spacing: 30) {
+                        Button {
+                            player.goForward(seconds: -15)
+                        } label: {
+                            MediaControlImage("gobackward.15")
+                        }
+
+                        Button {
+                            if player.playing {
+                                player.pause()
+                            } else {
+                                player.play()
+                            }
+                        } label: {
+                            MediaControlImage(player.playing ? "pause.circle" : "play.circle")
+                        }
+
+                        Button {
+                            player.goForward(seconds: 15)
+                        } label: {
+                            MediaControlImage("goforward.15")
+                        }
+                    }
+                    .offset(y: -10)
+                    HStack {
+                        Text(episode.title)
+                            .font(.title3)
+                            .bold()
+                        Spacer()
+                    }
+                    .padding(.bottom, 1)
+                    HStack {
+                        Text(episode.dateString)
+                            .foregroundColor(.gray)
+                            .font(.footnote)
+                        Spacer()
+                    }
+                    .padding(.bottom)
+                    HStack {
+                        Text(episode.description)
+                        Spacer()
+                    }
+                }
+                .padding(.top)
+                .padding(.bottom, 30)
             }
-            
-            Button {
-                player.play()
-            } label: {
-                Text("Play")
-            }
-            
-            Button {
-                player.pause()
-            } label: {
-                Text("Pause")
-            }
-            
-            Button {
-                player.goForward(seconds: 15)
-            } label: {
-                Text("Forward 15")
-            }
-            
-            Button {
-                player.seek(to: 100)
-            } label: {
-                Text("Go to 100 seconds")
-            }
-            
-            Text("Length: \(player.audioLength)")
-            Text("Time: \(player.time)")
-//            VStack(spacing: 10) {
-//                ImageView(url: podcast.imageURL!)
-//                    .scaledToFit()
-//                    .cornerRadius(10)
-//                    .aspectRatio(1.0, contentMode: .fit)
-//
-//                Slider(value: $time, in: 0 ... audioLength) { editing in
-//                    if !editing {
-//                        seek(to: time)
-//                    } else {
-//                        seeking = true
-//                    }
-//                }
-//                .disabled(podcast != player.currentPodcast)
-//
-//                HStack {
-//                    Text(getFormattedMinutesSeconds(time))
-//                        .font(.caption)
-//                    Spacer()
-//                    Text(getFormattedMinutesSeconds(audioLength))
-//                        .font(.caption)
-//                }
-//                .padding([.leading, .trailing])
-//
-//                HStack(spacing: 30) {
-//                    Button {
-//                        seek(to: time - 15.0)
-//                    } label: {
-//                        MediaControlImage("gobackward.15")
-//                    }
-//                    .disabled(podcast != player.currentPodcast)
-//
-//                    Button {
-//                        if playing { pause() } else { play() }
-//                    } label: {
-//                        MediaControlImage(playing ? "pause.circle" : "play.circle")
-//                            .onChange(of: player.playing) { value in
-//                                playing = value
-//                            }
-//                    }
-//
-//                    Button {
-//                        seek(to: time + 30.0)
-//                    } label: {
-//                        MediaControlImage("goforward.30")
-//                    }
-//                    .disabled(podcast != player.currentPodcast)
-//                }
-//                .offset(y: -10)
-//                HStack {
-//                    Text(podcast.title)
-//                        .font(.title3)
-//                        .bold()
-//                    Spacer()
-//                }
-//                .padding(.bottom, 1)
-//                HStack {
-//                    Text(podcast.dateString)
-//                        .foregroundColor(.gray)
-//                        .font(.footnote)
-//                    Spacer()
-//                }
-//                .padding(.bottom)
-//                HStack {
-//                    Text(podcast.description)
-//                    Spacer()
-//                }
-//                // Spacer()
-//            }
-//            .padding(.top)
-//            .padding(.bottom, 30)
         }
         .padding([.leading, .trailing])
-        .onAppear {
-//            if podcast == player.currentPodcast {
-//                self.playing = player.playing
-//                self.time = player.player.currentTime().seconds
-//                self.audioLength = player.player.currentItem!.asset.duration.seconds
-//                self.loadingAsset = player.player.currentItem!.asset
-//                self.audioPlayer.addPeriodicTimeObserver(
-//                    forInterval: CMTimeMake(value: 1, timescale: 2), // 1/2 seconds
-//                    queue: DispatchQueue.main,
-//                    using: {
-//                        if !seeking {
-//                            self.time = $0.seconds
-//                        }
-//                    }
-//                )
-//            }
-        }
-        .navigationBarTitle("", displayMode: .inline)
-    }
-    
-    func seek(to: Double) {
-        self.audioPlayer.seek(to: CMTime(seconds: to, preferredTimescale: CMTimeScale(to))) { _ in
-            seeking = false
-        }
-        self.time = to
-    }
-    
-    func beginNewAudio(url: URL) {
-//        if let loadingAsset = self.loadingAsset {
-//            loadingAsset.cancelLoading()
-//        }
-//
-//        self.loadingAsset = AVAsset(url: url)
-//        self.player.currentPodcast = self.podcast
-//
-//        self.audioPlayer.replaceCurrentItem(with: nil)
-//        // Do not block the main thread loading audio
-//        self.loadingAsset.loadValuesAsynchronously(forKeys: ["playable"], completionHandler: {
-//            var error: NSError?
-//            let status = self.loadingAsset.statusOfValue(forKey: "playable", error: &error)
-//
-//            switch status {
-//                case .loaded:
-//                    DispatchQueue.main.async {
-//                        self.loadAsset()
-//                    }
-//                case .failed:
-//                    fallthrough
-//                case .cancelled:
-//                    // TODO:
-//                    break
-//                default:
-//                    break
-//            }
-//        })
-    }
-    
-    func loadAsset() {
-        let item = AVPlayerItem(asset: self.loadingAsset)
-        self.audioPlayer.replaceCurrentItem(with: item)
-        // Get duration
-        if let duration = audioPlayer.currentItem?.asset.duration {
-            self.audioLength = CMTimeGetSeconds(duration)
-        } else {
-            self.audioLength = 0.0
-        }
-        // Receive time updates
-        self.audioPlayer.addPeriodicTimeObserver(
-            forInterval: CMTimeMake(value: 1, timescale: 2), // 1/2 seconds
-            queue: DispatchQueue.main,
-            using: {
-                if !seeking {
-                    self.time = $0.seconds
-                }
-            }
+        .background(
+            Color.white.ignoresSafeArea()
         )
+//        .gesture(
+//            DragGesture(minimumDistance: 0, coordinateSpace: .local)
+//                .onEnded { value in
+//                    if value.translation.height > 0 && value.translation.width < 100 && value.translation.width > -100 {
+//                    }
+//                }
+//        )
     }
     
-    func play() {
-//        if self.loadingAsset == nil {
-//            self.beginNewAudio(url: self.podcast.audioURL!)
-//        }
-//        self.audioPlayer.play()
-//        self.player.playing = true
-//        self.playing = true
-//        self.player.image = ImageView(url: self.podcast.imageURL!)
-//        self.player.showingToolbar = true
+    let detectDirectionalDrags = DragGesture(minimumDistance: 3.0, coordinateSpace: .local)
+    .onEnded { value in
+        print(value.translation)
+        if value.translation.height > 0 && value.translation.width < 100 && value.translation.width > -100 {
+            
+        }
     }
     
-    func pause() {
-//        self.audioPlayer.pause()
-//        self.player.playing = false
-//        self.playing = false
-    }
 }
 
 struct PodcastEpisodelView_Previews: PreviewProvider {
     static var previews: some View {
-        PodcastEpisodeView(episode: PodcastEpisode.default)
+        PodcastEpisodeView(showFullScreen: .constant(true))
             .environmentObject(PlayerObject())
     }
 }

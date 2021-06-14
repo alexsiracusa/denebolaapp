@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PodcastRow: View {
     @EnvironmentObject var player: PlayerObject
-    var podcast: PodcastEpisode
+    var episode: PodcastEpisode
 
     func MediaControlImage(_ name: String) -> some View {
         return Image(systemName: name)
@@ -17,28 +17,19 @@ struct PodcastRow: View {
     }
 
     var body: some View {
-        NavigationLink(destination:
-            PodcastEpisodeView(episode: podcast)
-        ) {
+        Button {
+            player.setAudio(episode)
+            player.play()
+            player.showingToolbar = true
+        } label: {
             VStack(spacing: 0) {
                 HStack(alignment: .center, spacing: 0) {
-//                    if podcast == player.currentPodcast {
-//                        Button {
-//                            if player.playing {
-//                                player.pause()
-//                            } else {
-//                                player.play()
-//                            }
-//                        } label: {
-//                            MediaControlImage(player.playing ? "pause.circle" : "play.circle")
-//                        }
-//                    }
                     VStack(alignment: .leading, spacing: 5) {
-                        Text(podcast.title)
+                        Text(episode.title)
                             .foregroundColor(.black)
                             .font(.headline)
                             .lineLimit(2)
-                        Text(podcast.dateString)
+                        Text(episode.dateString)
                             .foregroundColor(.gray)
                             .font(.footnote)
                     }
@@ -48,19 +39,13 @@ struct PodcastRow: View {
                 .frame(height: 80)
                 Divider()
             }
-//            .background(
-//                Rectangle()
-//                    .fill(podcast == player.currentPodcast ? Color.gray : Color.clear)
-//                    .brightness(0.3)
-//                    .frame(height: 80)
-//            )
         }
     }
 }
 
 struct PodcastRow_Previews: PreviewProvider {
     static var previews: some View {
-        PodcastRow(podcast: PodcastEpisode.default)
+        PodcastRow(episode: PodcastEpisode.default)
             .environmentObject(PlayerObject())
     }
 }
