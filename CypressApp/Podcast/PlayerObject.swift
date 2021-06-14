@@ -113,6 +113,7 @@ class PlayerObject: ObservableObject {
         player.pause()
         self.player = AVPlayer()
         episode = nil
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nil
     }
     
     func setupRemoteTransportControls() {
