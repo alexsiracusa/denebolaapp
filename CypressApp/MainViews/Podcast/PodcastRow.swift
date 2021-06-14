@@ -20,7 +20,7 @@ struct PodcastRow: View {
         Button {
             player.setAudio(episode)
             player.play()
-            player.showingToolbar = true
+            player.toolbar = .showFullScreen
         } label: {
             VStack(spacing: 0) {
                 HStack(alignment: .center, spacing: 0) {

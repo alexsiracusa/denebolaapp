@@ -10,25 +10,23 @@ import SwiftUI
 
 struct NowPlayingBar: View {
     var content: AnyView
-    @Binding var showingBar: Bool
     @EnvironmentObject var player: PlayerObject
-    @State var fullScreen = false
     
     var body: some View {
         ZStack(alignment: .bottom) {
             content
-            if showingBar {
+                .fullScreenCover(isPresented: $player.toolbarFullScreen) {
+                    PodcastEpisodeView()
+                        .environmentObject(player)
+                        .accentColor(.orange)
+                }
+            if player.toolbar == .show || player.toolbar == .showFullScreen  {
                 ZStack {
                     if let episode = player.episode {
                         Rectangle().foregroundColor(Color.white.opacity(0.0)).frame(width: UIScreen.main.bounds.size.width, height: 65).background(Color.white)
                             .shadow(radius: 5)
                         Toolbar(episode)
                     }
-                }
-                .fullScreenCover(isPresented: $fullScreen) {
-                    PodcastEpisodeView(showFullScreen: $fullScreen)
-                        .environmentObject(player)
-                        .accentColor(.orange)
                 }
             }
         }
@@ -73,7 +71,7 @@ struct NowPlayingBar: View {
             
             Spacer()
             Button {
-                fullScreen = true
+                player.toolbar = .showFullScreen
             } label: {
                 ImageView(url: episode.imageURL!, aspectRatio: 1.0)
                     .frame(width: 50, height: 50)
@@ -91,7 +89,7 @@ struct NowPlayingBar: View {
 
 struct NowPlayingBar_Previews: PreviewProvider {
     static var previews: some View {
-        NowPlayingBar(content: AnyView(SocialView()), showingBar: .constant(true))
+        NowPlayingBar(content: AnyView(SocialView()))
             .environmentObject(PlayerObject())
     }
 }

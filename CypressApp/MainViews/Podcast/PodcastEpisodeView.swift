@@ -11,7 +11,6 @@ import SwiftUI
 struct PodcastEpisodeView: View {
     @EnvironmentObject private var viewModel: ViewModelData
     @EnvironmentObject var player: PlayerObject
-    @Binding var showFullScreen: Bool
     
     func MediaControlImage(_ name: String) -> some View {
         return Image(systemName: name)
@@ -24,7 +23,7 @@ struct PodcastEpisodeView: View {
                 VStack(spacing: 10) {
                     HStack {
                         Button {
-                            showFullScreen = false
+                            player.toolbar = .show
                         } label: {
                             Image(systemName: "chevron.down")
                         }
@@ -124,7 +123,7 @@ struct PodcastEpisodeView: View {
 
 struct PodcastEpisodelView_Previews: PreviewProvider {
     static var previews: some View {
-        PodcastEpisodeView(showFullScreen: .constant(true))
+        PodcastEpisodeView()
             .environmentObject(PlayerObject())
     }
 }
