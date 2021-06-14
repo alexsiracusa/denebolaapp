@@ -9,7 +9,7 @@ import Foundation
 import MediaPlayer
 
 class PlayerObject: ObservableObject {
-    private let audioSession = AVAudioSession.sharedInstance()
+    private var audioSession = AVAudioSession.sharedInstance()
     @Published var player: AVPlayer
     
     @Published var playing: Bool
@@ -114,42 +114,59 @@ class PlayerObject: ObservableObject {
         player.pause()
         self.player = AVPlayer()
         episode = nil
+        audioSession = AVAudioSession.sharedInstance()
+        //MPRemoteCommandCenter.shared().
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nil
     }
     
+    
+    var playCommand: NSObject? = nil
+    var pauseCommand: NSObject? = nil
+    var positionCommand: NSObject? = nil
+    var forwardCommand: NSObject? = nil
+    var backCommand: NSObject? = nil
+    
+    func resetRemooteCommands() {
+        MPRemoteCommandCenter.shared().playCommand.removeTarget(playCommand)
+        MPRemoteCommandCenter.shared().pauseCommand.removeTarget(pauseCommand)
+        MPRemoteCommandCenter.shared().changePlaybackPositionCommand.removeTarget(positionCommand)
+        MPRemoteCommandCenter.shared().skipForwardCommand.removeTarget(forwardCommand)
+        MPRemoteCommandCenter.shared().skipBackwardCommand.removeTarget(backCommand)
+    }
     func setupRemoteTransportControls() {
         let commandCenter = MPRemoteCommandCenter.shared()
+        resetRemooteCommands()
         
         commandCenter.playCommand.isEnabled = true
-        commandCenter.playCommand.addTarget { [unowned self] event in
+        self.playCommand = commandCenter.playCommand.addTarget { [unowned self] event in
             self.play()
             return .success
-        }
+        } as? NSObject
         
         commandCenter.pauseCommand.isEnabled = true
-        commandCenter.pauseCommand.addTarget { [unowned self] event in
+        self.pauseCommand = commandCenter.pauseCommand.addTarget { [unowned self] event in
             self.pause()
             return .success
-        }
+        } as? NSObject
         
         commandCenter.changePlaybackRateCommand.isEnabled = true
-        commandCenter.changePlaybackPositionCommand.addTarget { [weak self](remoteEvent) -> MPRemoteCommandHandlerStatus in
+        self.positionCommand = commandCenter.changePlaybackPositionCommand.addTarget { [weak self](remoteEvent) -> MPRemoteCommandHandlerStatus in
             guard let self = self else {return .commandFailed}
             if let event = remoteEvent as? MPChangePlaybackPositionCommandEvent {
                 self.seek(to: event.positionTime)
                 return .success
             }
             return .commandFailed
-        }
+        } as? NSObject
         
         let skipBackwardCommand = commandCenter.skipBackwardCommand
         skipBackwardCommand.isEnabled = true
-        skipBackwardCommand.addTarget(handler: skipBackward)
+        self.backCommand = skipBackwardCommand.addTarget(handler: skipBackward) as? NSObject
         skipBackwardCommand.preferredIntervals = [-15]
 
         let skipForwardCommand = commandCenter.skipForwardCommand
         skipForwardCommand.isEnabled = true
-        skipForwardCommand.addTarget(handler: skipForward)
+        self.forwardCommand = skipForwardCommand.addTarget(handler: skipForward) as? NSObject
         skipForwardCommand.preferredIntervals = [15]
     }
     
