@@ -66,9 +66,7 @@ struct LoadedPodcast: Identifiable {
         }
         guard let imageURL = URL(string: imageURLString) else { return nil }
         guard let items = rss.items else { return nil }
-        var optionalEpisodes: [PodcastEpisode?] = items.map { PodcastEpisode.fromRSSItem($0, defaultImage: imageURL) }
-        optionalEpisodes.removeAll(where: { $0 == nil })
-        let episodes = optionalEpisodes.map { $0! }
+        let episodes: [PodcastEpisode] = items.compactMap {PodcastEpisode.fromRSSItem($0, defaultImage: imageURL, from: title)}
         return LoadedPodcast(title: title, description: description, titleImageURL: imageURL, episodes: episodes)
     }
 

@@ -23,8 +23,7 @@ struct NowPlayingBar: View {
             if player.toolbar == .show || player.toolbar == .showFullScreen  {
                 ZStack {
                     if let episode = player.episode {
-                        Rectangle().foregroundColor(Color.white.opacity(0.0)).frame(width: UIScreen.main.bounds.size.width, height: 65).background(Color.white)
-                            .shadow(radius: 5)
+                        Rectangle().foregroundColor(Color.white.opacity(0.95)).frame(width: UIScreen.main.bounds.size.width, height: 55)
                         Toolbar(episode)
                     }
                 }
@@ -36,49 +35,54 @@ struct NowPlayingBar: View {
         HStack(alignment: .center, spacing: 0) {
             
             Button {
-                player.reset()
-            } label: {
-                MediaControlImage("xmark.circle")
-            }
-            
-            Spacer()
-            
-            Button {
-                player.goForward(seconds: -15)
-            } label: {
-                MediaControlImage("gobackward.15")
-            }
-            
-            Spacer()
-            
-            Button {
-                if player.playing {
-                    player.pause()
-                } else {
-                    player.play()
-                }
-            } label: {
-                MediaControlImage(player.playing ? "pause.fill" : "play.fill", size: 40)
-            }
-            
-            Spacer()
-            
-            Button {
-                player.goForward(seconds: 15)
-            } label: {
-                MediaControlImage("goforward.15")
-            }
-            
-            Spacer()
-            Button {
                 player.toolbar = .showFullScreen
             } label: {
-                ImageView(url: episode.imageURL!, aspectRatio: 1.0)
-                    .frame(width: 50, height: 50)
-                    .cornerRadius(5)
+                HStack {
+                    ImageView(url: episode.imageURL!, aspectRatio: 1.0)
+                        .frame(width: 55, height: 55)
+                    
+                    if let episode = player.episode {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(episode.title)
+                                .lineLimit(1)
+                                .font(Font.custom("name-of-font", size: 12))
+                                .foregroundColor(.black)
+                            if let title = episode.from {
+                                Text(title)
+                                    .lineLimit(1)
+                                    .font(Font.custom("name-of-font", size: 12))
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                        .frame(width: 175)
+                    }
+                    
+                    Spacer()
+                    
+                    Button {
+                        if player.playing {
+                            player.pause()
+                        } else {
+                            player.play()
+                        }
+                    } label: {
+                        MediaControlImage(player.playing ? "pause.fill" : "play.fill", size: 30)
+                    }
+                    .padding(.trailing, 20)
+                    
+                    Button {
+                        player.reset()
+                    } label: {
+                        MediaControlImage("xmark")
+                    }
+                    .padding(.trailing, 10)
+                    
+                }
             }
+            .buttonStyle(NoButtonAnimation())
+            
         }
-        .padding([.leading, .trailing], 20)
+        .padding(.trailing, 20)
     }
     
     func MediaControlImage(_ name: String, size: CGFloat = 30) -> some View {
@@ -104,5 +108,11 @@ struct Blur: UIViewRepresentable {
     
     func updateUIView(_ uiView: UIVisualEffectView, context: Context) {
         uiView.effect = UIBlurEffect(style: style)
+    }
+}
+
+struct NoButtonAnimation: ButtonStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
     }
 }
