@@ -31,13 +31,6 @@ struct SearchResults: View {
             .onChange(of: searchFor) { search in
                 loader.searchFor(search)
             }
-            .onAppear {
-                loader.resume()
-            }
-            .onDisappear {
-                loader.cancel()
-                loader.searchFor("")
-            }
         }
         else {
             Group {
@@ -59,12 +52,6 @@ struct SearchResults: View {
                             loader.searchFor(search)
                         }
                         .padding()
-                }
-            }
-            .onDisappear {
-                if loader.currentRequest?.retryCount ?? 0 > 0 {
-                    loader.cancel()
-                    loader.searchFor("")
                 }
             }
         }

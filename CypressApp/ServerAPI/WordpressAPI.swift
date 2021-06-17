@@ -45,7 +45,7 @@ extension Wordpress {
         var parms: [String : String] = [
             "page" : "\(page)",
             "per_page" : "\(per_page)",
-            "search" : String(text.words.flatMap{$0 + ","}),
+            "search" : text.words.joined(separator: ","),
             "_embed" : embed ? "true" : "false"
         ]
         if let category = category { parms["filter[cat]"] = "\(category)" }

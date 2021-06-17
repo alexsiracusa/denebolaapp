@@ -29,7 +29,7 @@ struct Post: Codable, Equatable, Identifiable {
     }
     
     func getAuthor() -> String {
-        return self._embedded!.author![0].name!
+        return self._embedded?.author?[0].name ?? ""
     }
     
     func getDate() -> String {

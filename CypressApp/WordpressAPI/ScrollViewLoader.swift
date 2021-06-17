@@ -10,9 +10,7 @@ import Alamofire
 
 class ScrollViewLoader: ObservableObject {
     @Published var posts = [Post]()
-    var isLoadingPage: Bool {
-        return currentRequest != nil
-    }
+    @Published var isLoadingPage: Bool = false
     @Published var error: String?
     @Published var shouldKeepReloading = true
     var per_page = 20
@@ -21,7 +19,11 @@ class ScrollViewLoader: ObservableObject {
     
     var site: Wordpress
     var category: Int?
-    var currentRequest: Request? = nil
+    var currentRequest: Request? = nil {
+        didSet {
+            isLoadingPage = currentRequest != nil
+        }
+    }
     
     init(site: Wordpress, category: Int? = nil) {
         self.category = category
