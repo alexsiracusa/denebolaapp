@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct CategoriesList: View {
-    let site: Wordpress
-    let categories: [SimpleCategory]
+    @EnvironmentObject private var viewModel: ViewModelData
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(alignment: .top) {
-                ForEach(categories) { category in
-                    CategoryButton(site: site, category: category)
+                ForEach(viewModel.selectedWordpress.featuredCategories) { category in
+                    CategoryButton(category: category)
                 }
             }
             .padding([.leading, .trailing], 15)
@@ -25,7 +24,7 @@ struct CategoriesList: View {
 
 struct CategoriesList_Previews: PreviewProvider {
     static var previews: some View {
-        CategoriesList(site: Wordpress.default, categories: Wordpress.default.featuredCategories)
-            .environmentObject(SiteImages())
+        CategoriesList()
+            .environmentObject(ViewModelData())
     }
 }

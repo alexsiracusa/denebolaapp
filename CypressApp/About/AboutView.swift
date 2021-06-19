@@ -12,7 +12,7 @@ private let TAB_NAMES = ["About", "Meet The Staff", "Submit Idea"]
 struct AboutView: View {
     //@EnvironmentObject private var handler: WordpressAPIHandler
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var siteImages: SiteImages
+    @EnvironmentObject var viewModel: ViewModelData
 
     @State private var currentPage = TAB_NAMES[0]
 
@@ -72,7 +72,7 @@ struct AboutView: View {
                     //.environmentObject(handler)
 
                 ScrollView {
-                    ContentRenderer(url: "https://docs.google.com/forms/d/e/1FAIpQLSeSz4MLlH9YAeXSaROQWMoW1NKdKoTJaXXyWy2QADKA-v8STQ/viewform?c=0&w=1".asURL)
+                    ContentRenderer(url: try! "https://docs.google.com/forms/d/e/1FAIpQLSeSz4MLlH9YAeXSaROQWMoW1NKdKoTJaXXyWy2QADKA-v8STQ/viewform?c=0&w=1".asURL())
                 }
                 .tag(TAB_NAMES[2])
             }
@@ -84,7 +84,7 @@ struct AboutView: View {
             Button {
                 presentationMode.wrappedValue.dismiss()
             } label: {
-                Logo(url: $siteImages.logoURL)
+                Logo(url: viewModel.selectedWordpress.logoURL)
             }
         )
     }
@@ -94,6 +94,6 @@ struct AboutView_Previews: PreviewProvider {
     static var previews: some View {
         AboutView()
             //.environmentObject(WordpressAPIHandler())
-            .environmentObject(SiteImages())
+            .environmentObject(ViewModelData())
     }
 }

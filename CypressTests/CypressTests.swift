@@ -1,15 +1,14 @@
 //
-//  DenebolaAppTests.swift
-//  DenebolaAppTests
+//  CypressTests.swift
+//  CypressTests
 //
-//  Created by Connor Tam on 5/1/21.
+//  Created by Connor Tam on 6/17/21.
 //
 
+@testable import Cypress
 import XCTest
-@testable import DenebolaApp
 
-class DenebolaAppTests: XCTestCase {
-
+class CypressTests: XCTestCase {
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -25,9 +24,21 @@ class DenebolaAppTests: XCTestCase {
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
-        self.measure {
+        measure {
             // Put the code you want to measure the time of here.
         }
     }
 
+    func testExtractArticle() throws {
+        let expectation = self.expectation(description: "Request")
+
+        extractArticleFromUrl(url: try! "https://nshsdenebola.com/2021-22-schedule-everything-you-need-to-know/".asURL()) {
+            let result = (try? $0.get()!)!
+            XCTAssert(result.head.starts(with: "<head>"))
+            XCTAssert(result.scripts.starts(with: "<script>"))
+            expectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 5, handler: nil)
+    }
 }

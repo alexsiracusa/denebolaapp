@@ -11,14 +11,13 @@ struct SearchView: View {
     //@EnvironmentObject var handler: WordpressAPIHandler
     @ObservedObject var loader: SearchResultLoader
     @EnvironmentObject private var viewModel: ViewModelData
-    @EnvironmentObject var siteImages: SiteImages
     @State var searchFor = ""
     @State var updateSearch = ""
     var category: SimpleCategory?
 
     init(site: Wordpress, category: SimpleCategory? = nil) {
         self.category = category
-        loader = SearchResultLoader(site: site, category: category?.id)
+        loader = SearchResultLoader(site: site, category: category)
     }
 
     var body: some View {
@@ -32,7 +31,7 @@ struct SearchView: View {
             }
         }
         .navigationBarTitle("Search \(category?.name ?? "Posts")", displayMode: .inline)
-        .navigationBarItems(trailing: LogoButton(url: siteImages.logoURL))
+        .navigationBarItems(trailing: LogoButton(url: viewModel.selectedWordpress.logoURL))
     }
 }
 
@@ -40,6 +39,6 @@ struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
         SearchView(site: Wordpress.default, category: SimpleCategory(id: 7, name: "Opinions", image: nil))
             //.environmentObject(WordpressAPIHandler())
-            .environmentObject(SiteImages())
+            .environmentObject(ViewModelData())
     }
 }

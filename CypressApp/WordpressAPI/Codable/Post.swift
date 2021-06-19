@@ -14,7 +14,7 @@ struct Post: Codable, Equatable, Identifiable {
     let date_gmt: String?
     let status: String?
     let type: String?
-    let link: String?
+    let link: URL
     let title: RenderHTML
     let content: Render
     let excerpt: RenderHTML
@@ -41,32 +41,36 @@ struct Post: Codable, Equatable, Identifiable {
     }
     
     func getFeaturedImageUrl() -> URL? {
-        return self._embedded?.featuredMedia?[0].source_url?.asURL
+        return try? self._embedded?.featuredMedia?[0].source_url?.asURL()
     }
     
-    func getHtmlContent() -> String {
-        return """
-            <!DOCTYPE HTML>
-            <head><meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'></meta></head>
-            <html>
-                <style>
-                    body {
-                        font-family: -apple-system, "Helvetica Neue", "Lucida Grande";
-                        font-size: "Large";
-                    }
-                    .blocks-gallery-grid { /* For photo galleries don't display bullets */
-                        list-style-type: none;
-                    }
-                    * {
-                        max-width: 100%;
-                        height: auto;
-                    }
-                </style>
-                <body>
-                    \(self.content.rendered)
-                </body>
-            </html>
-        """
+    func getHtmlContent(completionHandler: @escaping (Result<String?, Error>) -> ()) {
+        extractArticleFromUrl(url: self.link, completionHandler: {
+            let result = $0.map {
+                $0.map { elements in
+                    """
+                        <!DOCTYPE HTML>
+                        \(elements.head)
+                        <html>
+                            <style>
+                                body {
+                                    font-family: -apple-system, "Helvetica Neue", "Lucida Grande";
+                                    font-size: "Large";
+                                    margin: 0;
+                                }
+                            </style>
+                            <body>
+                                \(elements.scripts)
+                                \(elements.styles)
+                                \(self.content.rendered)
+                            </body>
+                        </html>
+                    """
+                }
+            }
+            
+            completionHandler(result)
+        })
     }
     
     func getExcerpt() -> String {
@@ -77,9 +81,13 @@ struct Post: Codable, Equatable, Identifiable {
         return self.title.rendered
     }
     
+    func getDomain() -> URL {
+        return try! self.link.relativePath.asURL()
+    }
+    
     /// Gets a image with the specified size string or the original size if it doesn't exist (might be smaller)
     func getThumbnailSizeUrl(size: String) -> URL? {
-        return self._embedded?.featuredMedia?[0].media_details?.getSize(size)?.source_url.asURL ?? self._embedded?.featuredMedia?[0].source_url?.asURL
+        return try? self._embedded?.featuredMedia?[0].media_details?.getSize(size)?.source_url.asURL() ?? self._embedded?.featuredMedia?[0].source_url?.asURL()
     }
 }
 

@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct Logo: View {
-    @EnvironmentObject var siteImages: SiteImages
-    @Binding var url: URL
+    @EnvironmentObject var viewModel: ViewModelData
+    let url: URL
 
     var body: some View {
         ImageView(url: url)
@@ -19,7 +19,7 @@ struct Logo: View {
 
 struct Logo_Previews: PreviewProvider {
     static var previews: some View {
-        Logo(url: .constant(SiteImages().logoURL))
-            .environmentObject(SiteImages())
+        Logo(url: Wordpress.default.logoURL)
+            .environmentObject(ViewModelData())
     }
 }

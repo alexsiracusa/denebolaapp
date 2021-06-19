@@ -11,7 +11,7 @@ struct PostFeed: View {
     @StateObject private var loader: ScrollViewLoader
     let site: Wordpress
 
-    init(site: Wordpress, category: Int? = nil) {
+    init(site: Wordpress, category: SimpleCategory? = nil) {
         self.site = site
         _loader = StateObject(wrappedValue: ScrollViewLoader(site: site, category: category))
     }

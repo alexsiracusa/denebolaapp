@@ -10,13 +10,15 @@ import Foundation
 class SearchResultLoader: ScrollViewLoader {
     private var search: String = ""
 
-    func searchFor(_ text: String, category: Int? = nil) {
+    func searchFor(_ text: String, category: SimpleCategory? = nil) {
         posts = [Post]()
         currentRequest?.cancel()
         currentRequest = nil
         canLoadMorePages = true
         error = nil
-        if let category = category { self.category = category }
+        
+        self.category = category
+        
         currentPage = 1
         search = text
         loadMorePosts()
@@ -25,10 +27,10 @@ class SearchResultLoader: ScrollViewLoader {
     override func loadMorePosts() {
         guard currentRequest == nil, canLoadMorePages else { return }
         guard search != "" else {
-            self.posts = []
+            posts = []
             return
         }
-        currentRequest = site.searchPosts(category: category, text: search, page: currentPage, per_page: per_page, embed: true) { result in
+        currentRequest = site.searchPosts(category: category?.id, text: search, page: currentPage, per_page: per_page, embed: true) { result in
             switch result {
             case .success(let posts):
                 if posts.count == 0 {
@@ -42,6 +44,5 @@ class SearchResultLoader: ScrollViewLoader {
             }
             self.currentRequest = nil
         }
-        
     }
 }

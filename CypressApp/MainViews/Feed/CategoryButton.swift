@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct CategoryButton: View {
-    @EnvironmentObject var siteImages: SiteImages
+    @EnvironmentObject var viewModel: ViewModelData
 
     let size: CGFloat = 100
-    let site: Wordpress
     let category: SimpleCategory
 
     var imageURL: URL {
-        category.imageURL ?? siteImages.defaultImageURL
+        category.imageURL ?? viewModel.selectedWordpress.defaultImageURL
     }
 
     var body: some View {
@@ -31,7 +30,7 @@ struct CategoryButton: View {
                 }
                 .zIndex(2)
                 NavigationLink(destination:
-                    CategoryView(site: site, category: category, imageURL: imageURL)
+                    CategoryView(category: category, imageURL: imageURL)
                 ) {
                     ImageView(url: imageURL)
                         .asCategoryButton(size: size)
@@ -61,7 +60,7 @@ extension View {
 
 struct CategoryButton_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryButton(site: Wordpress.default, category: SimpleCategory(id: 7, name: "Opinions", image: nil))
-            .environmentObject(SiteImages())
+        CategoryButton(category: SimpleCategory(id: 7, name: "Opinions", image: nil))
+            .environmentObject(ViewModelData())
     }
 }

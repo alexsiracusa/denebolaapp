@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PostRowView: View {
-    @EnvironmentObject var siteImages: SiteImages
+    @EnvironmentObject var viewModel: ViewModelData
     let post: Post
 
     var body: some View {
@@ -18,7 +18,7 @@ struct PostRowView: View {
                     .frame(height: 100)
                     .cornerRadius(5.0)
             } else {
-                ImageView(url: siteImages.defaultImageURL)
+                ImageView(url: viewModel.selectedWordpress.defaultImageURL)
                     // .resizable()
                     .cornerRadius(5.0)
                     .frame(width: 100, height: 100)
@@ -53,6 +53,6 @@ struct PostRowView_Previews: PreviewProvider {
     static var previews: some View {
         PostRowView(post: Post.default)
             //.environmentObject(WordpressAPIHandler())
-            .environmentObject(SiteImages())
+            .environmentObject(ViewModelData())
     }
 }

@@ -8,19 +8,18 @@
 import SwiftUI
 
 struct SiteBanner: View {
-    let site: Wordpress
+    let imageURL: URL
     let aspectRatio: CGFloat = 6.0
     
     var body: some View {
-        ImageView(url: site.bannerURL!, aspectRatio: 6.0)
+        ImageView(url: imageURL, aspectRatio: 6.0)
             .clipped()
             .cornerRadius(10.0)
-            .tag(site as Wordpress?)
     }
 }
 
 struct SiteBanner_Previews: PreviewProvider {
     static var previews: some View {
-        SiteBanner(site: Wordpress.default)
+        SiteBanner(imageURL: Wordpress.default.bannerURL)
     }
 }

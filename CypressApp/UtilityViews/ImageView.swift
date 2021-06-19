@@ -76,6 +76,6 @@ struct ImageView: View {
 
 struct ImageView_Previews: PreviewProvider {
     static var previews: some View {
-        ImageView(url: URL(string: "https://designshack.net/wp-content/uploads/placeholder-image.png")!)
+        ImageView(url: try! "https://designshack.net/wp-content/uploads/placeholder-image.png".asURL())
     }
 }

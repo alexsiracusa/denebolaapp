@@ -21,7 +21,7 @@ struct SimpleCategory: Codable, Identifiable {
 
     var imageURL: URL? {
         guard let image = image else { return nil }
-        return URL(string: image.url)
+        return try? image.url.asURL()
     }
 
     func hasImage() -> Bool {

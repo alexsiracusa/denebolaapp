@@ -20,6 +20,6 @@ struct LogoButton: View {
 
 struct LogoButton_Previews: PreviewProvider {
     static var previews: some View {
-        LogoButton(url: SiteImages().logoURL)
+        LogoButton(url: Wordpress.default.logoURL)
     }
 }

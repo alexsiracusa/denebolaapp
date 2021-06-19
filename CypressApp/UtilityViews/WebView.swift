@@ -72,9 +72,21 @@ public struct WebView: View, UIViewRepresentable {
     
     public class Coordinator: NSObject, WKNavigationDelegate, WKUIDelegate {
         let parent: WebView
+        var timer: Timer?
         
         init(_ webView: WebView) {
             parent = webView
+        }
+        
+        private func resizeWindow(_ webView: WKWebView) {
+            // View dissapears
+            if webView.window == nil {
+                self.timer?.invalidate()
+            }
+            // Get size of page
+            webView.evaluateJavaScript("document.documentElement.scrollHeight", completionHandler: { height, _ in
+                self.parent.pageViewIdealSize = height! as! CGFloat
+            })
         }
         
         public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
@@ -90,10 +102,16 @@ public struct WebView: View, UIViewRepresentable {
         }
         
         public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-            // Get size of page
-            webView.evaluateJavaScript("document.documentElement.scrollHeight", completionHandler: { height, _ in
-                self.parent.pageViewIdealSize = height! as! CGFloat
-            })
+            guard timer == nil else {return}
+
+            // Call once before timer
+            self.resizeWindow(webView)
+            
+            timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true) { _ in
+                self.resizeWindow(webView)
+            }
+            // Reduce energy usage
+            timer!.tolerance = 0.2
         }
     }
 }

@@ -10,8 +10,6 @@ import SwiftUI
 struct CategoryView: View {
     //@EnvironmentObject var handler: WordpressAPIHandler
     @EnvironmentObject private var viewModel: ViewModelData
-    @EnvironmentObject var siteImages: SiteImages
-    var site: Wordpress
     var category: SimpleCategory
     var imageURL: URL
 
@@ -24,14 +22,14 @@ struct CategoryView: View {
                 Text("Latest Posts")
                     .font(.headline)
                     .padding(.leading)
-                PostFeed(site: site, category: category.id)
+                PostFeed(site: viewModel.selectedWordpress, category: category)
                 //PostFeed(category: category.id, domain: handler.domain)
             }
 
             // Navigation Link to SearchView
             // need to do like this to avoid bugs
             NavigationLink(
-                destination: SearchView(site: site, category: category),
+                destination: SearchView(site: viewModel.selectedWordpress, category: category),
                 isActive: $isActive,
                 label: { EmptyView() }
             )
@@ -46,7 +44,7 @@ struct CategoryView: View {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(.black)
                 }
-                LogoButton(url: siteImages.logoURL)
+                LogoButton(url: viewModel.selectedWordpress.logoURL)
             }
         )
     }
@@ -54,8 +52,8 @@ struct CategoryView: View {
 
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryView(site: Wordpress.default, category: SimpleCategory(id: 7, name: "Opinions", image: nil), imageURL: SiteImages().defaultImageURL)
+        CategoryView(category: SimpleCategory(id: 7, name: "Opinions", image: nil), imageURL: Wordpress.default.defaultImageURL)
             //.environmentObject(WordpressAPIHandler())
-            .environmentObject(SiteImages())
+            .environmentObject(ViewModelData())
     }
 }

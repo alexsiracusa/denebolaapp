@@ -146,7 +146,7 @@ enum JSONLoader {
     }
     
     static func decodeJSON<ResponseType: Codable>(url: String, completionHandler: @escaping (ResponseType?, String?) -> Void) {
-        guard let url = URL(string: url) else {
+        guard let url = try? url.asURL() else {
             completionHandler(nil, "Fetch failed: Invalid URL")
             return
         }

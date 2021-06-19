@@ -9,12 +9,13 @@ import SwiftUI
 
 struct MeetTheStaff: View {
     //@EnvironmentObject private var handler: WordpressAPIHandler
+    @EnvironmentObject private var viewModel: ViewModelData
     @State var aboutPost: Post? = nil
 
     var body: some View {
         ScrollView {
-            if aboutPost != nil {
-                ContentRenderer(htmlContent: aboutPost!.getHtmlContent())
+            if let aboutPost = aboutPost {
+                PostContentView(post: aboutPost)
                     .padding([.leading, .trailing])
             } else {
                 Text("Loading")

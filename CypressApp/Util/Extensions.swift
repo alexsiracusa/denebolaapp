@@ -19,11 +19,4 @@ extension String {
             return nil
         }
     }
-
-    var asURL: URL? {
-        guard let urlString = addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) else {
-            return nil
-        }
-        return URL(string: urlString)
-    }
 }

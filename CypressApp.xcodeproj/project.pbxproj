@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		CE073A48266C4B650030DB1A /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = CE073A47266C4B650030DB1A /* Nuke */; };
+		CE126FC0267BEBC6001ABBB1 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = CE126FBF267BEBC6001ABBB1 /* SwiftSoup */; };
+		CE126FC5267BEBEE001ABBB1 /* ExtractArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE126FC4267BEBEE001ABBB1 /* ExtractArticle.swift */; };
 		CE1E88772647484300E1245E /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E88762647484300E1245E /* PageViewController.swift */; };
 		CE1E887C264748F700E1245E /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E887B264748F700E1245E /* PageView.swift */; };
 		CE1E888126474BFC00E1245E /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E888026474BFC00E1245E /* PageControl.swift */; };
 		CE1E88872647561600E1245E /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E88862647561600E1245E /* ImageView.swift */; };
 		CE2C6138265E5C7E003E32E6 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C6137265E5C7E003E32E6 /* ScheduleView.swift */; };
 		CE2C613D265E5C86003E32E6 /* ScheduleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C613C265E5C86003E32E6 /* ScheduleListView.swift */; };
+		CE45BFD8267BFF63003D0C2B /* CypressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45BFD7267BFF63003D0C2B /* CypressTests.swift */; };
 		CE4D2D4326489C6500C243CC /* LoaderUI in Frameworks */ = {isa = PBXBuildFile; productRef = CE4D2D4226489C6500C243CC /* LoaderUI */; };
 		CE74689326605535007321FD /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE74689226605535007321FD /* AboutView.swift */; };
 		CE87B3EE264CCE8A009CAF44 /* Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE87B3ED264CCE8A009CAF44 /* Support.swift */; };
@@ -25,9 +28,9 @@
 		CEC03FB3263E354200FFCB45 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FB2263E354200FFCB45 /* ContentView.swift */; };
 		CEC03FB5263E354400FFCB45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC03FB4263E354400FFCB45 /* Assets.xcassets */; };
 		CEC03FB8263E354400FFCB45 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC03FB7263E354400FFCB45 /* Preview Assets.xcassets */; };
-		CEC03FC3263E354400FFCB45 /* DenebolaAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FC2263E354400FFCB45 /* DenebolaAppTests.swift */; };
-		CEC03FCE263E354400FFCB45 /* CypressAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC03FCD263E354400FFCB45 /* CypressAppUITests.swift */; };
 		CED8EB21265CBD7C002922A3 /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = CED8EB20265CBD7C002922A3 /* SwiftDate */; };
+		CEF7C514267C0FC400ADE6DB /* PostContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7C513267C0FC400ADE6DB /* PostContentView.swift */; };
+		CEF7C518267C0FDF00ADE6DB /* ContentRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7C517267C0FDF00ADE6DB /* ContentRenderer.swift */; };
 		CEFE4E7B26562EF2005A2DD4 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE4E7A26562EF2005A2DD4 /* ModelData.swift */; };
 		CEFE4E83265635B6005A2DD4 /* MultimediaSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE4E82265635B6005A2DD4 /* MultimediaSection.swift */; };
 		FA03D1B626719D24005A760F /* WordpressCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA03D1B526719D24005A760F /* WordpressCodable.swift */; };
@@ -84,35 +87,31 @@
 		FAAE7DF82669B3E200DE708A /* SchoolConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE7DF72669B3E200DE708A /* SchoolConfig.swift */; };
 		FAAE7DFC2669B44F00DE708A /* ServerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE7DFB2669B44F00DE708A /* ServerAPI.swift */; };
 		FAAE7DFE2669BB1600DE708A /* TabCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE7DFD2669BB1600DE708A /* TabCreator.swift */; };
-		FAAE7E022669C34B00DE708A /* SiteImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE7E012669C34B00DE708A /* SiteImages.swift */; };
 		FAE14C7526557AA7000635DB /* PostSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE14C7426557AA7000635DB /* PostSection.swift */; };
 		FAE14C7726557AFD000635DB /* PostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE14C7626557AFD000635DB /* PostCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		CEC03FBF263E354400FFCB45 /* PBXContainerItemProxy */ = {
+		CE45BFDA267BFF63003D0C2B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CEC03FA5263E354200FFCB45 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = CEC03FAC263E354200FFCB45;
-			remoteInfo = DenebolaApp;
-		};
-		CEC03FCA263E354400FFCB45 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CEC03FA5263E354200FFCB45 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CEC03FAC263E354200FFCB45;
-			remoteInfo = DenebolaApp;
+			remoteInfo = CypressApp;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE126FC4267BEBEE001ABBB1 /* ExtractArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractArticle.swift; sourceTree = "<group>"; };
 		CE1E88762647484300E1245E /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		CE1E887B264748F700E1245E /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
 		CE1E888026474BFC00E1245E /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 		CE1E88862647561600E1245E /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		CE2C6137265E5C7E003E32E6 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
 		CE2C613C265E5C86003E32E6 /* ScheduleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleListView.swift; sourceTree = "<group>"; };
+		CE45BFD5267BFF63003D0C2B /* CypressTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CypressTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE45BFD7267BFF63003D0C2B /* CypressTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CypressTests.swift; sourceTree = "<group>"; };
+		CE45BFD9267BFF63003D0C2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE74689226605535007321FD /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		CE87B3ED264CCE8A009CAF44 /* Support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Support.swift; sourceTree = "<group>"; };
 		CE9BD097265CC9AB00231689 /* SocialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialView.swift; sourceTree = "<group>"; };
@@ -125,12 +124,8 @@
 		CEC03FB4263E354400FFCB45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEC03FB7263E354400FFCB45 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CEC03FB9263E354400FFCB45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CEC03FBE263E354400FFCB45 /* CypressAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CypressAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CEC03FC2263E354400FFCB45 /* DenebolaAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenebolaAppTests.swift; sourceTree = "<group>"; };
-		CEC03FC4263E354400FFCB45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CEC03FC9263E354400FFCB45 /* CypressAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CypressAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CEC03FCD263E354400FFCB45 /* CypressAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CypressAppUITests.swift; sourceTree = "<group>"; };
-		CEC03FCF263E354400FFCB45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CEF7C513267C0FC400ADE6DB /* PostContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostContentView.swift; sourceTree = "<group>"; };
+		CEF7C517267C0FDF00ADE6DB /* ContentRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentRenderer.swift; sourceTree = "<group>"; };
 		CEFE4E7A26562EF2005A2DD4 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		CEFE4E82265635B6005A2DD4 /* MultimediaSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultimediaSection.swift; sourceTree = "<group>"; };
 		FA03D1B526719D24005A760F /* WordpressCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordpressCodable.swift; sourceTree = "<group>"; };
@@ -185,12 +180,18 @@
 		FAAE7DF72669B3E200DE708A /* SchoolConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolConfig.swift; sourceTree = "<group>"; };
 		FAAE7DFB2669B44F00DE708A /* ServerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerAPI.swift; sourceTree = "<group>"; };
 		FAAE7DFD2669BB1600DE708A /* TabCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCreator.swift; sourceTree = "<group>"; };
-		FAAE7E012669C34B00DE708A /* SiteImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteImages.swift; sourceTree = "<group>"; };
 		FAE14C7426557AA7000635DB /* PostSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSection.swift; sourceTree = "<group>"; };
 		FAE14C7626557AFD000635DB /* PostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		CE45BFD2267BFF63003D0C2B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CEC03FAA263E354200FFCB45 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -200,32 +201,29 @@
 				FA5068D4267043C100E0BBAE /* Alamofire in Frameworks */,
 				CE4D2D4326489C6500C243CC /* LoaderUI in Frameworks */,
 				CED8EB21265CBD7C002922A3 /* SwiftDate in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CEC03FBB263E354400FFCB45 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CEC03FC6263E354400FFCB45 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				CE126FC0267BEBC6001ABBB1 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE45BFD6267BFF63003D0C2B /* CypressTests */ = {
+			isa = PBXGroup;
+			children = (
+				CE45BFD7267BFF63003D0C2B /* CypressTests.swift */,
+				CE45BFD9267BFF63003D0C2B /* Info.plist */,
+			);
+			path = CypressTests;
+			sourceTree = "<group>";
+		};
 		CEAE3E2B2648CA0B0066C825 /* Util */ = {
 			isa = PBXGroup;
 			children = (
 				CEAE3E2C2648CA2F0066C825 /* Extensions.swift */,
 				CEAE3E342648CAC50066C825 /* DefaultViews.swift */,
 				CE87B3ED264CCE8A009CAF44 /* Support.swift */,
+				CE126FC4267BEBEE001ABBB1 /* ExtractArticle.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -234,8 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				CEC03FAF263E354200FFCB45 /* CypressApp */,
-				CEC03FC1263E354400FFCB45 /* CypressAppTests */,
-				CEC03FCC263E354400FFCB45 /* CypressAppUITests */,
+				CE45BFD6267BFF63003D0C2B /* CypressTests */,
 				CEC03FAE263E354200FFCB45 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -244,8 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				CEC03FAD263E354200FFCB45 /* Cypress.app */,
-				CEC03FBE263E354400FFCB45 /* CypressAppTests.xctest */,
-				CEC03FC9263E354400FFCB45 /* CypressAppUITests.xctest */,
+				CE45BFD5267BFF63003D0C2B /* CypressTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -282,24 +278,6 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		CEC03FC1263E354400FFCB45 /* CypressAppTests */ = {
-			isa = PBXGroup;
-			children = (
-				CEC03FC2263E354400FFCB45 /* DenebolaAppTests.swift */,
-				CEC03FC4263E354400FFCB45 /* Info.plist */,
-			);
-			path = CypressAppTests;
-			sourceTree = "<group>";
-		};
-		CEC03FCC263E354400FFCB45 /* CypressAppUITests */ = {
-			isa = PBXGroup;
-			children = (
-				CEC03FCD263E354400FFCB45 /* CypressAppUITests.swift */,
-				CEC03FCF263E354400FFCB45 /* Info.plist */,
-			);
-			path = CypressAppUITests;
-			sourceTree = "<group>";
-		};
 		FA0CB83F2664306F009FE7A3 /* PostViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -318,6 +296,8 @@
 				CE1E88762647484300E1245E /* PageViewController.swift */,
 				CE1E888026474BFC00E1245E /* PageControl.swift */,
 				CEAE3E3C2648D0CC0066C825 /* WebView.swift */,
+				CEF7C513267C0FC400ADE6DB /* PostContentView.swift */,
+				CEF7C517267C0FDF00ADE6DB /* ContentRenderer.swift */,
 			);
 			path = UtilityViews;
 			sourceTree = "<group>";
@@ -388,7 +368,6 @@
 				FA03D1B526719D24005A760F /* WordpressCodable.swift */,
 				FAAE7DF72669B3E200DE708A /* SchoolConfig.swift */,
 				FAAE7DFD2669BB1600DE708A /* TabCreator.swift */,
-				FAAE7E012669C34B00DE708A /* SiteImages.swift */,
 			);
 			path = ServerAPI;
 			sourceTree = "<group>";
@@ -470,6 +449,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		CE45BFD4267BFF63003D0C2B /* CypressTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE45BFDC267BFF63003D0C2B /* Build configuration list for PBXNativeTarget "CypressTests" */;
+			buildPhases = (
+				CE45BFD1267BFF63003D0C2B /* Sources */,
+				CE45BFD2267BFF63003D0C2B /* Frameworks */,
+				CE45BFD3267BFF63003D0C2B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CE45BFDB267BFF63003D0C2B /* PBXTargetDependency */,
+			);
+			name = CypressTests;
+			productName = CypressTests;
+			productReference = CE45BFD5267BFF63003D0C2B /* CypressTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		CEC03FAC263E354200FFCB45 /* CypressApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CEC03FD2263E354400FFCB45 /* Build configuration list for PBXNativeTarget "CypressApp" */;
@@ -489,46 +486,11 @@
 				CE073A47266C4B650030DB1A /* Nuke */,
 				FA5068D3267043C100E0BBAE /* Alamofire */,
 				FA5068D6267043E000E0BBAE /* FeedKit */,
+				CE126FBF267BEBC6001ABBB1 /* SwiftSoup */,
 			);
 			productName = DenebolaApp;
 			productReference = CEC03FAD263E354200FFCB45 /* Cypress.app */;
 			productType = "com.apple.product-type.application";
-		};
-		CEC03FBD263E354400FFCB45 /* CypressAppTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CEC03FD5263E354400FFCB45 /* Build configuration list for PBXNativeTarget "CypressAppTests" */;
-			buildPhases = (
-				CEC03FBA263E354400FFCB45 /* Sources */,
-				CEC03FBB263E354400FFCB45 /* Frameworks */,
-				CEC03FBC263E354400FFCB45 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CEC03FC0263E354400FFCB45 /* PBXTargetDependency */,
-			);
-			name = CypressAppTests;
-			productName = DenebolaAppTests;
-			productReference = CEC03FBE263E354400FFCB45 /* CypressAppTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		CEC03FC8263E354400FFCB45 /* CypressAppUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CEC03FD8263E354400FFCB45 /* Build configuration list for PBXNativeTarget "CypressAppUITests" */;
-			buildPhases = (
-				CEC03FC5263E354400FFCB45 /* Sources */,
-				CEC03FC6263E354400FFCB45 /* Frameworks */,
-				CEC03FC7263E354400FFCB45 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CEC03FCB263E354400FFCB45 /* PBXTargetDependency */,
-			);
-			name = CypressAppUITests;
-			productName = DenebolaAppUITests;
-			productReference = CEC03FC9263E354400FFCB45 /* CypressAppUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -539,16 +501,12 @@
 				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
+					CE45BFD4267BFF63003D0C2B = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = CEC03FAC263E354200FFCB45;
+					};
 					CEC03FAC263E354200FFCB45 = {
 						CreatedOnToolsVersion = 12.4;
-					};
-					CEC03FBD263E354400FFCB45 = {
-						CreatedOnToolsVersion = 12.4;
-						TestTargetID = CEC03FAC263E354200FFCB45;
-					};
-					CEC03FC8263E354400FFCB45 = {
-						CreatedOnToolsVersion = 12.4;
-						TestTargetID = CEC03FAC263E354200FFCB45;
 					};
 				};
 			};
@@ -567,19 +525,26 @@
 				CE073A46266C4B650030DB1A /* XCRemoteSwiftPackageReference "Nuke" */,
 				FA5068D2267043C100E0BBAE /* XCRemoteSwiftPackageReference "Alamofire" */,
 				FA5068D5267043E000E0BBAE /* XCRemoteSwiftPackageReference "FeedKit" */,
+				CE126FBE267BEBC6001ABBB1 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 			);
 			productRefGroup = CEC03FAE263E354200FFCB45 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				CEC03FAC263E354200FFCB45 /* CypressApp */,
-				CEC03FBD263E354400FFCB45 /* CypressAppTests */,
-				CEC03FC8263E354400FFCB45 /* CypressAppUITests */,
+				CE45BFD4267BFF63003D0C2B /* CypressTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		CE45BFD3267BFF63003D0C2B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CEC03FAB263E354200FFCB45 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -589,23 +554,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CEC03FBC263E354400FFCB45 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CEC03FC7263E354400FFCB45 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		CE45BFD1267BFF63003D0C2B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE45BFD8267BFF63003D0C2B /* CypressTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CEC03FA9263E354200FFCB45 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -629,12 +588,12 @@
 				FA03D1B626719D24005A760F /* WordpressCodable.swift in Sources */,
 				FA61213A266097F400126A1F /* MeetTheStaff.swift in Sources */,
 				FA4B7364264E335200516AC6 /* PlayerObject.swift in Sources */,
+				CE126FC5267BEBEE001ABBB1 /* ExtractArticle.swift in Sources */,
 				CEFE4E83265635B6005A2DD4 /* MultimediaSection.swift in Sources */,
 				CE1E887C264748F700E1245E /* PageView.swift in Sources */,
 				FA7320ED267442570012C3EC /* PodcastButton.swift in Sources */,
 				FA56AA51263F0BFF00B6D838 /* PhotoGalleryView.swift in Sources */,
 				FAE14C7526557AA7000635DB /* PostSection.swift in Sources */,
-				FAAE7E022669C34B00DE708A /* SiteImages.swift in Sources */,
 				CEC03FB1263E354200FFCB45 /* CypressAppApp.swift in Sources */,
 				FA0CB85A2667302E009FE7A3 /* TabManager.swift in Sources */,
 				FA56AA4C263F0B5A00B6D838 /* PodcastView.swift in Sources */,
@@ -648,6 +607,7 @@
 				CE1E88872647561600E1245E /* ImageView.swift in Sources */,
 				FA73AA2E263E361E00B6C8B6 /* WordpressAPIHandler.swift in Sources */,
 				FA56AA46263F0B2300B6D838 /* CategoriesView.swift in Sources */,
+				CEF7C518267C0FDF00ADE6DB /* ContentRenderer.swift in Sources */,
 				FA17F8DE2659DCB1008471BD /* SearchRow.swift in Sources */,
 				FA0CB852266719BA009FE7A3 /* ScheduleTab.swift in Sources */,
 				FA17F8DC2659DA1A008471BD /* SearchResultLoader.swift in Sources */,
@@ -663,6 +623,7 @@
 				CE1E888126474BFC00E1245E /* PageControl.swift in Sources */,
 				CE9BD098265CC9AB00231689 /* SocialView.swift in Sources */,
 				FA17F8E02659DCEC008471BD /* SearchView.swift in Sources */,
+				CEF7C514267C0FC400ADE6DB /* PostContentView.swift in Sources */,
 				CE2C6138265E5C7E003E32E6 /* ScheduleView.swift in Sources */,
 				FA6526422658AB9C0043FDBA /* CategoryView.swift in Sources */,
 				FA56AA43263F080900B6D838 /* ViewController.swift in Sources */,
@@ -684,38 +645,57 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CEC03FBA263E354400FFCB45 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CEC03FC3263E354400FFCB45 /* DenebolaAppTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CEC03FC5263E354400FFCB45 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CEC03FCE263E354400FFCB45 /* CypressAppUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		CEC03FC0263E354400FFCB45 /* PBXTargetDependency */ = {
+		CE45BFDB267BFF63003D0C2B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CEC03FAC263E354200FFCB45 /* CypressApp */;
-			targetProxy = CEC03FBF263E354400FFCB45 /* PBXContainerItemProxy */;
-		};
-		CEC03FCB263E354400FFCB45 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CEC03FAC263E354200FFCB45 /* CypressApp */;
-			targetProxy = CEC03FCA263E354400FFCB45 /* PBXContainerItemProxy */;
+			targetProxy = CE45BFDA267BFF63003D0C2B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		CE45BFDD267BFF63003D0C2B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6ZFN3Y2T93;
+				INFOPLIST_FILE = CypressTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = sequal.CypressTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cypress.app/Cypress";
+			};
+			name = Debug;
+		};
+		CE45BFDE267BFF63003D0C2B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6ZFN3Y2T93;
+				INFOPLIST_FILE = CypressTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = sequal.CypressTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cypress.app/Cypress";
+			};
+			name = Release;
+		};
 		CEC03FD0263E354400FFCB45 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -880,93 +860,18 @@
 			};
 			name = Release;
 		};
-		CEC03FD6263E354400FFCB45 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9LZB553FST;
-				INFOPLIST_FILE = DenebolaAppTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = sequal.DenebolaAppTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DenebolaApp.app/DenebolaApp";
-			};
-			name = Debug;
-		};
-		CEC03FD7263E354400FFCB45 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9LZB553FST;
-				INFOPLIST_FILE = DenebolaAppTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = sequal.DenebolaAppTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DenebolaApp.app/DenebolaApp";
-			};
-			name = Release;
-		};
-		CEC03FD9263E354400FFCB45 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9LZB553FST;
-				INFOPLIST_FILE = DenebolaAppUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = sequal.DenebolaAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = DenebolaApp;
-			};
-			name = Debug;
-		};
-		CEC03FDA263E354400FFCB45 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9LZB553FST;
-				INFOPLIST_FILE = DenebolaAppUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = sequal.DenebolaAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = DenebolaApp;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		CE45BFDC267BFF63003D0C2B /* Build configuration list for PBXNativeTarget "CypressTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE45BFDD267BFF63003D0C2B /* Debug */,
+				CE45BFDE267BFF63003D0C2B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CEC03FA8263E354200FFCB45 /* Build configuration list for PBXProject "CypressApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -985,24 +890,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CEC03FD5263E354400FFCB45 /* Build configuration list for PBXNativeTarget "CypressAppTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CEC03FD6263E354400FFCB45 /* Debug */,
-				CEC03FD7263E354400FFCB45 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CEC03FD8263E354400FFCB45 /* Build configuration list for PBXNativeTarget "CypressAppUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CEC03FD9263E354400FFCB45 /* Debug */,
-				CEC03FDA263E354400FFCB45 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -1012,6 +899,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 10.1.0;
+			};
+		};
+		CE126FBE267BEBC6001ABBB1 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.2;
 			};
 		};
 		CE4D2D4126489C6500C243CC /* XCRemoteSwiftPackageReference "LoaderUI" */ = {
@@ -1053,6 +948,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CE073A46266C4B650030DB1A /* XCRemoteSwiftPackageReference "Nuke" */;
 			productName = Nuke;
+		};
+		CE126FBF267BEBC6001ABBB1 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE126FBE267BEBC6001ABBB1 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
 		};
 		CE4D2D4226489C6500C243CC /* LoaderUI */ = {
 			isa = XCSwiftPackageProductDependency;

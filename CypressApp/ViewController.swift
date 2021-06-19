@@ -14,7 +14,6 @@ struct ViewController: View {
     @EnvironmentObject var viewModel: ViewModelData
     @EnvironmentObject var player: PlayerObject
 
-    @EnvironmentObject var siteImages: SiteImages
     @State var schools: [School]? = nil
     @State var school: SchoolConfig? = nil
     @State var request: Request? = nil
@@ -59,7 +58,7 @@ struct ViewController: View {
                             self.request = school.getConfig { result in
                                 switch result {
                                 case .success(let config):
-                                    self.tabManager = TabManager(config.allTabs())
+                                    self.tabManager = TabManager(config.allTabs(modelData: viewModel))
                                     self.school = config
                                     self.request = nil
                                 case .failure(let error):
@@ -112,6 +111,6 @@ struct ViewController_Previews: PreviewProvider {
             .environmentObject(PodcastLoader([]))
             .environmentObject(ViewModelData())
             .environmentObject(PlayerObject())
-            .environmentObject(SiteImages())
+            .environmentObject(ViewModelData())
     }
 }

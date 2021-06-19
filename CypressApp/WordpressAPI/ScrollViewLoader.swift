@@ -18,14 +18,14 @@ class ScrollViewLoader: ObservableObject {
     var canLoadMorePages = true
     
     var site: Wordpress
-    var category: Int?
+    var category: SimpleCategory?
     var currentRequest: Request? = nil {
         didSet {
             isLoadingPage = currentRequest != nil
         }
     }
     
-    init(site: Wordpress, category: Int? = nil) {
+    init(site: Wordpress, category: SimpleCategory? = nil) {
         self.category = category
         self.site = site
         loadMorePosts()
@@ -60,7 +60,7 @@ class ScrollViewLoader: ObservableObject {
     
     func loadMorePosts() {
         guard currentRequest == nil, canLoadMorePages else { return }
-        currentRequest = site.getPostPage(category: category, page: currentPage, per_page: per_page, embed: true) { result in
+        currentRequest = site.getPostPage(category: category?.id, page: currentPage, per_page: per_page, embed: true) { result in
             switch result {
             case .success(let posts):
                 if posts.count == 0 {
