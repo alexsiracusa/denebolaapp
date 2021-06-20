@@ -63,24 +63,24 @@ struct SocialView_Previews: PreviewProvider {
 }
 
 struct ScheduleData { // TEMPORARY
-    var blocks: [BlockData]
+    var blocks: [BlockDataTemp]
 
     static let test = [
-        BlockData(block: "A", courseName: "Honors Precalculus", roomNumber: "4207", teacher: "Culpepper, Sarah"),
-        BlockData(block: "B", courseName: "Honors Biology (Lab)", roomNumber: "2102", teacher: "Estrada, Molly; McLaren, James", status: .canceled),
-        BlockData(block: "C", courseName: "Honors Junior English", roomNumber: "2304", teacher: "Arnaboldi, Dana"),
-        BlockData(block: "D", courseName: "Honors Chinese 5", roomNumber: "6116", teacher: "Chen, Lan Lan"),
-        BlockData(block: "E", courseName: "U.S. History ACP", roomNumber: "1306", teacher: "Kozuch, Michael"),
-        BlockData(block: "F", courseName: "Junior and Senior Wellness", roomNumber: "5138", teacher: "Aransky, Amy"),
-        BlockData(block: "G", courseName: "Honors Intro iOS Program Swift", roomNumber: "7107", teacher: "Stulin, Jeffrey")
+        BlockDataTemp(block: "A", courseName: "Honors Precalculus", roomNumber: "4207", teacher: "Culpepper, Sarah"),
+        BlockDataTemp(block: "B", courseName: "Honors Biology (Lab)", roomNumber: "2102", teacher: "Estrada, Molly; McLaren, James", status: .canceled),
+        BlockDataTemp(block: "C", courseName: "Honors Junior English", roomNumber: "2304", teacher: "Arnaboldi, Dana"),
+        BlockDataTemp(block: "D", courseName: "Honors Chinese 5", roomNumber: "6116", teacher: "Chen, Lan Lan"),
+        BlockDataTemp(block: "E", courseName: "U.S. History ACP", roomNumber: "1306", teacher: "Kozuch, Michael"),
+        BlockDataTemp(block: "F", courseName: "Junior and Senior Wellness", roomNumber: "5138", teacher: "Aransky, Amy"),
+        BlockDataTemp(block: "G", courseName: "Honors Intro iOS Program Swift", roomNumber: "7107", teacher: "Stulin, Jeffrey")
     ]
 
-    static var testMap: [String: BlockData] {
+    static var testMap: [String: BlockDataTemp] {
         Dictionary(uniqueKeysWithValues: self.test.map { ($0.block, $0) })
     }
 }
 
-struct BlockData: Identifiable {
+struct BlockDataTemp: Identifiable {
     enum Status {
         case normal, canceled
     }

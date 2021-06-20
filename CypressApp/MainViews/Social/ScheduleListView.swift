@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ScheduleListView: View {
     let blockTimes: [[BlockTime]]
-    let blocks: [String: BlockData]
+    let blocks: [String: BlockDataTemp]
 
     @Binding var viewingIndex: Int
 
