@@ -48,24 +48,7 @@ struct Post: Codable, Equatable, Identifiable {
         extractArticleFromUrl(url: self.link, completionHandler: {
             let result = $0.map {
                 $0.map { elements in
-                    """
-                        <!DOCTYPE HTML>
-                        \(elements.head)
-                        <html>
-                            <style>
-                                body {
-                                    font-family: -apple-system, "Helvetica Neue", "Lucida Grande";
-                                    font-size: "Large";
-                                    margin: 0;
-                                }
-                            </style>
-                            <body>
-                                \(elements.scripts)
-                                \(elements.styles)
-                                \(self.content.rendered)
-                            </body>
-                        </html>
-                    """
+                    generateHtml(head: elements.head, body: [elements.scripts, elements.styles, self.content.rendered])
                 }
             }
             

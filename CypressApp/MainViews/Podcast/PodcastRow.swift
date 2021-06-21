@@ -9,6 +9,8 @@ import SwiftUI
 
 struct PodcastRow: View {
     @EnvironmentObject var player: PlayerObject
+    @EnvironmentObject var viewModel: ViewModelData
+        
     var episode: PodcastEpisode
 
     func MediaControlImage(_ name: String) -> some View {
@@ -20,7 +22,7 @@ struct PodcastRow: View {
         Button {
             player.setAudio(episode)
             player.play()
-            player.toolbar = .showFullScreen
+            viewModel.podcastViewState = .showFullScreen
         } label: {
             VStack(spacing: 0) {
                 HStack(alignment: .center, spacing: 0) {
@@ -48,5 +50,6 @@ struct PodcastRow_Previews: PreviewProvider {
     static var previews: some View {
         PodcastRow(episode: PodcastEpisode.default)
             .environmentObject(PlayerObject())
+            .environmentObject(ViewModelData())
     }
 }

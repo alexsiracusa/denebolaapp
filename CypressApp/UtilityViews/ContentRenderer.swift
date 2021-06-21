@@ -18,7 +18,7 @@ struct ContentRenderer: View {
     var body: some View {
         WebView(webView: webviewStore.webView, pageViewIdealSize: $webviewHeight)
             // Resize to fit page or start at 500
-            .frame(height: webviewHeight, alignment: .top)
+            .frame(height: webviewHeight)
             // Poll HTML through javascript for page height
             .onAppear {
                 // Setup webview
@@ -26,7 +26,7 @@ struct ContentRenderer: View {
                 webviewStore.webView.scrollView.bounces = false
 
                 if let htmlContent = htmlContent {
-                    webviewStore.webView.loadHTMLString(htmlContent, baseURL: baseURL!)
+                    webviewStore.webView.loadHTMLString(htmlContent, baseURL: baseURL)
                 } else if let url = url {
                     webviewStore.webView.load(URLRequest(url: url))
                 }

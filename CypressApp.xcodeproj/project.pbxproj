@@ -18,8 +18,11 @@
 		CE2C613D265E5C86003E32E6 /* ScheduleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C613C265E5C86003E32E6 /* ScheduleListView.swift */; };
 		CE45BFD8267BFF63003D0C2B /* CypressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45BFD7267BFF63003D0C2B /* CypressTests.swift */; };
 		CE4D2D4326489C6500C243CC /* LoaderUI in Frameworks */ = {isa = PBXBuildFile; productRef = CE4D2D4226489C6500C243CC /* LoaderUI */; };
+		CE6442B4267FA152002FFFEC /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = CE6442B3267FA152002FFFEC /* SwiftUIPager */; };
 		CE74689326605535007321FD /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE74689226605535007321FD /* AboutView.swift */; };
 		CE87B3EE264CCE8A009CAF44 /* Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE87B3ED264CCE8A009CAF44 /* Support.swift */; };
+		CE965A05267FE606001515A2 /* NowPlayingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE965A04267FE606001515A2 /* NowPlayingPage.swift */; };
+		CE965A07267FE658001515A2 /* DescriptionPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE965A06267FE658001515A2 /* DescriptionPage.swift */; };
 		CE9BD098265CC9AB00231689 /* SocialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9BD097265CC9AB00231689 /* SocialView.swift */; };
 		CEAE3E2D2648CA2F0066C825 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE3E2C2648CA2F0066C825 /* Extensions.swift */; };
 		CEAE3E352648CAC50066C825 /* DefaultViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE3E342648CAC50066C825 /* DefaultViews.swift */; };
@@ -29,6 +32,7 @@
 		CEC03FB5263E354400FFCB45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC03FB4263E354400FFCB45 /* Assets.xcassets */; };
 		CEC03FB8263E354400FFCB45 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC03FB7263E354400FFCB45 /* Preview Assets.xcassets */; };
 		CED8EB21265CBD7C002922A3 /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = CED8EB20265CBD7C002922A3 /* SwiftDate */; };
+		CEEC39C9267C63B100697168 /* HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEC39C8267C63B100697168 /* HTML.swift */; };
 		CEF7C514267C0FC400ADE6DB /* PostContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7C513267C0FC400ADE6DB /* PostContentView.swift */; };
 		CEF7C518267C0FDF00ADE6DB /* ContentRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7C517267C0FDF00ADE6DB /* ContentRenderer.swift */; };
 		CEFE4E7B26562EF2005A2DD4 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE4E7A26562EF2005A2DD4 /* ModelData.swift */; };
@@ -118,6 +122,8 @@
 		CE45BFD9267BFF63003D0C2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE74689226605535007321FD /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		CE87B3ED264CCE8A009CAF44 /* Support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Support.swift; sourceTree = "<group>"; };
+		CE965A04267FE606001515A2 /* NowPlayingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingPage.swift; sourceTree = "<group>"; };
+		CE965A06267FE658001515A2 /* DescriptionPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionPage.swift; sourceTree = "<group>"; };
 		CE9BD097265CC9AB00231689 /* SocialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialView.swift; sourceTree = "<group>"; };
 		CEAE3E2C2648CA2F0066C825 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		CEAE3E342648CAC50066C825 /* DefaultViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultViews.swift; sourceTree = "<group>"; };
@@ -128,6 +134,7 @@
 		CEC03FB4263E354400FFCB45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEC03FB7263E354400FFCB45 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CEC03FB9263E354400FFCB45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CEEC39C8267C63B100697168 /* HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTML.swift; sourceTree = "<group>"; };
 		CEF7C513267C0FC400ADE6DB /* PostContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostContentView.swift; sourceTree = "<group>"; };
 		CEF7C517267C0FDF00ADE6DB /* ContentRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentRenderer.swift; sourceTree = "<group>"; };
 		CEFE4E7A26562EF2005A2DD4 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
@@ -207,6 +214,7 @@
 				CE073A48266C4B650030DB1A /* Nuke in Frameworks */,
 				FA5068D7267043E000E0BBAE /* FeedKit in Frameworks */,
 				FA5068D4267043C100E0BBAE /* Alamofire in Frameworks */,
+				CE6442B4267FA152002FFFEC /* SwiftUIPager in Frameworks */,
 				CE4D2D4326489C6500C243CC /* LoaderUI in Frameworks */,
 				CED8EB21265CBD7C002922A3 /* SwiftDate in Frameworks */,
 				CE126FC0267BEBC6001ABBB1 /* SwiftSoup in Frameworks */,
@@ -233,6 +241,7 @@
 				CEAE3E342648CAC50066C825 /* DefaultViews.swift */,
 				CE87B3ED264CCE8A009CAF44 /* Support.swift */,
 				CE126FC4267BEBEE001ABBB1 /* ExtractArticle.swift */,
+				CEEC39C8267C63B100697168 /* HTML.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -393,6 +402,8 @@
 				FA7320EA267438F00012C3EC /* PodcastDetailView.swift */,
 				FAA53892265D6C270050617F /* PodcastEpisodeView.swift */,
 				FA05BDA92676CCF60026C903 /* NowPlayingBar.swift */,
+				CE965A04267FE606001515A2 /* NowPlayingPage.swift */,
+				CE965A06267FE658001515A2 /* DescriptionPage.swift */,
 			);
 			path = Podcast;
 			sourceTree = "<group>";
@@ -499,6 +510,7 @@
 				FA5068D3267043C100E0BBAE /* Alamofire */,
 				FA5068D6267043E000E0BBAE /* FeedKit */,
 				CE126FBF267BEBC6001ABBB1 /* SwiftSoup */,
+				CE6442B3267FA152002FFFEC /* SwiftUIPager */,
 			);
 			productName = DenebolaApp;
 			productReference = CEC03FAD263E354200FFCB45 /* Cypress.app */;
@@ -538,6 +550,7 @@
 				FA5068D2267043C100E0BBAE /* XCRemoteSwiftPackageReference "Alamofire" */,
 				FA5068D5267043E000E0BBAE /* XCRemoteSwiftPackageReference "FeedKit" */,
 				CE126FBE267BEBC6001ABBB1 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+				CE6442B2267FA152002FFFEC /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
 			);
 			productRefGroup = CEC03FAE263E354200FFCB45 /* Products */;
 			projectDirPath = "";
@@ -622,6 +635,7 @@
 				FA73AA2E263E361E00B6C8B6 /* WordpressAPIHandler.swift in Sources */,
 				FA56AA46263F0B2300B6D838 /* CategoriesView.swift in Sources */,
 				CEF7C518267C0FDF00ADE6DB /* ContentRenderer.swift in Sources */,
+				CE965A05267FE606001515A2 /* NowPlayingPage.swift in Sources */,
 				FA17F8DE2659DCB1008471BD /* SearchRow.swift in Sources */,
 				FA0CB852266719BA009FE7A3 /* ScheduleTab.swift in Sources */,
 				FA17F8DC2659DA1A008471BD /* SearchResultLoader.swift in Sources */,
@@ -655,6 +669,8 @@
 				FA0CB848266716BE009FE7A3 /* Tab.swift in Sources */,
 				FAA53893265D6C270050617F /* PodcastEpisodeView.swift in Sources */,
 				FA7320E32672A55A0012C3EC /* RequestRetrySettings.swift in Sources */,
+				CEEC39C9267C63B100697168 /* HTML.swift in Sources */,
+				CE965A07267FE658001515A2 /* DescriptionPage.swift in Sources */,
 				FAAE7DFE2669BB1600DE708A /* TabCreator.swift in Sources */,
 				FA0CB84A26671810009FE7A3 /* HomeTab.swift in Sources */,
 				FA73AA2D263E361E00B6C8B6 /* Post.swift in Sources */,
@@ -933,6 +949,14 @@
 				minimumVersion = 0.1.0;
 			};
 		};
+		CE6442B2267FA152002FFFEC /* XCRemoteSwiftPackageReference "SwiftUIPager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/fermoya/SwiftUIPager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.0;
+			};
+		};
 		CED8EB1F265CBD7C002922A3 /* XCRemoteSwiftPackageReference "SwiftDate" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/malcommac/SwiftDate";
@@ -974,6 +998,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CE4D2D4126489C6500C243CC /* XCRemoteSwiftPackageReference "LoaderUI" */;
 			productName = LoaderUI;
+		};
+		CE6442B3267FA152002FFFEC /* SwiftUIPager */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE6442B2267FA152002FFFEC /* XCRemoteSwiftPackageReference "SwiftUIPager" */;
+			productName = SwiftUIPager;
 		};
 		CED8EB20265CBD7C002922A3 /* SwiftDate */ = {
 			isa = XCSwiftPackageProductDependency;

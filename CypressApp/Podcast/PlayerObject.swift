@@ -8,23 +8,11 @@
 import Foundation
 import MediaPlayer
 
-enum ToolbarState {
-    case hidden
-    case show
-    case showFullScreen
-}
-
 class PlayerObject: ObservableObject {
     private var audioSession = AVAudioSession.sharedInstance()
     @Published var player: AVPlayer
     
     @Published var playing: Bool
-    @Published var toolbar: ToolbarState {
-        didSet {
-            toolbarFullScreen = toolbar == .showFullScreen
-        }
-    }
-    @Published var toolbarFullScreen: Bool
     @Published var episode: PodcastEpisode? = nil
     
     @Published var loading = false
@@ -37,8 +25,12 @@ class PlayerObject: ObservableObject {
         try! audioSession.setCategory(.playAndRecord, mode: .spokenAudio, options: [.defaultToSpeaker, .allowAirPlay, .allowBluetoothA2DP])
         try! self.audioSession.setActive(true)
         self.playing = false
-        self.toolbar = .hidden
-        self.toolbarFullScreen = false
+    }
+    
+    static var `default`: PlayerObject {
+        let player = PlayerObject()
+        player.setAudio(PodcastEpisode.default)
+        return player
     }
     
     func setAudio(_ episode: PodcastEpisode) {

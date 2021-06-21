@@ -11,16 +11,17 @@ import SwiftUI
 struct NowPlayingBar: View {
     var content: AnyView
     @EnvironmentObject var player: PlayerObject
+    @EnvironmentObject var viewModel: ViewModelData
     
     var body: some View {
         ZStack(alignment: .bottom) {
             content
-                .fullScreenCover(isPresented: $player.toolbarFullScreen) {
+                .fullScreenCover(isPresented: .constant(viewModel.podcastViewState == .showFullScreen)) {
                     PodcastEpisodeView()
                         .environmentObject(player)
                         .accentColor(.orange)
                 }
-            if player.toolbar == .show || player.toolbar == .showFullScreen  {
+            if viewModel.podcastViewState == .show || viewModel.podcastViewState == .showFullScreen {
                 ZStack {
                     if let episode = player.episode {
                         Rectangle().foregroundColor(Color.white.opacity(0.95)).frame(width: UIScreen.main.bounds.size.width, height: 55)
@@ -33,9 +34,8 @@ struct NowPlayingBar: View {
     
     func Toolbar(_ episode: PodcastEpisode) -> some View {
         HStack(alignment: .center, spacing: 0) {
-            
             Button {
-                player.toolbar = .showFullScreen
+                viewModel.podcastViewState = .showFullScreen
             } label: {
                 HStack {
                     ImageView(url: episode.imageURL!, aspectRatio: 1.0)
@@ -76,11 +76,9 @@ struct NowPlayingBar: View {
                         MediaControlImage("xmark")
                     }
                     .padding(.trailing, 10)
-                    
                 }
             }
             .buttonStyle(NoButtonAnimation())
-            
         }
         .padding(.trailing, 20)
     }
@@ -95,9 +93,9 @@ struct NowPlayingBar_Previews: PreviewProvider {
     static var previews: some View {
         NowPlayingBar(content: AnyView(SocialView()))
             .environmentObject(PlayerObject())
+            .environmentObject(ViewModelData())
     }
 }
-
 
 struct Blur: UIViewRepresentable {
     var style: UIBlurEffect.Style = .systemChromeMaterial
