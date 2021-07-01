@@ -2,11 +2,12 @@ name: SwiftFormat
 
 on: 
   workflow_dispatch: {}
-  pull_request:
-    types: [review_requested]
+  pull_request_review:
+    types: [submitted]
 
 jobs:
   format:
+    if: github.event.review.state == 'approved'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch
