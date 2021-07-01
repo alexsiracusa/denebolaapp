@@ -9,9 +9,9 @@ import SwiftUI
 
 struct PostSection: View {
     @EnvironmentObject private var viewModel: ViewModelData
-    
+
     var posts: [Post]
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             Text("Latest Posts")
@@ -19,21 +19,21 @@ struct PostSection: View {
                 .font(.title)
                 .fontWeight(.black)
                 .padding(.bottom)
-            
+
             if posts.count > 0 {
                 VStack {
                     PostCard(post: posts[0], textSize: .title2)
-                    
+
                     HStack(alignment: .top) {
                         PostCard(post: posts[1], textSize: .subheadline)
                         PostCard(post: posts[2], textSize: .subheadline)
                     }
-                    
+
                     PostRowView(post: posts[3])
                     PostRowView(post: posts[4])
                 }
             }
-            
+
             Button(action: {
                 viewModel.selectedTab = 2
             }) {
@@ -47,7 +47,7 @@ struct PostSection: View {
                         .font(.system(size: 10))
                 }
             }
-            
+
             .foregroundColor(.red)
         }
         .padding([.leading, .trailing], 15)

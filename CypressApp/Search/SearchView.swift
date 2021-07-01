@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SearchView: View {
-    //@EnvironmentObject var handler: WordpressAPIHandler
+    // @EnvironmentObject var handler: WordpressAPIHandler
     @ObservedObject var loader: SearchResultLoader
     @EnvironmentObject private var viewModel: ViewModelData
     @State var searchFor = ""
@@ -38,7 +38,7 @@ struct SearchView: View {
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
         SearchView(site: Wordpress.default, category: SimpleCategory(id: 7, name: "Opinions", image: nil))
-            //.environmentObject(WordpressAPIHandler())
+            // .environmentObject(WordpressAPIHandler())
             .environmentObject(ViewModelData())
     }
 }

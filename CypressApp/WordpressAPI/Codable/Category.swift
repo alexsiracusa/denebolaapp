@@ -5,9 +5,9 @@
 //  Created by Alex Siracusa on 4/19/21.
 //
 //
-//import Foundation
+// import Foundation
 //
-//struct Category: Codable, Identifiable {
+// struct Category: Codable, Identifiable {
 //    let id: Int
 //    let count: Int
 //    let description: String
@@ -20,4 +20,4 @@
 //    static func ==(lhs: Category, rhs: Category) -> Bool {
 //        return lhs.id == rhs.id
 //    }
-//}
+// }

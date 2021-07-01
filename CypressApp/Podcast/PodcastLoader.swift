@@ -5,27 +5,27 @@
 //  Created by Alex Siracusa on 5/10/21.
 //
 
-import Foundation
 import FeedKit
+import Foundation
 
 class PodcastLoader: ObservableObject {
     var feeds: [String]
     @Published var loadedFeeds: [LoadedPodcast]
-    
+
     init(_ feeds: [String]) {
         self.feeds = feeds
-        self.loadedFeeds = []
-        
+        loadedFeeds = []
+
         // don't remove this, it's needed to create unique id's
-        for _ in 0..<feeds.count {
+        for _ in 0 ..< feeds.count {
             loadedFeeds.append(LoadedPodcast.empty())
         }
-        //self.loadedFeeds = Array(repeating: LoadedPodcast.empty(), count: feeds.count)
+        // self.loadedFeeds = Array(repeating: LoadedPodcast.empty(), count: feeds.count)
         loadPodcasts()
     }
-    
+
     private var parsers: [FeedParser?] = []
-    
+
     func loadPodcasts() {
         for (index, rssURL) in feeds.enumerated() {
             if !loadedFeeds[index].isEmpty() {
@@ -33,11 +33,11 @@ class PodcastLoader: ObservableObject {
             }
             parsers.append(RSSLoader.loadPodcast(rssURL) { result in
                 switch result {
-                case .success(let podcast):
+                case let .success(podcast):
                     DispatchQueue.main.async {
                         self.loadedFeeds[index] = podcast
                     }
-                case .failure(_):
+                case .failure:
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                         self.loadPodcasts()
                     }
@@ -45,20 +45,20 @@ class PodcastLoader: ObservableObject {
             })
         }
     }
-    
+
     func setFeeds(_ feeds: [String]) {
         for parser in parsers {
             parser?.abortParsing()
         }
         parsers = []
         self.feeds = feeds
-        self.loadedFeeds = []
-        
+        loadedFeeds = []
+
         // don't remove this, it's needed to create unique id's
-        for _ in 0..<feeds.count {
+        for _ in 0 ..< feeds.count {
             loadedFeeds.append(LoadedPodcast.empty())
         }
-        //self.loadedFeeds = Array(repeating: LoadedPodcast.empty(), count: feeds.count)
+        // self.loadedFeeds = Array(repeating: LoadedPodcast.empty(), count: feeds.count)
         loadPodcasts()
     }
 }

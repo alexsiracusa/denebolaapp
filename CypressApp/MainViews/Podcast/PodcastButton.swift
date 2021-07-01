@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PodcastButton: View {
     let podcast: LoadedPodcast
-    
+
     var body: some View {
         if podcast.isEmpty() {
             VStack(alignment: .leading, spacing: 5) {

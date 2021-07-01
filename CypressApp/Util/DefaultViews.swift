@@ -26,3 +26,9 @@ func PlaceholderBackground() -> some View {
         .fill(Color.gray)
         .brightness(0.3)
 }
+
+func SpinningLoader() -> some View {
+    ProgressView()
+        .progressViewStyle(CircularProgressViewStyle())
+        .frame(width: 30, height: 30, alignment: .center)
+}

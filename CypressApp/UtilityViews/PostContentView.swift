@@ -30,10 +30,10 @@ struct PostContentView: View {
 
             post.getHtmlContent { result in
                 switch result {
-                    case .success(let html):
-                        self.html = html
-                    case .failure(let error):
-                        self.error = error.localizedDescription
+                case let .success(html):
+                    self.html = html
+                case let .failure(error):
+                    self.error = error.localizedDescription
                 }
             }
         }

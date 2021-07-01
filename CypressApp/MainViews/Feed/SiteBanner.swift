@@ -10,7 +10,7 @@ import SwiftUI
 struct SiteBanner: View {
     let imageURL: URL
     let aspectRatio: CGFloat = 6.0
-    
+
     var body: some View {
         ImageView(url: imageURL, aspectRatio: 6.0)
             .clipped()

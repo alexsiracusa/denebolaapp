@@ -9,9 +9,9 @@ import SwiftUI
 
 struct MultimediaSection: View {
     @EnvironmentObject private var viewModel: ViewModelData
-    
+
     var posts: [Post]
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             Text("Multimedia")
@@ -19,13 +19,13 @@ struct MultimediaSection: View {
                 .font(.title)
                 .fontWeight(.black)
                 .padding(.bottom)
-            
+
             VStack(spacing: 20) {
                 ForEach(posts) { post in
                     PostCard(post: post, textSize: .title2)
                 }
             }
-            
+
             Button(action: {}) {
                 HStack {
                     Spacer()
@@ -37,7 +37,7 @@ struct MultimediaSection: View {
                         .font(.system(size: 10))
                 }
             }
-            
+
             .foregroundColor(.green)
         }
         .padding(.horizontal, 20)

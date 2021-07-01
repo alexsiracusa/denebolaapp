@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct HomeView: View {
-    //@EnvironmentObject private var handler: WordpressAPIHandler
+    // @EnvironmentObject private var handler: WordpressAPIHandler
     @EnvironmentObject private var viewModel: ViewModelData
 
     @State private var latestPosts = [Post]()
     @State private var multimediaPosts = [Post]()
-    
+
     let sites: [Wordpress]
     let podcasts: [Podcast]
-    
+
     init(sites: [Wordpress], podcasts: [Podcast]) {
         self.sites = sites
         self.podcasts = podcasts
@@ -30,13 +30,13 @@ struct HomeView: View {
     func loadPosts() {
         sites[0].getPostPage(category: nil, page: 1, per_page: 5, embed: true) { result in
             switch result {
-            case .success(let posts):
+            case let .success(posts):
                 latestPosts = posts
-            case .failure(_):
-                let _ = 0
+            case .failure:
+                _ = 0
             }
         }
-        
+
         // no more multimedia section since not all websites will have that as a category
     }
 
@@ -66,6 +66,6 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView(sites: [Wordpress.default], podcasts: [Podcast.default])
-            //.environmentObject(WordpressAPIHandler())
+        // .environmentObject(WordpressAPIHandler())
     }
 }

@@ -16,9 +16,9 @@ class SearchResultLoader: ScrollViewLoader {
         currentRequest = nil
         canLoadMorePages = true
         error = nil
-        
+
         self.category = category
-        
+
         currentPage = 1
         search = text
         loadMorePosts()
@@ -32,14 +32,14 @@ class SearchResultLoader: ScrollViewLoader {
         }
         currentRequest = site.searchPosts(category: category?.id, text: search, page: currentPage, per_page: per_page, embed: true) { result in
             switch result {
-            case .success(let posts):
+            case let .success(posts):
                 if posts.count == 0 {
                     self.canLoadMorePages = false
                     break
                 }
                 self.posts += posts
                 self.currentPage += 1
-            case .failure(let error):
+            case let .failure(error):
                 self.error = error.errorDescription
             }
             self.currentRequest = nil

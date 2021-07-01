@@ -25,20 +25,20 @@ class RSSLoader {
         }
         return RSSLoader.getRSS(url) { result in
             switch result {
-            case .success(let feed):
+            case let .success(feed):
                 switch feed {
                 case .atom:
                     completion(.failure(RSSError(kind: .parseError, errorDescription: "Data is of type ATOM, not RSS")))
                 case .json:
                     completion(.failure(RSSError(kind: .parseError, errorDescription: "Data is of type JSON, not RSS")))
-                case .rss(let rss):
+                case let .rss(rss):
                     guard let podcast = LoadedPodcast.fromRSS(rss) else {
                         completion(.failure(RSSError(kind: .parseError, errorDescription: "Data could not be converted")))
                         return
                     }
                     completion(.success(podcast))
                 }
-            case .failure(let error):
+            case let .failure(error):
                 completion(.failure(RSSError(kind: .parseError, errorDescription: error.localizedDescription)))
             }
         }
@@ -66,7 +66,7 @@ struct LoadedPodcast: Identifiable {
         }
         guard let imageURL = try? imageURLString.asURL() else { return nil }
         guard let items = rss.items else { return nil }
-        let episodes: [PodcastEpisode] = items.compactMap {PodcastEpisode.fromRSSItem($0, defaultImage: imageURL, from: title)}
+        let episodes: [PodcastEpisode] = items.compactMap { PodcastEpisode.fromRSSItem($0, defaultImage: imageURL, from: title) }
         return LoadedPodcast(title: title, description: description, titleImageURL: imageURL, episodes: episodes)
     }
 
@@ -77,7 +77,7 @@ struct LoadedPodcast: Identifiable {
 //    static var empty: LoadedPodcast {
 //        return LoadedPodcast(id: UUID(), title: String(), description: "", titleImageURL: nil, episodes: [])
 //    }
-    
+
     private static var nextId = UUID()
     static func empty() -> LoadedPodcast {
         LoadedPodcast.nextId = UUID()
@@ -85,7 +85,7 @@ struct LoadedPodcast: Identifiable {
     }
 
     func isEmpty() -> Bool {
-        return self.title.isEmpty
+        return title.isEmpty
     }
 }
 

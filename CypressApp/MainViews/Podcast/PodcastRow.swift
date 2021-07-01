@@ -10,7 +10,7 @@ import SwiftUI
 struct PodcastRow: View {
     @EnvironmentObject var player: PlayerObject
     @EnvironmentObject var viewModel: ViewModelData
-        
+
     var episode: PodcastEpisode
 
     func MediaControlImage(_ name: String) -> some View {

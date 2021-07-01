@@ -17,12 +17,12 @@ public class WebViewStore: ObservableObject {
             setupObservers()
         }
     }
-    
+
     public init(webView: WKWebView = WKWebView()) {
         self.webView = webView
         setupObservers()
     }
-    
+
     private func setupObservers() {
         func subscriber<Value>(for keyPath: KeyPath<WKWebView, Value>) -> NSKeyValueObservation {
             return webView.observe(keyPath, options: [.prior]) { _, change in
@@ -40,12 +40,12 @@ public class WebViewStore: ObservableObject {
             subscriber(for: \.hasOnlySecureContent),
             subscriber(for: \.serverTrust),
             subscriber(for: \.canGoBack),
-            subscriber(for: \.canGoForward)
+            subscriber(for: \.canGoForward),
         ]
     }
-    
+
     private var observers: [NSKeyValueObservation] = []
-    
+
     public subscript<T>(dynamicMember keyPath: KeyPath<WKWebView, T>) -> T {
         webView[keyPath: keyPath]
     }
@@ -56,57 +56,57 @@ public struct WebView: View, UIViewRepresentable {
     /// The WKWebView to display
     public let webView: WKWebView
     @Binding var pageViewIdealSize: CGFloat
-    
+
     public func makeUIView(context: UIViewRepresentableContext<WebView>) -> WKWebView {
         webView.navigationDelegate = context.coordinator
         webView.uiDelegate = context.coordinator
-        
+
         return webView
     }
-    
-    public func updateUIView(_ uiView: WKWebView, context: UIViewRepresentableContext<WebView>) {}
-    
+
+    public func updateUIView(_: WKWebView, context _: UIViewRepresentableContext<WebView>) {}
+
     public func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
-    
+
     public class Coordinator: NSObject, WKNavigationDelegate, WKUIDelegate {
         let parent: WebView
         var timer: Timer?
-        
+
         init(_ webView: WebView) {
             parent = webView
         }
-        
+
         private func resizeWindow(_ webView: WKWebView) {
             // View dissapears
             if webView.window == nil {
-                self.timer?.invalidate()
+                timer?.invalidate()
             }
             // Get size of page
             webView.evaluateJavaScript("document.documentElement.scrollHeight", completionHandler: { height, _ in
                 self.parent.pageViewIdealSize = height! as! CGFloat
             })
         }
-        
-        public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+
+        public func webView(_: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
             // Allow page to be loaded in frame
             guard navigationAction.navigationType == .linkActivated else {
                 decisionHandler(.allow)
                 return
             }
-            
+
             // Open in external browser
             UIApplication.shared.open(navigationAction.request.url!)
             decisionHandler(.cancel)
         }
-        
-        public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-            guard timer == nil else {return}
+
+        public func webView(_ webView: WKWebView, didFinish _: WKNavigation!) {
+            guard timer == nil else { return }
 
             // Call once before timer
-            self.resizeWindow(webView)
-            
+            resizeWindow(webView)
+
             timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true) { _ in
                 self.resizeWindow(webView)
             }

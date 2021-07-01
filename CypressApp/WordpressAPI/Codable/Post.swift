@@ -23,54 +23,54 @@ struct Post: Codable, Equatable, Identifiable {
     let featured_media: Int
     let categories: Set<Int>?
     let _embedded: Embeded?
-    
-    static func ==(lhs: Post, rhs: Post) -> Bool {
+
+    static func == (lhs: Post, rhs: Post) -> Bool {
         return lhs.id == rhs.id
     }
-    
+
     func getAuthor() -> String {
-        return self._embedded?.author?[0].name ?? ""
+        return _embedded?.author?[0].name ?? ""
     }
-    
+
     func getDate() -> String {
-        self.date.toISODate()?.toFormat(DATE_FORMAT) ?? self.date
+        date.toISODate()?.toFormat(DATE_FORMAT) ?? date
     }
-    
+
     func getDateRelative() -> String {
-        self.date.toISODate()?.toRelative() ?? self.getDate()
+        date.toISODate()?.toRelative() ?? getDate()
     }
-    
+
     func getFeaturedImageUrl() -> URL? {
-        return try? self._embedded?.featuredMedia?[0].source_url?.asURL()
+        return try? _embedded?.featuredMedia?[0].source_url?.asURL()
     }
-    
-    func getHtmlContent(completionHandler: @escaping (Result<String?, Error>) -> ()) {
-        extractArticleFromUrl(url: self.link, completionHandler: {
+
+    func getHtmlContent(completionHandler: @escaping (Result<String?, Error>) -> Void) {
+        extractArticleFromUrl(url: link, completionHandler: {
             let result = $0.map {
                 $0.map { elements in
                     generateHtml(head: elements.head, body: [elements.scripts, elements.styles, self.content.rendered])
                 }
             }
-            
+
             completionHandler(result)
         })
     }
-    
+
     func getExcerpt() -> String {
-        return self.excerpt.rendered
+        return excerpt.rendered
     }
-    
+
     func getTitle() -> String {
-        return self.title.rendered
+        return title.rendered
     }
-    
+
     func getDomain() -> URL {
-        return try! self.link.relativePath.asURL()
+        return try! link.relativePath.asURL()
     }
-    
+
     /// Gets a image with the specified size string or the original size if it doesn't exist (might be smaller)
     func getThumbnailSizeUrl(size: String) -> URL? {
-        return try? self._embedded?.featuredMedia?[0].media_details?.getSize(size)?.source_url.asURL() ?? self._embedded?.featuredMedia?[0].source_url?.asURL()
+        return try? _embedded?.featuredMedia?[0].media_details?.getSize(size)?.source_url.asURL() ?? _embedded?.featuredMedia?[0].source_url?.asURL()
     }
 }
 
@@ -78,7 +78,7 @@ struct Embeded: Codable {
     let author: [Author]?
     let featuredMedia: [SimpleMedia]?
     // let category: [Category]?
-    
+
     enum CodingKeys: String, CodingKey {
         case featuredMedia = "wp:featuredmedia"
         case author
@@ -94,9 +94,9 @@ struct SimpleMedia: Codable {
 
 struct MediaDetails: Codable {
     let sizes: [String: MediaSize]
-    
+
     func getSize(_ name: String) -> MediaSize? {
-        return self.sizes[name]
+        return sizes[name]
     }
 }
 
@@ -115,14 +115,14 @@ struct RenderHTML: Codable {
     enum CodingKeys: CodingKey {
         case rendered
     }
-    
+
     init(rendered: String) {
         self.rendered = rendered
     }
-    
+
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.rendered = try container.decode(String.self, forKey: .rendered).html2AttributedString!
+        rendered = try container.decode(String.self, forKey: .rendered).html2AttributedString!
     }
 }
 

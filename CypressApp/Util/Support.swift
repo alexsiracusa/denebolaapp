@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 let DATE_FORMAT = "MMMM d, YYYY"
 
@@ -18,5 +19,11 @@ func hourToAmPm(_ hour: Int) -> String {
         return "\(hour - 12) PM"
     } else {
         return "\(hour) AM"
+    }
+}
+
+struct NoButtonAnimation: ButtonStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
     }
 }

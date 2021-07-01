@@ -5,8 +5,8 @@
 //  Created by Alex Siracusa on 5/2/21.
 //
 
-import Foundation
 import Alamofire
+import Foundation
 
 class ScrollViewLoader: ObservableObject {
     @Published var posts = [Post]()
@@ -16,21 +16,21 @@ class ScrollViewLoader: ObservableObject {
     var per_page = 20
     var currentPage = 1
     var canLoadMorePages = true
-    
+
     var site: Wordpress
     var category: SimpleCategory?
-    var currentRequest: Request? = nil {
+    var currentRequest: Request? {
         didSet {
             isLoadingPage = currentRequest != nil
         }
     }
-    
+
     init(site: Wordpress, category: SimpleCategory? = nil) {
         self.category = category
         self.site = site
         loadMorePosts()
     }
-    
+
     func setSite(_ site: Wordpress) {
         self.site = site
         posts = []
@@ -41,7 +41,7 @@ class ScrollViewLoader: ObservableObject {
         error = nil
         loadMorePosts()
     }
-    
+
     func loadMorePostsIfNeeded(currentItem: Post) {
         let index = posts.firstIndex(where: { currentItem.id == $0.id })
         let thresholdIndex = posts.index(posts.endIndex, offsetBy: -per_page)
@@ -49,27 +49,27 @@ class ScrollViewLoader: ObservableObject {
             loadMorePosts()
         }
     }
-    
+
     func cancel() {
-        self.currentRequest?.cancel()
+        currentRequest?.cancel()
     }
-    
+
     func resume() {
-        self.currentRequest?.resume()
+        currentRequest?.resume()
     }
-    
+
     func loadMorePosts() {
         guard currentRequest == nil, canLoadMorePages else { return }
         currentRequest = site.getPostPage(category: category?.id, page: currentPage, per_page: per_page, embed: true) { result in
             switch result {
-            case .success(let posts):
+            case let .success(posts):
                 if posts.count == 0 {
                     self.canLoadMorePages = false
                     break
                 }
                 self.posts += posts
                 self.currentPage += 1
-            case .failure(let error):
+            case let .failure(error):
                 if error.isExplicitlyCancelledError {
                     print("REQUEST CANCELLED")
                     break

@@ -43,6 +43,7 @@ struct PostRowView: View {
 
                 Spacer()
             }
+            .buttonStyle(NoButtonAnimation())
             Spacer(minLength: 0)
         }
         .frame(height: 100)
@@ -52,7 +53,7 @@ struct PostRowView: View {
 struct PostRowView_Previews: PreviewProvider {
     static var previews: some View {
         PostRowView(post: Post.default)
-            //.environmentObject(WordpressAPIHandler())
+            // .environmentObject(WordpressAPIHandler())
             .environmentObject(ViewModelData())
     }
 }

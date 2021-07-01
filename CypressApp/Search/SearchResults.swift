@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct SearchResults: View {
-    //@EnvironmentObject var handler: WordpressAPIHandler
+    // @EnvironmentObject var handler: WordpressAPIHandler
     @ObservedObject var loader: SearchResultLoader
     @Binding var searchFor: String
 
     init(loader: SearchResultLoader, searchFor: Binding<String>) {
         _searchFor = searchFor
         self.loader = loader
-        //loader = SearchResultLoader(site: site, category: category)
+        // loader = SearchResultLoader(site: site, category: category)
     }
 
     var body: some View {
@@ -31,8 +31,7 @@ struct SearchResults: View {
             .onChange(of: searchFor) { search in
                 loader.searchFor(search)
             }
-        }
-        else {
+        } else {
             Group {
                 if let error = loader.error {
                     Text(error)
@@ -40,13 +39,11 @@ struct SearchResults: View {
                             loader.searchFor(search)
                         }
                         .padding()
-                }
-                else if loader.isLoadingPage {
+                } else if loader.isLoadingPage {
                     // TODO: make better loading screen
                     Text("Loading")
                         .padding()
-                }
-                else {
+                } else {
                     Text("No Results")
                         .onChange(of: searchFor) { search in
                             loader.searchFor(search)
@@ -61,6 +58,6 @@ struct SearchResults: View {
 struct SearchResults_Previews: PreviewProvider {
     static var previews: some View {
         SearchResults(loader: SearchResultLoader(site: Wordpress.default), searchFor: .constant(""))
-            //.environmentObject(WordpressAPIHandler())
+        // .environmentObject(WordpressAPIHandler())
     }
 }

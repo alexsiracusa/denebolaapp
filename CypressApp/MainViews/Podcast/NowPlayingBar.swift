@@ -12,7 +12,7 @@ struct NowPlayingBar: View {
     var content: AnyView
     @EnvironmentObject var player: PlayerObject
     @EnvironmentObject var viewModel: ViewModelData
-    
+
     var body: some View {
         ZStack(alignment: .bottom) {
             content
@@ -31,7 +31,7 @@ struct NowPlayingBar: View {
             }
         }
     }
-    
+
     func Toolbar(_ episode: PodcastEpisode) -> some View {
         HStack(alignment: .center, spacing: 0) {
             Button {
@@ -40,7 +40,7 @@ struct NowPlayingBar: View {
                 HStack {
                     ImageView(url: episode.imageURL!, aspectRatio: 1.0)
                         .frame(width: 55, height: 55)
-                    
+
                     if let episode = player.episode {
                         VStack(alignment: .leading, spacing: 4) {
                             Text(episode.title)
@@ -56,9 +56,9 @@ struct NowPlayingBar: View {
                         }
                         .frame(width: 175)
                     }
-                    
+
                     Spacer()
-                    
+
                     Button {
                         if player.playing {
                             player.pause()
@@ -69,7 +69,7 @@ struct NowPlayingBar: View {
                         MediaControlImage(player.playing ? "pause.fill" : "play.fill", size: 30)
                     }
                     .padding(.trailing, 20)
-                    
+
                     Button {
                         player.reset()
                     } label: {
@@ -82,7 +82,7 @@ struct NowPlayingBar: View {
         }
         .padding(.trailing, 20)
     }
-    
+
     func MediaControlImage(_ name: String, size: CGFloat = 30) -> some View {
         return Image(systemName: name)
             .font(.system(size: size))
@@ -99,18 +99,12 @@ struct NowPlayingBar_Previews: PreviewProvider {
 
 struct Blur: UIViewRepresentable {
     var style: UIBlurEffect.Style = .systemChromeMaterial
-    
-    func makeUIView(context: Context) -> UIVisualEffectView {
+
+    func makeUIView(context _: Context) -> UIVisualEffectView {
         return UIVisualEffectView(effect: UIBlurEffect(style: style))
     }
-    
-    func updateUIView(_ uiView: UIVisualEffectView, context: Context) {
-        uiView.effect = UIBlurEffect(style: style)
-    }
-}
 
-struct NoButtonAnimation: ButtonStyle {
-    func makeBody(configuration: Self.Configuration) -> some View {
-        configuration.label
+    func updateUIView(_ uiView: UIVisualEffectView, context _: Context) {
+        uiView.effect = UIBlurEffect(style: style)
     }
 }

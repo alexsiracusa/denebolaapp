@@ -22,7 +22,7 @@ struct PodcastEpisodeView: View {
     // Dots indicating the current page
     @ViewBuilder func PageIndicator() -> some View {
         HStack {
-            ForEach(0..<PAGE_COUNT, id: \.self) { index in
+            ForEach(0 ..< PAGE_COUNT, id: \.self) { index in
                 let selected = currentPage.index == index
 
                 Circle()
@@ -67,7 +67,7 @@ struct PodcastEpisodeView: View {
             Spacer()
                 .frame(height: 20)
 
-            Pager(page: currentPage, data: Array(0..<PAGE_COUNT), id: \.self) { page in
+            Pager(page: currentPage, data: Array(0 ..< PAGE_COUNT), id: \.self) { page in
                 switch page {
                 case 0:
                     NowPlayingPage()

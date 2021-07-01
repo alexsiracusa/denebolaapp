@@ -15,7 +15,6 @@
 		CE1E888126474BFC00E1245E /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E888026474BFC00E1245E /* PageControl.swift */; };
 		CE1E88872647561600E1245E /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E88862647561600E1245E /* ImageView.swift */; };
 		CE2C6138265E5C7E003E32E6 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C6137265E5C7E003E32E6 /* ScheduleView.swift */; };
-		CE2C613D265E5C86003E32E6 /* ScheduleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C613C265E5C86003E32E6 /* ScheduleListView.swift */; };
 		CE45BFD8267BFF63003D0C2B /* CypressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45BFD7267BFF63003D0C2B /* CypressTests.swift */; };
 		CE4D2D4326489C6500C243CC /* LoaderUI in Frameworks */ = {isa = PBXBuildFile; productRef = CE4D2D4226489C6500C243CC /* LoaderUI */; };
 		CE6442B4267FA152002FFFEC /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = CE6442B3267FA152002FFFEC /* SwiftUIPager */; };
@@ -81,6 +80,7 @@
 		FA7320E72674278A0012C3EC /* RSSLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7320E62674278A0012C3EC /* RSSLoader.swift */; };
 		FA7320EB267438F00012C3EC /* PodcastDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7320EA267438F00012C3EC /* PodcastDetailView.swift */; };
 		FA7320ED267442570012C3EC /* PodcastButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7320EC267442570012C3EC /* PodcastButton.swift */; };
+		FA73715D2687FA5F006291E8 /* Persistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73715C2687FA5F006291E8 /* Persistance.swift */; };
 		FA73AA2B263E361E00B6C8B6 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73AA27263E361E00B6C8B6 /* Media.swift */; };
 		FA73AA2C263E361E00B6C8B6 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73AA28263E361E00B6C8B6 /* Category.swift */; };
 		FA73AA2D263E361E00B6C8B6 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73AA29263E361E00B6C8B6 /* Post.swift */; };
@@ -92,11 +92,35 @@
 		FAA7D2F8267E742B00E8FFEC /* ServerAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA7D2F7267E742B00E8FFEC /* ServerAPITests.swift */; };
 		FAA7D2FA267E762400E8FFEC /* BlockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA7D2F9267E762400E8FFEC /* BlockData.swift */; };
 		FAA7D2FC267E775200E8FFEC /* Week.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA7D2FB267E775200E8FFEC /* Week.swift */; };
+		FAAAAC9F26869CC60052A658 /* ScheduleColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAAAC9E26869CC60052A658 /* ScheduleColumn.swift */; };
+		FAAAACA12686AFBD0052A658 /* BlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAAACA02686AFBD0052A658 /* BlockView.swift */; };
+		FAAAACA3268795580052A658 /* MultiPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAAACA2268795580052A658 /* MultiPageView.swift */; };
+		FAAAACA5268796900052A658 /* SchedulePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAAACA4268796900052A658 /* SchedulePageView.swift */; };
+		FAAAACA72687F1330052A658 /* ScheduleSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAAACA62687F1330052A658 /* ScheduleSettings.swift */; };
+		FAAAACAD2687F5D00052A658 /* CypressApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FAAAACAB2687F5D00052A658 /* CypressApp.xcdatamodeld */; };
 		FAAE7DF82669B3E200DE708A /* SchoolConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE7DF72669B3E200DE708A /* SchoolConfig.swift */; };
 		FAAE7DFC2669B44F00DE708A /* ServerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE7DFB2669B44F00DE708A /* ServerAPI.swift */; };
 		FAAE7DFE2669BB1600DE708A /* TabCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE7DFD2669BB1600DE708A /* TabCreator.swift */; };
+		FAD43D7C2688F4D400F04FE9 /* BlockInfo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD43D782688F4D400F04FE9 /* BlockInfo+CoreDataClass.swift */; };
+		FAD43D7D2688F4D400F04FE9 /* BlockInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD43D792688F4D400F04FE9 /* BlockInfo+CoreDataProperties.swift */; };
+		FAD43D7E2688F4D400F04FE9 /* SchoolData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD43D7A2688F4D400F04FE9 /* SchoolData+CoreDataClass.swift */; };
+		FAD43D7F2688F4D400F04FE9 /* SchoolData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD43D7B2688F4D400F04FE9 /* SchoolData+CoreDataProperties.swift */; };
+		FAD43D81268A28AD00F04FE9 /* BlockEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD43D80268A28AD00F04FE9 /* BlockEditor.swift */; };
+		FAD43D83268A34BE00F04FE9 /* PropertyEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD43D82268A34BE00F04FE9 /* PropertyEditor.swift */; };
+		FAD43D8A268ABB2A00F04FE9 /* FetchFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD43D89268ABB2A00F04FE9 /* FetchFunctions.swift */; };
+		FAD43D8C268ACA7900F04FE9 /* DayDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD43D8B268ACA7900F04FE9 /* DayDetailView.swift */; };
+		FAD43D8E268ACAAF00F04FE9 /* LargeBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD43D8D268ACAAF00F04FE9 /* LargeBlockView.swift */; };
+		FAD43D92268AD4C500F04FE9 /* DaysPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD43D91268AD4C500F04FE9 /* DaysPageView.swift */; };
+		FAD43D94268BAAC000F04FE9 /* Lunches.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD43D93268BAAC000F04FE9 /* Lunches.swift */; };
+		FAD43D96268BBD6500F04FE9 /* LargeLunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD43D95268BBD6500F04FE9 /* LargeLunchView.swift */; };
+		FADE100F2683AF5E00712D27 /* CancelledList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE100E2683AF5E00712D27 /* CancelledList.swift */; };
+		FADE10112683AFB200712D27 /* CancelledRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE10102683AFB200712D27 /* CancelledRow.swift */; };
 		FAE14C7526557AA7000635DB /* PostSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE14C7426557AA7000635DB /* PostSection.swift */; };
 		FAE14C7726557AFD000635DB /* PostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE14C7626557AFD000635DB /* PostCard.swift */; };
+		FAFE2897268BD3E300DC9373 /* Blocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFE2896268BD3E300DC9373 /* Blocks.swift */; };
+		FAFE2899268BD41F00DC9373 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFE2898268BD41F00DC9373 /* Day.swift */; };
+		FAFE289B268BE80C00DC9373 /* LoadingScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFE289A268BE80C00DC9373 /* LoadingScheduleView.swift */; };
+		FAFE289F268D248600DC9373 /* LoadingBlockEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFE289E268D248600DC9373 /* LoadingBlockEditor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,7 +140,6 @@
 		CE1E888026474BFC00E1245E /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 		CE1E88862647561600E1245E /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		CE2C6137265E5C7E003E32E6 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
-		CE2C613C265E5C86003E32E6 /* ScheduleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleListView.swift; sourceTree = "<group>"; };
 		CE45BFD5267BFF63003D0C2B /* CypressTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CypressTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE45BFD7267BFF63003D0C2B /* CypressTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CypressTests.swift; sourceTree = "<group>"; };
 		CE45BFD9267BFF63003D0C2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -181,6 +204,7 @@
 		FA7320E62674278A0012C3EC /* RSSLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSLoader.swift; sourceTree = "<group>"; };
 		FA7320EA267438F00012C3EC /* PodcastDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailView.swift; sourceTree = "<group>"; };
 		FA7320EC267442570012C3EC /* PodcastButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastButton.swift; sourceTree = "<group>"; };
+		FA73715C2687FA5F006291E8 /* Persistance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistance.swift; sourceTree = "<group>"; };
 		FA73AA27263E361E00B6C8B6 /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		FA73AA28263E361E00B6C8B6 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		FA73AA29263E361E00B6C8B6 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -192,11 +216,35 @@
 		FAA7D2F7267E742B00E8FFEC /* ServerAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerAPITests.swift; sourceTree = "<group>"; };
 		FAA7D2F9267E762400E8FFEC /* BlockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockData.swift; sourceTree = "<group>"; };
 		FAA7D2FB267E775200E8FFEC /* Week.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Week.swift; sourceTree = "<group>"; };
+		FAAAAC9E26869CC60052A658 /* ScheduleColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleColumn.swift; sourceTree = "<group>"; };
+		FAAAACA02686AFBD0052A658 /* BlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
+		FAAAACA2268795580052A658 /* MultiPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPageView.swift; sourceTree = "<group>"; };
+		FAAAACA4268796900052A658 /* SchedulePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePageView.swift; sourceTree = "<group>"; };
+		FAAAACA62687F1330052A658 /* ScheduleSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSettings.swift; sourceTree = "<group>"; };
+		FAAAACAC2687F5D00052A658 /* CypressApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CypressApp.xcdatamodel; sourceTree = "<group>"; };
 		FAAE7DF72669B3E200DE708A /* SchoolConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolConfig.swift; sourceTree = "<group>"; };
 		FAAE7DFB2669B44F00DE708A /* ServerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerAPI.swift; sourceTree = "<group>"; };
 		FAAE7DFD2669BB1600DE708A /* TabCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCreator.swift; sourceTree = "<group>"; };
+		FAD43D782688F4D400F04FE9 /* BlockInfo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "BlockInfo+CoreDataClass.swift"; path = "CypressApp/CoreData/BlockInfo+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		FAD43D792688F4D400F04FE9 /* BlockInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "BlockInfo+CoreDataProperties.swift"; path = "CypressApp/CoreData/BlockInfo+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		FAD43D7A2688F4D400F04FE9 /* SchoolData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SchoolData+CoreDataClass.swift"; path = "CypressApp/CoreData/SchoolData+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		FAD43D7B2688F4D400F04FE9 /* SchoolData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SchoolData+CoreDataProperties.swift"; path = "CypressApp/CoreData/SchoolData+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		FAD43D80268A28AD00F04FE9 /* BlockEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockEditor.swift; sourceTree = "<group>"; };
+		FAD43D82268A34BE00F04FE9 /* PropertyEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyEditor.swift; sourceTree = "<group>"; };
+		FAD43D89268ABB2A00F04FE9 /* FetchFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchFunctions.swift; sourceTree = "<group>"; };
+		FAD43D8B268ACA7900F04FE9 /* DayDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetailView.swift; sourceTree = "<group>"; };
+		FAD43D8D268ACAAF00F04FE9 /* LargeBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeBlockView.swift; sourceTree = "<group>"; };
+		FAD43D91268AD4C500F04FE9 /* DaysPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysPageView.swift; sourceTree = "<group>"; };
+		FAD43D93268BAAC000F04FE9 /* Lunches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lunches.swift; sourceTree = "<group>"; };
+		FAD43D95268BBD6500F04FE9 /* LargeLunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeLunchView.swift; sourceTree = "<group>"; };
+		FADE100E2683AF5E00712D27 /* CancelledList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelledList.swift; sourceTree = "<group>"; };
+		FADE10102683AFB200712D27 /* CancelledRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelledRow.swift; sourceTree = "<group>"; };
 		FAE14C7426557AA7000635DB /* PostSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSection.swift; sourceTree = "<group>"; };
 		FAE14C7626557AFD000635DB /* PostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCard.swift; sourceTree = "<group>"; };
+		FAFE2896268BD3E300DC9373 /* Blocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blocks.swift; sourceTree = "<group>"; };
+		FAFE2898268BD41F00DC9373 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+		FAFE289A268BE80C00DC9373 /* LoadingScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScheduleView.swift; sourceTree = "<group>"; };
+		FAFE289E268D248600DC9373 /* LoadingBlockEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingBlockEditor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -282,7 +330,11 @@
 				FA4618CA264980090018522B /* Podcast */,
 				CEAE3E2B2648CA0B0066C825 /* Util */,
 				CEC03FB4263E354400FFCB45 /* Assets.xcassets */,
+				FA73715C2687FA5F006291E8 /* Persistance.swift */,
+				FAD43D89268ABB2A00F04FE9 /* FetchFunctions.swift */,
 				CEC03FB9263E354400FFCB45 /* Info.plist */,
+				FAAAACAB2687F5D00052A658 /* CypressApp.xcdatamodeld */,
+				FA65B42B268E159B00AE3704 /* CoreData */,
 				CEC03FB6263E354400FFCB45 /* Preview Content */,
 			);
 			path = CypressApp;
@@ -316,6 +368,7 @@
 				CEAE3E3C2648D0CC0066C825 /* WebView.swift */,
 				CEF7C513267C0FC400ADE6DB /* PostContentView.swift */,
 				CEF7C517267C0FDF00ADE6DB /* ContentRenderer.swift */,
+				FAAAACA2268795580052A658 /* MultiPageView.swift */,
 			);
 			path = UtilityViews;
 			sourceTree = "<group>";
@@ -365,6 +418,17 @@
 			path = MainViews;
 			sourceTree = "<group>";
 		};
+		FA65B42B268E159B00AE3704 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				FAD43D782688F4D400F04FE9 /* BlockInfo+CoreDataClass.swift */,
+				FAD43D792688F4D400F04FE9 /* BlockInfo+CoreDataProperties.swift */,
+				FAD43D7A2688F4D400F04FE9 /* SchoolData+CoreDataClass.swift */,
+				FAD43D7B2688F4D400F04FE9 /* SchoolData+CoreDataProperties.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		FA73AA26263E361E00B6C8B6 /* WordpressAPI */ = {
 			isa = PBXGroup;
 			children = (
@@ -385,6 +449,8 @@
 				FA7320E22672A55A0012C3EC /* RequestRetrySettings.swift */,
 				FA03D1B526719D24005A760F /* WordpressCodable.swift */,
 				FAA7D2FB267E775200E8FFEC /* Week.swift */,
+				FAFE2898268BD41F00DC9373 /* Day.swift */,
+				FAFE2896268BD3E300DC9373 /* Blocks.swift */,
 				FAA7D2F5267E714300E8FFEC /* Absence.swift */,
 				FAA7D2F9267E762400E8FFEC /* BlockData.swift */,
 				FAAE7DF72669B3E200DE708A /* SchoolConfig.swift */,
@@ -430,8 +496,9 @@
 			isa = PBXGroup;
 			children = (
 				CE9BD097265CC9AB00231689 /* SocialView.swift */,
-				CE2C6137265E5C7E003E32E6 /* ScheduleView.swift */,
-				CE2C613C265E5C86003E32E6 /* ScheduleListView.swift */,
+				FAD43D88268A73F900F04FE9 /* CancelledClasses */,
+				FAD43D87268A73E600F04FE9 /* Schedule */,
+				FAD43D86268A73B700F04FE9 /* Settings */,
 			);
 			path = Social;
 			sourceTree = "<group>";
@@ -455,6 +522,43 @@
 				FA612139266097F400126A1F /* MeetTheStaff.swift */,
 			);
 			path = About;
+			sourceTree = "<group>";
+		};
+		FAD43D86268A73B700F04FE9 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				FAAAACA62687F1330052A658 /* ScheduleSettings.swift */,
+				FAD43D80268A28AD00F04FE9 /* BlockEditor.swift */,
+				FAFE289E268D248600DC9373 /* LoadingBlockEditor.swift */,
+				FAD43D82268A34BE00F04FE9 /* PropertyEditor.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		FAD43D87268A73E600F04FE9 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				FAAAACA4268796900052A658 /* SchedulePageView.swift */,
+				CE2C6137265E5C7E003E32E6 /* ScheduleView.swift */,
+				FAFE289A268BE80C00DC9373 /* LoadingScheduleView.swift */,
+				FAAAAC9E26869CC60052A658 /* ScheduleColumn.swift */,
+				FAD43D93268BAAC000F04FE9 /* Lunches.swift */,
+				FAAAACA02686AFBD0052A658 /* BlockView.swift */,
+				FAD43D91268AD4C500F04FE9 /* DaysPageView.swift */,
+				FAD43D8B268ACA7900F04FE9 /* DayDetailView.swift */,
+				FAD43D8D268ACAAF00F04FE9 /* LargeBlockView.swift */,
+				FAD43D95268BBD6500F04FE9 /* LargeLunchView.swift */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
+		FAD43D88268A73F900F04FE9 /* CancelledClasses */ = {
+			isa = PBXGroup;
+			children = (
+				FADE100E2683AF5E00712D27 /* CancelledList.swift */,
+				FADE10102683AFB200712D27 /* CancelledRow.swift */,
+			);
+			path = CancelledClasses;
 			sourceTree = "<group>";
 		};
 		FAE14C7326557A94000635DB /* Home */ = {
@@ -595,11 +699,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAD43D92268AD4C500F04FE9 /* DaysPageView.swift in Sources */,
 				FA7320EB267438F00012C3EC /* PodcastDetailView.swift in Sources */,
 				FAAE7DFC2669B44F00DE708A /* ServerAPI.swift in Sources */,
 				FA5D35AD266B29E4003B8D2F /* Logo.swift in Sources */,
 				FA0CB8542667247E009FE7A3 /* CategoriesList.swift in Sources */,
 				FA73AA30263E363600B6C8B6 /* PostView.swift in Sources */,
+				FAD43D94268BAAC000F04FE9 /* Lunches.swift in Sources */,
+				FA73715D2687FA5F006291E8 /* Persistance.swift in Sources */,
+				FADE100F2683AF5E00712D27 /* CancelledList.swift in Sources */,
+				FAD43D96268BBD6500F04FE9 /* LargeLunchView.swift in Sources */,
 				FA56AA6E263FA12200B6D838 /* LoadingPostRowView.swift in Sources */,
 				FA6526442658AEFC0043FDBA /* CategoryBanner.swift in Sources */,
 				FA17F8E22659DFCD008471BD /* SearchResults.swift in Sources */,
@@ -608,6 +717,7 @@
 				FA56AA6A263F8F0F00B6D838 /* ScrollViewLoader.swift in Sources */,
 				CEFE4E7B26562EF2005A2DD4 /* ModelData.swift in Sources */,
 				FA56AA62263F2FD200B6D838 /* PostFeed.swift in Sources */,
+				FAFE289F268D248600DC9373 /* LoadingBlockEditor.swift in Sources */,
 				FAE14C7726557AFD000635DB /* PostCard.swift in Sources */,
 				CEC03FB3263E354200FFCB45 /* ContentView.swift in Sources */,
 				CEAE3E3D2648D0CC0066C825 /* WebView.swift in Sources */,
@@ -619,12 +729,18 @@
 				FAA7D2FC267E775200E8FFEC /* Week.swift in Sources */,
 				CE1E887C264748F700E1245E /* PageView.swift in Sources */,
 				FA7320ED267442570012C3EC /* PodcastButton.swift in Sources */,
+				FAD43D8C268ACA7900F04FE9 /* DayDetailView.swift in Sources */,
 				FA56AA51263F0BFF00B6D838 /* PhotoGalleryView.swift in Sources */,
 				FAE14C7526557AA7000635DB /* PostSection.swift in Sources */,
+				FAFE289B268BE80C00DC9373 /* LoadingScheduleView.swift in Sources */,
 				CEC03FB1263E354200FFCB45 /* CypressAppApp.swift in Sources */,
 				FA0CB85A2667302E009FE7A3 /* TabManager.swift in Sources */,
 				FA56AA4C263F0B5A00B6D838 /* PodcastView.swift in Sources */,
+				FAD43D8E268ACAAF00F04FE9 /* LargeBlockView.swift in Sources */,
+				FAD43D7C2688F4D400F04FE9 /* BlockInfo+CoreDataClass.swift in Sources */,
+				FAFE2897268BD3E300DC9373 /* Blocks.swift in Sources */,
 				CE87B3EE264CCE8A009CAF44 /* Support.swift in Sources */,
+				FAD43D83268A34BE00F04FE9 /* PropertyEditor.swift in Sources */,
 				FA56AA56263F0F2400B6D838 /* CategoryButton.swift in Sources */,
 				FA56AA4A263F0B5100B6D838 /* HomeView.swift in Sources */,
 				FA56AA64263F3F1A00B6D838 /* SamplePost.swift in Sources */,
@@ -638,19 +754,25 @@
 				CE965A05267FE606001515A2 /* NowPlayingPage.swift in Sources */,
 				FA17F8DE2659DCB1008471BD /* SearchRow.swift in Sources */,
 				FA0CB852266719BA009FE7A3 /* ScheduleTab.swift in Sources */,
+				FAD43D81268A28AD00F04FE9 /* BlockEditor.swift in Sources */,
+				FAD43D8A268ABB2A00F04FE9 /* FetchFunctions.swift in Sources */,
 				FA17F8DC2659DA1A008471BD /* SearchResultLoader.swift in Sources */,
 				FAA7D2FA267E762400E8FFEC /* BlockData.swift in Sources */,
 				FA0CB8422664320A009FE7A3 /* PodcastEpisode.swift in Sources */,
 				FA03D1B826719D72005A760F /* WordpressAPI.swift in Sources */,
+				FAAAACA5268796900052A658 /* SchedulePageView.swift in Sources */,
 				FA17F8E8265B3473008471BD /* PodcastRow.swift in Sources */,
 				FA5D35AF266BD982003B8D2F /* SiteBanner.swift in Sources */,
+				FAAAACA72687F1330052A658 /* ScheduleSettings.swift in Sources */,
 				FA5D35AB266B221A003B8D2F /* LogoButton.swift in Sources */,
 				FA05BDAA2676CCF60026C903 /* NowPlayingBar.swift in Sources */,
 				FA4618CC264980240018522B /* PodcastLoader.swift in Sources */,
 				FA0CB85026671989009FE7A3 /* PodcastTab.swift in Sources */,
 				FA73AA2C263E361E00B6C8B6 /* Category.swift in Sources */,
 				CE1E888126474BFC00E1245E /* PageControl.swift in Sources */,
+				FAAAACA12686AFBD0052A658 /* BlockView.swift in Sources */,
 				CE9BD098265CC9AB00231689 /* SocialView.swift in Sources */,
+				FAAAACAD2687F5D00052A658 /* CypressApp.xcdatamodeld in Sources */,
 				FA17F8E02659DCEC008471BD /* SearchView.swift in Sources */,
 				CEF7C514267C0FC400ADE6DB /* PostContentView.swift in Sources */,
 				FAA7D2F6267E714300E8FFEC /* Absence.swift in Sources */,
@@ -658,19 +780,25 @@
 				FA6526422658AB9C0043FDBA /* CategoryView.swift in Sources */,
 				FA56AA43263F080900B6D838 /* ViewController.swift in Sources */,
 				FAAE7DF82669B3E200DE708A /* SchoolConfig.swift in Sources */,
+				FAFE2899268BD41F00DC9373 /* Day.swift in Sources */,
 				CEAE3E2D2648CA2F0066C825 /* Extensions.swift in Sources */,
+				FAD43D7E2688F4D400F04FE9 /* SchoolData+CoreDataClass.swift in Sources */,
 				FA6121382660973500126A1F /* AboutText.swift in Sources */,
 				FA87325E265586260094146C /* PodcastSection.swift in Sources */,
 				FA56AA5C263F246000B6D838 /* PostRowView.swift in Sources */,
 				CE74689326605535007321FD /* AboutView.swift in Sources */,
-				CE2C613D265E5C86003E32E6 /* ScheduleListView.swift in Sources */,
 				CE1E88772647484300E1245E /* PageViewController.swift in Sources */,
 				FA0CB84C26671926009FE7A3 /* FeedTab.swift in Sources */,
+				FAD43D7F2688F4D400F04FE9 /* SchoolData+CoreDataProperties.swift in Sources */,
 				FA0CB848266716BE009FE7A3 /* Tab.swift in Sources */,
 				FAA53893265D6C270050617F /* PodcastEpisodeView.swift in Sources */,
 				FA7320E32672A55A0012C3EC /* RequestRetrySettings.swift in Sources */,
+				FAD43D7D2688F4D400F04FE9 /* BlockInfo+CoreDataProperties.swift in Sources */,
 				CEEC39C9267C63B100697168 /* HTML.swift in Sources */,
+				FAAAAC9F26869CC60052A658 /* ScheduleColumn.swift in Sources */,
+				FAAAACA3268795580052A658 /* MultiPageView.swift in Sources */,
 				CE965A07267FE658001515A2 /* DescriptionPage.swift in Sources */,
+				FADE10112683AFB200712D27 /* CancelledRow.swift in Sources */,
 				FAAE7DFE2669BB1600DE708A /* TabCreator.swift in Sources */,
 				FA0CB84A26671810009FE7A3 /* HomeTab.swift in Sources */,
 				FA73AA2D263E361E00B6C8B6 /* Post.swift in Sources */,
@@ -1020,6 +1148,19 @@
 			productName = FeedKit;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		FAAAACAB2687F5D00052A658 /* CypressApp.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FAAAACAC2687F5D00052A658 /* CypressApp.xcdatamodel */,
+			);
+			currentVersion = FAAAACAC2687F5D00052A658 /* CypressApp.xcdatamodel */;
+			path = CypressApp.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CEC03FA5263E354200FFCB45 /* Project object */;
 }

@@ -5,9 +5,9 @@
 ////  Created by Alex Siracusa on 5/19/21.
 ////
 //
-//import SwiftUI
+// import SwiftUI
 //
-//struct PodcastSection: View {
+// struct PodcastSection: View {
 //    @EnvironmentObject var loader: PodcastLoader
 //    @EnvironmentObject private var viewModel: ViewModelData
 //
@@ -58,11 +58,11 @@
 //            }
 //        }
 //    }
-//}
+// }
 //
-//struct PodcastSection_Previews: PreviewProvider {
+// struct PodcastSection_Previews: PreviewProvider {
 //    static var previews: some View {
 //        PodcastSection()
 //            .environmentObject(PodcastLoader())
 //    }
-//}
+// }

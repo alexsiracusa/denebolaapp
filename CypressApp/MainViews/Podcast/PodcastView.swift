@@ -16,22 +16,22 @@ struct PodcastView: View {
     let podcasts: [Podcast]
     @State var loadingAsset: AVAsset! = nil
     @EnvironmentObject var player: PlayerObject
-    
+
     @State private var showingFullDescription = false
     @State private var didAppear = false
-    
+
     init(_ podcasts: [Podcast]) {
         self.podcasts = podcasts
     }
-    
+
     func setPodcasts(_ podcasts: [Podcast]) {
         loader.setFeeds(podcasts.map { $0.rssUrl })
     }
-    
+
     var items: [GridItem] {
         Array(repeating: .init(.flexible()), count: 2)
     }
-    
+
     var body: some View {
         NavigationView {
             ScrollView(showsIndicators: false) {
@@ -63,10 +63,10 @@ struct PodcastView: View {
             setPodcasts(podcasts)
         }
     }
-    
+
     func load() {}
-    
-    func loadPodcast(_ podcast: Podcast) {}
+
+    func loadPodcast(_: Podcast) {}
 }
 
 struct PodcastView_Previews: PreviewProvider {

@@ -32,7 +32,7 @@ private func extractArticle(html: String) throws -> ExtractedArticleElements? {
 }
 
 // Gets the supplied URL and returns an ExtractedArticleElements
-func extractArticleFromUrl(url: URL, completionHandler: @escaping (Result<ExtractedArticleElements?, Error>) -> ()) {
+func extractArticleFromUrl(url: URL, completionHandler: @escaping (Result<ExtractedArticleElements?, Error>) -> Void) {
     AF.request(url, interceptor: Retry()).validate().responseString { response in
         completionHandler(
             response.tryMap { try extractArticle(html: $0) }.result

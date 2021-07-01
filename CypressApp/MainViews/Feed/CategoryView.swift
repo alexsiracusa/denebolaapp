@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CategoryView: View {
-    //@EnvironmentObject var handler: WordpressAPIHandler
+    // @EnvironmentObject var handler: WordpressAPIHandler
     @EnvironmentObject private var viewModel: ViewModelData
     var category: SimpleCategory
     var imageURL: URL
@@ -23,7 +23,7 @@ struct CategoryView: View {
                     .font(.headline)
                     .padding(.leading)
                 PostFeed(site: viewModel.selectedWordpress, category: category)
-                //PostFeed(category: category.id, domain: handler.domain)
+                // PostFeed(category: category.id, domain: handler.domain)
             }
 
             // Navigation Link to SearchView
@@ -53,7 +53,7 @@ struct CategoryView: View {
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
         CategoryView(category: SimpleCategory(id: 7, name: "Opinions", image: nil), imageURL: Wordpress.default.defaultImageURL)
-            //.environmentObject(WordpressAPIHandler())
+            // .environmentObject(WordpressAPIHandler())
             .environmentObject(ViewModelData())
     }
 }

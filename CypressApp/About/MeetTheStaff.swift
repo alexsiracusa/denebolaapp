@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MeetTheStaff: View {
-    //@EnvironmentObject private var handler: WordpressAPIHandler
+    // @EnvironmentObject private var handler: WordpressAPIHandler
     @EnvironmentObject private var viewModel: ViewModelData
     @State var aboutPost: Post? = nil
 
@@ -32,6 +32,6 @@ struct MeetTheStaff: View {
 struct MeetTheStaff_Previews: PreviewProvider {
     static var previews: some View {
         MeetTheStaff()
-            //.environmentObject(WordpressAPIHandler())
+        // .environmentObject(WordpressAPIHandler())
     }
 }

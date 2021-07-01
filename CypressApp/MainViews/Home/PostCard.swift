@@ -34,12 +34,13 @@ struct PostCard: View {
             }
             .foregroundColor(.black)
         }
+        .buttonStyle(NoButtonAnimation())
     }
 }
 
 struct PostCard_Previews: PreviewProvider {
     static var previews: some View {
         PostCard(post: Post.default, textSize: .subheadline)
-            //.environmentObject(WordpressAPIHandler())
+        // .environmentObject(WordpressAPIHandler())
     }
 }

@@ -11,12 +11,12 @@ struct CategoriesView: View {
     // @EnvironmentObject var handler: WordpressAPIHandler
     @EnvironmentObject private var viewModel: ViewModelData
     @State var sites: [Wordpress]
-    
+
     @State var displayPicker = false
-    
+
     var body: some View {
         let wordpress = viewModel.selectedWordpress!
-        
+
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading) {
@@ -27,16 +27,16 @@ struct CategoriesView: View {
                     }
                     .disabled(sites.count == 1)
                     .padding([.leading, .trailing], 15)
-                    
+
                     CategoriesList()
                     Spacer(minLength: 15)
-                    
+
                     Text("Latest Posts")
                         .font(.headline)
                         .padding(.leading)
-                        
+
                     Spacer(minLength: 15)
-                        
+
                     PostFeed(site: wordpress)
                 }
                 .padding(.top, 10)
@@ -79,6 +79,6 @@ struct CategoriesView_Previews: PreviewProvider {
     static var previews: some View {
         CategoriesView(sites: [Wordpress.default, Wordpress.default])
             // .environmentObject(WordpressAPIHandler())
-            .environmentObject(ViewModelData())
+            .environmentObject(ViewModelData.default)
     }
 }

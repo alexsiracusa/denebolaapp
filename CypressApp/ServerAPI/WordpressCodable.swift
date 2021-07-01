@@ -24,7 +24,7 @@ struct Wordpress: Codable, Identifiable, Hashable {
     var defaultImageURL: URL {
         return try! defaultImage.url.asURL()
     }
-    
+
     var bannerURL: URL {
         return try! logoBanner.url.asURL()
     }

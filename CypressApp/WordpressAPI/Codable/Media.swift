@@ -24,7 +24,7 @@ struct Media: Codable, Equatable, Identifiable {
     let post: Int?
     let source_url: String
 
-    static func ==(lhs: Media, rhs: Media) -> Bool {
+    static func == (lhs: Media, rhs: Media) -> Bool {
         return lhs.id == rhs.id
     }
 }
