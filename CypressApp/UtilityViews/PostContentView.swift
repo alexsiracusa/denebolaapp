@@ -28,13 +28,10 @@ struct PostContentView: View {
         }.onAppear {
             guard !isLoading else { return }
 
-            post.getHtmlContent { result in
-                switch result {
-                case let .success(html):
-                    self.html = html
-                case let .failure(error):
-                    self.error = error.localizedDescription
-                }
+            post.getHtmlContent().done { html in
+                self.html = html
+            }.catch { error in
+                self.error = error.localizedDescription
             }
         }
     }

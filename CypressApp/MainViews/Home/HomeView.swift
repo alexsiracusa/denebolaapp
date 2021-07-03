@@ -27,13 +27,11 @@ struct HomeView: View {
     }
 
     func loadPosts() {
-        sites[0].getPostPage(category: nil, page: 1, per_page: 5, embed: true) { result in
-            switch result {
-            case let .success(posts):
-                latestPosts = posts
-            case .failure:
-                _ = 0
-            }
+        sites[0].getPostPage(category: nil, page: 1, per_page: 5, embed: true).done { posts in
+            latestPosts = posts
+        }.catch {error in
+            print(error)
+            // HANDLE ERROR
         }
 
         // no more multimedia section since not all websites will have that as a category

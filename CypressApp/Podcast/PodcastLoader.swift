@@ -7,6 +7,7 @@
 
 import FeedKit
 import Foundation
+import PromiseKit
 
 class PodcastLoader: ObservableObject {
     var feeds: [String]
@@ -20,45 +21,42 @@ class PodcastLoader: ObservableObject {
         for _ in 0 ..< feeds.count {
             loadedFeeds.append(LoadedPodcast.empty())
         }
-        // self.loadedFeeds = Array(repeating: LoadedPodcast.empty(), count: feeds.count)
+
         loadPodcasts()
     }
 
-    private var parsers: [FeedParser?] = []
+    private var parserPromises: [CancellablePromise<LoadedPodcast>] = []
 
     func loadPodcasts() {
+        parserPromises.removeAll()
+        
         for (index, rssURL) in feeds.enumerated() {
             if !loadedFeeds[index].isEmpty() {
                 break
             }
-            parsers.append(RSSLoader.loadPodcast(rssURL) { result in
-                switch result {
-                case let .success(podcast):
-                    DispatchQueue.main.async {
-                        self.loadedFeeds[index] = podcast
-                    }
-                case .failure:
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                        self.loadPodcasts()
-                    }
-                }
-            })
+            
+            parserPromises.append(RSSLoader.loadPodcast(rssURL))
+            parserPromises[index].done {podcast in
+                self.loadedFeeds[index] = podcast
+            }.catch {error in
+                // TODO: handle error
+            }
         }
     }
 
     func setFeeds(_ feeds: [String]) {
-        for parser in parsers {
-            parser?.abortParsing()
+        for parser in parserPromises {
+            parser.cancel()
         }
-        parsers = []
+        
         self.feeds = feeds
-        loadedFeeds = []
+        loadedFeeds.removeAll()
 
         // don't remove this, it's needed to create unique id's
         for _ in 0 ..< feeds.count {
             loadedFeeds.append(LoadedPodcast.empty())
         }
-        // self.loadedFeeds = Array(repeating: LoadedPodcast.empty(), count: feeds.count)
+        
         loadPodcasts()
     }
 }

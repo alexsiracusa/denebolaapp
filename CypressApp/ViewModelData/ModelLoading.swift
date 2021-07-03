@@ -8,142 +8,77 @@
 import Alamofire
 import Disk
 import Foundation
-// import PromiseKit
+import PromiseKit
 
 extension ViewModelData {
     // 1st initial loading for picker
-    func loadSchoolList(completion: @escaping (AFError?) -> Void) {
-        ServerAPI.getSchools { result in
-            switch result {
-            case let .success(schools):
-                self.schools = schools
-                self.loaded = .list
-                completion(nil)
-            case let .failure(error):
-                completion(error)
-            }
+    func loadSchoolList() -> Promise<Void> {
+        return ServerAPI.getSchools().done {schools in
+            self.loaded = .list
+            self.schools = schools
         }
     }
 
     // load all school data
     // calls loadSchool -> loadBlocks -> loadFullBlocks
-    func loadSchoolData(_ school: School, completion: @escaping (Error?) -> Void) {
-        // would be real cool to have async await for this
-        loadSchool(school) { error in
-            guard error == nil else {
-                completion(error); return
-            }
-            self.loadBlocks(school) { error in
-                guard error == nil else {
-                    completion(error); return
-                }
-                self.loadFullBlocks(school, blocks: self.blocks) { error in
-                    guard error == nil else {
-                        completion(error); return
-                    }
-                    // fully loaded
-                    DispatchQueue.main.async {
-                        self.loaded = .all
-                    }
-                    completion(nil)
-                }
-            }
+    func loadSchoolData(_ school: School) -> Promise<Void> {
+        self.school = school
+
+        return school.getConfig().then { config -> Promise<[BlockData]> in
+            self.config = config
+            self.tabManager = TabManager(config.allTabs(modelData: self))
+
+            return school.getBlocks()
+        }.then { blocks -> Promise<[Int: FullBlock]> in
+            self.blocks = blocks
+            return self.getFullBlocks(school, blocks: blocks)
+        }.done { fullBlocks in
+            self.fullBlocks = fullBlocks
+            self.loaded = .all
         }
     }
 
-    private func loadSchool(_ school: School, completion: @escaping (AFError?) -> Void) {
-        school.getConfig { result in
-            switch result {
-            case let .success(config):
-                self.school = school
-                self.config = config
-                self.tabManager = TabManager(config.allTabs(modelData: self))
-                completion(nil)
-            case let .failure(error):
-                completion(error)
-            }
+    /// Attempt to retrieve FullBlock data from the disk. If failed, create and save new default block data and retrieve that.
+    func getFullBlocks(_ school: School, blocks: [BlockData]) -> Promise<[Int: FullBlock]> {
+        return self.retrieveFullBlockDataFromDisk(school, blocks: blocks).recover {error -> Promise<[FullBlock]> in
+            print("Could not retrieve data from disk! Recreating data. Reason: \(error)")
+            return self.createBlockDataInDisk(school, blocks: blocks)
+        }.map {
+            $0.reduce(into: [Int: FullBlock]()) { $0[$1.id] = $1 }
         }
     }
 
-    private func loadBlocks(_ school: School, completion: @escaping (AFError?) -> Void) {
-        school.blocks { result in
-            switch result {
-            case let .success(blocks):
-                self.blocks = blocks
-                completion(nil)
-            case let .failure(error):
-                completion(error)
-            }
-        }
-    }
-
-    func loadFullBlocks(_ school: School, blocks: [BlockData], completion: @escaping (NSError?) -> Void) {
-        let path = "schools/\(school.id)/fullBlocks.json"
-        if Disk.exists(path, in: .documents) {
-            updateFullBlockData(school, blocks: blocks) { result in
-                switch result {
-                case let .success(fullBlocks):
-                    DispatchQueue.main.async {
-                        self.fullBlocks = fullBlocks.reduce(into: [Int: FullBlock]()) { $0[$1.id] = $1 }
-                    }
-                    completion(nil)
-                case let .failure(error):
-                    completion(error)
-                }
-            }
-        } else {
-            createFullBlockData(school, blocks: blocks) { result in
-                switch result {
-                case let .success(fullBlocks):
-                    DispatchQueue.main.async {
-                        self.fullBlocks = fullBlocks.reduce(into: [Int: FullBlock]()) { $0[$1.id] = $1 }
-                    }
-                    completion(nil)
-                case let .failure(error):
-                    completion(error)
-                }
-            }
-        }
-    }
-
-    func updateFullBlockData(_ school: School, blocks: [BlockData], completion: @escaping (Result<[FullBlock], NSError>) -> Void) {
+    /// Retrieves FullBlock data from the disk, and compares the stored data to the server
+    func retrieveFullBlockDataFromDisk(_ school: School, blocks: [BlockData]) -> Promise<[FullBlock]> {
         let path = "schools/\(school.id)/fullBlocks.json"
 
-        DispatchQueue.global(qos: .userInitiated).async {
-            do {
-                let fullBlocks = try Disk.retrieve(path, from: .documents, as: [FullBlock].self)
-                let blockDict = blocks.reduce(into: [Int: String]()) { $0[$1.id] = $1.name }
-                fullBlocks.forEach { block in
-                    if let name = blockDict[block.id] {
-                        block.name = name
-                        block.onServer = true
-                    } else {
-                        block.onServer = false
-                    }
+        return Promise { seal in
+            let fullBlocks = try Disk.retrieve(path, from: .documents, as: [FullBlock].self)
+            let blockDict = blocks.reduce(into: [Int: String]()) { $0[$1.id] = $1.name }
+            
+            fullBlocks.forEach { block in
+                if let name = blockDict[block.id] {
+                    block.name = name
+                    block.onServer = true
+                } else {
+                    block.onServer = false
                 }
-                try Disk.save(fullBlocks, to: .documents, as: path)
-                print(path)
-                completion(.success(fullBlocks))
-            } catch let error as NSError {
-                print(error.localizedDescription)
-                completion(.failure(error))
             }
+
+            try Disk.save(fullBlocks, to: .documents, as: path)
+
+            seal.fulfill(fullBlocks)
         }
     }
 
-    func createFullBlockData(_ school: School, blocks: [BlockData], completion: @escaping (Result<[FullBlock], NSError>) -> Void) {
+    /// Creates new FullBlock data from the server fetched-block data and stores it.
+    func createBlockDataInDisk(_ school: School, blocks: [BlockData]) -> Promise<[FullBlock]> {
         let path = "schools/\(school.id)/fullBlocks.json"
         let fullBlocks = blocks.map { FullBlock(id: $0.id, name: $0.name, onServer: true) }
 
-        DispatchQueue.global(qos: .userInitiated).async {
-            do {
-                try Disk.save(fullBlocks, to: .documents, as: path)
-                print(path)
-                completion(.success(fullBlocks))
-            } catch let error as NSError {
-                print(error.localizedDescription)
-                completion(.failure(error))
-            }
+        return Promise { seal in
+            try Disk.save(fullBlocks, to: .documents, as: path)
+            seal.fulfill(fullBlocks)
         }
     }
 }

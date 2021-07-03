@@ -41,10 +41,8 @@ struct ScheduleSettings: View {
         }
         .navigationBarTitle("Blocks", displayMode: .inline)
         .onDisappear {
-            viewModel.saveBlocks { error in
-                if let error = error {
-                    print(error.localizedDescription)
-                }
+            viewModel.saveBlocks().catch { error in
+                print(error.localizedDescription)
             }
         }
     }

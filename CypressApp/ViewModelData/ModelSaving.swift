@@ -7,20 +7,19 @@
 
 import Disk
 import Foundation
+import PromiseKit
 
 extension ViewModelData {
-    func saveBlocks(completion: @escaping (NSError?) -> Void) {
+    func getFullBlockSavePath() -> String {
+        return "schools/\(school.id)/fullBlocks.json"
+    }
+
+    func saveBlocks() -> Promise<Void> {
         let fullBlocks = self.fullBlocks.values.map { $0 } as [FullBlock]
-        let path = "schools/\(school.id)/fullBlocks.json"
-        DispatchQueue.global(qos: .userInitiated).async {
-            do {
-                try Disk.save(fullBlocks, to: .documents, as: path)
-                print(path)
-                completion(nil)
-            } catch let error as NSError {
-                print(error.localizedDescription)
-                completion(error)
-            }
+
+        return Promise { seal in
+            try Disk.save(fullBlocks, to: .documents, as: getFullBlockSavePath())
+            seal.fulfill(())
         }
     }
 

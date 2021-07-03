@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PromiseKit
 import SwiftDate
 
 struct Post: Codable, Equatable, Identifiable {
@@ -44,16 +45,12 @@ struct Post: Codable, Equatable, Identifiable {
         return try? _embedded?.featuredMedia?[0].source_url?.asURL()
     }
 
-    func getHtmlContent(completionHandler: @escaping (Result<String?, Error>) -> Void) {
-        extractArticleFromUrl(url: link, completionHandler: {
-            let result = $0.map {
-                $0.map { elements in
-                    generateHtml(head: elements.head, body: [elements.scripts, elements.styles, self.content.rendered])
-                }
+    func getHtmlContent() -> Promise<String?> {
+        return extractArticleFromUrl(url: link).map {
+            $0.map { elements in
+                generateHtml(head: elements.head, body: [elements.scripts, elements.styles, self.content.rendered])
             }
-
-            completionHandler(result)
-        })
+        }
     }
 
     func getExcerpt() -> String {

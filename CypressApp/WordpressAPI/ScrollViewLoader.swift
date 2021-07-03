@@ -7,75 +7,67 @@
 
 import Alamofire
 import Foundation
+import PromiseKit
 
 class ScrollViewLoader: ObservableObject {
     @Published var posts = [Post]()
-    @Published var isLoadingPage: Bool = false
     @Published var error: String?
     @Published var shouldKeepReloading = true
+    
+    var isLoadingPage: Bool { self.currentRequest != nil }
+
     var per_page = 20
     var currentPage = 1
     var canLoadMorePages = true
 
     var site: Wordpress
     var category: SimpleCategory?
-    var currentRequest: Request? {
-        didSet {
-            isLoadingPage = currentRequest != nil
-        }
-    }
+    @Published var currentRequest: CancellablePromise<[Post]>?
 
     init(site: Wordpress, category: SimpleCategory? = nil) {
         self.category = category
         self.site = site
-        loadMorePosts()
+        self.loadMorePosts()
     }
 
     func setSite(_ site: Wordpress) {
         self.site = site
-        posts = []
-        currentPage = 1
-        canLoadMorePages = true
-        currentRequest?.cancel()
-        currentRequest = nil
-        error = nil
-        loadMorePosts()
+        self.posts = []
+        self.currentPage = 1
+        self.canLoadMorePages = true
+        self.currentRequest?.cancel()
+        self.currentRequest = nil
+        self.error = nil
+        self.loadMorePosts()
     }
 
     func loadMorePostsIfNeeded(currentItem: Post) {
-        let index = posts.firstIndex(where: { currentItem.id == $0.id })
-        let thresholdIndex = posts.index(posts.endIndex, offsetBy: -per_page)
+        let index = self.posts.firstIndex(where: { currentItem.id == $0.id })
+        let thresholdIndex = self.posts.index(self.posts.endIndex, offsetBy: -self.per_page)
         if index == thresholdIndex {
-            loadMorePosts()
+            self.loadMorePosts()
         }
     }
 
     func cancel() {
-        currentRequest?.cancel()
-    }
-
-    func resume() {
-        currentRequest?.resume()
+        self.currentRequest?.cancel()
+        self.currentRequest = nil
     }
 
     func loadMorePosts() {
-        guard currentRequest == nil, canLoadMorePages else { return }
-        currentRequest = site.getPostPage(category: category?.id, page: currentPage, per_page: per_page, embed: true) { result in
-            switch result {
-            case let .success(posts):
-                if posts.count == 0 {
-                    self.canLoadMorePages = false
-                    break
-                }
-                self.posts += posts
-                self.currentPage += 1
-            case let .failure(error):
-                if error.isExplicitlyCancelledError {
-                    print("REQUEST CANCELLED")
-                    break
-                }
-                self.error = error.errorDescription
+        guard self.canLoadMorePages else { return }
+
+        self.currentRequest = self.site.getPostPage(category: self.category?.id, page: self.currentPage, per_page: self.per_page, embed: true)
+
+        self.currentRequest!.done { posts in
+            if posts.count == 0 {
+                self.canLoadMorePages = false
             }
+            self.posts += posts
+            self.currentPage += 1
+        }.catch { error in
+            self.error = error.localizedDescription
+        }.finally {
             self.currentRequest = nil
         }
     }

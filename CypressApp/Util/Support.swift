@@ -5,7 +5,9 @@
 //  Created by Connor Tam on 5/12/21.
 //
 
+import Alamofire
 import Foundation
+import PromiseKit
 import SwiftUI
 
 let DATE_FORMAT = "MMMM d, YYYY"
@@ -19,6 +21,15 @@ func hourToAmPm(_ hour: Int) -> String {
         return "\(hour - 12) PM"
     } else {
         return "\(hour) AM"
+    }
+}
+
+func sealResult<D, E>(_ seal: Resolver<D>, _ result: Result<D, E>) {
+    switch result {
+    case let .success(data):
+        seal.fulfill(data)
+    case let .failure(error):
+        seal.reject(error)
     }
 }
 

@@ -36,13 +36,10 @@ struct CancelledList: View {
                 Spacer()
                     .padding(.horizontal, 10)
                     .onAppear {
-                        viewModel.school.absences { result in
-                            switch result {
-                            case let .success(absences):
-                                self.absences = absences
-                            case let .failure(error):
-                                self.error = error.errorDescription
-                            }
+                        viewModel.school.getAbsences().done {absences in 
+                            self.absences = absences
+                        }.catch {error in
+                            self.error = error.localizedDescription
                         }
                     }
             }

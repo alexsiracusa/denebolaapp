@@ -7,6 +7,7 @@
 
 import Alamofire
 import Foundation
+import PromiseKit
 import SwiftDate
 
 var policy = RetryPolicy(retryLimit: 5, exponentialBackoffBase: 3, exponentialBackoffScale: 0)
@@ -14,10 +15,11 @@ var policy = RetryPolicy(retryLimit: 5, exponentialBackoffBase: 3, exponentialBa
 let SERVER_URL = "https://cypress.sequal.xyz"
 
 enum ServerAPI {
-    static func getSchools(completion: @escaping (Result<[School], AFError>) -> Void) -> Request {
-        return AF.request("\(SERVER_URL)/schools", method: .get, interceptor: Retry()).responseDecodable(of: [School].self) { response in
-            completion(response.result)
-            print(response.request!.url!.absoluteString)
+    static func getSchools() -> Promise<[School]> {
+        return Promise { seal in
+            AF.request("\(SERVER_URL)/schools", method: .get, interceptor: Retry()).responseDecodable(of: [School].self) { response in
+                sealResult(seal, response.result)
+            }
         }
     }
 }
@@ -26,32 +28,36 @@ struct School: Codable, Identifiable {
     let id: Int
     let name: String
 
-    func getConfig(completion: @escaping (Result<SchoolConfig, AFError>) -> Void) -> Request {
-        return AF.request("\(SERVER_URL)/schools/\(id)/config", method: .get, interceptor: Retry()).validate().responseDecodable(of: SchoolConfig.self) { response in
-            completion(response.result)
-            print(response.request!.url!.absoluteString)
+    func getConfig() -> Promise<SchoolConfig> {
+        return Promise { seal in
+            AF.request("\(SERVER_URL)/schools/\(id)/config", method: .get, interceptor: Retry()).validate().responseDecodable(of: SchoolConfig.self) { response in
+                sealResult(seal, response.result)
+            }
         }
     }
 
-    func absences(completion: @escaping (Result<[Absence], AFError>) -> Void) -> Request {
-        return AF.request("\(SERVER_URL)/schools/\(id)/absences", method: .get, interceptor: Retry()).validate().responseDecodable(of: [Absence].self) { response in
-            completion(response.result)
-            print(response.request!.url!.absoluteString)
+    func getAbsences() -> Promise<[Absence]> {
+        return Promise { seal in
+            AF.request("\(SERVER_URL)/schools/\(id)/absences", method: .get, interceptor: Retry()).validate().responseDecodable(of: [Absence].self) { response in
+                sealResult(seal, response.result)
+            }
         }
     }
 
-    func blocks(completion: @escaping (Result<[BlockData], AFError>) -> Void) -> Request {
-        return AF.request("\(SERVER_URL)/schools/\(id)/schedule/blocks", method: .get, interceptor: Retry()).validate().responseDecodable(of: [BlockData].self) { response in
-            completion(response.result)
-            print(response.request!.url!.absoluteString)
+    func getBlocks() -> Promise<[BlockData]> {
+        return Promise { seal in
+            AF.request("\(SERVER_URL)/schools/\(id)/schedule/blocks", method: .get, interceptor: Retry()).validate().responseDecodable(of: [BlockData].self) { response in
+                sealResult(seal, response.result)
+            }
         }
     }
 
-    func getWeek(date: Date, completion: @escaping (Result<Week, AFError>) -> Void) -> Request {
+    func getWeek(date: Date) -> Promise<Week> {
         let dateString = DateInRegion(date, region: .local).toFormat("yyyy-MM-dd")
-        return AF.request("\(SERVER_URL)/schools/\(id)/schedule/weeks/\(dateString)", method: .get, interceptor: Retry()).validate().responseDecodable(of: Week.self) { response in
-            completion(response.result)
-            print(response.request!.url!.absoluteString)
+        return Promise { seal in
+            AF.request("\(SERVER_URL)/schools/\(id)/schedule/weeks/\(dateString)", method: .get, interceptor: Retry()).validate().responseDecodable(of: Week.self) { response in
+                sealResult(seal, response.result)
+            }
         }
     }
 

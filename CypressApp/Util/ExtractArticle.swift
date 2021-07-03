@@ -7,6 +7,7 @@
 
 import Alamofire
 import Foundation
+import PromiseKit
 import SwiftSoup
 
 struct ExtractedArticleElements {
@@ -32,10 +33,11 @@ private func extractArticle(html: String) throws -> ExtractedArticleElements? {
 }
 
 // Gets the supplied URL and returns an ExtractedArticleElements
-func extractArticleFromUrl(url: URL, completionHandler: @escaping (Result<ExtractedArticleElements?, Error>) -> Void) {
-    AF.request(url, interceptor: Retry()).validate().responseString { response in
-        completionHandler(
-            response.tryMap { try extractArticle(html: $0) }.result
-        )
+func extractArticleFromUrl(url: URL) -> Promise<ExtractedArticleElements?> {
+    return Promise { seal in
+        AF.request(url, interceptor: Retry()).validate().responseString { response in
+            let result = response.tryMap { try extractArticle(html: $0) }.result
+            seal.resolve(result)
+        }
     }
 }

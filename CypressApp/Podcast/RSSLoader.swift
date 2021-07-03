@@ -7,41 +7,54 @@
 
 import FeedKit
 import Foundation
+import PromiseKit
 import SwiftDate
 
 class RSSLoader {
-    private static func getRSS(_ url: URL, completion: @escaping (Result<Feed, ParserError>) -> Void) -> FeedParser {
+    private static func getFeedParser(_ url: URL) -> Promise<FeedParser> {
         let parser = FeedParser(URL: url)
-        parser.parseAsync { result in
-            completion(result)
+
+        return Promise(cancellable: parser) { seal in
+            seal.fulfill(parser)
         }
-        return parser
     }
 
-    static func loadPodcast(_ url: String, completion: @escaping (Result<LoadedPodcast, RSSError>) -> Void) -> FeedParser? {
-        guard let url = try? url.asURL() else {
-            completion(.failure(RSSError(kind: .urlError, errorDescription: "Invalid URL")))
-            return nil
+    private static func beginParsing(_ parser: FeedParser) -> Promise<Feed> {
+        return Promise { seal in
+            sealResult(seal, parser.parse())
         }
-        return RSSLoader.getRSS(url) { result in
-            switch result {
-            case let .success(feed):
-                switch feed {
-                case .atom:
-                    completion(.failure(RSSError(kind: .parseError, errorDescription: "Data is of type ATOM, not RSS")))
-                case .json:
-                    completion(.failure(RSSError(kind: .parseError, errorDescription: "Data is of type JSON, not RSS")))
-                case let .rss(rss):
-                    guard let podcast = LoadedPodcast.fromRSS(rss) else {
-                        completion(.failure(RSSError(kind: .parseError, errorDescription: "Data could not be converted")))
-                        return
-                    }
-                    completion(.success(podcast))
+    }
+
+    private static func processFeedData(_ feed: Feed) -> Promise<LoadedPodcast> {
+        return Promise { seal in
+            switch feed {
+            case .atom:
+                seal.reject(RSSError(kind: .parseError, errorDescription: "Data is of type ATOM, not RSS"))
+            case .json:
+                seal.reject(RSSError(kind: .parseError, errorDescription: "Data is of type JSON, not RSS"))
+            case let .rss(rss):
+                guard let podcast = LoadedPodcast.fromRSS(rss) else {
+                    seal.reject(RSSError(kind: .parseError, errorDescription: "Data could not be converted"))
+                    return
                 }
-            case let .failure(error):
-                completion(.failure(RSSError(kind: .parseError, errorDescription: error.localizedDescription)))
+                seal.fulfill(podcast)
             }
         }
+    }
+
+    static func loadPodcast(_ url: String) -> CancellablePromise<LoadedPodcast> {
+        // Convert url string to URL
+        return firstly {
+            RSSLoader.getFeedParser(try url.asURL())
+        }
+        // Parse the Feed URL
+        .then { parser in
+            RSSLoader.beginParsing(parser)
+            // Process the feed data
+        }.then { feed in
+            RSSLoader.processFeedData(feed)
+        }
+        .cancellize()
     }
 }
 

@@ -1142,7 +1142,7 @@
 			repositoryURL = "https://github.com/mxcl/PromiseKit";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 6.15.3;
+				minimumVersion = "7.0.0-rc1";
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

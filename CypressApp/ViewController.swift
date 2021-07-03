@@ -56,10 +56,8 @@ struct ViewController: View {
                 ScrollView {
                     ForEach(viewModel.schools) { school in
                         Button {
-                            viewModel.loadSchoolData(school) { error in
-                                if let error = error {
-                                    self.error = error.localizedDescription
-                                }
+                            viewModel.loadSchoolData(school).catch {error in
+                                self.error = error.localizedDescription
                             }
                         } label: {
                             Text(school.name)
@@ -74,10 +72,8 @@ struct ViewController: View {
                     Text("loading")
                 }
                 .onAppear {
-                    viewModel.loadSchoolList { error in
-                        if let error = error {
-                            self.error = error.localizedDescription
-                        }
+                    viewModel.loadSchoolList().catch { error in
+                        self.error = error.localizedDescription
                     }
                 }
             }
