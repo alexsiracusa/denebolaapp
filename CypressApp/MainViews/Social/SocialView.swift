@@ -43,6 +43,5 @@ struct SocialView_Previews: PreviewProvider {
     static var previews: some View {
         SocialView()
             .environmentObject(ViewModelData.default)
-            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

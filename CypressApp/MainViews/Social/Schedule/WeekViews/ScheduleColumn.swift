@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ScheduleColumn: View {
     @EnvironmentObject var viewModel: ViewModelData
-    @Environment(\.managedObjectContext) var moc
 
     let blocks: [Block]
     let startTime: Date
@@ -36,7 +35,13 @@ struct ScheduleColumn: View {
                 ForEach(blocks, id: \.id) { block in
                     let height = CGFloat(block.times.length / 60) * perMinute
                     let offset = CGFloat(block.times.fromDate - startTime) / 60 * perMinute
-                    BlockView(block: block, height: height, school: moc.getSchoolWith(id: Int64(viewModel.school.id))).offset(y: offset)
+                    if let fullBlock = viewModel.fullBlocks[block.data.id] {
+                        FullBlockView(block: block, fullBlock: fullBlock, height: height)
+                            .offset(y: offset)
+                    } else {
+                        BlockView(block: block, height: height, color: Color(.lightGray))
+                            .offset(y: offset)
+                    }
                 }
             } else {
                 Rectangle()
@@ -60,6 +65,5 @@ struct ScheduleColumn_Previews: PreviewProvider {
         let endTime = df.date(from: "3:55 PM")!
         ScheduleColumn(blocks: Day.default.blocks, start: startTime, end: endTime)
             .environmentObject(ViewModelData.default)
-            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

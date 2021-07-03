@@ -38,13 +38,6 @@ struct SchedulePageView: View {
             MultiPageView(pages: pages, currentPageIndex: $selection, offset: -30)
                 .frame(height: 400)
         }
-        .onAppear {
-            if let school = moc.getSchoolWith(id: Int64(viewModel.school.id)) {
-                moc.updateSchool(school: school, blocks: viewModel.blocks)
-            } else {
-                moc.createSchool(school: viewModel.school, blocks: viewModel.blocks)
-            }
-        }
     }
 }
 
@@ -52,6 +45,5 @@ struct SchedulePageView_Previews: PreviewProvider {
     static var previews: some View {
         SchedulePageView()
             .environmentObject(ViewModelData.default)
-            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

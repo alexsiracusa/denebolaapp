@@ -9,7 +9,6 @@ import SwiftUI
 
 struct Lunches: View {
     @EnvironmentObject var viewModel: ViewModelData
-    @Environment(\.managedObjectContext) var moc
 
     // let day: Day
     let lunches: [Lunch]
@@ -59,6 +58,5 @@ struct LunchColumn_Previews: PreviewProvider {
         let endTime = df.date(from: "3:55 PM")!
         Lunches(lunches: Day.default.lunch, start: startTime, end: endTime)
             .environmentObject(ViewModelData.default)
-            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

@@ -32,3 +32,9 @@ func SpinningLoader() -> some View {
         .progressViewStyle(CircularProgressViewStyle())
         .frame(width: 30, height: 30, alignment: .center)
 }
+
+func WarningIcon() -> some View {
+    Image(systemName: "exclamationmark.triangle.fill")
+        .foregroundColor(.yellow)
+        .background(Color.white.clipped().frame(width: 3, height: 10, alignment: .center))
+}

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct HomeView: View {
-    // @EnvironmentObject private var handler: WordpressAPIHandler
     @EnvironmentObject private var viewModel: ViewModelData
 
     @State private var latestPosts = [Post]()

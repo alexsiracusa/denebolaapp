@@ -10,15 +10,12 @@ import SwiftUI
 
 struct ScheduleSettings: View {
     @EnvironmentObject var viewModel: ViewModelData
-    @Environment(\.managedObjectContext) var moc
-
-    @State var school: SchoolData?
 
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 15) {
-                if let school = school {
-                    ForEach(school.blockArray, id: \.self) { block in
+                if let fullBlocks = viewModel.fullBlocks {
+                    ForEach(fullBlocks.sorted(by: <), id: \.key) { _, block in
                         BlockEditor(block: block)
                     }
                 } else {
@@ -27,22 +24,26 @@ struct ScheduleSettings: View {
                     }
                 }
 
+                // for debug only
                 Button {
-                    moc.delete("SchoolData")
-                    moc.delete("BlockInfo")
+                    viewModel.deleteAll()
                 } label: {
                     Text("Delete All")
+                }
+
+                // for debug only
+                Button {
+                    viewModel.fullBlocks[-10] = FullBlock(id: -10, name: "Bad Block")
+                } label: {
+                    Text("Add bad block")
                 }
             }
         }
         .navigationBarTitle("Blocks", displayMode: .inline)
-        .onAppear {
-            DispatchQueue.global(qos: .userInitiated).async {
-                if let school = moc.getSchoolWith(id: Int64(viewModel.school.id)) {
-                    moc.updateSchool(school: school, blocks: viewModel.blocks)
-                    self.school = school
-                } else {
-                    self.school = moc.createSchool(school: viewModel.school, blocks: viewModel.blocks)
+        .onDisappear {
+            viewModel.saveBlocks { error in
+                if let error = error {
+                    print(error.localizedDescription)
                 }
             }
         }
@@ -53,6 +54,5 @@ struct ScheduleSettings_Previews: PreviewProvider {
     static var previews: some View {
         ScheduleSettings()
             .environmentObject(ViewModelData.default)
-            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

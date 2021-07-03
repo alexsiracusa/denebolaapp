@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CategoryView: View {
-    // @EnvironmentObject var handler: WordpressAPIHandler
     @EnvironmentObject private var viewModel: ViewModelData
     var category: SimpleCategory
     var imageURL: URL

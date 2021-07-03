@@ -74,6 +74,5 @@ struct ScheduleView_Previews: PreviewProvider {
     static var previews: some View {
         ScheduleView(date: Date("6/22/2021")!, height: 400, showLunches: false)
             .environmentObject(ViewModelData.default)
-            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

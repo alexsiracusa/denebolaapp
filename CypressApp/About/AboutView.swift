@@ -10,7 +10,6 @@ import SwiftUI
 private let TAB_NAMES = ["About", "Meet The Staff", "Submit Idea"]
 
 struct AboutView: View {
-    // @EnvironmentObject private var handler: WordpressAPIHandler
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var viewModel: ViewModelData
 

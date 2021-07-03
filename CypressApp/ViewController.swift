@@ -10,13 +10,8 @@ import MediaPlayer
 import SwiftUI
 
 struct ViewController: View {
-    // @EnvironmentObject var handler: WordpressAPIHandler
     @EnvironmentObject var viewModel: ViewModelData
     @EnvironmentObject var player: PlayerObject
-
-    @State var schools: [School]? = nil
-    @State var school: SchoolConfig? = nil
-    @State var request: Request? = nil
 
     init() {
         UITabBar.appearance().barTintColor = UIColor.white
@@ -30,95 +25,61 @@ struct ViewController: View {
         UINavigationBar.appearance().compactAppearance = appearance
     }
 
-    @State var tabManager: TabManager? = nil
     var tabs: [Tab] {
-        return tabManager!.tabs
+        return viewModel.tabManager!.tabs
     }
 
     @State var error: String? = nil
     var body: some View {
         Group {
-            if school != nil {
+            // has error
+            if let error = error {
+                Text(error)
+            }
+
+            // fully loaded (app view)
+            else if viewModel.loaded == .all {
                 TabView(selection: $viewModel.selectedTab) {
                     ForEach(0 ..< tabs.count, id: \.self) { n in
                         let tab = tabs[n]
                         NowPlayingBar(content: tab.content)
-                            // tab.content
                             .tabItem {
                                 tab.tabIcon
                             }
                     }
                 }
                 .accentColor(.orange)
-            } else if let schools = schools {
+            }
+
+            // school picker
+            else if viewModel.loaded == .list {
                 ScrollView {
-                    ForEach(schools) { school in
+                    ForEach(viewModel.schools) { school in
                         Button {
-                            loadSchool(school)
+                            viewModel.loadSchoolData(school) { error in
+                                if let error = error {
+                                    self.error = error.localizedDescription
+                                }
+                            }
                         } label: {
                             Text(school.name)
                         }
                     }
                 }
-            } else if schools == nil {
+            }
+
+            // fecthing schools
+            else if viewModel.loaded == .none {
                 VStack {
-                    if let error = error {
-                        Text(error)
-                    }
                     Text("loading")
                 }
                 .onAppear {
-                    loadSchools()
+                    viewModel.loadSchoolList { error in
+                        if let error = error {
+                            self.error = error.localizedDescription
+                        }
+                    }
                 }
-            }
-        }
-        .onDisappear {
-            self.request = nil
-        }
-    }
-
-    func loadSchool(_ school: School) {
-        guard request == nil else { return }
-        request = school.getConfig { result in
-            switch result {
-            case let .success(config):
-                self.tabManager = TabManager(config.allTabs(modelData: viewModel))
-                self.school = config
-                self.viewModel.school = school
-                self.viewModel.config = config
-                self.request = nil
-                loadSchoolBlocks(school)
-            case let .failure(error):
-                self.error = error.errorDescription
-                self.request = nil
-            }
-        }
-    }
-
-    func loadSchoolBlocks(_ school: School) {
-        guard request == nil else { return }
-        request = school.blocks { result in
-            switch result {
-            case let .success(blocks):
-                self.viewModel.blocks = blocks
-                self.request = nil
-            case let .failure(error):
-                self.error = error.errorDescription
-                self.request = nil
-            }
-        }
-    }
-
-    func loadSchools() {
-        guard request == nil else { return }
-        request = ServerAPI.getSchools { result in
-            switch result {
-            case let .success(schools):
-                self.schools = schools
-                self.request = nil
-            case let .failure(error):
-                self.error = error.errorDescription
-                self.request = nil
             }
         }
     }

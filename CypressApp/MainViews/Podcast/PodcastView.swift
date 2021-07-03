@@ -10,7 +10,6 @@ import SwiftUI
 
 struct PodcastView: View {
     @EnvironmentObject var loader: PodcastLoader
-    // @EnvironmentObject var handler: WordpressAPIHandler
     @EnvironmentObject private var viewModel: ViewModelData
 
     let podcasts: [Podcast]

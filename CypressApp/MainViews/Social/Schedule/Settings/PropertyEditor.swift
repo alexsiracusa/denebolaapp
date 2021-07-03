@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct PropertyEditor: View {
-    @Environment(\.managedObjectContext) var moc
-
     var title: String
     @Binding var text: String
 
@@ -19,9 +17,7 @@ struct PropertyEditor: View {
                 .font(.caption)
                 .foregroundColor(.black)
                 .frame(width: 100, alignment: .bottomLeading)
-            TextField("-", text: $text, onCommit: {
-                moc.saveAsyncIfNeeded()
-            })
+            TextField("-", text: $text)
                 .frame(alignment: .bottom)
         }
         .frame(height: 25)

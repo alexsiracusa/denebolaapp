@@ -1,34 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="BlockInfo" representedClassName="BlockInfo" syncable="YES">
-        <attribute name="blockName" optional="YES" attributeType="String"/>
-        <attribute name="classSubject" optional="YES" attributeType="String"/>
-        <attribute name="colorHex" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="onServer" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="roomNumber" optional="YES" attributeType="String"/>
-        <attribute name="teacherFirst" optional="YES" attributeType="String"/>
-        <attribute name="teacherLast" optional="YES" attributeType="String"/>
-        <relationship name="school" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SchoolData" inverseName="blocks" inverseEntity="SchoolData"/>
-        <uniquenessConstraints>
-            <uniquenessConstraint>
-                <constraint value="id"/>
-                <constraint value="school"/>
-            </uniquenessConstraint>
-        </uniquenessConstraints>
-    </entity>
-    <entity name="SchoolData" representedClassName="SchoolData" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="blocks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BlockInfo" inverseName="school" inverseEntity="BlockInfo"/>
-        <uniquenessConstraints>
-            <uniquenessConstraint>
-                <constraint value="id"/>
-            </uniquenessConstraint>
-        </uniquenessConstraints>
-    </entity>
-    <elements>
-        <element name="BlockInfo" positionX="-63" positionY="-18" width="128" height="164"/>
-        <element name="SchoolData" positionX="-54" positionY="45" width="128" height="74"/>
-    </elements>
+    <elements/>
 </model>

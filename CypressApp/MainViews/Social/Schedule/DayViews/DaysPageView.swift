@@ -30,6 +30,5 @@ struct DaysPageView_Previews: PreviewProvider {
     static var previews: some View {
         DaysPageView(days: [Day.default, Day.default, Day.default])
             .environmentObject(ViewModelData.default)
-            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

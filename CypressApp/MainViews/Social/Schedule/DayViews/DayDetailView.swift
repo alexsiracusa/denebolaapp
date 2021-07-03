@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DayDetailView: View {
+    @EnvironmentObject var viewModel: ViewModelData
     let day: Day
 
     var body: some View {
@@ -16,11 +17,17 @@ struct DayDetailView: View {
                 if day.blocksAndLunches.count > 0 {
                     ForEach(day.blocksAndLunches, id: \.displayId) { block in
                         if let block = block as? Block {
-                            LargeBlockView(block: block)
-                                .padding(.horizontal)
-                                .padding(.top, 20)
+                            if let fullBlock = viewModel.fullBlocks[block.data.id] {
+                                LargeFullBlockView(block: block, fullBlock: fullBlock)
+                                    .padding(.horizontal)
+                                    .padding(.top, 20)
+                            } else {
+                                LargeBlockView(block: block)
+                                    .padding(.horizontal)
+                                    .padding(.top, 20)
+                            }
                         } else if let lunch = block as? Lunch {
-                            LargeLunchView(lunch: lunch)
+                            LargeBlockView(lunch: lunch)
                                 .padding(.horizontal)
                         }
                     }
@@ -42,6 +49,5 @@ struct DayDetailView_Previews: PreviewProvider {
     static var previews: some View {
         DayDetailView(day: Day.default)
             .environmentObject(ViewModelData.default)
-            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

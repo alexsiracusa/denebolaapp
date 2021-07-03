@@ -108,3 +108,9 @@ extension Date {
         return lhs.timeIntervalSinceReferenceDate - rhs.timeIntervalSinceReferenceDate
     }
 }
+
+extension String {
+    var words: [String] {
+        return split(separator: " ").map { String($0) }
+    }
+}

@@ -7,6 +7,7 @@
 
 import Alamofire
 @testable import Cypress
+import Disk
 import XCTest
 let SERVER_TEST_URL = "https://cypress.sequal.xyz"
 

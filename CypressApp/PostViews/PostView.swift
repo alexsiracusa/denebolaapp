@@ -9,7 +9,6 @@ import LoaderUI
 import SwiftUI
 
 struct PostView: View {
-    // @EnvironmentObject var handler: WordpressAPIHandler
     @EnvironmentObject var viewModel: ViewModelData
 
     let post: Post

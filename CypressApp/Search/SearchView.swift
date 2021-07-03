@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SearchView: View {
-    // @EnvironmentObject var handler: WordpressAPIHandler
     @ObservedObject var loader: SearchResultLoader
     @EnvironmentObject private var viewModel: ViewModelData
     @State var searchFor = ""
