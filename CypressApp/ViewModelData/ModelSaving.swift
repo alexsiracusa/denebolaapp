@@ -15,8 +15,6 @@ extension ViewModelData {
     }
 
     func saveBlocks() -> Promise<Void> {
-        let fullBlocks = self.fullBlocks.values.map { $0 } as [FullBlock]
-
         return Promise { seal in
             try Disk.save(fullBlocks, to: .documents, as: getFullBlockSavePath())
             seal.fulfill(())

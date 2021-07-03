@@ -13,7 +13,7 @@ import PromiseKit
 extension ViewModelData {
     // 1st initial loading for picker
     func loadSchoolList() -> Promise<Void> {
-        return ServerAPI.getSchools().done {schools in
+        return ServerAPI.getSchools().done { schools in
             self.loaded = .list
             self.schools = schools
         }
@@ -31,54 +31,50 @@ extension ViewModelData {
             return school.getBlocks()
         }.then { blocks -> Promise<[Int: FullBlock]> in
             self.blocks = blocks
-            return self.getFullBlocks(school, blocks: blocks)
-        }.done { fullBlocks in
+
+            return self.getFullBlocks()
+        }.then { fullBlocks throws -> Promise<Void> in
             self.fullBlocks = fullBlocks
+            self.reconcileLocalBlockDataWithServer()
+
+            return self.saveBlocks()
+        }.done { _ in
             self.loaded = .all
         }
     }
 
     /// Attempt to retrieve FullBlock data from the disk. If failed, create and save new default block data and retrieve that.
-    func getFullBlocks(_ school: School, blocks: [BlockData]) -> Promise<[Int: FullBlock]> {
-        return self.retrieveFullBlockDataFromDisk(school, blocks: blocks).recover {error -> Promise<[FullBlock]> in
+    func getFullBlocks() -> Promise<[Int: FullBlock]> {
+        return self.retrieveFullBlockDataFromDisk().recover { error -> Guarantee<[Int: FullBlock]> in
             print("Could not retrieve data from disk! Recreating data. Reason: \(error)")
-            return self.createBlockDataInDisk(school, blocks: blocks)
-        }.map {
-            $0.reduce(into: [Int: FullBlock]()) { $0[$1.id] = $1 }
+            return self.createBlockData()
         }
     }
 
-    /// Retrieves FullBlock data from the disk, and compares the stored data to the server
-    func retrieveFullBlockDataFromDisk(_ school: School, blocks: [BlockData]) -> Promise<[FullBlock]> {
-        let path = "schools/\(school.id)/fullBlocks.json"
-
-        return Promise { seal in
-            let fullBlocks = try Disk.retrieve(path, from: .documents, as: [FullBlock].self)
-            let blockDict = blocks.reduce(into: [Int: String]()) { $0[$1.id] = $1.name }
-            
-            fullBlocks.forEach { block in
-                if let name = blockDict[block.id] {
-                    block.name = name
-                    block.onServer = true
-                } else {
-                    block.onServer = false
-                }
+    // Compares locally saved data with the fetched server data and sets onServer for the block
+    func reconcileLocalBlockDataWithServer() {
+        for (_, fullBlock) in fullBlocks {
+            if let matchingBlock = blocks.first(where: { serverBlock in serverBlock.id == fullBlock.id }) {
+                fullBlock.name = matchingBlock.name
+                fullBlock.onServer = true
+            } else {
+                fullBlock.onServer = false
             }
+        }
+    }
 
-            try Disk.save(fullBlocks, to: .documents, as: path)
-
+    /// Retrieves FullBlock data from the disk
+    func retrieveFullBlockDataFromDisk() -> Promise<[Int: FullBlock]> {
+        return Promise { seal in
+            let fullBlocks = try Disk.retrieve(getFullBlockSavePath(), from: .documents, as: [Int: FullBlock].self)
             seal.fulfill(fullBlocks)
         }
     }
 
-    /// Creates new FullBlock data from the server fetched-block data and stores it.
-    func createBlockDataInDisk(_ school: School, blocks: [BlockData]) -> Promise<[FullBlock]> {
-        let path = "schools/\(school.id)/fullBlocks.json"
-        let fullBlocks = blocks.map { FullBlock(id: $0.id, name: $0.name, onServer: true) }
-
-        return Promise { seal in
-            try Disk.save(fullBlocks, to: .documents, as: path)
-            seal.fulfill(fullBlocks)
+    /// Creates new FullBlock data from the server fetched-block data.
+    func createBlockData() -> Guarantee<[Int: FullBlock]> {
+        return Guarantee { seal in
+            seal(blocks.reduce(into: [Int: FullBlock]()) { $0[$1.id] = FullBlock(id: $1.id, name: $1.name, onServer: true) })
         }
     }
 }

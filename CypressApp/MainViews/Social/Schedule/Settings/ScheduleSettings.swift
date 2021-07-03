@@ -33,7 +33,7 @@ struct ScheduleSettings: View {
 
                 // for debug only
                 Button {
-                    viewModel.fullBlocks[-10] = FullBlock(id: -10, name: "Bad Block")
+                    viewModel.fullBlocks[-100] = FullBlock(id: -100, name: "Bad Block")
                 } label: {
                     Text("Add bad block")
                 }

@@ -39,9 +39,9 @@ class ViewModelData: ObservableObject {
         model.blocks = Array(repeating: BlockData.default, count: 8)
         model.fullBlocks = [
             0: FullBlock(id: 0, name: "A"),
-            1: FullBlock(id: 0, name: "B"),
-            2: FullBlock(id: 0, name: "C"),
-            3: FullBlock(id: 0, name: "D"),
+            1: FullBlock(id: 1, name: "B"),
+            2: FullBlock(id: 2, name: "C"),
+            3: FullBlock(id: 3, name: "D"),
         ]
         return model
     }
