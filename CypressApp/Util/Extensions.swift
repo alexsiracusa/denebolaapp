@@ -75,7 +75,7 @@ public extension UIColor {
             r = CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0
             g = CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0
             b = CGFloat(rgbValue & 0x0000FF) / 255.0
-            a = CGFloat((rgbValue & 0xFF000000) >> 24) / 255.0
+            a = CGFloat((rgbValue & 0xFF00_0000) >> 24) / 255.0
 
         } else if cString.count == 6 {
             r = CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0
@@ -140,7 +140,7 @@ extension FeedParser: Cancellable {
     }
 
     public func cancel() {
-        self.abortParsing()
+        abortParsing()
         Holder.isCancelled = true
     }
 }

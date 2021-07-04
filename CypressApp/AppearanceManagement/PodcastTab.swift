@@ -10,6 +10,9 @@ import SwiftUI
 
 struct PodcastTab: Tab {
     var podcasts: [Podcast]
+
+    var name = "Podcast"
+
     var content: AnyView {
         AnyView(
             PodcastView(podcasts + [Podcast(id: 99, enabled: true, rssUrl: "https://atp.fm/rss")])

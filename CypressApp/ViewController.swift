@@ -6,6 +6,7 @@
 //
 
 import Alamofire
+import Introspect
 import MediaPlayer
 import SwiftUI
 
@@ -42,9 +43,19 @@ struct ViewController: View {
                 TabView(selection: $viewModel.selectedTab) {
                     ForEach(0 ..< tabs.count, id: \.self) { n in
                         let tab = tabs[n]
+
                         NowPlayingBar(content: tab.content)
+                            .tag(n)
                             .tabItem {
                                 tab.tabIcon
+                            }
+                            // Handle popping view when tab button clicked again
+                            .introspectNavigationController { navigation in
+                                ViewManager.shared.addNav(name: tab.name, navController: navigation)
+                            }
+                            .onReceive(viewModel.$selectedTab) { index in
+                                guard index == n else { return }
+                                ViewManager.shared.focus(name: tab.name)
                             }
                     }
                 }
@@ -56,7 +67,7 @@ struct ViewController: View {
                 ScrollView {
                     ForEach(viewModel.schools) { school in
                         Button {
-                            viewModel.loadSchoolData(school).catch {error in
+                            viewModel.loadSchoolData(school).catch { error in
                                 self.error = error.localizedDescription
                             }
                         } label: {

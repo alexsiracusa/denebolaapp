@@ -11,4 +11,5 @@ import SwiftUI
 protocol Tab {
     var tabIcon: AnyView { get }
     var content: AnyView { get }
+    var name: String { get }
 }

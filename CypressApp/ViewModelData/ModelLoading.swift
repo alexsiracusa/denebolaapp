@@ -51,7 +51,7 @@ extension ViewModelData {
         }
     }
 
-    // Compares locally saved data with the fetched server data and sets onServer for the block
+    /// Compares locally saved data with the fetched server data and sets onServer for the block
     func reconcileLocalBlockDataWithServer() {
         for (_, fullBlock) in fullBlocks {
             if let matchingBlock = blocks.first(where: { serverBlock in serverBlock.id == fullBlock.id }) {

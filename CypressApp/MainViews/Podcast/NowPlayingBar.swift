@@ -15,12 +15,14 @@ struct NowPlayingBar: View {
 
     var body: some View {
         ZStack(alignment: .bottom) {
-            content
-                .fullScreenCover(isPresented: .constant(viewModel.podcastViewState == .showFullScreen)) {
-                    PodcastEpisodeView()
-                        .environmentObject(player)
-                        .accentColor(.orange)
-                }
+            NavigationView {
+                content
+                    .fullScreenCover(isPresented: .constant(viewModel.podcastViewState == .showFullScreen)) {
+                        PodcastEpisodeView()
+                            .environmentObject(player)
+                            .accentColor(.orange)
+                    }
+            }
             if viewModel.podcastViewState == .show || viewModel.podcastViewState == .showFullScreen {
                 ZStack {
                     if let episode = player.episode {

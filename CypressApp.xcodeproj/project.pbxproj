@@ -19,6 +19,8 @@
 		CE4D2D4326489C6500C243CC /* LoaderUI in Frameworks */ = {isa = PBXBuildFile; productRef = CE4D2D4226489C6500C243CC /* LoaderUI */; };
 		CE6442B4267FA152002FFFEC /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = CE6442B3267FA152002FFFEC /* SwiftUIPager */; };
 		CE74689326605535007321FD /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE74689226605535007321FD /* AboutView.swift */; };
+		CE7788B72690E10500942A71 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = CE7788B62690E10500942A71 /* Introspect */; };
+		CE7788B92690E1DD00942A71 /* ViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7788B82690E1DD00942A71 /* ViewManager.swift */; };
 		CE87B3EE264CCE8A009CAF44 /* Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE87B3ED264CCE8A009CAF44 /* Support.swift */; };
 		CE965A05267FE606001515A2 /* NowPlayingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE965A04267FE606001515A2 /* NowPlayingPage.swift */; };
 		CE965A07267FE658001515A2 /* DescriptionPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE965A06267FE658001515A2 /* DescriptionPage.swift */; };
@@ -143,6 +145,7 @@
 		CE45BFD7267BFF63003D0C2B /* CypressTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CypressTests.swift; sourceTree = "<group>"; };
 		CE45BFD9267BFF63003D0C2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE74689226605535007321FD /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		CE7788B82690E1DD00942A71 /* ViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewManager.swift; sourceTree = "<group>"; };
 		CE87B3ED264CCE8A009CAF44 /* Support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Support.swift; sourceTree = "<group>"; };
 		CE965A04267FE606001515A2 /* NowPlayingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingPage.swift; sourceTree = "<group>"; };
 		CE965A06267FE658001515A2 /* DescriptionPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionPage.swift; sourceTree = "<group>"; };
@@ -262,6 +265,7 @@
 				CE6442B4267FA152002FFFEC /* SwiftUIPager in Frameworks */,
 				CE4D2D4326489C6500C243CC /* LoaderUI in Frameworks */,
 				CED8EB21265CBD7C002922A3 /* SwiftDate in Frameworks */,
+				CE7788B72690E10500942A71 /* Introspect in Frameworks */,
 				CE126FC0267BEBC6001ABBB1 /* SwiftSoup in Frameworks */,
 				FA65B42E268E189200AE3704 /* Disk in Frameworks */,
 			);
@@ -428,6 +432,7 @@
 				CEFE4E7A26562EF2005A2DD4 /* ModelData.swift */,
 				FA65B470268EA85F00AE3704 /* ModelLoading.swift */,
 				FA65B474268EC32E00AE3704 /* ModelSaving.swift */,
+				CE7788B82690E1DD00942A71 /* ViewManager.swift */,
 			);
 			path = ViewModelData;
 			sourceTree = "<group>";
@@ -636,6 +641,7 @@
 				CE6442B3267FA152002FFFEC /* SwiftUIPager */,
 				FA65B42D268E189200AE3704 /* Disk */,
 				FA65B47E268FE78400AE3704 /* PromiseKit */,
+				CE7788B62690E10500942A71 /* Introspect */,
 			);
 			productName = DenebolaApp;
 			productReference = CEC03FAD263E354200FFCB45 /* Cypress.app */;
@@ -678,6 +684,7 @@
 				CE6442B2267FA152002FFFEC /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
 				FA65B42C268E189200AE3704 /* XCRemoteSwiftPackageReference "Disk" */,
 				FA65B47D268FE78400AE3704 /* XCRemoteSwiftPackageReference "PromiseKit" */,
+				CE7788B52690E10500942A71 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = CEC03FAE263E354200FFCB45 /* Products */;
 			projectDirPath = "";
@@ -726,6 +733,7 @@
 				FA7320EB267438F00012C3EC /* PodcastDetailView.swift in Sources */,
 				FAAE7DFC2669B44F00DE708A /* ServerAPI.swift in Sources */,
 				FA65B475268EC32E00AE3704 /* ModelSaving.swift in Sources */,
+				CE7788B92690E1DD00942A71 /* ViewManager.swift in Sources */,
 				FA5D35AD266B29E4003B8D2F /* Logo.swift in Sources */,
 				FA0CB8542667247E009FE7A3 /* CategoriesList.swift in Sources */,
 				FA73AA30263E363600B6C8B6 /* PostView.swift in Sources */,
@@ -1105,6 +1113,14 @@
 				minimumVersion = 2.3.0;
 			};
 		};
+		CE7788B52690E10500942A71 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.3;
+			};
+		};
 		CED8EB1F265CBD7C002922A3 /* XCRemoteSwiftPackageReference "SwiftDate" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/malcommac/SwiftDate";
@@ -1167,6 +1183,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CE6442B2267FA152002FFFEC /* XCRemoteSwiftPackageReference "SwiftUIPager" */;
 			productName = SwiftUIPager;
+		};
+		CE7788B62690E10500942A71 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE7788B52690E10500942A71 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
 		};
 		CED8EB20265CBD7C002922A3 /* SwiftDate */ = {
 			isa = XCSwiftPackageProductDependency;

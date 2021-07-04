@@ -29,16 +29,16 @@ class PodcastLoader: ObservableObject {
 
     func loadPodcasts() {
         parserPromises.removeAll()
-        
+
         for (index, rssURL) in feeds.enumerated() {
             if !loadedFeeds[index].isEmpty() {
                 break
             }
-            
+
             parserPromises.append(RSSLoader.loadPodcast(rssURL))
-            parserPromises[index].done {podcast in
+            parserPromises[index].done { podcast in
                 self.loadedFeeds[index] = podcast
-            }.catch {error in
+            }.catch { _ in
                 // TODO: handle error
             }
         }
@@ -48,7 +48,7 @@ class PodcastLoader: ObservableObject {
         for parser in parserPromises {
             parser.cancel()
         }
-        
+
         self.feeds = feeds
         loadedFeeds.removeAll()
 
@@ -56,7 +56,7 @@ class PodcastLoader: ObservableObject {
         for _ in 0 ..< feeds.count {
             loadedFeeds.append(LoadedPodcast.empty())
         }
-        
+
         loadPodcasts()
     }
 }

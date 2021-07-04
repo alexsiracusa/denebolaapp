@@ -13,8 +13,8 @@ class ScrollViewLoader: ObservableObject {
     @Published var posts = [Post]()
     @Published var error: String?
     @Published var shouldKeepReloading = true
-    
-    var isLoadingPage: Bool { self.currentRequest != nil }
+
+    var isLoadingPage: Bool { currentRequest != nil }
 
     var per_page = 20
     var currentPage = 1
@@ -27,39 +27,39 @@ class ScrollViewLoader: ObservableObject {
     init(site: Wordpress, category: SimpleCategory? = nil) {
         self.category = category
         self.site = site
-        self.loadMorePosts()
+        loadMorePosts()
     }
 
     func setSite(_ site: Wordpress) {
         self.site = site
-        self.posts = []
-        self.currentPage = 1
-        self.canLoadMorePages = true
-        self.currentRequest?.cancel()
-        self.currentRequest = nil
-        self.error = nil
-        self.loadMorePosts()
+        posts = []
+        currentPage = 1
+        canLoadMorePages = true
+        currentRequest?.cancel()
+        currentRequest = nil
+        error = nil
+        loadMorePosts()
     }
 
     func loadMorePostsIfNeeded(currentItem: Post) {
-        let index = self.posts.firstIndex(where: { currentItem.id == $0.id })
-        let thresholdIndex = self.posts.index(self.posts.endIndex, offsetBy: -self.per_page)
+        let index = posts.firstIndex(where: { currentItem.id == $0.id })
+        let thresholdIndex = posts.index(posts.endIndex, offsetBy: -per_page)
         if index == thresholdIndex {
-            self.loadMorePosts()
+            loadMorePosts()
         }
     }
 
     func cancel() {
-        self.currentRequest?.cancel()
-        self.currentRequest = nil
+        currentRequest?.cancel()
+        currentRequest = nil
     }
 
     func loadMorePosts() {
-        guard self.canLoadMorePages else { return }
+        guard canLoadMorePages else { return }
 
-        self.currentRequest = self.site.getPostPage(category: self.category?.id, page: self.currentPage, per_page: self.per_page, embed: true)
+        currentRequest = site.getPostPage(category: category?.id, page: currentPage, per_page: per_page, embed: true)
 
-        self.currentRequest!.done { posts in
+        currentRequest!.done { posts in
             if posts.count == 0 {
                 self.canLoadMorePages = false
             }

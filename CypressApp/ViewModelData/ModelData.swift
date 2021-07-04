@@ -25,6 +25,8 @@ class ViewModelData: ObservableObject {
     @Published var selectedWordpress: Wordpress!
     @Published var podcastViewState: PodcastState = .hidden
 
+    var navController: UINavigationController!
+
     enum PodcastState {
         case hidden
         case show

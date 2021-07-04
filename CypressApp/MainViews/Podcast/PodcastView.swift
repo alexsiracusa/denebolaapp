@@ -32,27 +32,25 @@ struct PodcastView: View {
     }
 
     var body: some View {
-        NavigationView {
-            ScrollView(showsIndicators: false) {
-                if loader.feeds.count > 1 {
-                    LazyVGrid(columns: items, spacing: 10) {
-                        ForEach(loader.loadedFeeds) { podcast in
-                            PodcastButton(podcast: podcast)
-                        }
+        ScrollView(showsIndicators: false) {
+            if loader.feeds.count > 1 {
+                LazyVGrid(columns: items, spacing: 10) {
+                    ForEach(loader.loadedFeeds) { podcast in
+                        PodcastButton(podcast: podcast)
                     }
-                    .padding(10)
-                } else if loader.feeds.count == 1 {
-                    if !loader.loadedFeeds[0].isEmpty() {
-                        PodcastDetailView(podcast: loader.loadedFeeds[0])
-                    } else {
-                        Text("loading")
-                    }
-                } else {
-                    Text("This school has no podcasts, something went wrong")
                 }
+                .padding(10)
+            } else if loader.feeds.count == 1 {
+                if !loader.loadedFeeds[0].isEmpty() {
+                    PodcastDetailView(podcast: loader.loadedFeeds[0])
+                } else {
+                    Text("loading")
+                }
+            } else {
+                Text("This school has no podcasts, something went wrong")
             }
-            .navigationBarTitle("Podcasts", displayMode: .inline)
         }
+        .navigationBarTitle("Podcasts", displayMode: .inline)
         .onAppear {
             guard !didAppear else { return }
             didAppear = true

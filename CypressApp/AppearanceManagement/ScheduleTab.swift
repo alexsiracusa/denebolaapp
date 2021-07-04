@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 struct ScheduleTab: Tab {
+    var name = "Schedule"
+
     var content: AnyView {
         AnyView(
             SocialView()

@@ -36,9 +36,9 @@ struct CancelledList: View {
                 Spacer()
                     .padding(.horizontal, 10)
                     .onAppear {
-                        viewModel.school.getAbsences().done {absences in 
+                        viewModel.school.getAbsences().done { absences in
                             self.absences = absences
-                        }.catch {error in
+                        }.catch { error in
                             self.error = error.localizedDescription
                         }
                     }

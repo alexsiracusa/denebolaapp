@@ -16,45 +16,43 @@ struct CategoriesView: View {
     var body: some View {
         let wordpress = viewModel.selectedWordpress!
 
-        NavigationView {
-            ScrollView {
-                VStack(alignment: .leading) {
-                    Button {
-                        displayPicker = true
-                    } label: {
-                        SiteBanner(imageURL: wordpress.bannerURL)
-                    }
-                    .disabled(sites.count == 1)
-                    .padding([.leading, .trailing], 15)
-
-                    CategoriesList()
-                    Spacer(minLength: 15)
-
-                    Text("Latest Posts")
-                        .font(.headline)
-                        .padding(.leading)
-
-                    Spacer(minLength: 15)
-
-                    PostFeed(site: wordpress)
+        ScrollView {
+            VStack(alignment: .leading) {
+                Button {
+                    displayPicker = true
+                } label: {
+                    SiteBanner(imageURL: wordpress.bannerURL)
                 }
-                .padding(.top, 10)
-                .padding(.bottom, 15)
+                .disabled(sites.count == 1)
+                .padding([.leading, .trailing], 15)
+
+                CategoriesList()
+                Spacer(minLength: 15)
+
+                Text("Latest Posts")
+                    .font(.headline)
+                    .padding(.leading)
+
+                Spacer(minLength: 15)
+
+                PostFeed(site: wordpress)
             }
-            .navigationBarTitle("Feed", displayMode: .inline)
-            .navigationBarItems(
-                trailing:
-                HStack(spacing: 15) {
-                    NavigationLink(destination:
-                        SearchView(site: wordpress)
-                    ) {
-                        Image(systemName: "magnifyingglass")
-                            .foregroundColor(.black)
-                    }
-                    LogoButton(url: wordpress.logoURL)
-                }
-            )
+            .padding(.top, 10)
+            .padding(.bottom, 15)
         }
+        .navigationBarTitle("Feed", displayMode: .inline)
+        .navigationBarItems(
+            trailing:
+            HStack(spacing: 15) {
+                NavigationLink(destination:
+                    SearchView(site: wordpress)
+                ) {
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(.black)
+                }
+                LogoButton(url: wordpress.logoURL)
+            }
+        )
         .sheet(isPresented: $displayPicker) {
             ScrollView {
                 VStack(spacing: 15) {

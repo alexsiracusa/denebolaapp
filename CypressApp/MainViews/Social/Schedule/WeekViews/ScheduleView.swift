@@ -57,9 +57,9 @@ struct ScheduleView: View {
         } else {
             LoadingScheduleView(height: height)
                 .onAppear {
-                    viewModel.school.getWeek(date: date).done {week in
+                    viewModel.school.getWeek(date: date).done { week in
                         self.week = week
-                    }.catch {error in
+                    }.catch { error in
                         self.error = error.localizedDescription
                     }
                 }

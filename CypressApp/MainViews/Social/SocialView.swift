@@ -15,27 +15,25 @@ struct SocialView: View {
     @State var showingSchedule: Bool = false
 
     var body: some View {
-        NavigationView {
-            ScrollView(showsIndicators: false) {
-                VStack(alignment: .leading) {
-                    SchedulePageView()
-                        .padding(.bottom, 20)
-                        .padding(.top, 10)
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .leading) {
+                SchedulePageView()
+                    .padding(.bottom, 20)
+                    .padding(.top, 10)
 
-                    CancelledList()
-                        .padding(.bottom, 20)
-                }
+                CancelledList()
+                    .padding(.bottom, 20)
             }
-            .navigationBarTitle("South", displayMode: .inline)
-            .navigationBarItems(trailing:
-                NavigationLink(destination:
-                    ScheduleSettings()
-                ) {
-                    Image(systemName: "gearshape.fill")
-                        .foregroundColor(.black)
-                }
-            )
         }
+        .navigationBarTitle("South", displayMode: .inline)
+        .navigationBarItems(trailing:
+            NavigationLink(destination:
+                ScheduleSettings()
+            ) {
+                Image(systemName: "gearshape.fill")
+                    .foregroundColor(.black)
+            }
+        )
     }
 }
 

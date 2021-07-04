@@ -29,7 +29,7 @@ struct HomeView: View {
     func loadPosts() {
         sites[0].getPostPage(category: nil, page: 1, per_page: 5, embed: true).done { posts in
             latestPosts = posts
-        }.catch {error in
+        }.catch { error in
             print(error)
             // HANDLE ERROR
         }
@@ -38,21 +38,19 @@ struct HomeView: View {
     }
 
     var body: some View {
-        NavigationView {
-            ScrollView(showsIndicators: false) {
-                VStack(spacing: 30) {
-                    PostSection(posts: latestPosts)
-                        .overlay(gradient)
+        ScrollView(showsIndicators: false) {
+            VStack(spacing: 30) {
+                PostSection(posts: latestPosts)
+                    .overlay(gradient)
 //                    PodcastSection()
 //                        .overlay(gradient)
-                    MultimediaSection(posts: multimediaPosts)
-                        .overlay(gradient)
-                }
-                .padding(.top, 10)
+                MultimediaSection(posts: multimediaPosts)
+                    .overlay(gradient)
             }
-            .navigationBarTitle("Home", displayMode: .inline)
-
-        }.onAppear {
+            .padding(.top, 10)
+        }
+        .navigationBarTitle("Home", displayMode: .inline)
+        .onAppear {
             if latestPosts.count == 0 {
                 loadPosts()
             }
