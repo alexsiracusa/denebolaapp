@@ -46,30 +46,42 @@ public struct MultiPageView: View {
             }
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-        .overlay(Fancy3DotsIndexView(numberOfPages: pages.count, currentIndex: currentPageIndex.wrappedValue, offset: offset), alignment: .top)
+        .overlay(Fancy3DotsIndexView(numberOfPages: pages.count, currentIndex: currentPageIndex, offset: offset), alignment: .top)
     }
 }
 
 // stolen from https://betterprogramming.pub/custom-paging-ui-in-swiftui-13f1347cf529
 struct Fancy3DotsIndexView: View {
     let numberOfPages: Int
-    let currentIndex: Int
+    @Binding var currentIndex: Int
     let offset: CGFloat
 
     private let circleSize: CGFloat = 8
-    private let circleSpacing: CGFloat = 10
+    private let circleSpacing: CGFloat = 12
+    private var finalSpacing: CGFloat {
+        circleSpacing - (20 - circleSize)
+    }
 
     private let primaryColor = Color(UIColor(red: 180 / 255, green: 180 / 255, blue: 180 / 255, alpha: 1))
     private let secondaryColor = Color(UIColor(red: 210 / 255, green: 210 / 255, blue: 210 / 255, alpha: 1))
 
     var body: some View {
-        HStack(spacing: circleSpacing) {
+        HStack(spacing: finalSpacing) {
             ForEach(0 ..< numberOfPages) { index in // 1
-                Circle()
-                    .fill(currentIndex == index ? primaryColor : secondaryColor)
-                    .frame(width: circleSize, height: circleSize)
-                    .transition(AnyTransition.opacity.combined(with: .scale))
-                    .id(index)
+                Button {
+                    withAnimation {
+                        currentIndex = index
+                    }
+                } label: {
+                    Circle()
+                        .fill(currentIndex == index ? primaryColor : secondaryColor)
+                        .frame(width: circleSize, height: circleSize)
+                        .frame(width: 20, height: 20)
+                        .transition(AnyTransition.opacity.combined(with: .scale))
+                        .id(index)
+                    // frame cricle appearance, then view size
+                    // for some reason buttons don't work when they're too small
+                }
             }
         }
         .padding(.horizontal, 10)

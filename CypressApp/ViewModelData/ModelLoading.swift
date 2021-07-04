@@ -45,7 +45,7 @@ extension ViewModelData {
 
     /// Attempt to retrieve FullBlock data from the disk. If failed, create and save new default block data and retrieve that.
     func getFullBlocks() -> Promise<[Int: FullBlock]> {
-        return self.retrieveFullBlockDataFromDisk().recover { error -> Guarantee<[Int: FullBlock]> in
+        return retrieveFullBlockDataFromDisk().recover { error -> Guarantee<[Int: FullBlock]> in
             print("Could not retrieve data from disk! Recreating data. Reason: \(error)")
             return self.createBlockData()
         }
