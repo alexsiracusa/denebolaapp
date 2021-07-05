@@ -15,7 +15,7 @@ struct Week: Codable {
     let week: WeekData
 
     var includedDays: [Day] {
-        let week = week.days.enumerated().map { ignoredDays.contains($0) ? $1?.empty ?? nil : $1 }
+        let week = week.days.enumerated().map { ignoredDays.contains($0) ? $1?.empty : $1 }
         return week.compactMap { $0 }
     }
 
@@ -26,8 +26,8 @@ struct Week: Codable {
 
     func startAndEndTimes() -> (start: Date, end: Date) {
         let blocks = includedDays.flatMap { $0.blocks }
-        let startTime = blocks.map { $0.times.fromDate }.min()
-        let endTime = blocks.map { $0.times.toDate }.max()
+        let startTime = blocks.map { $0.times.from }.min()
+        let endTime = blocks.map { $0.times.to }.max()
         return (startTime!, endTime!)
     }
 

@@ -20,44 +20,36 @@ class ServerAPITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testAbsences() {
+    func doGet<T: Decodable>(endpoint: String, of: T.Type = T.self) {
         let expectation = self.expectation(description: "Request")
 
-        AF.request("\(SERVER_TEST_URL)/schools/0/absences", method: .get, interceptor: Retry()).validate().responseDecodable(of: [Absence].self) { response in
-            print(response.request!.url!.absoluteString)
-            print(response.value)
-            XCTAssert(response.error == nil)
-            XCTAssert(response.value != nil)
+        AF.request("\(SERVER_TEST_URL)\(endpoint)", method: .get, interceptor: Retry()).validate().responseDecodable(of: of) { response in
+            if let error = response.error {
+                XCTFail(error.localizedDescription)
+            }
             expectation.fulfill()
         }
+
         waitForExpectations(timeout: 5, handler: nil)
+    }
+
+    func testAbsences() {
+        doGet(endpoint: "/schools/0/absences/2021-06-17", of: [Absence].self)
     }
 
     func testBlocks() {
-        let expectation = self.expectation(description: "Request")
-
-        AF.request("\(SERVER_TEST_URL)/schools/0/schedule/blocks", method: .get, interceptor: Retry()).validate().responseDecodable(of: [BlockData].self) { response in
-            print(response.request!.url!.absoluteString)
-            print(response.value)
-            XCTAssert(response.error == nil)
-            XCTAssert(response.value != nil)
-            expectation.fulfill()
-        }
-
-        waitForExpectations(timeout: 5, handler: nil)
+        doGet(endpoint: "/schools/0/schedule/blocks", of: [BlockData].self)
     }
 
     func testGetWeek() {
-        let expectation = self.expectation(description: "Request")
+        doGet(endpoint: "/schools/0/schedule/weeks/2021-06-21", of: Week.self)
+    }
 
-        AF.request("\(SERVER_TEST_URL)/schools/0/schedule/weeks/2021-06-21", method: .get, interceptor: Retry()).validate().responseDecodable(of: Week.self) { response in
-            print(response.request!.url!.absoluteString)
-            print(response.value)
-            XCTAssert(response.error == nil)
-            XCTAssert(response.value != nil)
-            expectation.fulfill()
-        }
+    func testConfig() {
+        doGet(endpoint: "/schools/0/config", of: SchoolConfig.self)
+    }
 
-        waitForExpectations(timeout: 5, handler: nil)
+    func testSchoolList() {
+        doGet(endpoint: "/schools", of: [School].self)
     }
 }

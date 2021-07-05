@@ -9,23 +9,27 @@ import Foundation
 
 extension SchoolConfig {
     func homeTab() -> HomeTab? {
-        return HomeTab(sites: wordpress, podcasts: podcasts)
+        guard let home = home, home.enabled else { return nil }
+        // TODO: fix these unwraps
+        return HomeTab(sites: wordpress!, podcasts: podcasts!)
     }
 
     func podcastsTab() -> PodcastTab? {
-        let podcasts = self.podcasts.filter { $0.enabled }
+        guard var podcasts = podcasts else { return nil }
+        podcasts = podcasts.filter { $0.enabled }
         guard podcasts.count > 0 else { return nil }
         return PodcastTab(podcasts: podcasts)
     }
 
     func feedTab() -> FeedTab? {
+        guard let wordpress = wordpress else { return nil }
         let sites = wordpress.filter { $0.enabled }
         guard sites.count > 0 else { return nil }
         return FeedTab(sites: wordpress)
     }
 
     func scheduleTab() -> ScheduleTab? {
-        guard home.enabledSections.contains("schedule") else { return nil }
+        guard let schedule = schedule, schedule.enabled else { return nil }
         return ScheduleTab()
     }
 
@@ -37,7 +41,7 @@ extension SchoolConfig {
         if let feed = feedTab() {
             tabs.append(feed)
             // selectedWordpress is implicitly unwrapped - the feedtab is the first tab that uses it so we set it now
-            modelData.selectedWordpress = wordpress[0]
+            modelData.selectedWordpress = wordpress![0]
         }
 
         if let podcast = podcastsTab() { tabs.append(podcast) }

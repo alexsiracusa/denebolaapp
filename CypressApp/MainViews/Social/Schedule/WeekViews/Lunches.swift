@@ -11,7 +11,7 @@ struct Lunches: View {
     @EnvironmentObject var viewModel: ViewModelData
 
     // let day: Day
-    let lunches: [Lunch]
+    let lunches: [Block]
     let startTime: Date
     let endTime: Date
 
@@ -22,7 +22,7 @@ struct Lunches: View {
 
     let height: CGFloat
 
-    init(lunches: [Lunch], height: CGFloat = 375, start: Date, end: Date) {
+    init(lunches: [Block], height: CGFloat = 375, start: Date, end: Date) {
         self.lunches = lunches
         startTime = start
         endTime = end
@@ -33,10 +33,10 @@ struct Lunches: View {
         GeometryReader { _ in
             if lunches.count > 0 {
                 let perMinute = height / CGFloat(length)
-                ForEach(lunches, id: \.name) { lunch in
+                ForEach(lunches, id: \.id) { lunch in
                     let height = CGFloat(lunch.times.length / 60) * perMinute
-                    let offset = CGFloat(lunch.times.fromDate - startTime) / 60 * perMinute
-                    BlockView(block: lunch.asBlock, height: height, color: .yellow)
+                    let offset = CGFloat(lunch.times.from - startTime) / 60 * perMinute
+                    BlockView(block: lunch, height: height, color: .yellow)
                         .offset(y: offset)
                         .shadow(radius: 5.0)
                 }

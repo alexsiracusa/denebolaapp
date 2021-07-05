@@ -31,18 +31,6 @@ func ?? <T>(lhs: Binding<T?>, rhs: T) -> Binding<T> {
     )
 }
 
-extension Date {
-    init?(timeString: String) {
-        let df = DateFormatter()
-        df.dateFormat = "hh:mm a"
-        if let date = df.date(from: timeString) {
-            self = date
-        } else {
-            return nil
-        }
-    }
-}
-
 extension UIColor {
     func hexString() -> String {
         var r: CGFloat = 0.0

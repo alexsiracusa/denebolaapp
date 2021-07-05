@@ -8,10 +8,11 @@
 import Foundation
 
 struct SchoolConfig: Codable {
-    let announcements: Announcement
-    let home: Home
-    let podcasts: [Podcast]
-    let wordpress: [Wordpress]
+    let announcements: Announcement?
+    let home: Home?
+    let podcasts: [Podcast]?
+    let wordpress: [Wordpress]?
+    let schedule: Schedule?
 }
 
 struct SimpleCategory: Codable, Identifiable {
@@ -45,7 +46,13 @@ struct Podcast: Codable, Identifiable, Hashable {
 
 struct Home: Codable {
     let id: Int
+    let enabled: Bool
     let enabledSections: [String]
 }
 
 struct Announcement: Codable {}
+
+struct Schedule: Codable {
+    let id: Int
+    let enabled: Bool
+}

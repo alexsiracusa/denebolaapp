@@ -10,23 +10,28 @@ import SwiftUI
 
 struct CancelledList: View {
     @EnvironmentObject var viewModel: ViewModelData
-    @State var absences: [Absence]?
+    @State var absences: Absences?
     @State var error: String?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
-            HStack(spacing: 10) {
+            HStack(alignment: .center, spacing: 10) {
                 Text("Cancelled Classes")
                     .font(.title)
                     .bold()
-                if absences == nil {
+                if let absences = absences {
+                    Spacer()
+                    Text(absences.dateString)
+                        .font(.caption)
+                        .bold()
+                } else {
                     SpinningLoader()
+                    Spacer()
                 }
-                Spacer()
             }
 
             if let absences = absences {
-                ForEach(absences) { absence in
+                ForEach(absences.absences) { absence in
                     CancelledRow(cancelled: absence)
                     Divider()
                 }
@@ -36,7 +41,8 @@ struct CancelledList: View {
                 Spacer()
                     .padding(.horizontal, 10)
                     .onAppear {
-                        viewModel.school.getAbsences().done { absences in
+                        // TODO: change this
+                        viewModel.school.getLatestAbsences().done { absences in
                             self.absences = absences
                         }.catch { error in
                             self.error = error.localizedDescription

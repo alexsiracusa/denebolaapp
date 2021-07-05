@@ -32,11 +32,13 @@ class CypressTests: XCTestCase {
     func testExtractArticle() throws {
         let expectation = self.expectation(description: "Request")
 
-        extractArticleFromUrl(url: try! "https://nshsdenebola.com/2021-22-schedule-everything-you-need-to-know/".asURL()) {
-            let result = (try? $0.get()!)!
-            XCTAssert(result.head.starts(with: "<head>"))
-            XCTAssert(result.scripts.starts(with: "<script>"))
+        extractArticleFromUrl(url: try! "https://nshsdenebola.com/2021-22-schedule-everything-you-need-to-know/".asURL()).done { article in
+            let article = article!
+            XCTAssert(article.head.starts(with: "<head>"))
+            XCTAssert(article.scripts.starts(with: "<script>"))
             expectation.fulfill()
+        }.catch { error in
+            XCTFail(error.localizedDescription)
         }
 
         waitForExpectations(timeout: 5, handler: nil)

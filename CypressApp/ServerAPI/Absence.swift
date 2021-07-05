@@ -7,20 +7,30 @@
 
 import Foundation
 
+struct Absences: Codable {
+    let date: String
+    let absences: [Absence]
+
+    var dateString: String {
+        let date = Date(date, format: "yyyy-MM-dd", region: .local)
+        guard let date = date else { return "Unknown" }
+        return date.toFormat("M/d/yyyy")
+    }
+}
+
 struct Absence: Codable, Identifiable {
     let id = UUID()
 
     let firstName: String
     let lastName: String
-    let length: String
     let remarks: String
 
-    var type: CancelledType {
-        return length == "full" ? .full : .partial
+    func hasRemarks() -> Bool {
+        return remarks != ""
     }
 
     static var `default`: Absence {
-        return Absence(firstName: "Molly", lastName: "Estrada", length: "full", remarks: "all blocks cancelled")
+        return Absence(firstName: "Molly", lastName: "Estrada", remarks: "all blocks cancelled")
     }
 }
 

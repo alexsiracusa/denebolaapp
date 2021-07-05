@@ -28,7 +28,7 @@ extension ViewModelData {
             self.config = config
             self.tabManager = TabManager(config.allTabs(modelData: self))
 
-            return school.getBlocks()
+            return school.getCourses()
         }.then { blocks -> Promise<[Int: FullBlock]> in
             self.blocks = blocks
 
@@ -53,11 +53,16 @@ extension ViewModelData {
 
     /// Compares locally saved data with the fetched server data and sets onServer for the block
     func reconcileLocalBlockDataWithServer() {
-        for (_, fullBlock) in fullBlocks {
-            if let matchingBlock = blocks.first(where: { serverBlock in serverBlock.id == fullBlock.id }) {
-                fullBlock.name = matchingBlock.name
+        for block in blocks {
+            if let fullBlock = fullBlocks[block.id] {
+                fullBlock.name = block.name
                 fullBlock.onServer = true
             } else {
+                fullBlocks[block.id] = FullBlock(id: block.id, name: block.name, onServer: true)
+            }
+        }
+        for (_, fullBlock) in fullBlocks {
+            if !blocks.contains(where: { serverBlock in serverBlock.id == fullBlock.id }) {
                 fullBlock.onServer = false
             }
         }

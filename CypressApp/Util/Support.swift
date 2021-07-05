@@ -11,6 +11,8 @@ import PromiseKit
 import SwiftUI
 
 let DATE_FORMAT = "MMMM d, YYYY"
+let TIME_FORMAT = "h:mm a"
+let SERVER_TIME_FORMAT = "hh:mm:ss"
 
 func getFormattedMinutesSeconds(_ seconds: Double) -> String {
     return String(format: "%02d:%02d", Int(seconds) / 60, Int(seconds) % 60)

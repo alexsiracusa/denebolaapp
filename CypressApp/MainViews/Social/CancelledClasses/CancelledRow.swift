@@ -12,43 +12,45 @@ struct CancelledRow: View {
     let cancelled: Absence
 
     var body: some View {
-        HStack(alignment: .center) {
-            Circle()
-                .foregroundColor(cancelled.type == .full ? .red : .yellow)
-                .frame(width: 10, height: 10)
+        VStack(alignment: .leading, spacing: 5) {
+            HStack(alignment: .center) {
+                Circle()
+                    .foregroundColor(cancelled.hasRemarks() ? .yellow : .red)
+                    .frame(width: 10, height: 10)
 
-            Text(cancelled.lastName.uppercased())
-                .frame(width: 160, alignment: .leading)
-            Text(cancelled.firstName.uppercased())
-                .frame(alignment: .leading)
+                Text(cancelled.lastName.uppercased())
+                    .frame(width: 160, alignment: .leading)
+                Text(cancelled.firstName.uppercased())
+                    .frame(alignment: .leading)
 
-            Spacer()
+                Spacer()
 
-            Image(systemName: "chevron.right")
-                .rotationEffect(showingMore ? .degrees(90) : .degrees(0))
-        }
-        .background(Color.white)
-        .zIndex(1)
-        .onTapGesture {
-            withAnimation(.easeOut(duration: 0.2)) {
-                showingMore.toggle()
+                Image(systemName: "chevron.right")
+                    .rotationEffect(showingMore ? .degrees(90) : .degrees(0))
+            }
+            .background(Color.white)
+            .zIndex(1)
+            .onTapGesture {
+                withAnimation(.easeOut(duration: 0.2)) {
+                    showingMore.toggle()
+                }
+            }
+
+            if showingMore {
+                if cancelled.hasRemarks() {
+                    Text(cancelled.remarks)
+                        .foregroundColor(.secondary)
+                        .transition(.move(edge: .top))
+                        .zIndex(0)
+                } else {
+                    Text("All Blocks Cancelled")
+                        .foregroundColor(.secondary)
+                        .transition(.move(edge: .top))
+                        .zIndex(0)
+                }
             }
         }
-
-        if showingMore {
-            switch cancelled.type {
-            case .full:
-                Text("All Blocks Cancelled")
-                    .foregroundColor(.secondary)
-                    .transition(.move(edge: .top))
-                    .zIndex(0)
-            case .partial:
-                Text(cancelled.remarks)
-                    .foregroundColor(.secondary)
-                    .transition(.move(edge: .top))
-                    .zIndex(0)
-            }
-        }
+        .clipped()
     }
 }
 

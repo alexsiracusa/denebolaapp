@@ -17,17 +17,11 @@ struct LargeBlockView: View {
     var teacherFirst: String = ""
     var teacherLast: String = ""
 
-    init(block: Block, color: Color = Color(.lightGray)) {
+    init(block: Block, color: Color = Color(.lightGray), type: BlockType) {
         name = block.data.name
         times = block.times
         self.color = color
-        blockName = block.data.name
-    }
-
-    init(lunch: Lunch, color: Color = .yellow) {
-        name = lunch.name
-        times = lunch.times
-        self.color = color
+        if type == .course { blockName = block.data.name }
     }
 
     init(name: String, times: Times, color: Color, blockName: String = "", subject: String = "", room: String = "", first: String = "", last: String = "") {
@@ -50,7 +44,7 @@ struct LargeBlockView: View {
                     .foregroundColor(color.textColor)
                 Spacer()
             }
-            Text("\(times.from) - \(times.to) (\(Int(times.length / 60)) minutes)")
+            Text("\(times.fromString()) - \(times.toString()) (\(Int(times.length / 60)) minutes)")
                 .foregroundColor(color.textColor)
 
             if blockName != "" {
@@ -88,7 +82,7 @@ struct LargeBlockView: View {
 
 struct LargeBlockView_Previews: PreviewProvider {
     static var previews: some View {
-        LargeBlockView(block: Block.default)
+        LargeBlockView(block: Block.default, type: BlockType.course)
             .environmentObject(ViewModelData.default)
     }
 }

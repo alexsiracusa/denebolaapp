@@ -7,12 +7,7 @@
 
 import Foundation
 
-protocol DisplayBlock {
-    var displayId: UUID { get }
-    var times: Times { get }
-}
-
-struct Block: Codable, Identifiable, DisplayBlock {
+struct Block: Codable, Identifiable {
     var displayId: UUID { return UUID() }
 
     let id: Int
@@ -20,45 +15,45 @@ struct Block: Codable, Identifiable, DisplayBlock {
     let times: Times
 
     static var `default`: Block {
-        return Block(id: 0, data: BlockData(id: 0, name: "A"), times: Times(from: "9:15 AM", to: "10:35 AM"))
-    }
-}
-
-struct Lunch: Codable, DisplayBlock {
-    var displayId: UUID { return UUID() }
-
-    let id: Int
-    let name: String
-    let times: Times
-
-    var asBlock: Block {
-        return Block(id: id, data: BlockData(id: id, name: name), times: times)
-    }
-
-    static var `default`: Lunch {
-        return Lunch(id: 0, name: "1st Lunch", times: Times(from: "10:45 AM", to: "11:20 AM"))
+        return Block(id: 0, data: BlockData(id: 0, name: "A", blockType: .course), times: Times(from: "9:15 AM", to: "10:35 AM"))
     }
 }
 
 struct Times: Codable {
-    let from: String
-    let to: String
+    let from: Date
+    let to: Date
 
-    var fromDate: Date {
-        return Date(timeString: from)!
+    enum CodingKeys: CodingKey {
+        case from, to
     }
 
-    var toDate: Date {
-        return Date(timeString: to)!
+    init(from: String, to: String) {
+        self.from = Date(from, format: "HH:mm:ss", region: .local)!
+        self.to = Date(to, format: "HH:mm:ss", region: .local)!
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        // region needs to be .UTC to avoid offsetting the times
+        from = Date(try container.decode(String.self, forKey: .from), format: "HH:mm:ss", region: .UTC)!
+        to = Date(try container.decode(String.self, forKey: .to), format: "HH:mm:ss", region: .UTC)!
     }
 
     var length: TimeInterval {
-        return toDate - fromDate
+        return to - from
+    }
+
+    func fromString() -> String {
+        from.toFormat(TIME_FORMAT)
+    }
+
+    func toString() -> String {
+        to.toFormat(TIME_FORMAT)
     }
 
     static func < (lhs: Times, rhs: Times) -> Bool {
         if lhs.from != rhs.from {
-            return lhs.fromDate < rhs.fromDate
+            return lhs.from < rhs.from
         } else {
             return lhs.length > rhs.length
         }

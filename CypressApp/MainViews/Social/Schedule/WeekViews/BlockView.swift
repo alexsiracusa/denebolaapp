@@ -24,7 +24,7 @@ struct BlockView: View {
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
             if height >= 15 {
-                Text(block.times.from)
+                Text(block.times.fromString())
                     .foregroundColor(color.textColor)
                     .font(.caption2)
             }
@@ -37,7 +37,7 @@ struct BlockView: View {
             }
             Spacer(minLength: 0)
             if height >= 26 {
-                Text(block.times.to)
+                Text(block.times.toString())
                     .foregroundColor(color.textColor)
                     .font(.caption2)
             }

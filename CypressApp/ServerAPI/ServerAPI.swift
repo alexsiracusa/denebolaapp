@@ -36,17 +36,26 @@ struct School: Codable, Identifiable {
         }
     }
 
-    func getAbsences() -> Promise<[Absence]> {
+    func getAbsences(date: Date) -> Promise<Absences> {
+        let dateString = DateInRegion(date, region: .local).toFormat("yyyy-MM-dd")
         return Promise { seal in
-            AF.request("\(SERVER_URL)/schools/\(id)/absences", method: .get, interceptor: Retry()).validate().responseDecodable(of: [Absence].self) { response in
+            AF.request("\(SERVER_URL)/schools/\(id)/absences/\(dateString)", method: .get, interceptor: Retry()).validate().responseDecodable(of: Absences.self) { response in
                 sealResult(seal, response.result)
             }
         }
     }
 
-    func getBlocks() -> Promise<[BlockData]> {
+    func getLatestAbsences() -> Promise<Absences> {
         return Promise { seal in
-            AF.request("\(SERVER_URL)/schools/\(id)/schedule/blocks", method: .get, interceptor: Retry()).validate().responseDecodable(of: [BlockData].self) { response in
+            AF.request("\(SERVER_URL)/schools/\(id)/absences/latest", method: .get, interceptor: Retry()).validate().responseDecodable(of: Absences.self) { response in
+                sealResult(seal, response.result)
+            }
+        }
+    }
+
+    func getCourses() -> Promise<[BlockData]> {
+        return Promise { seal in
+            AF.request("\(SERVER_URL)/schools/\(id)/schedule/blocks/courses", method: .get, interceptor: Retry()).validate().responseDecodable(of: [BlockData].self) { response in
                 sealResult(seal, response.result)
             }
         }

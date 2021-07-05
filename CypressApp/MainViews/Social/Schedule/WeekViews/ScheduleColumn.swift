@@ -34,7 +34,7 @@ struct ScheduleColumn: View {
                 let perMinute = height / CGFloat(length)
                 ForEach(blocks, id: \.id) { block in
                     let height = CGFloat(block.times.length / 60) * perMinute
-                    let offset = CGFloat(block.times.fromDate - startTime) / 60 * perMinute
+                    let offset = CGFloat(block.times.from - startTime) / 60 * perMinute
                     if let fullBlock = viewModel.fullBlocks[block.data.id] {
                         FullBlockView(block: block, fullBlock: fullBlock, height: height)
                             .offset(y: offset)
