@@ -10,11 +10,13 @@ import UIKit
 
 /// Searches recursively through the current view and its subviews in a UIViewController for a UIScrollView
 private func findScrollView(_ controller: UINavigationController?) -> UIScrollView? {
-    return findScrollView((controller?.viewControllers.last?.view)!)
+    return findScrollView(controller?.viewControllers.last?.view)
 }
 
 /// Searches recursively through the subviews of the view for a UIScrollView
-private func findScrollView(_ view: UIView) -> UIScrollView? {
+private func findScrollView(_ view: UIView?) -> UIScrollView? {
+    guard let view = view else { return nil }
+
     var scrollView = view.subviews.first(where: { ($0 as? UIScrollView) != nil }) as? UIScrollView
 
     guard scrollView == nil else { return scrollView }
