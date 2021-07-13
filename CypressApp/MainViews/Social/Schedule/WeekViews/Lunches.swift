@@ -21,6 +21,7 @@ struct Lunches: View {
     }
 
     let height: CGFloat
+    var blockHeight: CGFloat { return height - 15 }
 
     init(lunches: [Block], height: CGFloat = 375, start: Date, end: Date) {
         self.lunches = lunches
@@ -30,17 +31,23 @@ struct Lunches: View {
     }
 
     var body: some View {
-        GeometryReader { _ in
-            if lunches.count > 0 {
-                let perMinute = height / CGFloat(length)
-                ForEach(lunches, id: \.id) { lunch in
-                    let height = CGFloat(lunch.times.length / 60) * perMinute
-                    let offset = CGFloat(lunch.times.from - startTime) / 60 * perMinute
-                    BlockView(block: lunch, height: height, color: .yellow)
-                        .offset(y: offset)
-                        .shadow(radius: 5.0)
+        VStack(spacing: 5) {
+            Spacer()
+                .frame(height: 10)
+
+            GeometryReader { _ in
+                if lunches.count > 0 {
+                    let perMinute = blockHeight / CGFloat(length)
+                    ForEach(lunches, id: \.id) { lunch in
+                        let height = CGFloat(lunch.times.length / 60) * perMinute
+                        let offset = CGFloat(lunch.times.from - startTime) / 60 * perMinute
+                        BlockView(block: lunch, height: height, color: .yellow)
+                            .offset(y: offset)
+                            .shadow(radius: 5.0)
+                    }
                 }
             }
+            .frame(height: blockHeight)
         }
         .frame(height: height)
         .frame(maxWidth: 100)

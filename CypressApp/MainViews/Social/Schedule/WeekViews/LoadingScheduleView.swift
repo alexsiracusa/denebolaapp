@@ -9,6 +9,9 @@ import SwiftUI
 
 struct LoadingScheduleView: View {
     let height: CGFloat
+    var blockHeight: CGFloat {
+        return height - 20
+    }
 
     let column1: [(height: CGFloat, offset: CGFloat)] = [(80, 0), (130, 90), (80, 230), (80, 320)]
     let column2: [(height: CGFloat, offset: CGFloat)] = [(80, 0), (130, 90), (80, 230), (30, 320), (45, 355)]
@@ -16,22 +19,6 @@ struct LoadingScheduleView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 3) {
-            HStack(alignment: .bottom) {
-                Rectangle()
-                    .fill(Color(UIColor.lightGray))
-                    .brightness(0.2)
-                    .frame(width: 120, height: 10)
-                    .cornerRadius(5.0)
-                Spacer()
-                Rectangle()
-                    .fill(Color(UIColor.lightGray))
-                    .brightness(0.2)
-                    .frame(width: 80, height: 10)
-                    .cornerRadius(5.0)
-            }
-            .frame(height: 17)
-            .padding(.horizontal, 5)
-
             HStack(spacing: 3) {
                 blankColumn(column: column1)
                 blankColumn(column: column2)
@@ -39,25 +26,45 @@ struct LoadingScheduleView: View {
                 blankColumn(column: column1)
                 blankColumn(column: column2)
             }
-            .frame(height: height - 20)
+            .frame(height: blockHeight)
+
+            HStack(alignment: .bottom) {
+                Rectangle()
+                    .fill(Color(UIColor.lightGray))
+                    .brightness(0.2)
+                    .frame(width: 70, height: 10)
+                    .cornerRadius(5.0)
+                Spacer()
+            }
+            .frame(height: 17)
+            .padding(.horizontal, 5)
         }
         .frame(height: height)
         .padding(.horizontal, 10)
     }
 
     func blankColumn(column: [(height: CGFloat, offset: CGFloat)]) -> some View {
-        GeometryReader { _ in
-            ForEach(0 ..< column.count) { index in
-                let block = column[index]
-                Rectangle()
-                    .fill(Color(UIColor.lightGray))
-                    .brightness(0.2)
-                    .frame(height: block.height * ((height - 20) / 400))
-                    .cornerRadius(5.0)
-                    .offset(y: block.offset * ((height - 20) / 400))
+        VStack(spacing: 5) {
+            Rectangle()
+                .fill(Color(UIColor.lightGray))
+                .brightness(0.2)
+                .cornerRadius(5.0)
+                .frame(width: 30, height: 10)
+
+            GeometryReader { _ in
+                ForEach(0 ..< column.count) { index in
+                    let block = column[index]
+                    Rectangle()
+                        .fill(Color(UIColor.lightGray))
+                        .brightness(0.2)
+                        .frame(height: block.height * ((blockHeight - 15) / 400))
+                        .cornerRadius(5.0)
+                        .offset(y: block.offset * ((blockHeight - 15) / 400))
+                }
             }
+            .frame(height: blockHeight - 15)
         }
-        .frame(height: height - 20)
+        .frame(height: blockHeight)
     }
 }
 

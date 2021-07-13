@@ -38,7 +38,7 @@ struct Post: Codable, Equatable, Identifiable {
     }
 
     func getDateRelative() -> String {
-        date.toISODate()?.toRelative() ?? getDate()
+        date.toISODate(region: .UTC)?.convertTo(region: .local).toRelative() ?? date
     }
 
     func getFeaturedImageUrl() -> URL? {

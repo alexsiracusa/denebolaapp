@@ -40,3 +40,17 @@ struct NoButtonAnimation: ButtonStyle {
         configuration.label
     }
 }
+
+enum DayOfWeek: String, CaseIterable, Codable {
+    case monday
+    case tuesday
+    case wednesday
+    case thursday
+    case friday
+    case saturday
+    case sunday
+
+    func toIndex() -> Int {
+        return DayOfWeek.allCases.firstIndex(of: self)!
+    }
+}

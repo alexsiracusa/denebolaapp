@@ -16,13 +16,13 @@ struct DaysPageView: View {
     }
 
     var dayOfWeek: String {
-        return days[selection].dayOfWeek
+        return days[selection].dayOfWeek.rawValue
     }
 
     var body: some View {
         let views = days.map { DayDetailView(day: $0) }
-        MultiPageView(pages: views, currentPageIndex: $selection, offset: 10)
-            .navigationBarTitle("\(dayName)\(dayName == dayOfWeek ? "" : " (\(dayOfWeek))")", displayMode: .inline)
+        MultiPageView(pages: views, indexDisplay: .top, currentPageIndex: $selection, offset: 10)
+            .navigationBarTitle("\(dayName)\(dayName.lowercased() == dayOfWeek ? "" : " (\(dayOfWeek.capitalized))")", displayMode: .inline)
     }
 }
 

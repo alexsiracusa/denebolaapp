@@ -21,24 +21,12 @@ struct ScheduleView: View {
         if let week = week {
             let times = week.startAndEndTimes()
             VStack(alignment: .leading, spacing: 3) {
-                HStack {
-                    Text(week.week.name)
-                        .font(.caption)
-                        .bold()
-                    Spacer()
-                    Text(week.startDateString)
-                        .font(.caption)
-                        .bold()
-                }
-                .frame(height: 17)
-                .padding(.horizontal, 5)
-
                 HStack(spacing: 3) {
                     ForEach(Array(zip(week.includedDays.indices, week.includedDays)), id: \.0) { index, day in
                         NavigationLink(destination:
                             DaysPageView(selection: index, days: week.includedDays)
                         ) {
-                            ScheduleColumn(blocks: day.blocks, height: height - 20, start: times.start, end: times.end)
+                            ScheduleColumn(blocks: day.blocks, height: height - 20, start: times.start, end: times.end, date: week.startsOn.dateByAdding(day.dayOfWeek.toIndex(), .day).date)
                                 .overlay(
                                     VStack {
                                         if showLunches {
@@ -50,6 +38,15 @@ struct ScheduleView: View {
                         .buttonStyle(NoButtonAnimation())
                     }
                 }
+
+                HStack {
+                    Text(week.week.name)
+                        .font(.caption)
+                        .bold()
+                    Spacer()
+                }
+                .frame(height: 17)
+                .padding(.horizontal, 5)
             }
             .padding(.horizontal, 10)
         } else if let error = error {

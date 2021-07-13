@@ -9,6 +9,7 @@ import Alamofire
 import FeedKit
 import Foundation
 import PromiseKit
+import SwiftDate
 import SwiftUI
 
 extension String {
@@ -130,5 +131,35 @@ extension FeedParser: Cancellable {
     public func cancel() {
         abortParsing()
         Holder.isCancelled = true
+    }
+}
+
+extension Date {
+    func dayInWeek(_ day: DayOfWeek) -> Date {
+        let start = dateAt(.startOfWeek).dateAt(.tomorrow)
+        return start.dateByAdding(day.toIndex(), .day).date
+    }
+}
+
+extension Date {
+    func isSameDay(_ date: Date) -> Bool {
+        return day == date.day
+    }
+
+    func isInCurrentWeek() -> Bool {
+        let start = Date().dayInWeek(.monday).in(region: .local).date
+        let end = Date().dayInWeek(.sunday).in(region: .local).date
+        return isInRange(date: start, and: end, orEqual: true, granularity: .day)
+    }
+}
+
+extension Date {
+    var localDay: Int {
+        let date = DateInRegion(self, region: .local)
+        return date.day
+    }
+
+    var isLocalToday: Bool {
+        localDay == Date().localDay
     }
 }

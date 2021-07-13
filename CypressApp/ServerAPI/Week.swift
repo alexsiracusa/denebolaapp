@@ -11,7 +11,7 @@ import SwiftDate
 struct Week: Codable {
     let id: Int
     let ignoredDays: [Int]
-    let startsOn: String
+    let startsOn: Date
     let week: WeekData
 
     var includedDays: [Day] {
@@ -20,19 +20,18 @@ struct Week: Codable {
     }
 
     var startDateString: String {
-        guard let date = DateInRegion(startsOn, format: "yyyy-MM-dd", region: .local) else { return "-" }
-        return date.toFormat("M/d/yyyy")
+        return startsOn.toFormat("M/d/yyyy")
     }
 
     func startAndEndTimes() -> (start: Date, end: Date) {
-        let blocks = includedDays.flatMap { $0.blocks }
+        let blocks = includedDays.flatMap { $0.blocks + $0.lunch }
         let startTime = blocks.map { $0.times.from }.min()
         let endTime = blocks.map { $0.times.to }.max()
         return (startTime!, endTime!)
     }
 
     static var `default`: Week {
-        return Week(id: 0, ignoredDays: [5, 6], startsOn: "2021-06-21", week: WeekData.default)
+        return Week(id: 0, ignoredDays: [5, 6], startsOn: Date(), week: WeekData.default)
     }
 }
 

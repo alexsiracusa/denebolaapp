@@ -47,12 +47,12 @@ class FullBlock: Codable, ObservableObject, Comparable {
 
         try container.encode(id, forKey: .id)
         try container.encode(name, forKey: .name)
-        try? container.encode(codableColor, forKey: .codableColor)
-        try? container.encode(subject, forKey: .subject)
-        try? container.encode(room, forKey: .room)
-        try? container.encode(teacherFirst, forKey: .teacherFirst)
-        try? container.encode(teacherLast, forKey: .teacherLast)
-        try? container.encode(onServer, forKey: .onServer)
+        try container.encode(codableColor, forKey: .codableColor)
+        try container.encode(subject, forKey: .subject)
+        try container.encode(room, forKey: .room)
+        try container.encode(teacherFirst, forKey: .teacherFirst)
+        try container.encode(teacherLast, forKey: .teacherLast)
+        try container.encode(onServer, forKey: .onServer)
     }
 
     required init(from decoder: Decoder) throws {

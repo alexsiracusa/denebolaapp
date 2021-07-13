@@ -20,7 +20,6 @@ struct SocialView: View {
                 SchedulePageView()
                     .padding(.bottom, 20)
                     .padding(.top, 10)
-
                 CancelledList()
                     .padding(.bottom, 20)
             }

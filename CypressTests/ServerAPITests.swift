@@ -52,4 +52,8 @@ class ServerAPITests: XCTestCase {
     func testSchoolList() {
         doGet(endpoint: "/schools", of: [School].self)
     }
+
+    func testSchoolYear() {
+        doGet(endpoint: "/schools/0/schedule/years/latest", of: SchoolYear.self)
+    }
 }

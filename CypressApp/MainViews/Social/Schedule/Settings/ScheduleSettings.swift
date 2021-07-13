@@ -23,20 +23,6 @@ struct ScheduleSettings: View {
                         LoadingBlockEditor()
                     }
                 }
-
-                // for debug only
-                Button {
-                    viewModel.deleteAll()
-                } label: {
-                    Text("Delete All")
-                }
-
-                // for debug only
-                Button {
-                    viewModel.fullBlocks[-100] = FullBlock(id: -100, name: "Bad Block")
-                } label: {
-                    Text("Add bad block")
-                }
             }
         }
         .navigationBarTitle("Blocks", displayMode: .inline)

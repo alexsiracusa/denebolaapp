@@ -19,18 +19,20 @@ struct CancelledList: View {
                 Text("Cancelled Classes")
                     .font(.title)
                     .bold()
-                if let absences = absences {
-                    Spacer()
-                    Text(absences.dateString)
-                        .font(.caption)
-                        .bold()
-                } else {
+                if absences == nil {
                     SpinningLoader()
                     Spacer()
                 }
             }
 
             if let absences = absences {
+                Text(absences.dateString)
+                    .foregroundColor(.gray)
+                    .font(.subheadline)
+                    .offset(y: -5)
+                    .padding(.leading, 5)
+
+                Divider()
                 ForEach(absences.absences) { absence in
                     CancelledRow(cancelled: absence)
                     Divider()

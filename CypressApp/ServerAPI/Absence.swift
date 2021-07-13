@@ -8,13 +8,11 @@
 import Foundation
 
 struct Absences: Codable {
-    let date: String
+    let timestamp: String
     let absences: [Absence]
 
     var dateString: String {
-        let date = Date(date, format: "yyyy-MM-dd", region: .local)
-        guard let date = date else { return "Unknown" }
-        return date.toFormat("M/d/yyyy")
+        timestamp.toISODate(region: .UTC)?.convertTo(region: .local).toRelative() ?? timestamp
     }
 }
 

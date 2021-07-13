@@ -62,9 +62,17 @@ struct School: Codable, Identifiable {
     }
 
     func getWeek(date: Date) -> Promise<Week> {
-        let dateString = DateInRegion(date, region: .local).toFormat("yyyy-MM-dd")
+        let dateString = DateInRegion(date).toFormat("yyyy-MM-dd")
         return Promise { seal in
-            AF.request("\(SERVER_URL)/schools/\(id)/schedule/weeks/\(dateString)", method: .get, interceptor: Retry()).validate().responseDecodable(of: Week.self) { response in
+            AF.request("\(SERVER_URL)/schools/\(id)/schedule/weeks/\(dateString)", method: .get, interceptor: Retry()).validate().responseDecodable(of: Week.self, decoder: MultiFormatter()) { response in
+                sealResult(seal, response.result)
+            }
+        }
+    }
+
+    func getLatestYear() -> Promise<SchoolYear> {
+        return Promise { seal in
+            AF.request("\(SERVER_URL)/schools/\(id)/schedule/years/latest", method: .get, interceptor: Retry()).validate().responseDecodable(of: SchoolYear.self, decoder: MultiFormatter()) { response in
                 sealResult(seal, response.result)
             }
         }

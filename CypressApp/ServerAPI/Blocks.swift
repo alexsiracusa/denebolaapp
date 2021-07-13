@@ -32,13 +32,6 @@ struct Times: Codable {
         self.to = Date(to, format: "HH:mm:ss", region: .local)!
     }
 
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        // region needs to be .UTC to avoid offsetting the times
-        from = Date(try container.decode(String.self, forKey: .from), format: "HH:mm:ss", region: .UTC)!
-        to = Date(try container.decode(String.self, forKey: .to), format: "HH:mm:ss", region: .UTC)!
-    }
-
     var length: TimeInterval {
         return to - from
     }
