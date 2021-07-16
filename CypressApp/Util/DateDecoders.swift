@@ -22,6 +22,12 @@ class MultiFormatter: JSONDecoder {
 
     static var iso8601DateFormatter = { () -> DateFormatter in
         let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        return formatter
+    }()
+
+    static var iso8601DateWithZoneFormatter = { () -> DateFormatter in
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         return formatter
     }()
@@ -38,7 +44,8 @@ class MultiFormatter: JSONDecoder {
             date = (
                 MultiFormatter.dateNoTimeFormatter.date(from: dateStr) ??
                     MultiFormatter.timeDateFormatter.date(from: dateStr) ??
-                    MultiFormatter.iso8601DateFormatter.date(from: dateStr)
+                    MultiFormatter.iso8601DateFormatter.date(from: dateStr) ??
+                    MultiFormatter.iso8601DateWithZoneFormatter.date(from: dateStr)
             )
 
             guard let date = date else {

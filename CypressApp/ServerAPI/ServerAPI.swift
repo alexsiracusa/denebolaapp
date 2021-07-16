@@ -39,7 +39,7 @@ struct School: Codable, Identifiable {
     func getAbsences(date: Date) -> Promise<Absences> {
         let dateString = DateInRegion(date, region: .local).toFormat("yyyy-MM-dd")
         return Promise { seal in
-            AF.request("\(SERVER_URL)/schools/\(id)/absences/\(dateString)", method: .get, interceptor: Retry()).validate().responseDecodable(of: Absences.self) { response in
+            AF.request("\(SERVER_URL)/schools/\(id)/absences/\(dateString)", method: .get, interceptor: Retry()).validate().responseDecodable(of: Absences.self, decoder: MultiFormatter()) { response in
                 sealResult(seal, response.result)
             }
         }
@@ -47,7 +47,7 @@ struct School: Codable, Identifiable {
 
     func getLatestAbsences() -> Promise<Absences> {
         return Promise { seal in
-            AF.request("\(SERVER_URL)/schools/\(id)/absences/latest", method: .get, interceptor: Retry()).validate().responseDecodable(of: Absences.self) { response in
+            AF.request("\(SERVER_URL)/schools/\(id)/absences/latest", method: .get, interceptor: Retry()).validate().responseDecodable(of: Absences.self, decoder: MultiFormatter()) { response in
                 sealResult(seal, response.result)
             }
         }

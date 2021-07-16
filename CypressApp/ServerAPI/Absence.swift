@@ -6,13 +6,15 @@
 //
 
 import Foundation
+import SwiftDate
 
 struct Absences: Codable {
-    let timestamp: String
+    let postedAt: Date
+    let updatedAt: Date
     let absences: [Absence]
 
     var dateString: String {
-        timestamp.toISODate(region: .UTC)?.convertTo(region: .local).toRelative() ?? timestamp
+        DateInRegion(updatedAt, region: .local).toRelative()
     }
 }
 
