@@ -21,7 +21,7 @@ jobs:
           url: https://github.com/nicklockwood/SwiftFormat
 
       - name: Format files
-        run: swiftformat --indent 4 .
+        run: swiftformat --indent 4 --swiftversion 5 .
 
       - name: Commit formatted files
         uses: stefanzweifel/git-auto-commit-action@v4

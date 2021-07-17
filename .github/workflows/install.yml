@@ -1,0 +1,13 @@
+name: InstallSwiftFormat
+
+on: 
+  workflow_dispatch: {}
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install SwiftFormat
+        uses: Cyberbeni/install-swift-tool@v2
+        with:
+          url: https://github.com/nicklockwood/SwiftFormat
