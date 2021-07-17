@@ -22,6 +22,8 @@ struct SchedulePageView: View {
         return year?.weeks.map { ScheduleView(date: $0, height: 400, showLunches: showLunches) }
     }
 
+    let impactStyle: UIImpactFeedbackGenerator.FeedbackStyle = .light
+
     var body: some View {
         VStack(alignment: .center, spacing: 5) {
             VStack(alignment: .leading, spacing: 5) {
@@ -39,11 +41,11 @@ struct SchedulePageView: View {
             }
 
             if let year = year {
-                WeekIndicator(selection: $selection, weeks: year.weeks)
+                WeekIndicator(selection: $selection, weeks: year.weeks, impactStyle: impactStyle)
                     .padding(.vertical, 5)
                     .frame(alignment: .center)
 
-                MultiPageView(pages: scheduleViews!, currentPageIndex: $selection)
+                MultiPageView(pages: scheduleViews!, currentPageIndex: $selection, impactStyle: impactStyle)
                     .frame(height: 400)
 
             } else {

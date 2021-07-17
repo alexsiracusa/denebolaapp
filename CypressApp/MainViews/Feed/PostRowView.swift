@@ -16,11 +16,10 @@ struct PostRowView: View {
             if let thumbnailImageURL = post.getThumbnailSizeUrl(size: "medium") {
                 ImageView(url: thumbnailImageURL, shouldReset: true, aspectRatio: 1.6)
                     .frame(height: 100)
-                    .cornerRadius(5.0)
+                    .cornerRadius(10.0)
             } else {
                 ImageView(url: viewModel.selectedWordpress.defaultImageURL)
-                    // .resizable()
-                    .cornerRadius(5.0)
+                    .cornerRadius(10.0)
                     .frame(width: 100, height: 100)
             }
             NavigationLink(destination: PostView(post: post)

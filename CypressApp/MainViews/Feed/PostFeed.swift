@@ -24,16 +24,15 @@ struct PostFeed: View {
                         .onAppear {
                             loader.loadMorePostsIfNeeded(currentItem: post)
                         }
-                        .padding([.leading, .trailing], 15)
-                        .padding(.vertical, 0.0)
                 }
             }
+            .padding(.horizontal, 15)
             .onChange(of: site, perform: { value in
                 loader.setSite(value)
             })
         } else {
             if let error = loader.error {
-                VStack {
+                VStack(spacing: 10) {
                     Button {
                         loader.loadMorePosts()
                     } label: {
@@ -45,9 +44,9 @@ struct PostFeed: View {
             VStack(spacing: 10) {
                 ForEach(0 ..< 8) { _ in
                     LoadingPostRowView()
-                        .padding([.leading, .trailing], 15)
                 }
             }
+            .padding(.horizontal, 15)
             .onChange(of: site, perform: { value in
                 loader.setSite(value)
             })

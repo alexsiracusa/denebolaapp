@@ -35,7 +35,7 @@ struct ImageView: View {
                     .resizable()
 
             } else {
-                PlaceholderBackground()
+                LoadingRectangle()
                 DefaultLoader()
                     .scaleEffect(0.1)
             }

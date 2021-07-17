@@ -23,15 +23,10 @@ class ViewModelData: ObservableObject {
     @Published var blocks: [BlockData]!
     @Published var fullBlocks: [Int: FullBlock]!
     @Published var selectedWordpress: Wordpress!
-    @Published var podcastViewState: PodcastState = .hidden
+
+    @Published var podcastExpanded: Bool = false
 
     var navController: UINavigationController!
-
-    enum PodcastState {
-        case hidden
-        case show
-        case showFullScreen
-    }
 
     static var `default`: ViewModelData {
         let model = ViewModelData()

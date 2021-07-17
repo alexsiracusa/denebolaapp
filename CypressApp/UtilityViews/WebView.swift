@@ -55,11 +55,13 @@ public class WebViewStore: ObservableObject {
 public struct WebView: View, UIViewRepresentable {
     /// The WKWebView to display
     public let webView: WKWebView
-    @Binding var pageViewIdealSize: CGFloat
+    @Binding var pageViewIdealSize: CGFloat?
 
     public func makeUIView(context: UIViewRepresentableContext<WebView>) -> WKWebView {
         webView.navigationDelegate = context.coordinator
         webView.uiDelegate = context.coordinator
+        webView.isOpaque = false
+        webView.backgroundColor = .clear
 
         return webView
     }
@@ -85,7 +87,7 @@ public struct WebView: View, UIViewRepresentable {
             }
             // Get size of page
             webView.evaluateJavaScript("document.documentElement.scrollHeight", completionHandler: { height, _ in
-                self.parent.pageViewIdealSize = height! as! CGFloat
+                self.parent.pageViewIdealSize = (height! as! CGFloat)
             })
         }
 

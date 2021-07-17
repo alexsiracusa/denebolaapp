@@ -21,12 +21,6 @@ func PlaceholderImage() -> some View {
         .cornerRadius(5)
 }
 
-func PlaceholderBackground() -> some View {
-    return Rectangle()
-        .fill(Color.gray)
-        .brightness(0.3)
-}
-
 func SpinningLoader() -> some View {
     ProgressView()
         .progressViewStyle(CircularProgressViewStyle())
@@ -37,4 +31,11 @@ func WarningIcon() -> some View {
     Image(systemName: "exclamationmark.triangle.fill")
         .foregroundColor(.yellow)
         .background(Color.white.clipped().frame(width: 3, height: 10, alignment: .center))
+}
+
+func LoadingRectangle(_ cornerRadius: CGFloat = 0) -> some View {
+    Rectangle()
+        .fill(Color(UIColor.lightGray))
+        .brightness(0.2)
+        .cornerRadius(cornerRadius)
 }

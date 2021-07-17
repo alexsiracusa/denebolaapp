@@ -29,11 +29,8 @@ struct LoadingScheduleView: View {
             .frame(height: blockHeight)
 
             HStack(alignment: .bottom) {
-                Rectangle()
-                    .fill(Color(UIColor.lightGray))
-                    .brightness(0.2)
+                LoadingRectangle(5)
                     .frame(width: 70, height: 10)
-                    .cornerRadius(5.0)
                 Spacer()
             }
             .frame(height: 17)
@@ -45,20 +42,14 @@ struct LoadingScheduleView: View {
 
     func blankColumn(column: [(height: CGFloat, offset: CGFloat)]) -> some View {
         VStack(spacing: 5) {
-            Rectangle()
-                .fill(Color(UIColor.lightGray))
-                .brightness(0.2)
-                .cornerRadius(5.0)
+            LoadingRectangle(5)
                 .frame(width: 30, height: 10)
 
             GeometryReader { _ in
                 ForEach(0 ..< column.count) { index in
                     let block = column[index]
-                    Rectangle()
-                        .fill(Color(UIColor.lightGray))
-                        .brightness(0.2)
+                    LoadingRectangle(5)
                         .frame(height: block.height * ((blockHeight - 15) / 400))
-                        .cornerRadius(5.0)
                         .offset(y: block.offset * ((blockHeight - 15) / 400))
                 }
             }

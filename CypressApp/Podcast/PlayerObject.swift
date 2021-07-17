@@ -5,12 +5,15 @@
 //  Created by Alex Siracusa on 5/14/21.
 //
 
+import Combine
 import Foundation
 import MediaPlayer
+import Nuke
+import PromiseKit
+import SwiftUI
 
-class PlayerObject: ObservableObject {
+class PlayerObject: AVPlayer, ObservableObject {
     private var audioSession = AVAudioSession.sharedInstance()
-    @Published var player: AVPlayer
 
     @Published var playing: Bool
     @Published var episode: PodcastEpisode? = nil
@@ -20,11 +23,24 @@ class PlayerObject: ObservableObject {
     @Published var time = 0.0
     @Published var seeking = false
 
-    init() {
-        player = AVPlayer()
+    @Published var volumeLevel = 0.0
+    @Published var playbackSpeed = 0.0
+
+    override var rate: Float {
+        didSet {
+            guard MPNowPlayingInfoCenter.default().nowPlayingInfo != nil else { return }
+            MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = rate
+        }
+    }
+
+    override init() {
+        playing = false
+        super.init()
         try! audioSession.setCategory(.playAndRecord, mode: .spokenAudio, options: [.defaultToSpeaker, .allowAirPlay, .allowBluetoothA2DP])
         try! audioSession.setActive(true)
-        playing = false
+        registerObservers()
+        playbackSpeed = Double(rate)
+        volumeLevel = Double(volume * 100)
     }
 
     static var `default`: PlayerObject {
@@ -34,10 +50,11 @@ class PlayerObject: ObservableObject {
     }
 
     func setAudio(_ episode: PodcastEpisode) {
-        pause()
-        player.replaceCurrentItem(with: nil)
+        replaceCurrentItem(with: nil)
         guard let url = episode.audioURL else { return }
-        self.episode = episode
+        withAnimation {
+            self.episode = episode
+        }
         let asset = AVAsset(url: url)
         loading = true
         asset.loadValuesAsynchronously(forKeys: ["playable"]) {
@@ -61,21 +78,10 @@ class PlayerObject: ObservableObject {
 
     private func setAsset(_ asset: AVAsset) {
         let item = AVPlayerItem(asset: asset)
-        player.replaceCurrentItem(with: item)
-        if let duration = player.currentItem?.asset.duration {
+        replaceCurrentItem(with: item)
+        if let duration = currentItem?.asset.duration {
             audioLength = CMTimeGetSeconds(duration)
-        } else {
-            audioLength = 0.0
         }
-        player.addPeriodicTimeObserver(
-            forInterval: CMTimeMake(value: 1, timescale: 2), // 1/2 seconds
-            queue: DispatchQueue.main,
-            using: {
-                if !self.seeking {
-                    self.time = $0.seconds
-                }
-            }
-        )
 
         try! audioSession.setCategory(.playAndRecord, mode: .spokenAudio, options: [.defaultToSpeaker, .allowAirPlay, .allowBluetoothA2DP])
         try! AVAudioSession.sharedInstance().setActive(true)
@@ -85,9 +91,17 @@ class PlayerObject: ObservableObject {
         setupNowPlaying()
     }
 
+    func togglePlay() {
+        if playing {
+            pause()
+        } else {
+            play()
+        }
+    }
+
     func seek(to: Double) {
-        guard player.currentItem != nil else { return }
-        player.seek(to: to < 0.5 ? .zero : CMTime(seconds: to, preferredTimescale: CMTimeScale(audioLength * 10))) { _ in
+        guard currentItem != nil else { return }
+        seek(to: to < 0.5 ? .zero : CMTimeMakeWithSeconds(to, preferredTimescale: TIME_SCALE)) { _ in
             self.seeking = false
         }
         time = to
@@ -102,26 +116,80 @@ class PlayerObject: ObservableObject {
         seek(to: time + seconds)
     }
 
-    func play() {
-        playing = true
+    override func play() {
+        super.play()
+        if playbackSpeed < 0.25 { playbackSpeed = 1 }
+        rate = Float(playbackSpeed)
+        volume = Float(volumeLevel / 100)
         MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = time
-        player.play()
     }
 
-    func pause() {
-        playing = false
+    override func pause() {
+        super.pause()
         MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = time
-        player.pause()
     }
 
     func reset() {
-        player.pause()
-        player = AVPlayer()
+        pause()
+        time = 0.0
         episode = nil
         audioSession = AVAudioSession.sharedInstance()
-        // MPRemoteCommandCenter.shared().
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nil
     }
+
+    func resetSettings() {
+        volumeLevel = 100
+        volume = 1.0
+        playbackSpeed = 1.0
+        rate = playing ? 1.0 : 0.0
+    }
+
+    // MARK: Observers
+
+    private var playingObserverToken: Any?
+    private var timeObserverToken: Any?
+    private var playerContext = 0
+
+    private func registerObservers() {
+        let interval = CMTimeMakeWithSeconds(1, preferredTimescale: TIME_SCALE)
+        playingObserverToken = addObserver(self, forKeyPath: "rate", options: [.old, .new], context: &playerContext)
+        timeObserverToken = addPeriodicTimeObserver(forInterval: interval, queue: .main) {
+            [weak self] _ in
+            if !(self?.seeking ?? true) {
+                self?.time = self?.currentTime().seconds ?? 0.0
+            }
+        }
+    }
+
+    override func observeValue(forKeyPath keyPath: String?,
+                               of object: Any?,
+                               change: [NSKeyValueChangeKey: Any]?,
+                               context: UnsafeMutableRawPointer?)
+    {
+        // Only handle observations for the playerItemContext
+        guard context == &playerContext else {
+            super.observeValue(forKeyPath: keyPath,
+                               of: object,
+                               change: change,
+                               context: context)
+            return
+        }
+
+        playing = rate != 0
+    }
+
+    deinit {
+        if let token = timeObserverToken {
+            self.removeTimeObserver(token)
+            timeObserverToken = nil
+        }
+        if let token = playingObserverToken {
+            self.removeTimeObserver(token)
+            playingObserverToken = nil
+        }
+    }
+
+    // MARK: Now Playing Widget
 
     var playCommand: NSObject?
     var pauseCommand: NSObject?
@@ -198,17 +266,26 @@ class PlayerObject: ObservableObject {
         var nowPlayingInfo = [String: Any]()
         nowPlayingInfo[MPMediaItemPropertyTitle] = episode?.title ?? "none"
 
-        if let image = UIImage(named: "DenebolaLogo") {
-            nowPlayingInfo[MPMediaItemPropertyArtwork] =
+        FetchImage.load(episode?.imageURL).done { image in
+            let image = image.image
+            MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyArtwork] =
                 MPMediaItemArtwork(boundsSize: image.size) { _ in
                     image
                 }
+        }.catch { error in
+            print(error.localizedDescription)
+            if let image = UIImage(named: "CypressLogo") {
+                MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyArtwork] =
+                    MPMediaItemArtwork(boundsSize: image.size) { _ in
+                        image
+                    }
+            }
         }
-        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentItem?.currentTime().seconds
-        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = player.currentItem!.asset.duration.seconds
+
+        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = currentItem?.currentTime().seconds
+        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = currentItem!.asset.duration.seconds
         nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = 1.0
-        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = Float(CMTimeGetSeconds(player.currentItem!.currentTime()))
-        // nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = $time
+        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = Float(CMTimeGetSeconds(currentItem!.currentTime()))
 
         // Set the metadata
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo

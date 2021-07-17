@@ -8,8 +8,16 @@
 import SwiftUI
 
 struct WeekIndicator: View {
-    @Binding var selection: Int
+    @Binding var selection: Int {
+        didSet {
+            if let style = impactStyle {
+                impact(style)
+            }
+        }
+    }
+
     var weeks: [Date]
+    let impactStyle: UIImpactFeedbackGenerator.FeedbackStyle?
 
     func canCenter(_ selection: Int) -> Bool {
         let minIndex = 3
@@ -55,6 +63,6 @@ struct WeekIndicator: View {
 
 struct WeekIndicator_Previews: PreviewProvider {
     static var previews: some View {
-        WeekIndicator(selection: .constant(1), weeks: [Date()])
+        WeekIndicator(selection: .constant(1), weeks: [Date()], impactStyle: nil)
     }
 }

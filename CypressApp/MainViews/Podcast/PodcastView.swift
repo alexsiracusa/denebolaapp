@@ -34,11 +34,12 @@ struct PodcastView: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             if loader.feeds.count > 1 {
-                LazyVGrid(columns: items, spacing: 10) {
+                VStack(spacing: 10) {
                     ForEach(loader.loadedFeeds) { podcast in
-                        PodcastButton(podcast: podcast)
+                        PodcastRow(podcast: podcast)
                     }
                 }
+                .lineSpacing(5)
                 .padding(10)
             } else if loader.feeds.count == 1 {
                 if !loader.loadedFeeds[0].isEmpty() {

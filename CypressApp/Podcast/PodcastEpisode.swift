@@ -17,6 +17,12 @@ struct PodcastEpisode: Identifiable {
     var imageURL: URL?
     var audioURL: URL?
     var from: String
+    var length: TimeInterval?
+
+    var lengthString: String? {
+        guard let length = length else { return nil }
+        return getFormattedMinutesSeconds(Double(length.toUnit(.second) ?? 0))
+    }
 
     var dateString: String {
         date.toFormat(DATE_FORMAT)
@@ -44,6 +50,7 @@ struct PodcastEpisode: Identifiable {
         guard let date = (item.pubDate.flatMap { DateInRegion($0, region: .UTC) }) else { return nil }
         guard let audioURLString = item.enclosure?.attributes?.url else { return nil }
         guard let audioURL = try? audioURLString.asURL() else { return nil }
-        return PodcastEpisode(title: title, description: desciption, date: date, imageURL: imageURL, audioURL: audioURL, from: podcastTitle)
+        let length = item.iTunes?.iTunesDuration
+        return PodcastEpisode(title: title, description: desciption, date: date, imageURL: imageURL, audioURL: audioURL, from: podcastTitle, length: length)
     }
 }

@@ -14,6 +14,8 @@ struct ViewController: View {
     @EnvironmentObject var viewModel: ViewModelData
     @EnvironmentObject var player: PlayerObject
 
+    @Namespace var ns
+
     init() {
         UITabBar.appearance().barTintColor = UIColor.white
         UITabBar.appearance().backgroundColor = UIColor.white
@@ -40,11 +42,14 @@ struct ViewController: View {
 
             // fully loaded (app view)
             else if viewModel.loaded == .all {
-                TabView(selection: $viewModel.selectedTab) {
-                    ForEach(0 ..< tabs.count, id: \.self) { n in
-                        let tab = tabs[n]
+                ZStack(alignment: .bottom) {
+                    TabView(selection: $viewModel.selectedTab) {
+                        ForEach(0 ..< tabs.count, id: \.self) { n in
+                            let tab = tabs[n]
 
-                        NowPlayingBar(content: tab.content)
+                            NavigationView {
+                                tab.content
+                            }
                             .tag(n)
                             .tabItem {
                                 tab.tabIcon
@@ -57,8 +62,11 @@ struct ViewController: View {
                                 guard index == n else { return }
                                 ViewManager.shared.focus(name: tab.name)
                             }
+                        }
                     }
+                    MiniPlayer(animation: ns, expand: $viewModel.podcastExpanded)
                 }
+                .ignoresSafeArea(.keyboard)
                 .accentColor(.orange)
             }
 
@@ -95,10 +103,8 @@ struct ViewController: View {
 struct ViewController_Previews: PreviewProvider {
     static var previews: some View {
         ViewController()
-            // .environmentObject(WordpressAPIHandler())
             .environmentObject(PodcastLoader([]))
-            .environmentObject(ViewModelData())
-            .environmentObject(PlayerObject())
-            .environmentObject(ViewModelData())
+            .environmentObject(ViewModelData.default)
+            .environmentObject(PlayerObject.default)
     }
 }

@@ -13,18 +13,22 @@ public struct MultiPageView: View {
     public init<PageType: View>(
         pages: [PageType],
         indexDisplay: Alignment? = nil,
-        currentPageIndex: Binding<Int>, offset: CGFloat = -20
+        currentPageIndex: Binding<Int>,
+        offset: CGFloat = -20,
+        impactStyle: UIImpactFeedbackGenerator.FeedbackStyle? = nil
     ) {
         self.pages = pages.map { AnyView($0) }
         self.indexDisplay = indexDisplay
         self.currentPageIndex = currentPageIndex
         self.offset = offset
+        self.impactStyle = impactStyle
     }
 
     private let pages: [AnyView]
     private let indexDisplay: Alignment?
     private var currentPageIndex: Binding<Int>
     private var offset: CGFloat
+    private let impactStyle: UIImpactFeedbackGenerator.FeedbackStyle?
 
     public var body: some View {
         TabView(selection: currentPageIndex) {
@@ -37,6 +41,11 @@ public struct MultiPageView: View {
             Fancy3DotsIndexView(show: indexDisplay != nil, numberOfPages: pages.count, currentIndex: currentPageIndex, offset: offset),
             alignment: indexDisplay ?? .top
         )
+        .onChange(of: currentPageIndex.wrappedValue) { _ in
+            if let style = impactStyle {
+                impact(style)
+            }
+        }
     }
 }
 

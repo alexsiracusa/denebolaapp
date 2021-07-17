@@ -16,7 +16,7 @@ struct CategoriesView: View {
     var body: some View {
         let wordpress = viewModel.selectedWordpress!
 
-        ScrollView {
+        ScrollView(.vertical) {
             VStack(alignment: .leading) {
                 Button {
                     displayPicker = true

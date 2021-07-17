@@ -25,10 +25,8 @@ struct PodcastDetailView: View {
                         Spacer(minLength: 0)
                     }
                     .padding(.bottom)
-                    Text(podcast.description)
-                        .lineLimit(showingFullDescription ? nil : 4)
-                        .padding(.bottom, 5)
-                    toggleButton
+
+                    LongText(podcast.description, lineLimit: 4)
                 }
                 .padding()
 
@@ -36,22 +34,10 @@ struct PodcastDetailView: View {
 
                 LazyVStack(spacing: 0) {
                     ForEach(podcast.episodes) { podcast in
-                        PodcastRow(episode: podcast)
+                        EpisodeRow(episode: podcast)
                     }
                 }
             }
-        }
-    }
-
-    var toggleButton: some View {
-        Button {
-            withAnimation(Animation.easeInOut) {
-                self.showingFullDescription.toggle()
-            }
-        } label: {
-            Text(self.showingFullDescription ? "Show less" : "Show more")
-                .font(.caption)
-                .foregroundColor(.secondary)
         }
     }
 }
@@ -59,6 +45,6 @@ struct PodcastDetailView: View {
 struct PodcastDetailView_Previews: PreviewProvider {
     static var previews: some View {
         PodcastDetailView(podcast: LoadedPodcast.default)
-            .environmentObject(PlayerObject())
+            .environmentObject(PlayerObject.default)
     }
 }
