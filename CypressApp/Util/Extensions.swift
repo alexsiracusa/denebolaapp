@@ -147,9 +147,10 @@ extension Date {
     }
 
     func isInCurrentWeek() -> Bool {
-        let start = Date().dayInWeek(.monday).in(region: .local).date
-        let end = Date().dayInWeek(.sunday).in(region: .local).date
-        return isInRange(date: start, and: end, orEqual: true, granularity: .day)
+        let start = Date().dayInWeek(.monday).in(region: .local)
+        let end = Date().dayInWeek(.sunday).in(region: .local)
+        let date = DateInRegion(self, region: .local)
+        return date >= start && date <= end
     }
 }
 

@@ -9,6 +9,7 @@ import Alamofire
 import Foundation
 import Nuke
 import PromiseKit
+import SwiftDate
 import SwiftUI
 
 let DATE_FORMAT = "MMMM d, YYYY"
@@ -63,6 +64,12 @@ enum DayOfWeek: String, CaseIterable, Codable {
 func impact(_ style: UIImpactFeedbackGenerator.FeedbackStyle = .rigid) {
     let impactMed = UIImpactFeedbackGenerator(style: style)
     impactMed.impactOccurred()
+}
+
+// Additional formats to be parsed by the autoformatter in SwiftDate
+// Used by MultiFormatter
+func addAutoDateFormats() {
+    DateFormats.autoFormats.append("yyyy-MM-dd'T'HH:mm:ss")
 }
 
 extension FetchImage {

@@ -17,6 +17,8 @@ struct ContentView: View {
         } catch {
             // report for an error
         }
+
+        addAutoDateFormats()
     }
 
     var body: some View {

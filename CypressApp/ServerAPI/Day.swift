@@ -26,6 +26,6 @@ struct Day: Codable, Identifiable {
     }
 
     var empty: Day {
-        return Day(id: -1, name: "No School", dayOfWeek: .monday, blocks: [], lunch: [])
+        return Day(id: -1, name: "No School", dayOfWeek: dayOfWeek, blocks: [], lunch: [])
     }
 }

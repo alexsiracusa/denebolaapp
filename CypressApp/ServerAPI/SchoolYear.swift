@@ -13,6 +13,14 @@ struct SchoolYear: Codable {
     let start_date: Date
     let end_date: Date
 
+    var currentWeek: Date {
+        return weeks.first(where: { $0.isInCurrentWeek() }) ?? end_date
+    }
+
+    var currentWeekIndex: Int {
+        return weeks.firstIndex(where: { $0.isInCurrentWeek() }) ?? weeks.count - 1
+    }
+
     enum CodingKeys: CodingKey {
         case id, name, start_date, end_date
     }

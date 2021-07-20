@@ -58,9 +58,7 @@ struct SchedulePageView: View {
                     .onAppear {
                         viewModel.school.getLatestYear().done { year in
                             self.year = year
-                            self.selection = year.weeks.firstIndex(where: {
-                                Date().dayInWeek(.monday) == $0
-                            }) ?? year.weeks.count - 1
+                            self.selection = year.currentWeekIndex
                         }.catch { error in
                             print(error)
                         }
