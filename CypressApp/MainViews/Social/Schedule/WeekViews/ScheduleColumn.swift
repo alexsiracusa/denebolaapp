@@ -33,8 +33,8 @@ struct ScheduleColumn: View {
 
     var body: some View {
         VStack(spacing: 5) {
-            Text("\(date.localDay)")
-                .foregroundColor(date.isLocalToday ? .orange : .black)
+            Text("\(date.localDay(from: .local))")
+                .foregroundColor(date.isLocalToday() ? .orange : .black)
                 .bold()
                 .font(.caption)
                 .frame(height: 10)

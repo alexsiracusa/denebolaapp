@@ -136,31 +136,37 @@ extension FeedParser: Cancellable {
 
 extension Date {
     func dayInWeek(_ day: DayOfWeek) -> Date {
-        let start = dateAt(.startOfWeek).dateAt(.tomorrow)
+        var date = self
+        if weekday == 1 { date = date.dateByAdding(-1, .weekOfMonth).date }
+        let start = date.dateAt(.startOfWeek).dateAt(.tomorrow)
         return start.dateByAdding(day.toIndex(), .day).date
     }
 }
 
 extension Date {
+    func from(region: Region) -> DateInRegion {
+        return DateInRegion(year: year, month: month, day: day, hour: hour, minute: minute, second: second, nanosecond: nanosecond, region: region)
+    }
+
     func isSameDay(_ date: Date) -> Bool {
         return day == date.day
     }
 
-    func isInCurrentWeek() -> Bool {
-        let start = Date().dayInWeek(.monday).in(region: .local)
-        let end = Date().dayInWeek(.sunday).in(region: .local)
-        let date = DateInRegion(self, region: .local)
+    func isInCurrentWeek(from: Region = .local) -> Bool {
+        let start = Date().dayInWeek(.monday).from(region: .local)
+        let end = Date().dayInWeek(.sunday).dateAtEndOf(.day).from(region: .local)
+        let date = self.from(region: from).convertTo(region: .local)
         return date >= start && date <= end
     }
-}
 
-extension Date {
-    var localDay: Int {
-        let date = DateInRegion(self, region: .local)
+    func localDay(from: Region = .UTC) -> Int {
+        let date = self.from(region: from).convertTo(region: .local)
         return date.day
     }
 
-    var isLocalToday: Bool {
-        localDay == Date().localDay
+    func isLocalToday(from: Region = .local) -> Bool {
+        let today = Date().from(region: .UTC).convertTo(region: .local)
+        let date = self.from(region: from).convertTo(region: .local)
+        return today.dateAtStartOf(.day) == date.dateAtStartOf(.day)
     }
 }
