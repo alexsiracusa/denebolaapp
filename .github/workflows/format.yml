@@ -1,6 +1,6 @@
 name: SwiftFormat
 
-on: 
+on:
   workflow_dispatch: {}
   pull_request_review:
     types: [submitted]
@@ -18,7 +18,7 @@ jobs:
       - name: Install SwiftFormat
         uses: Cyberbeni/install-swift-tool@v2
         with:
-          url: https://github.com/nicklockwood/SwiftFormat
+          url: https://github.com/Sequal32/SwiftFormat
 
       - name: Format files
         run: swiftformat --indent 4 --swiftversion 5 .

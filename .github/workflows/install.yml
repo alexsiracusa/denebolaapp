@@ -1,6 +1,6 @@
 name: InstallSwiftFormat
 
-on: 
+on:
   workflow_dispatch: {}
 
 jobs:
@@ -10,4 +10,4 @@ jobs:
       - name: Install SwiftFormat
         uses: Cyberbeni/install-swift-tool@v2
         with:
-          url: https://github.com/nicklockwood/SwiftFormat
+          url: https://github.com/Sequal32/SwiftFormat
