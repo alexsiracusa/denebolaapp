@@ -36,8 +36,6 @@ struct ImageView: View {
 
             } else {
                 LoadingRectangle()
-                DefaultLoader()
-                    .scaleEffect(0.1)
             }
         }
     }

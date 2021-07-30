@@ -10,7 +10,10 @@ import SwiftUI
 
 struct CancelledList: View {
     @EnvironmentObject var viewModel: ViewModelData
-    @State var absences: Absences?
+    var absences: Absences? {
+        return viewModel.absences
+    }
+
     @State var error: String?
 
     var body: some View {
@@ -44,9 +47,8 @@ struct CancelledList: View {
                     .padding(.horizontal, 10)
                     .onAppear {
                         // TODO: change this
-                        viewModel.school.getLatestAbsences().done { absences in
-                            self.absences = absences
-                        }.catch { error in
+                        // ^ still need to?
+                        viewModel.loadAbsences().catch { error in
                             self.error = error.localizedDescription
                         }
                     }

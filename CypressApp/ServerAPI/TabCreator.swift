@@ -33,15 +33,13 @@ extension SchoolConfig {
         return ScheduleTab()
     }
 
-    func allTabs(modelData: ViewModelData) -> [Tab] {
+    func allTabs() -> [Tab] {
         var tabs = [Tab]()
 
         if let home = homeTab() { tabs.append(home) }
 
         if let feed = feedTab() {
             tabs.append(feed)
-            // selectedWordpress is implicitly unwrapped - the feedtab is the first tab that uses it so we set it now
-            modelData.selectedWordpress = wordpress![0]
         }
 
         if let podcast = podcastsTab() { tabs.append(podcast) }

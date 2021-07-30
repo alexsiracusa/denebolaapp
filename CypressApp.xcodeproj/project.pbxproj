@@ -59,6 +59,9 @@
 		FA1E4C36269E4C5C00EC955B /* AirPlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E4C35269E4C5C00EC955B /* AirPlayButton.swift */; };
 		FA1E4C38269E4F4400EC955B /* EpisodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E4C37269E4F4400EC955B /* EpisodeDescription.swift */; };
 		FA28B64F269556E10059C30B /* LoadingWeekIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28B64E269556E10059C30B /* LoadingWeekIndicator.swift */; };
+		FA309EA326AF4172007220EE /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA309EA226AF4172007220EE /* SettingsView.swift */; };
+		FA309EA526AF45BC007220EE /* SchoolSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA309EA426AF45BC007220EE /* SchoolSelector.swift */; };
+		FA309EA726AF4D35007220EE /* SettingsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA309EA626AF4D35007220EE /* SettingsRow.swift */; };
 		FA32E90226925AA700E38F31 /* WeekBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32E90126925AA700E38F31 /* WeekBlock.swift */; };
 		FA32E90426925C4000E38F31 /* WeekIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32E90326925C4000E38F31 /* WeekIndicator.swift */; };
 		FA3A94C926A1367800CEFA08 /* LongText.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3A94C826A1367800CEFA08 /* LongText.swift */; };
@@ -101,6 +104,15 @@
 		FA87325E265586260094146C /* PodcastSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA87325D265586260094146C /* PodcastSection.swift */; };
 		FA879659269FB85F00C6E9BF /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA879658269FB85F00C6E9BF /* PopupView.swift */; };
 		FAA0BC7E26928C7E00A61C67 /* InfinitiePager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA0BC7D26928C7E00A61C67 /* InfinitiePager.swift */; };
+		FAA25CDB26B1B17A0082AD44 /* WordpressPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA25CDA26B1B17A0082AD44 /* WordpressPicker.swift */; };
+		FAA25CDD26B341310082AD44 /* SettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA25CDC26B341300082AD44 /* SettingsTab.swift */; };
+		FAA25CDF26B34C8E0082AD44 /* CacheView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA25CDE26B34C8E0082AD44 /* CacheView.swift */; };
+		FAA25CE126B34DFE0082AD44 /* SettingsIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA25CE026B34DFE0082AD44 /* SettingsIcons.swift */; };
+		FAA25CE426B35F1D0082AD44 /* SchoolList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA25CE326B35F1D0082AD44 /* SchoolList.swift */; };
+		FAA25CE626B35F8A0082AD44 /* SchoolListTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA25CE526B35F8A0082AD44 /* SchoolListTab.swift */; };
+		FAA25CE826B364F20082AD44 /* SchoolRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA25CE726B364F20082AD44 /* SchoolRow.swift */; };
+		FAA25CEA26B376D30082AD44 /* SettingsRowNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA25CE926B376D30082AD44 /* SettingsRowNav.swift */; };
+		FAA25CEC26B377CC0082AD44 /* SettingsRowAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA25CEB26B377CC0082AD44 /* SettingsRowAlert.swift */; };
 		FAA7D2F6267E714300E8FFEC /* Absence.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA7D2F5267E714300E8FFEC /* Absence.swift */; };
 		FAA7D2F8267E742B00E8FFEC /* ServerAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA7D2F7267E742B00E8FFEC /* ServerAPITests.swift */; };
 		FAA7D2FA267E762400E8FFEC /* BlockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA7D2F9267E762400E8FFEC /* BlockData.swift */; };
@@ -195,6 +207,9 @@
 		FA1E4C35269E4C5C00EC955B /* AirPlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirPlayButton.swift; sourceTree = "<group>"; };
 		FA1E4C37269E4F4400EC955B /* EpisodeDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDescription.swift; sourceTree = "<group>"; };
 		FA28B64E269556E10059C30B /* LoadingWeekIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingWeekIndicator.swift; sourceTree = "<group>"; };
+		FA309EA226AF4172007220EE /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		FA309EA426AF45BC007220EE /* SchoolSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolSelector.swift; sourceTree = "<group>"; };
+		FA309EA626AF4D35007220EE /* SettingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRow.swift; sourceTree = "<group>"; };
 		FA32E90126925AA700E38F31 /* WeekBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekBlock.swift; sourceTree = "<group>"; };
 		FA32E90326925C4000E38F31 /* WeekIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekIndicator.swift; sourceTree = "<group>"; };
 		FA3A94C826A1367800CEFA08 /* LongText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongText.swift; sourceTree = "<group>"; };
@@ -233,6 +248,15 @@
 		FA87325D265586260094146C /* PodcastSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastSection.swift; sourceTree = "<group>"; };
 		FA879658269FB85F00C6E9BF /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		FAA0BC7D26928C7E00A61C67 /* InfinitiePager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfinitiePager.swift; sourceTree = "<group>"; };
+		FAA25CDA26B1B17A0082AD44 /* WordpressPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordpressPicker.swift; sourceTree = "<group>"; };
+		FAA25CDC26B341300082AD44 /* SettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTab.swift; sourceTree = "<group>"; };
+		FAA25CDE26B34C8E0082AD44 /* CacheView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheView.swift; sourceTree = "<group>"; };
+		FAA25CE026B34DFE0082AD44 /* SettingsIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsIcons.swift; sourceTree = "<group>"; };
+		FAA25CE326B35F1D0082AD44 /* SchoolList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolList.swift; sourceTree = "<group>"; };
+		FAA25CE526B35F8A0082AD44 /* SchoolListTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolListTab.swift; sourceTree = "<group>"; };
+		FAA25CE726B364F20082AD44 /* SchoolRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolRow.swift; sourceTree = "<group>"; };
+		FAA25CE926B376D30082AD44 /* SettingsRowNav.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRowNav.swift; sourceTree = "<group>"; };
+		FAA25CEB26B377CC0082AD44 /* SettingsRowAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRowAlert.swift; sourceTree = "<group>"; };
 		FAA7D2F5267E714300E8FFEC /* Absence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Absence.swift; sourceTree = "<group>"; };
 		FAA7D2F7267E742B00E8FFEC /* ServerAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerAPITests.swift; sourceTree = "<group>"; };
 		FAA7D2F9267E762400E8FFEC /* BlockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockData.swift; sourceTree = "<group>"; };
@@ -418,6 +442,8 @@
 				FA0CB84B26671926009FE7A3 /* FeedTab.swift */,
 				FA0CB84F26671989009FE7A3 /* PodcastTab.swift */,
 				FA0CB851266719BA009FE7A3 /* ScheduleTab.swift */,
+				FAA25CE526B35F8A0082AD44 /* SchoolListTab.swift */,
+				FAA25CDC26B341300082AD44 /* SettingsTab.swift */,
 			);
 			path = AppearanceManagement;
 			sourceTree = "<group>";
@@ -430,6 +456,18 @@
 				FA32E90126925AA700E38F31 /* WeekBlock.swift */,
 			);
 			path = Indicator;
+			sourceTree = "<group>";
+		};
+		FA309EA126AF4141007220EE /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				FA309EA226AF4172007220EE /* SettingsView.swift */,
+				FAA25CED26B378C90082AD44 /* SettingsRows */,
+				FA309EA426AF45BC007220EE /* SchoolSelector.swift */,
+				FAA25CDE26B34C8E0082AD44 /* CacheView.swift */,
+				FAA25CE026B34DFE0082AD44 /* SettingsIcons.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		FA4618CA264980090018522B /* Podcast */ = {
@@ -450,6 +488,8 @@
 				FABF848D26642D96000CE2A4 /* Feed */,
 				FABF848C26642D42000CE2A4 /* Podcast */,
 				FABF848E26642E0C000CE2A4 /* Social */,
+				FA309EA126AF4141007220EE /* Settings */,
+				FAA25CE226B35F090082AD44 /* List */,
 			);
 			path = MainViews;
 			sourceTree = "<group>";
@@ -510,6 +550,25 @@
 			path = WordpressAPI;
 			sourceTree = "<group>";
 		};
+		FAA25CE226B35F090082AD44 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				FAA25CE326B35F1D0082AD44 /* SchoolList.swift */,
+				FAA25CE726B364F20082AD44 /* SchoolRow.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		FAA25CED26B378C90082AD44 /* SettingsRows */ = {
+			isa = PBXGroup;
+			children = (
+				FA309EA626AF4D35007220EE /* SettingsRow.swift */,
+				FAA25CE926B376D30082AD44 /* SettingsRowNav.swift */,
+				FAA25CEB26B377CC0082AD44 /* SettingsRowAlert.swift */,
+			);
+			path = SettingsRows;
+			sourceTree = "<group>";
+		};
 		FAAE7DF62669B3A100DE708A /* ServerAPI */ = {
 			isa = PBXGroup;
 			children = (
@@ -545,6 +604,7 @@
 			isa = PBXGroup;
 			children = (
 				FA56AA45263F0B2300B6D838 /* CategoriesView.swift */,
+				FAA25CDA26B1B17A0082AD44 /* WordpressPicker.swift */,
 				FA0CB8532667247E009FE7A3 /* CategoriesList.swift */,
 				FA56AA55263F0F2400B6D838 /* CategoryButton.swift */,
 				FA6526412658AB9C0043FDBA /* CategoryView.swift */,
@@ -778,10 +838,13 @@
 			files = (
 				FAD43D92268AD4C500F04FE9 /* DaysPageView.swift in Sources */,
 				FAF813E326A11066000F6C59 /* EpisodeSettings.swift in Sources */,
+				FAA25CEC26B377CC0082AD44 /* SettingsRowAlert.swift in Sources */,
+				FAA25CE826B364F20082AD44 /* SchoolRow.swift in Sources */,
 				FA7320EB267438F00012C3EC /* PodcastDetailView.swift in Sources */,
 				FAAE7DFC2669B44F00DE708A /* ServerAPI.swift in Sources */,
 				FA65B475268EC32E00AE3704 /* ModelSaving.swift in Sources */,
 				CE7788B92690E1DD00942A71 /* ViewManager.swift in Sources */,
+				FA309EA326AF4172007220EE /* SettingsView.swift in Sources */,
 				FA5D35AD266B29E4003B8D2F /* Logo.swift in Sources */,
 				FA0CB8542667247E009FE7A3 /* CategoriesList.swift in Sources */,
 				FA73AA30263E363600B6C8B6 /* PostView.swift in Sources */,
@@ -807,14 +870,17 @@
 				FA61213A266097F400126A1F /* MeetTheStaff.swift in Sources */,
 				FA4B7364264E335200516AC6 /* PlayerObject.swift in Sources */,
 				CE126FC5267BEBEE001ABBB1 /* ExtractArticle.swift in Sources */,
+				FAA25CE126B34DFE0082AD44 /* SettingsIcons.swift in Sources */,
 				CEFE4E83265635B6005A2DD4 /* MultimediaSection.swift in Sources */,
 				FAA7D2FC267E775200E8FFEC /* Week.swift in Sources */,
+				FAA25CDB26B1B17A0082AD44 /* WordpressPicker.swift in Sources */,
 				CE1E887C264748F700E1245E /* PageView.swift in Sources */,
 				FAD43D8C268ACA7900F04FE9 /* DayDetailView.swift in Sources */,
 				FA56AA51263F0BFF00B6D838 /* PhotoGalleryView.swift in Sources */,
 				FAE14C7526557AA7000635DB /* PostSection.swift in Sources */,
 				FAF78288269543EC00A77758 /* SchoolYear.swift in Sources */,
 				FAFE289B268BE80C00DC9373 /* LoadingScheduleView.swift in Sources */,
+				FA309EA526AF45BC007220EE /* SchoolSelector.swift in Sources */,
 				CEC03FB1263E354200FFCB45 /* CypressAppApp.swift in Sources */,
 				FA0CB85A2667302E009FE7A3 /* TabManager.swift in Sources */,
 				FA56AA4C263F0B5A00B6D838 /* PodcastView.swift in Sources */,
@@ -826,6 +892,7 @@
 				FAD43D83268A34BE00F04FE9 /* PropertyEditor.swift in Sources */,
 				FA56AA56263F0F2400B6D838 /* CategoryButton.swift in Sources */,
 				FA56AA4A263F0B5100B6D838 /* HomeView.swift in Sources */,
+				FAA25CDF26B34C8E0082AD44 /* CacheView.swift in Sources */,
 				FA56AA64263F3F1A00B6D838 /* SamplePost.swift in Sources */,
 				FA73AA2B263E361E00B6C8B6 /* Media.swift in Sources */,
 				FA0CB845266432DC009FE7A3 /* VideoView.swift in Sources */,
@@ -849,11 +916,14 @@
 				FAAAACA72687F1330052A658 /* ScheduleSettings.swift in Sources */,
 				FA65B47A268F936500AE3704 /* LargeFullBlockView.swift in Sources */,
 				FA5D35AB266B221A003B8D2F /* LogoButton.swift in Sources */,
+				FAA25CEA26B376D30082AD44 /* SettingsRowNav.swift in Sources */,
 				FA1E4C32269E388E00EC955B /* MiniPlayer.swift in Sources */,
 				FA4618CC264980240018522B /* PodcastLoader.swift in Sources */,
 				FA65B471268EA85F00AE3704 /* ModelLoading.swift in Sources */,
 				FA0CB85026671989009FE7A3 /* PodcastTab.swift in Sources */,
 				FA32E90226925AA700E38F31 /* WeekBlock.swift in Sources */,
+				FAA25CE626B35F8A0082AD44 /* SchoolListTab.swift in Sources */,
+				FAA25CE426B35F1D0082AD44 /* SchoolList.swift in Sources */,
 				FA73AA2C263E361E00B6C8B6 /* Category.swift in Sources */,
 				CE1E888126474BFC00E1245E /* PageControl.swift in Sources */,
 				FAAAACA12686AFBD0052A658 /* BlockView.swift in Sources */,
@@ -875,6 +945,7 @@
 				FA56AA5C263F246000B6D838 /* PostRowView.swift in Sources */,
 				CE74689326605535007321FD /* AboutView.swift in Sources */,
 				FA1E4C36269E4C5C00EC955B /* AirPlayButton.swift in Sources */,
+				FAA25CDD26B341310082AD44 /* SettingsTab.swift in Sources */,
 				CE1E88772647484300E1245E /* PageViewController.swift in Sources */,
 				FA0CB84C26671926009FE7A3 /* FeedTab.swift in Sources */,
 				FA0CB848266716BE009FE7A3 /* Tab.swift in Sources */,
@@ -884,6 +955,7 @@
 				FAAAACA3268795580052A658 /* MultiPageView.swift in Sources */,
 				FADE10112683AFB200712D27 /* CancelledRow.swift in Sources */,
 				FAAE7DFE2669BB1600DE708A /* TabCreator.swift in Sources */,
+				FA309EA726AF4D35007220EE /* SettingsRow.swift in Sources */,
 				FA0CB84A26671810009FE7A3 /* HomeTab.swift in Sources */,
 				FA73AA2D263E361E00B6C8B6 /* Post.swift in Sources */,
 			);

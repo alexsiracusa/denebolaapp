@@ -17,7 +17,10 @@ struct SchedulePageView: View {
     @EnvironmentObject var viewModel: ViewModelData
     @State var selection = 2
     @State var showLunches = false
-    @State var year: SchoolYear?
+    var year: SchoolYear? {
+        return viewModel.year
+    }
+
     var scheduleViews: [ScheduleView]? {
         return year?.weeks.map { ScheduleView(date: $0, height: 400, showLunches: showLunches) }
     }
@@ -27,11 +30,12 @@ struct SchedulePageView: View {
     var body: some View {
         VStack(alignment: .center, spacing: 5) {
             VStack(alignment: .leading, spacing: 5) {
-                HStack(alignment: .bottom) {
+                HStack(alignment: .center) {
                     Text("Schedule")
                         .font(.title)
                         .bold()
-                        .padding(.horizontal)
+                        .padding(.leading)
+                    EditButton()
                     Spacer()
                     Toggle("", isOn: $showLunches.animation(.easeInOut(duration: 0.3)))
                         .toggleStyle(SwitchToggleStyle())
@@ -56,14 +60,21 @@ struct SchedulePageView: View {
                     .frame(alignment: .center)
                     .frame(height: 400)
                     .onAppear {
-                        viewModel.school.getLatestYear().done { year in
-                            self.year = year
-                            self.selection = year.currentWeekIndex
+                        viewModel.loadSchoolYear().done {
+                            self.selection = viewModel.year!.currentWeekIndex
                         }.catch { error in
                             print(error)
                         }
                     }
             }
+        }
+    }
+
+    func EditButton() -> some View {
+        NavigationLink(destination:
+            ScheduleSettings()
+        ) {
+            Image(systemName: "square.and.pencil")
         }
     }
 }

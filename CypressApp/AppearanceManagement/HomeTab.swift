@@ -21,7 +21,7 @@ struct HomeTab: Tab {
     var tabIcon: AnyView {
         AnyView(
             VStack {
-                Image(systemName: "house")
+                Image("Home25")
                 Text("Home")
             }
         )

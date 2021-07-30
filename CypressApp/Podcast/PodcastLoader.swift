@@ -25,30 +25,23 @@ class PodcastLoader: ObservableObject {
         loadPodcasts()
     }
 
-    private var parserPromises: [CancellablePromise<LoadedPodcast>] = []
-
     func loadPodcasts() {
-        parserPromises.removeAll()
-
         for (index, rssURL) in feeds.enumerated() {
             if !loadedFeeds[index].isEmpty() {
                 break
             }
 
-            parserPromises.append(RSSLoader.loadPodcast(rssURL))
-            parserPromises[index].done { podcast in
+            retry(times: Int.max, cooldown: 2.5) {
+                return RSSLoader.loadPodcast(rssURL)
+            }.done { podcast in
                 self.loadedFeeds[index] = podcast
-            }.catch { _ in
-                // TODO: handle error
+            }.catch { error in
+                print(error)
             }
         }
     }
 
     func setFeeds(_ feeds: [String]) {
-        for parser in parserPromises {
-            parser.cancel()
-        }
-
         self.feeds = feeds
         loadedFeeds.removeAll()
 
@@ -58,5 +51,9 @@ class PodcastLoader: ObservableObject {
         }
 
         loadPodcasts()
+    }
+
+    static var `default`: PodcastLoader {
+        PodcastLoader(["https://atp.fm/rss"])
     }
 }

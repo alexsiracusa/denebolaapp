@@ -38,7 +38,7 @@ struct LargeBlockView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Text(name == "" ? subject : name)
+                Text(subject == "" ? name : subject)
                     .font(.title)
                     .bold()
                     .foregroundColor(color.textColor)

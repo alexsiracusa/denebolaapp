@@ -24,24 +24,28 @@ enum ServerAPI {
     }
 }
 
-struct School: Codable, Identifiable {
+struct School: Codable, Identifiable, Hashable {
     let id: Int
     let name: String
 
-    func getConfig() -> Promise<SchoolConfig> {
+    func getConfig(delay: Double = 2.5, retryCount: UInt = UInt.max, timeOut: Double = 60) -> Promise<SchoolConfig> {
+        let retry = Retry(delay: delay, maxRetryCount: retryCount)
         return Promise { seal in
-            AF.request("\(SERVER_URL)/schools/\(id)/config", method: .get, interceptor: Retry()).validate().responseDecodable(of: SchoolConfig.self) { response in
-                sealResult(seal, response.result)
-            }
+            AF.request("\(SERVER_URL)/schools/\(id)/config", method: .get, interceptor: retry)
+                { $0.timeoutInterval = TimeInterval(timeOut) }
+                .validate().responseDecodable(of: SchoolConfig.self) { response in
+                    sealResult(seal, response.result)
+                }
         }
     }
 
     func getAbsences(date: Date) -> Promise<Absences> {
         let dateString = DateInRegion(date, region: .local).toFormat("yyyy-MM-dd")
         return Promise { seal in
-            AF.request("\(SERVER_URL)/schools/\(id)/absences/\(dateString)", method: .get, interceptor: Retry()).validate().responseDecodable(of: Absences.self, decoder: MultiFormatter()) { response in
-                sealResult(seal, response.result)
-            }
+            AF.request("\(SERVER_URL)/schools/\(id)/absences/\(dateString)", method: .get, interceptor: Retry())
+                .validate().responseDecodable(of: Absences.self, decoder: MultiFormatter()) { response in
+                    sealResult(seal, response.result)
+                }
         }
     }
 
@@ -53,11 +57,14 @@ struct School: Codable, Identifiable {
         }
     }
 
-    func getCourses() -> Promise<[BlockData]> {
+    func getCourses(delay: Double = 2.5, retryCount: UInt = UInt.max, timeOut: Double = 60) -> Promise<[BlockData]> {
+        let retry = Retry(delay: delay, maxRetryCount: retryCount)
         return Promise { seal in
-            AF.request("\(SERVER_URL)/schools/\(id)/schedule/blocks/courses", method: .get, interceptor: Retry()).validate().responseDecodable(of: [BlockData].self) { response in
-                sealResult(seal, response.result)
-            }
+            AF.request("\(SERVER_URL)/schools/\(id)/schedule/blocks/courses", method: .get, interceptor: retry)
+                { $0.timeoutInterval = TimeInterval(timeOut) }
+                .validate().responseDecodable(of: [BlockData].self) { response in
+                    sealResult(seal, response.result)
+                }
         }
     }
 

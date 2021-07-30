@@ -42,7 +42,7 @@ class RSSLoader {
         }
     }
 
-    static func loadPodcast(_ url: String) -> CancellablePromise<LoadedPodcast> {
+    static func loadPodcast(_ url: String) -> Promise<LoadedPodcast> {
         // Convert url string to URL
         return firstly {
             RSSLoader.getFeedParser(try url.asURL())
@@ -54,7 +54,6 @@ class RSSLoader {
         }.then { feed in
             RSSLoader.processFeedData(feed)
         }
-        .cancellize()
     }
 }
 

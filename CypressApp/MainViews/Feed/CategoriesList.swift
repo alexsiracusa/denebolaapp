@@ -13,7 +13,7 @@ struct CategoriesList: View {
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(alignment: .top) {
-                ForEach(viewModel.selectedWordpress.featuredCategories) { category in
+                ForEach(viewModel.currentSite.featuredCategories) { category in
                     CategoryButton(category: category)
                 }
             }

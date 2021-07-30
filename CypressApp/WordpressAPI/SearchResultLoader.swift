@@ -17,7 +17,7 @@ class SearchResultLoader: ScrollViewLoader {
         canLoadMorePages = true
         error = nil
 
-        self.category = category
+        self.category = category ?? self.category
 
         currentPage = 1
         search = text

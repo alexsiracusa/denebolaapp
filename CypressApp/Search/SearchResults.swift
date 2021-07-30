@@ -14,7 +14,6 @@ struct SearchResults: View {
     init(loader: SearchResultLoader, searchFor: Binding<String>) {
         _searchFor = searchFor
         self.loader = loader
-        // loader = SearchResultLoader(site: site, category: category)
     }
 
     var body: some View {

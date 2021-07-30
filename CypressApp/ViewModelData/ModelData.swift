@@ -17,14 +17,43 @@ class ViewModelData: ObservableObject {
 
     @Published var selectedTab: Int = 0
     @Published var schools: [School]!
-    @Published var school: School!
-    @Published var tabManager: TabManager!
-    @Published var config: SchoolConfig!
-    @Published var blocks: [BlockData]!
-    @Published var fullBlocks: [Int: FullBlock]!
-    @Published var selectedWordpress: Wordpress!
 
     @Published var podcastExpanded: Bool = false
+
+    @Published var loadingSchool: Int?
+
+    // current school stuff - general
+    @Published var school: School!
+    @Published var config: SchoolConfig! {
+        didSet {
+            if let config = self.config {
+                tabManager = TabManager(config.allTabs())
+                sites = config.wordpress
+                currentSite = sites[0]
+                podcasts = config.podcasts
+            } else {
+                tabManager = nil
+                sites = nil
+                currentSite = nil
+                podcasts = nil
+            }
+        }
+    }
+
+    @Published var tabManager: TabManager!
+
+    // current school stuff - feed
+    @Published var currentSite: Wordpress!
+    @Published var sites: [Wordpress]!
+
+    // current school stuff - podcast
+    @Published var podcasts: [Podcast]!
+
+    // current school stuff - social
+    @Published var year: SchoolYear?
+    @Published var blocks: [BlockData]!
+    @Published var fullBlocks: [Int: FullBlock]!
+    @Published var absences: Absences?
 
     var navController: UINavigationController!
 
@@ -32,7 +61,7 @@ class ViewModelData: ObservableObject {
         let model = ViewModelData()
         // TODO: add more defaults for this
         model.school = School.default
-        model.selectedWordpress = Wordpress.default
+        model.currentSite = Wordpress.default
         model.blocks = Array(repeating: BlockData.default, count: 8)
         model.fullBlocks = [
             0: FullBlock(id: 0, name: "A"),

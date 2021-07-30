@@ -47,6 +47,20 @@ struct NoButtonAnimation: ButtonStyle {
     }
 }
 
+struct OpacityButton: ButtonStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .background(
+                VStack {
+                    if configuration.isPressed {
+                        BlurView()
+                    }
+                }
+            )
+            .contentShape(Rectangle())
+    }
+}
+
 enum DayOfWeek: String, CaseIterable, Codable {
     case monday
     case tuesday
@@ -82,4 +96,18 @@ extension FetchImage {
             image.load(url)
         }
     }
+}
+
+func retry<T>(times: Int, cooldown: TimeInterval, body: @escaping () -> Promise<T>) -> Promise<T> {
+    var retryCounter = 0
+    func attempt() -> Promise<T> {
+        return body().recover(policy: CatchPolicy.allErrorsExceptCancellation) { error -> Promise<T> in
+            retryCounter += 1
+            guard retryCounter <= times else {
+                throw error
+            }
+            return after(seconds: cooldown).then(attempt)
+        }
+    }
+    return attempt()
 }

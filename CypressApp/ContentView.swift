@@ -17,7 +17,6 @@ struct ContentView: View {
         } catch {
             // report for an error
         }
-
         addAutoDateFormats()
     }
 

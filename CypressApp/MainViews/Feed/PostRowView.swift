@@ -18,7 +18,7 @@ struct PostRowView: View {
                     .frame(height: 100)
                     .cornerRadius(10.0)
             } else {
-                ImageView(url: viewModel.selectedWordpress.defaultImageURL)
+                ImageView(url: viewModel.currentSite.defaultImageURL, aspectRatio: 1.0)
                     .cornerRadius(10.0)
                     .frame(width: 100, height: 100)
             }

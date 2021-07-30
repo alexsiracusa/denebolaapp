@@ -20,7 +20,7 @@ struct ScheduleTab: Tab {
     var tabIcon: AnyView {
         AnyView(
             VStack {
-                Image(systemName: "person")
+                Image("Social25")
                 Text("South")
             }
         )

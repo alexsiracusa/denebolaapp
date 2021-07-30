@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SearchRow: View {
+    @EnvironmentObject private var viewModel: ViewModelData
     let post: Post
 
     var body: some View {
@@ -20,8 +21,7 @@ struct SearchRow: View {
                         .clipped()
                         .aspectRatio(1.6, contentMode: .fill)
                 } else {
-                    Image("DenebolaLogo")
-                        .resizable()
+                    ImageView(url: viewModel.currentSite.defaultImageURL, aspectRatio: 1.0)
                         .frame(width: 85, height: 85)
                 }
                 NavigationLink(destination:
@@ -57,5 +57,6 @@ struct SearchRow: View {
 struct SearchRow_Previews: PreviewProvider {
     static var previews: some View {
         SearchRow(post: Post.default)
+            .environmentObject(ViewModelData.default)
     }
 }

@@ -33,69 +33,42 @@ struct ViewController: View {
     }
 
     @State var error: String? = nil
+
     var body: some View {
-        Group {
-            // has error
-            if let error = error {
-                Text(error)
-            }
+        ZStack(alignment: .bottom) {
+            TabView(selection: $viewModel.selectedTab) {
+                if viewModel.loaded == .all {
+                    ForEach(0 ..< tabs.count, id: \.self) { n in
+                        let tab = tabs[n]
 
-            // fully loaded (app view)
-            else if viewModel.loaded == .all {
-                ZStack(alignment: .bottom) {
-                    TabView(selection: $viewModel.selectedTab) {
-                        ForEach(0 ..< tabs.count, id: \.self) { n in
-                            let tab = tabs[n]
-
-                            NavigationView {
-                                tab.content
-                            }
-                            .tag(n)
-                            .tabItem {
-                                tab.tabIcon
-                            }
-                            // Handle popping view when tab button clicked again
-                            .introspectNavigationController { navigation in
-                                ViewManager.shared.addNav(name: tab.name, navController: navigation)
-                            }
-                            .onReceive(viewModel.$selectedTab) { index in
-                                guard index == n else { return }
-                                ViewManager.shared.focus(name: tab.name)
-                            }
-                        }
+                        Tab(tab, tag: n)
                     }
-                    MiniPlayer(animation: ns, expand: $viewModel.podcastExpanded)
+                } else {
+                    Tab(SchoolListTab(), tag: 100)
                 }
-                .ignoresSafeArea(.keyboard)
-                .accentColor(.orange)
-            }
 
-            // school picker
-            else if viewModel.loaded == .list {
-                ScrollView {
-                    ForEach(viewModel.schools) { school in
-                        Button {
-                            viewModel.loadSchoolData(school).catch { error in
-                                self.error = error.localizedDescription
-                            }
-                        } label: {
-                            Text(school.name)
-                        }
-                    }
-                }
+                Tab(SettingsTab(), tag: 101)
             }
+            MiniPlayer(animation: ns, expand: $viewModel.podcastExpanded)
+        }
+        .ignoresSafeArea(.keyboard)
+        .accentColor(.orange)
+    }
 
-            // fecthing schools
-            else if viewModel.loaded == .none {
-                VStack {
-                    Text("loading")
-                }
-                .onAppear {
-                    viewModel.loadSchoolList().catch { error in
-                        self.error = error.localizedDescription
-                    }
-                }
-            }
+    func Tab(_ tab: Tab, tag: Int) -> some View {
+        NavigationView {
+            tab.content
+        }
+        .tabItem {
+            tab.tabIcon
+        }
+        .tag(tag)
+        .introspectNavigationController { navigation in
+            ViewManager.shared.addNav(name: tab.name, navController: navigation)
+        }
+        .onReceive(viewModel.$selectedTab) { index in
+            guard index == tag else { return }
+            ViewManager.shared.focus(name: tab.name)
         }
     }
 }

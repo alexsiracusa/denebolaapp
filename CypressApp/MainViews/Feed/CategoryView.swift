@@ -21,14 +21,14 @@ struct CategoryView: View {
                 Text("Latest Posts")
                     .font(.headline)
                     .padding(.leading)
-                PostFeed(site: viewModel.selectedWordpress, category: category)
+                PostFeed(site: viewModel.currentSite, category: category)
                 // PostFeed(category: category.id, domain: handler.domain)
             }
 
             // Navigation Link to SearchView
             // need to do like this to avoid bugs
             NavigationLink(
-                destination: SearchView(site: viewModel.selectedWordpress, category: category),
+                destination: SearchView(site: viewModel.currentSite, category: category),
                 isActive: $isActive,
                 label: { EmptyView() }
             )
@@ -43,7 +43,7 @@ struct CategoryView: View {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(.black)
                 }
-                LogoButton(url: viewModel.selectedWordpress.logoURL)
+                LogoButton(url: viewModel.currentSite.logoURL)
             }
         )
     }

@@ -27,7 +27,7 @@ struct ScheduleSettings: View {
         }
         .navigationBarTitle("Blocks", displayMode: .inline)
         .onDisappear {
-            viewModel.saveBlocks().catch { error in
+            viewModel.saveFullBlocks(school: viewModel.school).catch { error in
                 print(error.localizedDescription)
             }
         }

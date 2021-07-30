@@ -8,20 +8,24 @@
 import SwiftUI
 
 struct CategoriesView: View {
-    @EnvironmentObject private var viewModel: ViewModelData
-    @State var sites: [Wordpress]
+    @EnvironmentObject var viewModel: ViewModelData
+    var currentSite: Wordpress! {
+        viewModel.currentSite
+    }
+
+    var sites: [Wordpress]! {
+        viewModel.sites
+    }
 
     @State var displayPicker = false
 
     var body: some View {
-        let wordpress = viewModel.selectedWordpress!
-
         ScrollView(.vertical) {
             VStack(alignment: .leading) {
                 Button {
                     displayPicker = true
                 } label: {
-                    SiteBanner(imageURL: wordpress.bannerURL)
+                    SiteBanner(imageURL: currentSite.bannerURL)
                 }
                 .disabled(sites.count == 1)
                 .padding([.leading, .trailing], 15)
@@ -35,7 +39,7 @@ struct CategoriesView: View {
 
                 Spacer(minLength: 15)
 
-                PostFeed(site: wordpress)
+                PostFeed(site: viewModel.currentSite)
             }
             .padding(.top, 10)
             .padding(.bottom, 15)
@@ -45,37 +49,23 @@ struct CategoriesView: View {
             trailing:
             HStack(spacing: 15) {
                 NavigationLink(destination:
-                    SearchView(site: wordpress)
+                    SearchView(site: currentSite)
                 ) {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(.black)
                 }
-                LogoButton(url: wordpress.logoURL)
+                LogoButton(url: currentSite.logoURL)
             }
         )
         .sheet(isPresented: $displayPicker) {
-            ScrollView {
-                VStack(spacing: 15) {
-                    ForEach(sites) { site in
-                        Button {
-                            viewModel.selectedWordpress = site
-                            displayPicker = false
-                        } label: {
-                            SiteBanner(imageURL: site.bannerURL)
-                        }
-                    }
-                    .padding(.horizontal)
-                }
-                .padding([.top, .bottom])
-            }
+            WordpressPicker(show: $displayPicker)
         }
     }
 }
 
 struct CategoriesView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoriesView(sites: [Wordpress.default, Wordpress.default])
-            // .environmentObject(WordpressAPIHandler())
+        CategoriesView()
             .environmentObject(ViewModelData.default)
     }
 }

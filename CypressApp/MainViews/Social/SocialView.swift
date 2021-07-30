@@ -25,14 +25,6 @@ struct SocialView: View {
             }
         }
         .navigationBarTitle("South", displayMode: .inline)
-        .navigationBarItems(trailing:
-            NavigationLink(destination:
-                ScheduleSettings()
-            ) {
-                Image(systemName: "gearshape.fill")
-                    .foregroundColor(.black)
-            }
-        )
     }
 }
 

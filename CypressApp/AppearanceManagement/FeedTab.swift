@@ -15,14 +15,14 @@ struct FeedTab: Tab {
 
     var content: AnyView {
         AnyView(
-            CategoriesView(sites: sites)
+            CategoriesView()
         )
     }
 
     var tabIcon: AnyView {
         AnyView(
             VStack {
-                Image(systemName: "newspaper")
+                Image("Feed25")
                 Text("Feed")
             }
         )

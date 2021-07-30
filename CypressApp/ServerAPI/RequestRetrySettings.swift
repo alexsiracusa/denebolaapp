@@ -11,8 +11,13 @@ import Foundation
 /// https://github.com/Alamofire/Alamofire/blob/master/Source/RetryPolicy.swift
 
 class Retry: RetryPolicy {
-    let delay: Double = 2.5
-    let maxRetryCount = UInt.max
+    let delay: Double
+    let maxRetryCount: UInt
+
+    init(delay: Double = 4, maxRetryCount: UInt = UInt.max) {
+        self.delay = delay
+        self.maxRetryCount = maxRetryCount
+    }
 
     override func retry(_ request: Request,
                         for _: Session,

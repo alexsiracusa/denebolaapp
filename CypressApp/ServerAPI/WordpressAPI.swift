@@ -54,9 +54,9 @@ extension Wordpress {
             "search": text.words.joined(separator: ","),
             "_embed": embed ? "true" : "false",
         ]
-        if let category = category { params["filter[cat]"] = "\(category)" }
+        if let category = category { params["categories"] = "\(category)" }
 
-        let request = AF.request("\(url)/?rest_route=/wp/v2/posts", method: .get, parameters: params, interceptor: Retry()).validate()
+        let request = AF.request("\(url)/wp-json/wp/v2/posts", method: .get, parameters: params, interceptor: Retry()).validate()
 
         return Promise(cancellable: request) { seal in
             request.responseDecodable(of: [Post].self) { response in

@@ -8,7 +8,7 @@
 import Foundation
 
 class TabManager: ObservableObject {
-    var tabs: [Tab] = []
+    @Published var tabs: [Tab] = []
 
     init(_ tabs: [Tab]) {
         self.tabs = tabs

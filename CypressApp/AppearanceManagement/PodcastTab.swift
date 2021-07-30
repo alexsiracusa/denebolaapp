@@ -9,20 +9,19 @@ import Foundation
 import SwiftUI
 
 struct PodcastTab: Tab {
-    var podcasts: [Podcast]
-
     var name = "Podcast"
+    let podcasts: [Podcast]
 
     var content: AnyView {
         AnyView(
-            PodcastView(podcasts + [Podcast(id: 99, enabled: true, rssUrl: "https://atp.fm/rss")])
+            PodcastView(loader: PodcastLoader(podcasts.map { $0.rssUrl }))
         )
     }
 
     var tabIcon: AnyView {
         AnyView(
             VStack {
-                Image(systemName: "headphones")
+                Image("Podcast25")
                 Text("Podcast")
             }
         )

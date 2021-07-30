@@ -30,14 +30,13 @@ struct SearchView: View {
             }
         }
         .navigationBarTitle("Search \(category?.name ?? "Posts")", displayMode: .inline)
-        .navigationBarItems(trailing: LogoButton(url: viewModel.selectedWordpress.logoURL))
+        .navigationBarItems(trailing: LogoButton(url: viewModel.currentSite.logoURL))
     }
 }
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
         SearchView(site: Wordpress.default, category: SimpleCategory(id: 7, name: "Opinions", image: nil))
-            // .environmentObject(WordpressAPIHandler())
-            .environmentObject(ViewModelData())
+            .environmentObject(ViewModelData.default)
     }
 }

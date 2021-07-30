@@ -170,3 +170,7 @@ extension Date {
         return today.dateAtStartOf(.day) == date.dateAtStartOf(.day)
     }
 }
+
+extension String: LocalizedError {
+    public var errorDescription: String? { return self }
+}

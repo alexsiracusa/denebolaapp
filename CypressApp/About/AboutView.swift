@@ -83,7 +83,7 @@ struct AboutView: View {
             Button {
                 presentationMode.wrappedValue.dismiss()
             } label: {
-                Logo(url: viewModel.selectedWordpress.logoURL)
+                Logo(url: viewModel.currentSite.logoURL)
             }
         )
     }

@@ -14,7 +14,7 @@ struct CategoryButton: View {
     let category: SimpleCategory
 
     var imageURL: URL {
-        category.imageURL ?? viewModel.selectedWordpress.defaultImageURL
+        category.imageURL ?? viewModel.currentSite.defaultImageURL
     }
 
     var body: some View {
