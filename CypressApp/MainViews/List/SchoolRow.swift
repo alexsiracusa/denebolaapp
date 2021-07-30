@@ -16,7 +16,7 @@ struct SchoolRow: View {
     }
 
     var isLoadedSchool: Bool {
-        viewModel.school.id == school.id
+        viewModel.school?.id == school.id
     }
 
     var body: some View {
