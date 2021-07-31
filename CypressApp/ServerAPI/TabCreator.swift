@@ -28,9 +28,9 @@ extension SchoolConfig {
         return FeedTab(sites: wordpress)
     }
 
-    func scheduleTab() -> ScheduleTab? {
+    func scheduleTab() -> SocialTab? {
         guard let schedule = schedule, schedule.enabled else { return nil }
-        return ScheduleTab()
+        return SocialTab()
     }
 
     func allTabs() -> [Tab] {

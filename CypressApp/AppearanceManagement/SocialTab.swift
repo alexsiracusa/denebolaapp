@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct ScheduleTab: Tab {
+struct SocialTab: Tab {
     var name = "Schedule"
 
     var content: AnyView {
@@ -21,7 +21,7 @@ struct ScheduleTab: Tab {
         AnyView(
             VStack {
                 Image("Social25")
-                Text("South")
+                Text("Social")
             }
         )
     }

@@ -20,11 +20,11 @@ struct SocialView: View {
                 SchedulePageView()
                     .padding(.bottom, 20)
                     .padding(.top, 10)
-                CancelledList()
+                AbsencesList()
                     .padding(.bottom, 20)
             }
         }
-        .navigationBarTitle("South", displayMode: .inline)
+        .navigationBarTitle("Social", displayMode: .inline)
     }
 }
 

@@ -45,7 +45,7 @@
 		FA0CB84A26671810009FE7A3 /* HomeTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0CB84926671810009FE7A3 /* HomeTab.swift */; };
 		FA0CB84C26671926009FE7A3 /* FeedTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0CB84B26671926009FE7A3 /* FeedTab.swift */; };
 		FA0CB85026671989009FE7A3 /* PodcastTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0CB84F26671989009FE7A3 /* PodcastTab.swift */; };
-		FA0CB852266719BA009FE7A3 /* ScheduleTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0CB851266719BA009FE7A3 /* ScheduleTab.swift */; };
+		FA0CB852266719BA009FE7A3 /* SocialTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0CB851266719BA009FE7A3 /* SocialTab.swift */; };
 		FA0CB8542667247E009FE7A3 /* CategoriesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0CB8532667247E009FE7A3 /* CategoriesList.swift */; };
 		FA0CB85A2667302E009FE7A3 /* TabManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0CB8592667302E009FE7A3 /* TabManager.swift */; };
 		FA17F8DC2659DA1A008471BD /* SearchResultLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17F8DB2659DA1A008471BD /* SearchResultLoader.swift */; };
@@ -133,8 +133,9 @@
 		FAD43D8E268ACAAF00F04FE9 /* LargeBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD43D8D268ACAAF00F04FE9 /* LargeBlockView.swift */; };
 		FAD43D92268AD4C500F04FE9 /* DaysPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD43D91268AD4C500F04FE9 /* DaysPageView.swift */; };
 		FAD43D94268BAAC000F04FE9 /* Lunches.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD43D93268BAAC000F04FE9 /* Lunches.swift */; };
-		FADE100F2683AF5E00712D27 /* CancelledList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE100E2683AF5E00712D27 /* CancelledList.swift */; };
-		FADE10112683AFB200712D27 /* CancelledRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE10102683AFB200712D27 /* CancelledRow.swift */; };
+		FAD5709826B5CFEF005469AF /* AbsencesKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD5709726B5CFEF005469AF /* AbsencesKey.swift */; };
+		FADE100F2683AF5E00712D27 /* AbsencesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE100E2683AF5E00712D27 /* AbsencesList.swift */; };
+		FADE10112683AFB200712D27 /* AbsenceRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE10102683AFB200712D27 /* AbsenceRow.swift */; };
 		FAE14C7526557AA7000635DB /* PostSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE14C7426557AA7000635DB /* PostSection.swift */; };
 		FAE14C7726557AFD000635DB /* PostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE14C7626557AFD000635DB /* PostCard.swift */; };
 		FAF78288269543EC00A77758 /* SchoolYear.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF78287269543EC00A77758 /* SchoolYear.swift */; };
@@ -193,7 +194,7 @@
 		FA0CB84926671810009FE7A3 /* HomeTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTab.swift; sourceTree = "<group>"; };
 		FA0CB84B26671926009FE7A3 /* FeedTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTab.swift; sourceTree = "<group>"; };
 		FA0CB84F26671989009FE7A3 /* PodcastTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastTab.swift; sourceTree = "<group>"; };
-		FA0CB851266719BA009FE7A3 /* ScheduleTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTab.swift; sourceTree = "<group>"; };
+		FA0CB851266719BA009FE7A3 /* SocialTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialTab.swift; sourceTree = "<group>"; };
 		FA0CB8532667247E009FE7A3 /* CategoriesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesList.swift; sourceTree = "<group>"; };
 		FA0CB8592667302E009FE7A3 /* TabManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabManager.swift; sourceTree = "<group>"; };
 		FA17F8DB2659DA1A008471BD /* SearchResultLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultLoader.swift; sourceTree = "<group>"; };
@@ -277,8 +278,9 @@
 		FAD43D8D268ACAAF00F04FE9 /* LargeBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeBlockView.swift; sourceTree = "<group>"; };
 		FAD43D91268AD4C500F04FE9 /* DaysPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysPageView.swift; sourceTree = "<group>"; };
 		FAD43D93268BAAC000F04FE9 /* Lunches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lunches.swift; sourceTree = "<group>"; };
-		FADE100E2683AF5E00712D27 /* CancelledList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelledList.swift; sourceTree = "<group>"; };
-		FADE10102683AFB200712D27 /* CancelledRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelledRow.swift; sourceTree = "<group>"; };
+		FAD5709726B5CFEF005469AF /* AbsencesKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsencesKey.swift; sourceTree = "<group>"; };
+		FADE100E2683AF5E00712D27 /* AbsencesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsencesList.swift; sourceTree = "<group>"; };
+		FADE10102683AFB200712D27 /* AbsenceRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsenceRow.swift; sourceTree = "<group>"; };
 		FAE14C7426557AA7000635DB /* PostSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSection.swift; sourceTree = "<group>"; };
 		FAE14C7626557AFD000635DB /* PostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCard.swift; sourceTree = "<group>"; };
 		FAF78287269543EC00A77758 /* SchoolYear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolYear.swift; sourceTree = "<group>"; };
@@ -441,7 +443,7 @@
 				FA0CB84926671810009FE7A3 /* HomeTab.swift */,
 				FA0CB84B26671926009FE7A3 /* FeedTab.swift */,
 				FA0CB84F26671989009FE7A3 /* PodcastTab.swift */,
-				FA0CB851266719BA009FE7A3 /* ScheduleTab.swift */,
+				FA0CB851266719BA009FE7A3 /* SocialTab.swift */,
 				FAA25CE526B35F8A0082AD44 /* SchoolListTab.swift */,
 				FAA25CDC26B341300082AD44 /* SettingsTab.swift */,
 			);
@@ -674,8 +676,9 @@
 		FAD43D88268A73F900F04FE9 /* CancelledClasses */ = {
 			isa = PBXGroup;
 			children = (
-				FADE100E2683AF5E00712D27 /* CancelledList.swift */,
-				FADE10102683AFB200712D27 /* CancelledRow.swift */,
+				FADE100E2683AF5E00712D27 /* AbsencesList.swift */,
+				FADE10102683AFB200712D27 /* AbsenceRow.swift */,
+				FAD5709726B5CFEF005469AF /* AbsencesKey.swift */,
 			);
 			path = CancelledClasses;
 			sourceTree = "<group>";
@@ -850,7 +853,7 @@
 				FA73AA30263E363600B6C8B6 /* PostView.swift in Sources */,
 				FAD43D94268BAAC000F04FE9 /* Lunches.swift in Sources */,
 				FA879659269FB85F00C6E9BF /* PopupView.swift in Sources */,
-				FADE100F2683AF5E00712D27 /* CancelledList.swift in Sources */,
+				FADE100F2683AF5E00712D27 /* AbsencesList.swift in Sources */,
 				FA56AA6E263FA12200B6D838 /* LoadingPostRowView.swift in Sources */,
 				FA6526442658AEFC0043FDBA /* CategoryBanner.swift in Sources */,
 				FA17F8E22659DFCD008471BD /* SearchResults.swift in Sources */,
@@ -883,6 +886,7 @@
 				FA309EA526AF45BC007220EE /* SchoolSelector.swift in Sources */,
 				CEC03FB1263E354200FFCB45 /* CypressAppApp.swift in Sources */,
 				FA0CB85A2667302E009FE7A3 /* TabManager.swift in Sources */,
+				FAD5709826B5CFEF005469AF /* AbsencesKey.swift in Sources */,
 				FA56AA4C263F0B5A00B6D838 /* PodcastView.swift in Sources */,
 				FAA0BC7E26928C7E00A61C67 /* InfinitiePager.swift in Sources */,
 				FAD43D8E268ACAAF00F04FE9 /* LargeBlockView.swift in Sources */,
@@ -901,7 +905,7 @@
 				FA56AA46263F0B2300B6D838 /* CategoriesView.swift in Sources */,
 				CEF7C518267C0FDF00ADE6DB /* ContentRenderer.swift in Sources */,
 				FA17F8DE2659DCB1008471BD /* SearchRow.swift in Sources */,
-				FA0CB852266719BA009FE7A3 /* ScheduleTab.swift in Sources */,
+				FA0CB852266719BA009FE7A3 /* SocialTab.swift in Sources */,
 				FAD43D81268A28AD00F04FE9 /* BlockEditor.swift in Sources */,
 				FA17F8DC2659DA1A008471BD /* SearchResultLoader.swift in Sources */,
 				FAA7D2FA267E762400E8FFEC /* BlockData.swift in Sources */,
@@ -953,7 +957,7 @@
 				CEEC39C9267C63B100697168 /* HTML.swift in Sources */,
 				FAAAAC9F26869CC60052A658 /* ScheduleColumn.swift in Sources */,
 				FAAAACA3268795580052A658 /* MultiPageView.swift in Sources */,
-				FADE10112683AFB200712D27 /* CancelledRow.swift in Sources */,
+				FADE10112683AFB200712D27 /* AbsenceRow.swift in Sources */,
 				FAAE7DFE2669BB1600DE708A /* TabCreator.swift in Sources */,
 				FA309EA726AF4D35007220EE /* SettingsRow.swift in Sources */,
 				FA0CB84A26671810009FE7A3 /* HomeTab.swift in Sources */,

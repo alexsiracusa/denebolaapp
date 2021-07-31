@@ -15,10 +15,16 @@ func DefaultLoader() -> some View {
 }
 
 func PlaceholderImage() -> some View {
-    return Image("DenebolaLogo")
+    Image("DenebolaLogo")
         .resizable()
         .frame(width: 100, height: 100)
         .cornerRadius(5)
+}
+
+func Dot(color: Color) -> some View {
+    Circle()
+        .foregroundColor(color)
+        .frame(width: 10, height: 10)
 }
 
 func SpinningLoader() -> some View {
