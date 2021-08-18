@@ -9,7 +9,7 @@ import Alamofire
 @testable import Cypress
 import Disk
 import XCTest
-let SERVER_TEST_URL = "https://cypress.sequal.xyz"
+let SERVER_TEST_URL = "https://www.denebolaapp.com/api"
 
 class ServerAPITests: XCTestCase {
     override func setUpWithError() throws {

@@ -12,7 +12,7 @@ import SwiftDate
 
 var policy = RetryPolicy(retryLimit: 5, exponentialBackoffBase: 3, exponentialBackoffScale: 0)
 
-let SERVER_URL = "https://cypress.sequal.xyz"
+let SERVER_URL = "https://www.denebolaapp.com/api"
 
 enum ServerAPI {
     static func getSchools() -> Promise<[School]> {
