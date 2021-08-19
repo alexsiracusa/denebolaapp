@@ -17,10 +17,7 @@ extension ViewModelData {
         return firstly {
             self.retreiveCurrentSchoolFromDisk()
         }.then { school in
-            self.loadSchoolData(school)
-        }
-        .done {
-            self.loaded = .all
+            self.loadSchoolData(school, infiniteRetry: true)
         }
         .recover { _ in // current school not selected, loading school list
             self.loadSchoolList()
@@ -31,24 +28,26 @@ extension ViewModelData {
     }
 
     func loadSchoolList() -> Promise<Void> {
-        return ServerAPI.getSchools().done { schools in
+        return ServerAPI.getSchools().perform().done { schools in
             self.schools = schools
         }
     }
 
     // load all school data
     // calls loadSchool -> loadBlocks -> loadFullBlocks
-    func loadSchoolData(_ school: School, useCache: Bool = true, retry: Bool = true) -> Promise<Void> {
+    func loadSchoolData(_ school: School, infiniteRetry: Bool) -> Promise<Void> {
+        guard loadingSchool == nil else { return Promise { $0.reject("Already loading") }}
+
         loadingSchool = school.id
 
         var loadedConfig: SchoolConfig?
         var loadedBlocks: [BlockData]?
         var loadedFullBlocks: [Int: FullBlock]?
 
-        return getConfig(school: school, useCache: useCache, shouldRetry: retry).then { config -> Promise<[BlockData]> in
+        return school.getConfig().perform(maxRetry: infiniteRetry ? Int.max : 1).then { config -> Promise<[BlockData]> in
             loadedConfig = config
 
-            return self.getBlocks(school: school, useCache: useCache, shouldRetry: retry)
+            return school.getCourses().perform()
         }
         .then { blocks -> Promise<[Int: FullBlock]> in
             loadedBlocks = blocks
@@ -81,41 +80,32 @@ extension ViewModelData {
         firstly {
             self.saveCurrentSchool(school: school)
         }.then {
-            self.saveConfig(school: school)
-        }.then {
-            self.saveBlocks(school: school)
-        }.then {
             self.saveFullBlocks(school: school)
         }
     }
 
-    func getConfig(school: School, useCache: Bool = true, shouldRetry: Bool = true) -> Promise<SchoolConfig> {
-        return school.getConfig(delay: 0.5, retryCount: 0, timeOut: 6.5).recover { _ -> Promise<SchoolConfig> in
-            guard useCache else { return Promise { $0.reject("Cache is disabled") } }
-            print("checking disk")
-            return self.retreiveConfigDataFromDisk(school: school)
-        }.recover { error -> Promise<SchoolConfig> in
-            print("disk failed")
-            print(error.localizedDescription)
-
-            let retryCount = shouldRetry ? UInt.max : 0
-            let timeOut = shouldRetry ? 20.0 : 0.0
-            return school.getConfig(delay: 2.5, retryCount: retryCount, timeOut: timeOut)
+    func loadAbsences() -> Promise<Void> {
+        return school.getLatestAbsences().perform().done { absences in
+            self.absences = absences
         }
     }
 
-    func getBlocks(school: School, useCache: Bool = true, shouldRetry: Bool = true) -> Promise<[BlockData]> {
-        return school.getCourses(delay: 0.5, retryCount: 0, timeOut: 3.5).recover { _ -> Promise<[BlockData]> in
-            guard useCache else { return Promise { $0.reject("Cache is disabled") } }
-            print("checking disk")
-            return self.retrieveBlockDataFromDisk(school: school)
-        }.recover { error -> Promise<[BlockData]> in
-            print("disk failed")
-            print(error.localizedDescription)
+    func loadSchoolYear() -> Promise<Void> {
+        guard year == nil else { return Promise { $0.fulfill() } }
+        return school.getLatestYear().perform().done { year in
+            self.year = year
+        }
+    }
 
-            let retryCount = shouldRetry ? UInt.max : 0
-            let timeOut = shouldRetry ? 20.0 : 0.0
-            return school.getCourses(delay: 2.5, retryCount: retryCount, timeOut: timeOut)
+    func loadPodcast(_ podcast: Podcast) -> Promise<Void> {
+        guard !isPodcastLoaded(podcast) else { return Promise { $0.fulfill() } }
+        return Promise { seal in
+            RSSLoader.loadPodcast(podcast.rssUrl).done { loaded in
+                self.loadedPodcasts[podcast.id] = loaded
+                seal.fulfill()
+            }.catch { error in
+                seal.reject(error)
+            }
         }
     }
 
@@ -144,38 +134,8 @@ extension ViewModelData {
         }
     }
 
-    func loadAbsences() -> Promise<Void> {
-        guard absences == nil else { return Promise() }
-        return firstly {
-            school.getLatestAbsences()
-        }.done { absences in
-            self.absences = absences
-        }
-    }
-
-    func loadSchoolYear() -> Promise<Void> {
-        guard year == nil else { return Promise { $0.reject("Year is already loaded") } }
-        return firstly {
-            school.getLatestYear()
-        }.map { year in
-            self.year = year
-        }
-    }
-
-    func loadPodcast(_ podcast: Podcast) -> Promise<Void> {
-        guard !isPodcastLoaded(podcast) else { return Promise { $0.fulfill() } }
-        return Promise { seal in
-            RSSLoader.loadPodcast(podcast.rssUrl).done { loaded in
-                self.loadedPodcasts[podcast.id] = loaded
-                seal.fulfill()
-            }.catch { error in
-                seal.reject(error)
-            }
-        }
-    }
-
     /// Retrieves FullBlock data from the disk
-    func retrieveFullBlockDataFromDisk(school: School) -> Promise<[Int: FullBlock]> {
+    private func retrieveFullBlockDataFromDisk(school: School) -> Promise<[Int: FullBlock]> {
         return Promise { seal in
             let fullBlocks = try Disk.retrieve(fullBlockSavePath(school: school), from: .documents, as: [Int: FullBlock].self)
             seal.fulfill(fullBlocks)
@@ -183,27 +143,13 @@ extension ViewModelData {
     }
 
     /// Creates new FullBlock data from the server fetched-block data.
-    func createBlockData(from blocks: [BlockData]) -> Guarantee<[Int: FullBlock]> {
+    private func createBlockData(from blocks: [BlockData]) -> Guarantee<[Int: FullBlock]> {
         return Guarantee { seal in
             seal(blocks.reduce(into: [Int: FullBlock]()) { $0[$1.id] = FullBlock(id: $1.id, name: $1.name, onServer: true) })
         }
     }
 
-    func retrieveBlockDataFromDisk(school: School) -> Promise<[BlockData]> {
-        return Promise { seal in
-            let blocks = try Disk.retrieve(blockSavePath(school: school), from: .caches, as: [BlockData].self)
-            seal.fulfill(blocks)
-        }
-    }
-
-    func retreiveConfigDataFromDisk(school: School) -> Promise<SchoolConfig> {
-        return Promise { seal in
-            let config = try Disk.retrieve(configSavePath(school: school), from: .caches, as: SchoolConfig.self)
-            seal.fulfill(config)
-        }
-    }
-
-    func retreiveCurrentSchoolFromDisk() -> Promise<School> {
+    private func retreiveCurrentSchoolFromDisk() -> Promise<School> {
         return Promise { seal in
             let school = try Disk.retrieve(currentSchoolSavePath(), from: .documents, as: School.self)
             seal.fulfill(school)

@@ -54,11 +54,10 @@ struct SchoolSelector: View {
     }
 
     func loadSchool(school: School) {
-        let useCache = school.id != viewModel.school?.id ?? -1
         retrySchool = school
         let old = viewModel.school
         viewModel.school = school
-        viewModel.loadSchoolData(school, useCache: useCache, retry: false).done {
+        viewModel.loadSchoolData(school, infiniteRetry: false).done {
             presentationMode.wrappedValue.dismiss()
         }.catch { _ in
             viewModel.school = old

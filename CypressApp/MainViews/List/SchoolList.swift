@@ -10,28 +10,23 @@ import SwiftUI
 struct SchoolList: View {
     @EnvironmentObject private var viewModel: ViewModelData
     @State var error: String? = nil
+    @State var listAppeared = false
 
     var title: String {
-        viewModel.loadingSchool == nil ? "Selected a School" : "Loading"
+        viewModel.loadingSchool == nil ? "Select a School" : "Loading"
+    }
+
+    var showList: Bool {
+        (viewModel.schools != nil && viewModel.loadingSchool == nil) || listAppeared
     }
 
     var body: some View {
         Group {
-            if let schools = viewModel.schools {
-                ScrollView {
-                    VStack(spacing: 0) {
-                        ForEach(schools) { school in
-                            Button {
-                                viewModel.loadSchoolData(school).catch { error in
-                                    self.error = error.localizedDescription
-                                }
-                            } label: {
-                                SchoolRow(school: school)
-                            }
-                        }
+            if showList {
+                SchoolSelector()
+                    .onAppear {
+                        listAppeared = true
                     }
-                    .padding(.top, 10)
-                }
             } else {
                 VStack(alignment: .center) {
                     Spacer()

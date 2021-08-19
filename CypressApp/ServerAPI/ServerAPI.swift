@@ -10,17 +10,19 @@ import Foundation
 import PromiseKit
 import SwiftDate
 
-var policy = RetryPolicy(retryLimit: 5, exponentialBackoffBase: 3, exponentialBackoffScale: 0)
-
 let SERVER_URL = "https://www.denebolaapp.com/api"
 
+let session: Session = {
+    let configuration = URLSessionConfiguration.default
+    configuration.timeoutIntervalForRequest = 5
+    return Session(configuration: configuration)
+}()
+
 enum ServerAPI {
-    static func getSchools() -> Promise<[School]> {
-        return Promise { seal in
-            AF.request("\(SERVER_URL)/schools", method: .get, interceptor: Retry()).responseDecodable(of: [School].self) { response in
-                sealResult(seal, response.result)
-            }
-        }
+    static func getSchools() -> CachingRequest<[School]> {
+        let request = session.request("\(SERVER_URL)/schools", method: .get)
+
+        return CachingRequest(with: request)
     }
 }
 
@@ -28,74 +30,48 @@ struct School: Codable, Identifiable, Hashable {
     let id: Int
     let name: String
 
-    func getConfig(delay: Double = 2.5, retryCount: UInt = UInt.max, timeOut: Double = 60) -> Promise<SchoolConfig> {
-        let retry = Retry(delay: delay, maxRetryCount: retryCount)
-        return Promise { seal in
-            AF.request("\(SERVER_URL)/schools/\(id)/config", method: .get, interceptor: retry)
-                { $0.timeoutInterval = TimeInterval(timeOut) }
-                .validate().responseDecodable(of: SchoolConfig.self) { response in
-                    sealResult(seal, response.result)
-                }
-        }
+    func getConfig() -> CachingRequest<SchoolConfig> {
+        let request = session.request("\(SERVER_URL)/schools/\(id)/config", method: .get)
+
+        return CachingRequest(with: request)
     }
 
-    func getAbsences(date: Date) -> Promise<Absences> {
+    func getAbsences(date: Date) -> CachingRequest<Absences> {
         let dateString = DateInRegion(date, region: .local).toFormat("yyyy-MM-dd")
-        return Promise { seal in
-            AF.request("\(SERVER_URL)/schools/\(id)/absences/\(dateString)", method: .get, interceptor: Retry())
-                .validate().responseDecodable(of: Absences.self, decoder: MultiFormatter()) { response in
-                    sealResult(seal, response.result)
-                }
-        }
+        let request = session.request("\(SERVER_URL)/schools/\(id)/absences/\(dateString)", method: .get, interceptor: Retry())
+
+        return CachingRequest(with: request)
     }
 
-    func getLatestAbsences() -> Promise<Absences> {
-        return Promise { seal in
-            AF.request("\(SERVER_URL)/schools/\(id)/absences/latest", method: .get, interceptor: Retry()).validate().responseDecodable(of: Absences.self, decoder: MultiFormatter()) { response in
-                sealResult(seal, response.result)
-            }
-        }
+    func getLatestAbsences() -> CachingRequest<Absences> {
+        let request = session.request("\(SERVER_URL)/schools/\(id)/absences/latest", method: .get)
+        return CachingRequest(with: request)
     }
 
-    func getCourses(delay: Double = 2.5, retryCount: UInt = UInt.max, timeOut: Double = 60) -> Promise<[BlockData]> {
-        let retry = Retry(delay: delay, maxRetryCount: retryCount)
-        return Promise { seal in
-            AF.request("\(SERVER_URL)/schools/\(id)/schedule/blocks/courses", method: .get, interceptor: retry)
-                { $0.timeoutInterval = TimeInterval(timeOut) }
-                .validate().responseDecodable(of: [BlockData].self) { response in
-                    sealResult(seal, response.result)
-                }
-        }
+    func getCourses() -> CachingRequest<[BlockData]> {
+        let request = session.request("\(SERVER_URL)/schools/\(id)/schedule/blocks/courses", method: .get)
+        return CachingRequest(with: request)
     }
 
-    func getWeek(date: Date) -> Promise<Week> {
+    func getWeek(date: Date) -> CachingRequest<Week> {
         let dateString = DateInRegion(date).toFormat("yyyy-MM-dd")
-        return Promise { seal in
-            AF.request("\(SERVER_URL)/schools/\(id)/schedule/weeks/\(dateString)", method: .get, interceptor: Retry()).validate().responseDecodable(of: Week.self, decoder: MultiFormatter()) { response in
-                sealResult(seal, response.result)
-            }
-        }
+        let request = session.request("\(SERVER_URL)/schools/\(id)/schedule/weeks/\(dateString)", method: .get)
+        return CachingRequest(with: request)
     }
 
-    func getDay(date: Date) -> Promise<Day> {
+    func getLatestYear() -> CachingRequest<SchoolYear> {
+        let request = session.request("\(SERVER_URL)/schools/\(id)/schedule/years/latest", method: .get)
+        return CachingRequest(with: request)
+    }
+
+    func getDay(date: Date) -> CachingRequest<Day> {
         getDay(date: DateInRegion(date))
     }
 
-    func getDay(date: DateInRegion) -> Promise<Day> {
+    func getDay(date: DateInRegion) -> CachingRequest<Day> {
         let dateString = date.toFormat("yyyy-MM-dd")
-        return Promise { seal in
-            AF.request("\(SERVER_URL)/schools/\(id)/schedule/days/\(dateString)", method: .get, interceptor: Retry()).validate().responseDecodable(of: Day.self, decoder: MultiFormatter()) { response in
-                sealResult(seal, response.result)
-            }
-        }
-    }
-
-    func getLatestYear() -> Promise<SchoolYear> {
-        return Promise { seal in
-            AF.request("\(SERVER_URL)/schools/\(id)/schedule/years/latest", method: .get, interceptor: Retry()).validate().responseDecodable(of: SchoolYear.self, decoder: MultiFormatter()) { response in
-                sealResult(seal, response.result)
-            }
-        }
+        let request = session.request("\(SERVER_URL)/schools/\(id)/schedule/days/\(dateString)", method: .get)
+        return CachingRequest(with: request)
     }
 
     static var `default`: School {

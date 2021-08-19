@@ -29,6 +29,7 @@ struct SettingsView: View {
                         message: Text("are you sure you want to clear the cache?"),
                         primaryButton: .destructive(Text("Clear")) {
                             try? Disk.clear(.caches)
+                            URLCache.shared.removeAllCachedResponses()
                         },
                         secondaryButton: .default(Text("Cancel"))
                     )

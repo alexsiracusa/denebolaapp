@@ -38,9 +38,6 @@ struct AbsencesList: View {
                     }
                 } else if absences == nil {
                     SpinningLoader()
-                        .onAppear {
-                            self.loadAbsences()
-                        }
                 }
 
                 Spacer(minLength: 10)
@@ -54,6 +51,9 @@ struct AbsencesList: View {
                 }
             }
             .padding(.horizontal, 15)
+            .onAppear {
+                self.loadAbsences()
+            }
 
             Spacer()
                 .frame(height: 5)

@@ -98,12 +98,21 @@ extension FetchImage {
     }
 }
 
-func retry<T>(times: Int, cooldown: TimeInterval, body: @escaping () -> Promise<T>) -> Promise<T> {
+/**
+ Retries a promise continously.
+ - Parameter times: The number of times to retry
+ - Parameter cooldown: Amount of time to wait before retrying.
+ - Parameter shouldThrowError: A closure to determine whether we should stop retrying.
+ - Parameter body: The promise to retry.
+
+ - Returns: A promise.
+ */
+func retry<T>(times: Int, cooldown: TimeInterval, shouldThrowError: @escaping (Error) -> Bool = { _ in false }, body: @escaping () -> Promise<T>) -> Promise<T> {
     var retryCounter = 0
     func attempt() -> Promise<T> {
         return body().recover(policy: CatchPolicy.allErrorsExceptCancellation) { error -> Promise<T> in
             retryCounter += 1
-            guard retryCounter <= times else {
+            guard retryCounter <= times, !shouldThrowError(error) else {
                 throw error
             }
             return after(seconds: cooldown).then(attempt)

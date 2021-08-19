@@ -15,8 +15,12 @@ class CurrentWeek: ObservableObject {
 struct SchedulePageView: View {
     @Environment(\.managedObjectContext) var moc
     @EnvironmentObject var viewModel: ViewModelData
+
     @State var selection = 2
     @State var showLunches = false
+    // Used to keep track of whether the currentWeekIndex was scrolled to already
+    @State var loadedYear = Int.min
+
     var year: SchoolYear? {
         return viewModel.year
     }
@@ -26,6 +30,13 @@ struct SchedulePageView: View {
     }
 
     let impactStyle: UIImpactFeedbackGenerator.FeedbackStyle = .light
+
+    private func updateYear() {
+        if let year = year, loadedYear != year.id {
+            selection = year.currentWeekIndex
+            loadedYear = year.id
+        }
+    }
 
     var body: some View {
         VStack(alignment: .center, spacing: 5) {
@@ -42,6 +53,10 @@ struct SchedulePageView: View {
                         .padding(.horizontal, 10)
                         .frame(width: 80)
                 }
+            }
+            // In case of an update
+            .onChange(of: viewModel.year) { _ in
+                self.updateYear()
             }
 
             if let year = year {

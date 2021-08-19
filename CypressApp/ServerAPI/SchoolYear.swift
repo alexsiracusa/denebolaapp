@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SchoolYear: Codable {
+struct SchoolYear: Codable, Equatable {
     let id: Int
     let name: String
     let start_date: Date
