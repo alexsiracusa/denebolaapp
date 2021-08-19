@@ -10,57 +10,28 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject private var viewModel: ViewModelData
 
-    @State private var latestPosts = [Post]()
-    @State private var multimediaPosts = [Post]()
-
-    let sites: [Wordpress]
-    let podcasts: [Podcast]
-
-    init(sites: [Wordpress], podcasts: [Podcast]) {
-        self.sites = sites
-        self.podcasts = podcasts
-    }
-
-    var gradient: some View {
-        LinearGradient(gradient: Gradient(colors: [.white, .black]), startPoint: UnitPoint(x: 0.5, y: 0.0), endPoint: .bottom)
-            .opacity(0.03)
-    }
-
-    func loadPosts() {
-        sites[0].getPostPage(category: nil, page: 1, per_page: 5, embed: true).done { posts in
-            latestPosts = posts
-        }.catch { error in
-            print(error)
-            // HANDLE ERROR
-        }
-
-        // no more multimedia section since not all websites will have that as a category
-    }
-
     var body: some View {
         ScrollView(showsIndicators: false) {
-            VStack(spacing: 30) {
-                PostSection(posts: latestPosts)
-                    .overlay(gradient)
-//                    PodcastSection()
-//                        .overlay(gradient)
-                MultimediaSection(posts: multimediaPosts)
-                    .overlay(gradient)
+            VStack(spacing: 0) {
+                // sites
+                ForEach(viewModel.sites) { site in
+                    SiteSection(site: site)
+                }
+
+                // podcasts
+                ForEach(viewModel.podcasts) { podcast in
+                    PodcastSection(podcast: podcast)
+                }
             }
             .padding(.top, 10)
         }
         .navigationBarTitle("Home", displayMode: .inline)
-        .onAppear {
-            if latestPosts.count == 0 {
-                loadPosts()
-            }
-        }
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(sites: [Wordpress.default], podcasts: [Podcast.default])
+        HomeView()
             .environmentObject(ViewModelData.default)
     }
 }

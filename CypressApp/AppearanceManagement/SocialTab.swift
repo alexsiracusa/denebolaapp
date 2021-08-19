@@ -10,6 +10,7 @@ import SwiftUI
 
 struct SocialTab: Tab {
     var name = "Schedule"
+    var id = TabID.social
 
     var content: AnyView {
         AnyView(

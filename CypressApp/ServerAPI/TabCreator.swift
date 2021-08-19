@@ -11,21 +11,21 @@ extension SchoolConfig {
     func homeTab() -> HomeTab? {
         guard let home = home, home.enabled else { return nil }
         // TODO: fix these unwraps
-        return HomeTab(sites: wordpress!, podcasts: podcasts!)
+        return HomeTab()
     }
 
     func podcastsTab() -> PodcastTab? {
         guard var podcasts = podcasts else { return nil }
         podcasts = podcasts.filter { $0.enabled }
         guard podcasts.count > 0 else { return nil }
-        return PodcastTab(podcasts: podcasts)
+        return PodcastTab()
     }
 
     func feedTab() -> FeedTab? {
         guard let wordpress = wordpress else { return nil }
         let sites = wordpress.filter { $0.enabled }
         guard sites.count > 0 else { return nil }
-        return FeedTab(sites: wordpress)
+        return FeedTab()
     }
 
     func scheduleTab() -> SocialTab? {

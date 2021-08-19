@@ -45,3 +45,19 @@ func LoadingRectangle(_ cornerRadius: CGFloat = 0) -> some View {
         .brightness(0.2)
         .cornerRadius(cornerRadius)
 }
+
+func PlaceHolderImage() -> some View {
+    LoadingRectangle()
+        .overlay(
+            GeometryReader { geo in
+                let size = [geo.size.width, geo.size.height].min() ?? 0 * 0.9
+                Image("CypressLogoTemplate")
+                    .resizable()
+                    .foregroundColor(.gray)
+                    .opacity(0.2)
+                    .frame(width: size, height: size)
+                    .frame(alignment: .center)
+                    .position(x: geo.size.width / 2, y: geo.size.width / 2)
+            }
+        )
+}

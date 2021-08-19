@@ -1,20 +1,19 @@
 //
-//  CategoryButton.swift
-//  DenebolaApp
+//  StaticCategoryButton.swift
+//  CypressApp
 //
-//  Created by Alex Siracusa on 5/2/21.
+//  Created by Alex Siracusa on 8/19/21.
 //
 
 import SwiftUI
 
 struct CategoryButton: View {
-    @EnvironmentObject var viewModel: ViewModelData
-
-    let size: CGFloat = 100
+    let size: CGFloat = 90
     let category: SimpleCategory
+    let defaultImageURL: URL
 
     var imageURL: URL {
-        category.imageURL ?? viewModel.currentSite.defaultImageURL
+        category.imageURL ?? defaultImageURL
     }
 
     var body: some View {
@@ -32,7 +31,7 @@ struct CategoryButton: View {
                 NavigationLink(destination:
                     CategoryView(category: category, imageURL: imageURL)
                 ) {
-                    ImageView(url: imageURL)
+                    ImageView(url: imageURL, aspectRatio: 1.0)
                         .asCategoryButton(size: size)
                 }
             }
@@ -46,8 +45,6 @@ extension View {
         AnyView(
             scaledToFill()
                 .frame(width: size, height: size)
-                .aspectRatio(1.0, contentMode: .fit)
-                .clipped()
                 .cornerRadius(10)
                 .zIndex(1)
                 .overlay(LinearGradient(gradient: Gradient(colors: [.clear, .black]), startPoint: UnitPoint(x: 0.5, y: 0.7), endPoint: .bottom)
@@ -58,9 +55,8 @@ extension View {
     }
 }
 
-struct CategoryButton_Previews: PreviewProvider {
+struct StaticCategoryButton_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryButton(category: SimpleCategory(id: 7, name: "Opinions", image: nil))
-            .environmentObject(ViewModelData())
+        CategoryButton(category: SimpleCategory(id: 7, name: "Opinions", image: nil), defaultImageURL: Wordpress.default.defaultImageURL)
     }
 }

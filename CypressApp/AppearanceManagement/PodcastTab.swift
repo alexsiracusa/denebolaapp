@@ -10,11 +10,11 @@ import SwiftUI
 
 struct PodcastTab: Tab {
     var name = "Podcast"
-    let podcasts: [Podcast]
+    var id = TabID.podcast
 
     var content: AnyView {
         AnyView(
-            PodcastView(loader: PodcastLoader(podcasts.map { $0.rssUrl }))
+            PodcastView()
         )
     }
 

@@ -77,6 +77,19 @@ struct School: Codable, Identifiable, Hashable {
         }
     }
 
+    func getDay(date: Date) -> Promise<Day> {
+        getDay(date: DateInRegion(date))
+    }
+
+    func getDay(date: DateInRegion) -> Promise<Day> {
+        let dateString = date.toFormat("yyyy-MM-dd")
+        return Promise { seal in
+            AF.request("\(SERVER_URL)/schools/\(id)/schedule/days/\(dateString)", method: .get, interceptor: Retry()).validate().responseDecodable(of: Day.self, decoder: MultiFormatter()) { response in
+                sealResult(seal, response.result)
+            }
+        }
+    }
+
     func getLatestYear() -> Promise<SchoolYear> {
         return Promise { seal in
             AF.request("\(SERVER_URL)/schools/\(id)/schedule/years/latest", method: .get, interceptor: Retry()).validate().responseDecodable(of: SchoolYear.self, decoder: MultiFormatter()) { response in

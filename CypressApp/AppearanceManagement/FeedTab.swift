@@ -9,9 +9,8 @@ import Foundation
 import SwiftUI
 
 struct FeedTab: Tab {
-    var sites: [Wordpress]
-
     var name = "Feed"
+    var id = TabID.feed
 
     var content: AnyView {
         AnyView(

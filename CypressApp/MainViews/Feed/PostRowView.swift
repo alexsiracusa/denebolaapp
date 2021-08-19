@@ -30,17 +30,17 @@ struct PostRowView: View {
                     Text(post.getTitle())
                         .bold()
                         .font(.title3)
-                        .lineLimit(nil)
+                        .lineLimit(2)
                         .foregroundColor(.black)
                     Text(post.getAuthor())
                         .font(.subheadline)
+                        .lineLimit(1)
                         .foregroundColor(.black)
                     Text(post.getDateRelative())
                         .foregroundColor(.gray)
+                        .lineLimit(1)
                         .font(.subheadline)
                 }.padding(.vertical, 4.0)
-
-                Spacer()
             }
             .buttonStyle(NoButtonAnimation())
             Spacer(minLength: 0)
@@ -52,7 +52,6 @@ struct PostRowView: View {
 struct PostRowView_Previews: PreviewProvider {
     static var previews: some View {
         PostRowView(post: Post.default)
-            // .environmentObject(WordpressAPIHandler())
-            .environmentObject(ViewModelData())
+            .environmentObject(ViewModelData.default)
     }
 }

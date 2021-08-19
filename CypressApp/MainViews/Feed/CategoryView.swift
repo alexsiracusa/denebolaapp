@@ -52,7 +52,6 @@ struct CategoryView: View {
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
         CategoryView(category: SimpleCategory(id: 7, name: "Opinions", image: nil), imageURL: Wordpress.default.defaultImageURL)
-            // .environmentObject(WordpressAPIHandler())
-            .environmentObject(ViewModelData())
+            .environmentObject(ViewModelData.default)
     }
 }

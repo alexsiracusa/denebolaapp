@@ -48,6 +48,8 @@ class ViewModelData: ObservableObject {
 
     // current school stuff - podcast
     @Published var podcasts: [Podcast]!
+    @Published var loadedPodcasts = [Int: LoadedPodcast]()
+    @Published var selectedPodcast: Int? = nil
 
     // current school stuff - social
     @Published var year: SchoolYear?
@@ -62,6 +64,8 @@ class ViewModelData: ObservableObject {
         // TODO: add more defaults for this
         model.school = School.default
         model.currentSite = Wordpress.default
+        model.sites = [Wordpress.default]
+        model.podcasts = [Podcast.default]
         model.blocks = Array(repeating: BlockData.default, count: 8)
         model.fullBlocks = [
             0: FullBlock(id: 0, name: "A"),

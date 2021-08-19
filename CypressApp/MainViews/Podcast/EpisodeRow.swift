@@ -30,10 +30,12 @@ struct EpisodeRow: View {
                         Text(episode.title)
                             .foregroundColor(.black)
                             .font(.headline)
+                            .lineSpacing(0)
                             .lineLimit(2)
                         Text(episode.dateString + " • " + (episode.lengthString ?? "-"))
                             .foregroundColor(.gray)
                             .font(.footnote)
+                            .lineLimit(1)
                     }
                     .padding(.leading, 10)
                     Spacer()
@@ -42,6 +44,7 @@ struct EpisodeRow: View {
                 Divider()
             }
         }
+        .buttonStyle(OpacityButton())
         .disabled(player.loading)
     }
 }

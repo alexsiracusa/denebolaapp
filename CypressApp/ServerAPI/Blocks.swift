@@ -28,8 +28,8 @@ struct Times: Codable {
     }
 
     init(from: String, to: String) {
-        self.from = Date(from, format: "HH:mm:ss", region: .local)!
-        self.to = Date(to, format: "HH:mm:ss", region: .local)!
+        self.from = Date(from, format: "H:mm aa", region: .local)!
+        self.to = Date(to, format: "H:mm aa", region: .local)!
     }
 
     var length: TimeInterval {

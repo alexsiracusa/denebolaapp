@@ -162,6 +162,18 @@ extension ViewModelData {
         }
     }
 
+    func loadPodcast(_ podcast: Podcast) -> Promise<Void> {
+        guard !isPodcastLoaded(podcast) else { return Promise { $0.fulfill() } }
+        return Promise { seal in
+            RSSLoader.loadPodcast(podcast.rssUrl).done { loaded in
+                self.loadedPodcasts[podcast.id] = loaded
+                seal.fulfill()
+            }.catch { error in
+                seal.reject(error)
+            }
+        }
+    }
+
     /// Retrieves FullBlock data from the disk
     func retrieveFullBlockDataFromDisk(school: School) -> Promise<[Int: FullBlock]> {
         return Promise { seal in

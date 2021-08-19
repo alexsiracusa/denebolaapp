@@ -13,6 +13,7 @@ struct ImageView: View {
     let url: URL
     var shouldReset: Bool = false
     var aspectRatio: CGFloat?
+    var isCircle = false
 
     func setup() {
         if image.onFailure != nil { return }
@@ -35,7 +36,12 @@ struct ImageView: View {
                     .resizable()
 
             } else {
-                LoadingRectangle()
+                if isCircle {
+                    LoadingRectangle()
+                        .cornerRadius(999)
+                } else {
+                    LoadingRectangle()
+                }
             }
         }
     }

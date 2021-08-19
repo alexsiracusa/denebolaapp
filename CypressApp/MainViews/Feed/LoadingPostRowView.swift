@@ -10,20 +10,27 @@ import SwiftUI
 struct LoadingPostRowView: View {
     var body: some View {
         HStack(alignment: .top) {
-            LoadingRectangle(5)
+            LoadingRectangle(10)
                 .frame(height: 100)
                 .aspectRatio(1.6, contentMode: .fit)
 
-            VStack(alignment: .leading, spacing: 3) {
+            VStack(alignment: .leading, spacing: 0) {
                 LoadingRectangle()
-                    .frame(height: 40)
-                    .padding(.top, 3)
+                    .frame(height: 13)
+                    .cornerRadius(10)
+                    .padding(.top, 7)
                 LoadingRectangle()
-                    .frame(width: 100, height: 20)
-                    .padding(.top, 1)
+                    .frame(height: 13)
+                    .cornerRadius(10)
+                    .padding(.top, 8)
                 LoadingRectangle()
-                    .frame(width: 150, height: 20)
-                    .padding(.top, 1)
+                    .frame(width: 60, height: 10)
+                    .cornerRadius(10)
+                    .padding(.top, 12)
+                LoadingRectangle()
+                    .frame(width: 100, height: 10)
+                    .cornerRadius(10)
+                    .padding(.top, 8)
                 Spacer()
             }
             .foregroundColor(.black)

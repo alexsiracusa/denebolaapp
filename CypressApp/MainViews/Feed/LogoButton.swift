@@ -12,7 +12,7 @@ struct LogoButton: View {
 
     var body: some View {
         NavigationLink(destination: AboutView()) {
-            ImageView(url: url)
+            ImageView(url: url, aspectRatio: 1.0, isCircle: true)
                 .frame(width: 30, height: 30)
         }
     }

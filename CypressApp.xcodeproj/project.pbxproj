@@ -36,7 +36,6 @@
 		CEF7C514267C0FC400ADE6DB /* PostContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7C513267C0FC400ADE6DB /* PostContentView.swift */; };
 		CEF7C518267C0FDF00ADE6DB /* ContentRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7C517267C0FDF00ADE6DB /* ContentRenderer.swift */; };
 		CEFE4E7B26562EF2005A2DD4 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE4E7A26562EF2005A2DD4 /* ModelData.swift */; };
-		CEFE4E83265635B6005A2DD4 /* MultimediaSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE4E82265635B6005A2DD4 /* MultimediaSection.swift */; };
 		FA03D1B626719D24005A760F /* WordpressCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA03D1B526719D24005A760F /* WordpressCodable.swift */; };
 		FA03D1B826719D72005A760F /* WordpressAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA03D1B726719D72005A760F /* WordpressAPI.swift */; };
 		FA0CB8422664320A009FE7A3 /* PodcastEpisode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0CB8412664320A009FE7A3 /* PodcastEpisode.swift */; };
@@ -46,7 +45,6 @@
 		FA0CB84C26671926009FE7A3 /* FeedTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0CB84B26671926009FE7A3 /* FeedTab.swift */; };
 		FA0CB85026671989009FE7A3 /* PodcastTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0CB84F26671989009FE7A3 /* PodcastTab.swift */; };
 		FA0CB852266719BA009FE7A3 /* SocialTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0CB851266719BA009FE7A3 /* SocialTab.swift */; };
-		FA0CB8542667247E009FE7A3 /* CategoriesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0CB8532667247E009FE7A3 /* CategoriesList.swift */; };
 		FA0CB85A2667302E009FE7A3 /* TabManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0CB8592667302E009FE7A3 /* TabManager.swift */; };
 		FA17F8DC2659DA1A008471BD /* SearchResultLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17F8DB2659DA1A008471BD /* SearchResultLoader.swift */; };
 		FA17F8DE2659DCB1008471BD /* SearchRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17F8DD2659DCB1008471BD /* SearchRow.swift */; };
@@ -65,7 +63,7 @@
 		FA32E90226925AA700E38F31 /* WeekBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32E90126925AA700E38F31 /* WeekBlock.swift */; };
 		FA32E90426925C4000E38F31 /* WeekIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32E90326925C4000E38F31 /* WeekIndicator.swift */; };
 		FA3A94C926A1367800CEFA08 /* LongText.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3A94C826A1367800CEFA08 /* LongText.swift */; };
-		FA4618CC264980240018522B /* PodcastLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4618CB264980240018522B /* PodcastLoader.swift */; };
+		FA3FC66826BB172B00908674 /* ScheduleBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3FC66726BB172B00908674 /* ScheduleBlockView.swift */; };
 		FA4B7364264E335200516AC6 /* PlayerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4B7363264E335200516AC6 /* PlayerObject.swift */; };
 		FA5068D4267043C100E0BBAE /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = FA5068D3267043C100E0BBAE /* Alamofire */; };
 		FA5068D7267043E000E0BBAE /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = FA5068D6267043E000E0BBAE /* FeedKit */; };
@@ -74,7 +72,6 @@
 		FA56AA4A263F0B5100B6D838 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA49263F0B5100B6D838 /* HomeView.swift */; };
 		FA56AA4C263F0B5A00B6D838 /* PodcastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA4B263F0B5A00B6D838 /* PodcastView.swift */; };
 		FA56AA51263F0BFF00B6D838 /* PhotoGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA50263F0BFF00B6D838 /* PhotoGalleryView.swift */; };
-		FA56AA56263F0F2400B6D838 /* CategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA55263F0F2400B6D838 /* CategoryButton.swift */; };
 		FA56AA5C263F246000B6D838 /* PostRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA5B263F246000B6D838 /* PostRowView.swift */; };
 		FA56AA62263F2FD200B6D838 /* PostFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA61263F2FD200B6D838 /* PostFeed.swift */; };
 		FA56AA64263F3F1A00B6D838 /* SamplePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56AA63263F3F1A00B6D838 /* SamplePost.swift */; };
@@ -101,7 +98,6 @@
 		FA73AA2C263E361E00B6C8B6 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73AA28263E361E00B6C8B6 /* Category.swift */; };
 		FA73AA2D263E361E00B6C8B6 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73AA29263E361E00B6C8B6 /* Post.swift */; };
 		FA73AA30263E363600B6C8B6 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73AA2F263E363600B6C8B6 /* PostView.swift */; };
-		FA87325E265586260094146C /* PodcastSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA87325D265586260094146C /* PodcastSection.swift */; };
 		FA879659269FB85F00C6E9BF /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA879658269FB85F00C6E9BF /* PopupView.swift */; };
 		FAA0BC7E26928C7E00A61C67 /* InfinitiePager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA0BC7D26928C7E00A61C67 /* InfinitiePager.swift */; };
 		FAA25CDB26B1B17A0082AD44 /* WordpressPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA25CDA26B1B17A0082AD44 /* WordpressPicker.swift */; };
@@ -127,6 +123,11 @@
 		FAAE7DFC2669B44F00DE708A /* ServerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE7DFB2669B44F00DE708A /* ServerAPI.swift */; };
 		FAAE7DFE2669BB1600DE708A /* TabCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE7DFD2669BB1600DE708A /* TabCreator.swift */; };
 		FABBE21A269D03C300DD20C5 /* DateDecoders.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABBE219269D03C300DD20C5 /* DateDecoders.swift */; };
+		FACDFEDB26B4BD8400761D17 /* PodcastSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDFEDA26B4BD8400761D17 /* PodcastSection.swift */; };
+		FACDFEDD26B4BF5600761D17 /* LoadingPodcastRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDFEDC26B4BF5600761D17 /* LoadingPodcastRow.swift */; };
+		FACDFEDF26B4C17D00761D17 /* LoadingPodcastDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDFEDE26B4C17D00761D17 /* LoadingPodcastDetailView.swift */; };
+		FACDFEE126B4D09400761D17 /* SmallEpisodeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDFEE026B4D09400761D17 /* SmallEpisodeRow.swift */; };
+		FACDFEE326B4D89A00761D17 /* LoadingSmallEpisodeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDFEE226B4D89A00761D17 /* LoadingSmallEpisodeRow.swift */; };
 		FAD43D81268A28AD00F04FE9 /* BlockEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD43D80268A28AD00F04FE9 /* BlockEditor.swift */; };
 		FAD43D83268A34BE00F04FE9 /* PropertyEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD43D82268A34BE00F04FE9 /* PropertyEditor.swift */; };
 		FAD43D8C268ACA7900F04FE9 /* DayDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD43D8B268ACA7900F04FE9 /* DayDetailView.swift */; };
@@ -136,11 +137,16 @@
 		FAD5709826B5CFEF005469AF /* AbsencesKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD5709726B5CFEF005469AF /* AbsencesKey.swift */; };
 		FADE100F2683AF5E00712D27 /* AbsencesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE100E2683AF5E00712D27 /* AbsencesList.swift */; };
 		FADE10112683AFB200712D27 /* AbsenceRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE10102683AFB200712D27 /* AbsenceRow.swift */; };
-		FAE14C7526557AA7000635DB /* PostSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE14C7426557AA7000635DB /* PostSection.swift */; };
-		FAE14C7726557AFD000635DB /* PostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE14C7626557AFD000635DB /* PostCard.swift */; };
+		FAE342E326CECB9100B85268 /* StaticSiteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE342E226CECB9100B85268 /* StaticSiteView.swift */; };
+		FAE342E526CECC5300B85268 /* CategoriesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE342E426CECC5300B85268 /* CategoriesList.swift */; };
+		FAE342E726CECCC600B85268 /* CategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE342E626CECCC600B85268 /* CategoryButton.swift */; };
+		FAE342E926CED01500B85268 /* ViewModelSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE342E826CED01500B85268 /* ViewModelSupport.swift */; };
 		FAF78288269543EC00A77758 /* SchoolYear.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF78287269543EC00A77758 /* SchoolYear.swift */; };
 		FAF813E326A11066000F6C59 /* EpisodeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF813E226A11066000F6C59 /* EpisodeSettings.swift */; };
 		FAF813E526A127D3000F6C59 /* PodcastRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF813E426A127D3000F6C59 /* PodcastRow.swift */; };
+		FAFD75E126B480800046AF9B /* SiteSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFD75E026B480800046AF9B /* SiteSection.swift */; };
+		FAFD75E326B485780046AF9B /* PostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFD75E226B485780046AF9B /* PostCard.swift */; };
+		FAFD75E526B48E100046AF9B /* LoadingPostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFD75E426B48E100046AF9B /* LoadingPostCard.swift */; };
 		FAFE2897268BD3E300DC9373 /* Blocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFE2896268BD3E300DC9373 /* Blocks.swift */; };
 		FAFE2899268BD41F00DC9373 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFE2898268BD41F00DC9373 /* Day.swift */; };
 		FAFE289B268BE80C00DC9373 /* LoadingScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFE289A268BE80C00DC9373 /* LoadingScheduleView.swift */; };
@@ -185,7 +191,6 @@
 		CEF7C513267C0FC400ADE6DB /* PostContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostContentView.swift; sourceTree = "<group>"; };
 		CEF7C517267C0FDF00ADE6DB /* ContentRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentRenderer.swift; sourceTree = "<group>"; };
 		CEFE4E7A26562EF2005A2DD4 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
-		CEFE4E82265635B6005A2DD4 /* MultimediaSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultimediaSection.swift; sourceTree = "<group>"; };
 		FA03D1B526719D24005A760F /* WordpressCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordpressCodable.swift; sourceTree = "<group>"; };
 		FA03D1B726719D72005A760F /* WordpressAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordpressAPI.swift; sourceTree = "<group>"; };
 		FA0CB8412664320A009FE7A3 /* PodcastEpisode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastEpisode.swift; sourceTree = "<group>"; };
@@ -195,7 +200,6 @@
 		FA0CB84B26671926009FE7A3 /* FeedTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTab.swift; sourceTree = "<group>"; };
 		FA0CB84F26671989009FE7A3 /* PodcastTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastTab.swift; sourceTree = "<group>"; };
 		FA0CB851266719BA009FE7A3 /* SocialTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialTab.swift; sourceTree = "<group>"; };
-		FA0CB8532667247E009FE7A3 /* CategoriesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesList.swift; sourceTree = "<group>"; };
 		FA0CB8592667302E009FE7A3 /* TabManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabManager.swift; sourceTree = "<group>"; };
 		FA17F8DB2659DA1A008471BD /* SearchResultLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultLoader.swift; sourceTree = "<group>"; };
 		FA17F8DD2659DCB1008471BD /* SearchRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRow.swift; sourceTree = "<group>"; };
@@ -214,14 +218,13 @@
 		FA32E90126925AA700E38F31 /* WeekBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekBlock.swift; sourceTree = "<group>"; };
 		FA32E90326925C4000E38F31 /* WeekIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekIndicator.swift; sourceTree = "<group>"; };
 		FA3A94C826A1367800CEFA08 /* LongText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongText.swift; sourceTree = "<group>"; };
-		FA4618CB264980240018522B /* PodcastLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastLoader.swift; sourceTree = "<group>"; };
+		FA3FC66726BB172B00908674 /* ScheduleBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleBlockView.swift; sourceTree = "<group>"; };
 		FA4B7363264E335200516AC6 /* PlayerObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerObject.swift; sourceTree = "<group>"; };
 		FA56AA42263F080900B6D838 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FA56AA45263F0B2300B6D838 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		FA56AA49263F0B5100B6D838 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		FA56AA4B263F0B5A00B6D838 /* PodcastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastView.swift; sourceTree = "<group>"; };
 		FA56AA50263F0BFF00B6D838 /* PhotoGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryView.swift; sourceTree = "<group>"; };
-		FA56AA55263F0F2400B6D838 /* CategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButton.swift; sourceTree = "<group>"; };
 		FA56AA5B263F246000B6D838 /* PostRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRowView.swift; sourceTree = "<group>"; };
 		FA56AA61263F2FD200B6D838 /* PostFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFeed.swift; sourceTree = "<group>"; };
 		FA56AA63263F3F1A00B6D838 /* SamplePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePost.swift; sourceTree = "<group>"; };
@@ -246,7 +249,6 @@
 		FA73AA28263E361E00B6C8B6 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		FA73AA29263E361E00B6C8B6 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		FA73AA2F263E363600B6C8B6 /* PostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
-		FA87325D265586260094146C /* PodcastSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastSection.swift; sourceTree = "<group>"; };
 		FA879658269FB85F00C6E9BF /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		FAA0BC7D26928C7E00A61C67 /* InfinitiePager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfinitiePager.swift; sourceTree = "<group>"; };
 		FAA25CDA26B1B17A0082AD44 /* WordpressPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordpressPicker.swift; sourceTree = "<group>"; };
@@ -272,6 +274,11 @@
 		FAAE7DFB2669B44F00DE708A /* ServerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerAPI.swift; sourceTree = "<group>"; };
 		FAAE7DFD2669BB1600DE708A /* TabCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCreator.swift; sourceTree = "<group>"; };
 		FABBE219269D03C300DD20C5 /* DateDecoders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDecoders.swift; sourceTree = "<group>"; };
+		FACDFEDA26B4BD8400761D17 /* PodcastSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastSection.swift; sourceTree = "<group>"; };
+		FACDFEDC26B4BF5600761D17 /* LoadingPodcastRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingPodcastRow.swift; sourceTree = "<group>"; };
+		FACDFEDE26B4C17D00761D17 /* LoadingPodcastDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingPodcastDetailView.swift; sourceTree = "<group>"; };
+		FACDFEE026B4D09400761D17 /* SmallEpisodeRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallEpisodeRow.swift; sourceTree = "<group>"; };
+		FACDFEE226B4D89A00761D17 /* LoadingSmallEpisodeRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingSmallEpisodeRow.swift; sourceTree = "<group>"; };
 		FAD43D80268A28AD00F04FE9 /* BlockEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockEditor.swift; sourceTree = "<group>"; };
 		FAD43D82268A34BE00F04FE9 /* PropertyEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyEditor.swift; sourceTree = "<group>"; };
 		FAD43D8B268ACA7900F04FE9 /* DayDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetailView.swift; sourceTree = "<group>"; };
@@ -281,11 +288,16 @@
 		FAD5709726B5CFEF005469AF /* AbsencesKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsencesKey.swift; sourceTree = "<group>"; };
 		FADE100E2683AF5E00712D27 /* AbsencesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsencesList.swift; sourceTree = "<group>"; };
 		FADE10102683AFB200712D27 /* AbsenceRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsenceRow.swift; sourceTree = "<group>"; };
-		FAE14C7426557AA7000635DB /* PostSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSection.swift; sourceTree = "<group>"; };
-		FAE14C7626557AFD000635DB /* PostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCard.swift; sourceTree = "<group>"; };
+		FAE342E226CECB9100B85268 /* StaticSiteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticSiteView.swift; sourceTree = "<group>"; };
+		FAE342E426CECC5300B85268 /* CategoriesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesList.swift; sourceTree = "<group>"; };
+		FAE342E626CECCC600B85268 /* CategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButton.swift; sourceTree = "<group>"; };
+		FAE342E826CED01500B85268 /* ViewModelSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelSupport.swift; sourceTree = "<group>"; };
 		FAF78287269543EC00A77758 /* SchoolYear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolYear.swift; sourceTree = "<group>"; };
 		FAF813E226A11066000F6C59 /* EpisodeSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeSettings.swift; sourceTree = "<group>"; };
 		FAF813E426A127D3000F6C59 /* PodcastRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastRow.swift; sourceTree = "<group>"; };
+		FAFD75E026B480800046AF9B /* SiteSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteSection.swift; sourceTree = "<group>"; };
+		FAFD75E226B485780046AF9B /* PostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCard.swift; sourceTree = "<group>"; };
+		FAFD75E426B48E100046AF9B /* LoadingPostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingPostCard.swift; sourceTree = "<group>"; };
 		FAFE2896268BD3E300DC9373 /* Blocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blocks.swift; sourceTree = "<group>"; };
 		FAFE2898268BD41F00DC9373 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		FAFE289A268BE80C00DC9373 /* LoadingScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScheduleView.swift; sourceTree = "<group>"; };
@@ -421,6 +433,7 @@
 				FAA0BC7D26928C7E00A61C67 /* InfinitiePager.swift */,
 				FA879658269FB85F00C6E9BF /* PopupView.swift */,
 				FA3A94C826A1367800CEFA08 /* LongText.swift */,
+				FA3FC66726BB172B00908674 /* ScheduleBlockView.swift */,
 			);
 			path = UtilityViews;
 			sourceTree = "<group>";
@@ -475,7 +488,6 @@
 		FA4618CA264980090018522B /* Podcast */ = {
 			isa = PBXGroup;
 			children = (
-				FA4618CB264980240018522B /* PodcastLoader.swift */,
 				FA7320E62674278A0012C3EC /* RSSLoader.swift */,
 				FA0CB8412664320A009FE7A3 /* PodcastEpisode.swift */,
 				FA4B7363264E335200516AC6 /* PlayerObject.swift */,
@@ -511,6 +523,7 @@
 				FA65B470268EA85F00AE3704 /* ModelLoading.swift */,
 				FA65B474268EC32E00AE3704 /* ModelSaving.swift */,
 				CE7788B82690E1DD00942A71 /* ViewManager.swift */,
+				FAE342E826CED01500B85268 /* ViewModelSupport.swift */,
 			);
 			path = ViewModelData;
 			sourceTree = "<group>";
@@ -595,7 +608,9 @@
 			children = (
 				FA56AA4B263F0B5A00B6D838 /* PodcastView.swift */,
 				FAF813E426A127D3000F6C59 /* PodcastRow.swift */,
+				FACDFEDC26B4BF5600761D17 /* LoadingPodcastRow.swift */,
 				FA7320EA267438F00012C3EC /* PodcastDetailView.swift */,
+				FACDFEDE26B4C17D00761D17 /* LoadingPodcastDetailView.swift */,
 				FA17F8E7265B3473008471BD /* EpisodeRow.swift */,
 				FAF813E626A132C1000F6C59 /* MiniPlayer */,
 			);
@@ -607,8 +622,8 @@
 			children = (
 				FA56AA45263F0B2300B6D838 /* CategoriesView.swift */,
 				FAA25CDA26B1B17A0082AD44 /* WordpressPicker.swift */,
-				FA0CB8532667247E009FE7A3 /* CategoriesList.swift */,
-				FA56AA55263F0F2400B6D838 /* CategoryButton.swift */,
+				FAE342E426CECC5300B85268 /* CategoriesList.swift */,
+				FAE342E626CECCC600B85268 /* CategoryButton.swift */,
 				FA6526412658AB9C0043FDBA /* CategoryView.swift */,
 				FA6526432658AEFC0043FDBA /* CategoryBanner.swift */,
 				FA56AA61263F2FD200B6D838 /* PostFeed.swift */,
@@ -652,6 +667,27 @@
 			path = About;
 			sourceTree = "<group>";
 		};
+		FACDFED826B4BD5500761D17 /* SiteSection */ = {
+			isa = PBXGroup;
+			children = (
+				FAFD75E026B480800046AF9B /* SiteSection.swift */,
+				FAFD75E226B485780046AF9B /* PostCard.swift */,
+				FAFD75E426B48E100046AF9B /* LoadingPostCard.swift */,
+				FAE342E226CECB9100B85268 /* StaticSiteView.swift */,
+			);
+			path = SiteSection;
+			sourceTree = "<group>";
+		};
+		FACDFED926B4BD6500761D17 /* PodcastSection */ = {
+			isa = PBXGroup;
+			children = (
+				FACDFEDA26B4BD8400761D17 /* PodcastSection.swift */,
+				FACDFEE026B4D09400761D17 /* SmallEpisodeRow.swift */,
+				FACDFEE226B4D89A00761D17 /* LoadingSmallEpisodeRow.swift */,
+			);
+			path = PodcastSection;
+			sourceTree = "<group>";
+		};
 		FAD43D86268A73B700F04FE9 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -687,10 +723,8 @@
 			isa = PBXGroup;
 			children = (
 				FA56AA49263F0B5100B6D838 /* HomeView.swift */,
-				FAE14C7426557AA7000635DB /* PostSection.swift */,
-				CEFE4E82265635B6005A2DD4 /* MultimediaSection.swift */,
-				FA87325D265586260094146C /* PodcastSection.swift */,
-				FAE14C7626557AFD000635DB /* PostCard.swift */,
+				FACDFED826B4BD5500761D17 /* SiteSection */,
+				FACDFED926B4BD6500761D17 /* PodcastSection */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -846,17 +880,19 @@
 				FA7320EB267438F00012C3EC /* PodcastDetailView.swift in Sources */,
 				FAAE7DFC2669B44F00DE708A /* ServerAPI.swift in Sources */,
 				FA65B475268EC32E00AE3704 /* ModelSaving.swift in Sources */,
+				FAE342E326CECB9100B85268 /* StaticSiteView.swift in Sources */,
 				CE7788B92690E1DD00942A71 /* ViewManager.swift in Sources */,
 				FA309EA326AF4172007220EE /* SettingsView.swift in Sources */,
 				FA5D35AD266B29E4003B8D2F /* Logo.swift in Sources */,
-				FA0CB8542667247E009FE7A3 /* CategoriesList.swift in Sources */,
 				FA73AA30263E363600B6C8B6 /* PostView.swift in Sources */,
 				FAD43D94268BAAC000F04FE9 /* Lunches.swift in Sources */,
 				FA879659269FB85F00C6E9BF /* PopupView.swift in Sources */,
 				FADE100F2683AF5E00712D27 /* AbsencesList.swift in Sources */,
+				FAE342E526CECC5300B85268 /* CategoriesList.swift in Sources */,
 				FA56AA6E263FA12200B6D838 /* LoadingPostRowView.swift in Sources */,
 				FA6526442658AEFC0043FDBA /* CategoryBanner.swift in Sources */,
 				FA17F8E22659DFCD008471BD /* SearchResults.swift in Sources */,
+				FACDFEE326B4D89A00761D17 /* LoadingSmallEpisodeRow.swift in Sources */,
 				FA7320E72674278A0012C3EC /* RSSLoader.swift in Sources */,
 				CEAE3E352648CAC50066C825 /* DefaultViews.swift in Sources */,
 				FA56AA6A263F8F0F00B6D838 /* ScrollViewLoader.swift in Sources */,
@@ -864,8 +900,8 @@
 				CEFE4E7B26562EF2005A2DD4 /* ModelData.swift in Sources */,
 				FA56AA62263F2FD200B6D838 /* PostFeed.swift in Sources */,
 				FAFE289F268D248600DC9373 /* LoadingBlockEditor.swift in Sources */,
-				FAE14C7726557AFD000635DB /* PostCard.swift in Sources */,
 				CEC03FB3263E354200FFCB45 /* ContentView.swift in Sources */,
+				FAFD75E326B485780046AF9B /* PostCard.swift in Sources */,
 				CEAE3E3D2648D0CC0066C825 /* WebView.swift in Sources */,
 				FA1E4C38269E4F4400EC955B /* EpisodeDescription.swift in Sources */,
 				FA03D1B626719D24005A760F /* WordpressCodable.swift in Sources */,
@@ -874,13 +910,12 @@
 				FA4B7364264E335200516AC6 /* PlayerObject.swift in Sources */,
 				CE126FC5267BEBEE001ABBB1 /* ExtractArticle.swift in Sources */,
 				FAA25CE126B34DFE0082AD44 /* SettingsIcons.swift in Sources */,
-				CEFE4E83265635B6005A2DD4 /* MultimediaSection.swift in Sources */,
 				FAA7D2FC267E775200E8FFEC /* Week.swift in Sources */,
+				FA3FC66826BB172B00908674 /* ScheduleBlockView.swift in Sources */,
 				FAA25CDB26B1B17A0082AD44 /* WordpressPicker.swift in Sources */,
 				CE1E887C264748F700E1245E /* PageView.swift in Sources */,
 				FAD43D8C268ACA7900F04FE9 /* DayDetailView.swift in Sources */,
 				FA56AA51263F0BFF00B6D838 /* PhotoGalleryView.swift in Sources */,
-				FAE14C7526557AA7000635DB /* PostSection.swift in Sources */,
 				FAF78288269543EC00A77758 /* SchoolYear.swift in Sources */,
 				FAFE289B268BE80C00DC9373 /* LoadingScheduleView.swift in Sources */,
 				FA309EA526AF45BC007220EE /* SchoolSelector.swift in Sources */,
@@ -894,7 +929,6 @@
 				FABBE21A269D03C300DD20C5 /* DateDecoders.swift in Sources */,
 				CE87B3EE264CCE8A009CAF44 /* Support.swift in Sources */,
 				FAD43D83268A34BE00F04FE9 /* PropertyEditor.swift in Sources */,
-				FA56AA56263F0F2400B6D838 /* CategoryButton.swift in Sources */,
 				FA56AA4A263F0B5100B6D838 /* HomeView.swift in Sources */,
 				FAA25CDF26B34C8E0082AD44 /* CacheView.swift in Sources */,
 				FA56AA64263F3F1A00B6D838 /* SamplePost.swift in Sources */,
@@ -903,6 +937,7 @@
 				FA17F8E42659E567008471BD /* SearchBar.swift in Sources */,
 				CE1E88872647561600E1245E /* ImageView.swift in Sources */,
 				FA56AA46263F0B2300B6D838 /* CategoriesView.swift in Sources */,
+				FAE342E926CED01500B85268 /* ViewModelSupport.swift in Sources */,
 				CEF7C518267C0FDF00ADE6DB /* ContentRenderer.swift in Sources */,
 				FA17F8DE2659DCB1008471BD /* SearchRow.swift in Sources */,
 				FA0CB852266719BA009FE7A3 /* SocialTab.swift in Sources */,
@@ -914,15 +949,16 @@
 				FA03D1B826719D72005A760F /* WordpressAPI.swift in Sources */,
 				FAAAACA5268796900052A658 /* SchedulePageView.swift in Sources */,
 				FA3A94C926A1367800CEFA08 /* LongText.swift in Sources */,
+				FACDFEDB26B4BD8400761D17 /* PodcastSection.swift in Sources */,
 				FA65B478268F900D00AE3704 /* FullBlockView.swift in Sources */,
 				FA17F8E8265B3473008471BD /* EpisodeRow.swift in Sources */,
 				FA5D35AF266BD982003B8D2F /* SiteBanner.swift in Sources */,
 				FAAAACA72687F1330052A658 /* ScheduleSettings.swift in Sources */,
 				FA65B47A268F936500AE3704 /* LargeFullBlockView.swift in Sources */,
+				FACDFEDD26B4BF5600761D17 /* LoadingPodcastRow.swift in Sources */,
 				FA5D35AB266B221A003B8D2F /* LogoButton.swift in Sources */,
 				FAA25CEA26B376D30082AD44 /* SettingsRowNav.swift in Sources */,
 				FA1E4C32269E388E00EC955B /* MiniPlayer.swift in Sources */,
-				FA4618CC264980240018522B /* PodcastLoader.swift in Sources */,
 				FA65B471268EA85F00AE3704 /* ModelLoading.swift in Sources */,
 				FA0CB85026671989009FE7A3 /* PodcastTab.swift in Sources */,
 				FA32E90226925AA700E38F31 /* WeekBlock.swift in Sources */,
@@ -935,16 +971,18 @@
 				FAAAACAD2687F5D00052A658 /* CypressApp.xcdatamodeld in Sources */,
 				FA17F8E02659DCEC008471BD /* SearchView.swift in Sources */,
 				CEF7C514267C0FC400ADE6DB /* PostContentView.swift in Sources */,
+				FACDFEDF26B4C17D00761D17 /* LoadingPodcastDetailView.swift in Sources */,
 				FAA7D2F6267E714300E8FFEC /* Absence.swift in Sources */,
 				CE2C6138265E5C7E003E32E6 /* ScheduleView.swift in Sources */,
 				FA6526422658AB9C0043FDBA /* CategoryView.swift in Sources */,
+				FAFD75E126B480800046AF9B /* SiteSection.swift in Sources */,
 				FA56AA43263F080900B6D838 /* ViewController.swift in Sources */,
 				FA65B46F268E968900AE3704 /* FullBlock.swift in Sources */,
 				FAAE7DF82669B3E200DE708A /* SchoolConfig.swift in Sources */,
 				FAFE2899268BD41F00DC9373 /* Day.swift in Sources */,
+				FAFD75E526B48E100046AF9B /* LoadingPostCard.swift in Sources */,
 				CEAE3E2D2648CA2F0066C825 /* Extensions.swift in Sources */,
 				FA6121382660973500126A1F /* AboutText.swift in Sources */,
-				FA87325E265586260094146C /* PodcastSection.swift in Sources */,
 				FA28B64F269556E10059C30B /* LoadingWeekIndicator.swift in Sources */,
 				FA56AA5C263F246000B6D838 /* PostRowView.swift in Sources */,
 				CE74689326605535007321FD /* AboutView.swift in Sources */,
@@ -954,8 +992,10 @@
 				FA0CB84C26671926009FE7A3 /* FeedTab.swift in Sources */,
 				FA0CB848266716BE009FE7A3 /* Tab.swift in Sources */,
 				FA7320E32672A55A0012C3EC /* RequestRetrySettings.swift in Sources */,
+				FACDFEE126B4D09400761D17 /* SmallEpisodeRow.swift in Sources */,
 				CEEC39C9267C63B100697168 /* HTML.swift in Sources */,
 				FAAAAC9F26869CC60052A658 /* ScheduleColumn.swift in Sources */,
+				FAE342E726CECCC600B85268 /* CategoryButton.swift in Sources */,
 				FAAAACA3268795580052A658 /* MultiPageView.swift in Sources */,
 				FADE10112683AFB200712D27 /* AbsenceRow.swift in Sources */,
 				FAAE7DFE2669BB1600DE708A /* TabCreator.swift in Sources */,

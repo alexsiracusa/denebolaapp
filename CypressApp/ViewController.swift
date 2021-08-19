@@ -41,13 +41,13 @@ struct ViewController: View {
                     ForEach(0 ..< tabs.count, id: \.self) { n in
                         let tab = tabs[n]
 
-                        Tab(tab, tag: n)
+                        Tab(tab, tag: tab.id.rawValue)
                     }
                 } else {
-                    Tab(SchoolListTab(), tag: 100)
+                    Tab(SchoolListTab(), tag: TabID.list.rawValue)
                 }
 
-                Tab(SettingsTab(), tag: 101)
+                Tab(SettingsTab(), tag: TabID.settings.rawValue)
             }
             MiniPlayer(animation: ns, expand: $viewModel.podcastExpanded)
         }
@@ -76,7 +76,6 @@ struct ViewController: View {
 struct ViewController_Previews: PreviewProvider {
     static var previews: some View {
         ViewController()
-            .environmentObject(PodcastLoader([]))
             .environmentObject(ViewModelData.default)
             .environmentObject(PlayerObject.default)
     }

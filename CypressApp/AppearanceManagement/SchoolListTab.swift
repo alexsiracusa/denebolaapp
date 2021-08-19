@@ -10,6 +10,7 @@ import SwiftUI
 
 struct SchoolListTab: Tab {
     var name = "SchoolList"
+    var id = TabID.list
 
     var content: AnyView {
         AnyView(

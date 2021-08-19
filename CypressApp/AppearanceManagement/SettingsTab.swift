@@ -10,6 +10,7 @@ import SwiftUI
 
 struct SettingsTab: Tab {
     var name = "Settings"
+    var id = TabID.settings
 
     var content: AnyView {
         AnyView(

@@ -30,7 +30,8 @@ struct CategoriesView: View {
                 .disabled(sites.count == 1)
                 .padding([.leading, .trailing], 15)
 
-                CategoriesList()
+                CategoriesList(site: viewModel.currentSite)
+
                 Spacer(minLength: 15)
 
                 Text("Latest Posts")

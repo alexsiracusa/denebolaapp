@@ -44,7 +44,7 @@ struct SchoolSelector: View {
         }
         .onAppear {
             if viewModel.schools == nil {
-                viewModel.loadSchoolList()
+                viewModel.loadSchoolList().done {}.catch { _ in }
             }
         }
         .alert(isPresented: $failedToLoad) {

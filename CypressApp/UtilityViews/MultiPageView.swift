@@ -15,13 +15,18 @@ public struct MultiPageView: View {
         indexDisplay: Alignment? = nil,
         currentPageIndex: Binding<Int>,
         offset: CGFloat = -20,
-        impactStyle: UIImpactFeedbackGenerator.FeedbackStyle? = nil
+        impactStyle: UIImpactFeedbackGenerator.FeedbackStyle? = nil,
+        indexDisplayMode: PageTabViewStyle.IndexDisplayMode? = nil
     ) {
         self.pages = pages.map { AnyView($0) }
         self.indexDisplay = indexDisplay
         self.currentPageIndex = currentPageIndex
         self.offset = offset
         self.impactStyle = impactStyle
+        self.indexDisplayMode = indexDisplayMode
+
+        UIPageControl.appearance().currentPageIndicatorTintColor = UIColor(.orange)
+        UIPageControl.appearance().pageIndicatorTintColor = UIColor.orange.withAlphaComponent(0.2)
     }
 
     private let pages: [AnyView]
@@ -29,6 +34,7 @@ public struct MultiPageView: View {
     private var currentPageIndex: Binding<Int>
     private var offset: CGFloat
     private let impactStyle: UIImpactFeedbackGenerator.FeedbackStyle?
+    private let indexDisplayMode: PageTabViewStyle.IndexDisplayMode?
 
     public var body: some View {
         TabView(selection: currentPageIndex) {
@@ -36,7 +42,7 @@ public struct MultiPageView: View {
                 $0.element.tag($0.offset)
             }
         }
-        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode: indexDisplayMode ?? .never))
         .overlay(
             Fancy3DotsIndexView(show: indexDisplay != nil, numberOfPages: pages.count, currentIndex: currentPageIndex, offset: offset),
             alignment: indexDisplay ?? .top

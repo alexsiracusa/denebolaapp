@@ -16,9 +16,7 @@ struct WordpressPicker: View {
             VStack(spacing: 15) {
                 ForEach(viewModel.sites) { site in
                     Button {
-                        print(viewModel.currentSite.name)
                         viewModel.currentSite = site
-                        print(viewModel.currentSite.name)
                         show = false
                     } label: {
                         SiteBanner(imageURL: site.bannerURL)

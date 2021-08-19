@@ -8,47 +8,45 @@
 import SwiftUI
 
 struct PodcastRow: View {
+    @EnvironmentObject private var viewModel: ViewModelData
+    let id: Int
     let podcast: LoadedPodcast
 
     var body: some View {
-        if podcast.isEmpty() {
+        NavigationLink(
+            destination: PodcastDetailView(podcast: podcast),
+            tag: id,
+            selection: $viewModel.selectedPodcast
+        ) {
             HStack(alignment: .top) {
-                LoadingRectangle(5)
-                    .frame(width: 100, height: 100)
-                VStack(alignment: .leading, spacing: 12) {
-                    LoadingRectangle(20)
-                        .frame(width: 200, height: 10)
-                    LoadingRectangle(20)
-                        .frame(width: 100, height: 10)
+                if let url = podcast.titleImageURL {
+                    ImageView(url: url)
+                        .frame(width: 100, height: 100)
+                        .cornerRadius(10)
+                } else {
+                    PlaceHolderImage()
+                        .frame(width: 100, height: 100)
+                        .cornerRadius(10)
                 }
-                .padding(.top, 8)
+                Text(podcast.title)
+                    .font(.headline)
+                    .foregroundColor(.black)
                 Spacer(minLength: 0)
             }
-        } else {
-            NavigationLink(destination:
-                PodcastDetailView(podcast: podcast)
-            ) {
-                HStack(alignment: .top) {
-                    ImageView(url: podcast.titleImageURL!)
-                        .frame(width: 100, height: 100)
-                        .cornerRadius(5)
-                    Text(podcast.title)
-                        .font(.headline)
-                        .foregroundColor(.black)
-                    Spacer(minLength: 0)
-                }
-            }
-            .buttonStyle(NoButtonAnimation())
+            .padding(.horizontal, 10)
+            .padding(.vertical, 5)
         }
+        .buttonStyle(OpacityButton())
     }
 }
 
 struct PodcastRow_Previews: PreviewProvider {
     static var previews: some View {
-        VStack(spacing: 10) {
-            PodcastRow(podcast: LoadedPodcast.default)
-            PodcastRow(podcast: LoadedPodcast.empty())
-            PodcastRow(podcast: LoadedPodcast.default)
+        VStack(spacing: 0) {
+            PodcastRow(id: 0, podcast: LoadedPodcast.default)
+            PodcastRow(id: 1, podcast: LoadedPodcast.empty())
+            PodcastRow(id: 2, podcast: LoadedPodcast.default)
         }
+        .environmentObject(ViewModelData.default)
     }
 }

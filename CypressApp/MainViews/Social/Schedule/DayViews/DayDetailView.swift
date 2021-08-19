@@ -16,17 +16,9 @@ struct DayDetailView: View {
             VStack(spacing: 10) {
                 if day.blocksAndLunches.count > 0 {
                     ForEach(day.blocksAndLunches, id: \.displayId) { block in
-                        if let fullBlock = viewModel.fullBlocks[block.data.id] {
-                            LargeFullBlockView(block: block, fullBlock: fullBlock)
-                                .padding(.horizontal)
-                                .padding(.top, 20)
-                        } else {
-                            let type = block.data.blockType
-                            let blockColor = type == .course ? Color(.lightGray) : .yellow
-                            LargeBlockView(block: block, color: blockColor, type: type)
-                                .padding(.horizontal)
-                                .padding(.top, type == .course ? 20 : 0)
-                        }
+                        ScheduleBlockView(block: block)
+                            .padding(.horizontal)
+                            .padding(.top, block.data.blockType == .course ? 20 : 0)
                     }
                 } else {
                     Rectangle()
