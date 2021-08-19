@@ -9,7 +9,7 @@ import CoreData
 import SwiftUI
 
 @main
-struct CypressAppApp: App {
+struct DenbolaApp: App {
     @Environment(\.scenePhase) var scenePhase
 
     var body: some Scene {
