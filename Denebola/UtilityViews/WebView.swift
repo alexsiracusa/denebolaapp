@@ -86,7 +86,7 @@ public struct WebView: View, UIViewRepresentable {
                 timer?.invalidate()
             }
             // Get size of page
-            webView.evaluateJavaScript("document.documentElement.scrollHeight", completionHandler: { height, _ in
+            webView.evaluateJavaScript("document.body.scrollHeight", completionHandler: { height, _ in
                 self.parent.pageViewIdealSize = (height! as! CGFloat)
             })
         }

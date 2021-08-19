@@ -10,8 +10,8 @@ import Foundation
 func generateHtml(head: String? = nil, body: [String] = []) -> String {
     return """
         <!DOCTYPE HTML>
-        \(head ?? "<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'>")
         <html>
+            \(head ?? "<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'>")
             <style>
                 body {
                     font-family: -apple-system, "Helvetica Neue", "Lucida Grande";

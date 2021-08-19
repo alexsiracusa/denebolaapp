@@ -22,13 +22,15 @@ private func extractArticle(html: String) throws -> ExtractedArticleElements? {
 
     guard let head = try doc.select("head").first()?.outerHtml() else { return nil }
     guard let body = try doc.select("body").first() else { return nil }
-    let scripts = try body.select("script").map { try $0.outerHtml() }.joined(separator: "\n")
-    let styles = try body.select("style").map { try $0.outerHtml() }.joined(separator: "\n")
+    let scripts = try body.select("script").map { try $0.outerHtml() }
+    var styles = try body.select("style").map { try $0.outerHtml() }
+    
+    styles.append(contentsOf: try body.select("link").map {try $0.outerHtml()})
 
     return ExtractedArticleElements(
         head: head,
-        scripts: scripts,
-        styles: styles
+        scripts: scripts.joined(separator: "\n"),
+        styles: styles.joined(separator: "\n")
     )
 }
 
