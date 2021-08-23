@@ -1,7 +1,8 @@
 name: InstallSwiftFormat
 
 on:
-  workflow_dispatch: {}
+  schedule:
+    - cron: '0 0 * * 1'
 
 jobs:
   install:
@@ -10,4 +11,4 @@ jobs:
       - name: Install SwiftFormat
         uses: Cyberbeni/install-swift-tool@v2
         with:
-          url: https://github.com/Sequal32/SwiftFormat
+          url: https://github.com/nicklockwood/SwiftFormat
