@@ -47,6 +47,20 @@ struct NoButtonAnimation: ButtonStyle {
     }
 }
 
+struct ScaleButton: ButtonStyle {
+    let factor: CGFloat
+
+    init(factor: CGFloat = 0.95) {
+        self.factor = factor
+    }
+
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? factor : 1)
+            .animation(.interactiveSpring())
+    }
+}
+
 struct OpacityButton: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
@@ -72,6 +86,11 @@ enum DayOfWeek: String, CaseIterable, Codable {
 
     func toIndex() -> Int {
         return DayOfWeek.allCases.firstIndex(of: self)!
+    }
+
+    var shortName: String {
+        let names = ["mon", "tues", "wed", "thurs", "fri", "sat", "sun"]
+        return names[toIndex()]
     }
 }
 

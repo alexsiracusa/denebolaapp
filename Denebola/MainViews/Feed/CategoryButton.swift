@@ -17,41 +17,32 @@ struct CategoryButton: View {
     }
 
     var body: some View {
-        ZStack {
-            GeometryReader { _ in
-                VStack {
-                    Spacer()
-                    Text(category.name)
-                        .bold()
-                        .font(.caption)
-                        .padding(5)
-                        .foregroundColor(.white)
-                }
-                .zIndex(2)
-                NavigationLink(destination:
-                    CategoryView(category: category, imageURL: imageURL)
-                ) {
-                    ImageView(url: imageURL, aspectRatio: 1.0)
-                        .asCategoryButton(size: size)
-                }
+        NavigationLink(destination:
+            CategoryView(category: category, imageURL: imageURL)
+        ) {
+            ZStack(alignment: .bottomLeading) {
+                Text(category.name)
+                    .bold()
+                    .font(.caption)
+                    .padding(5)
+                    .foregroundColor(.white)
+                    .zIndex(2)
+                ImageView(url: imageURL, aspectRatio: 1.0)
+                    .frame(width: size, height: size)
+                    .overlay(
+                        LinearGradient(
+                            gradient: Gradient(colors: [.clear, .black]),
+                            startPoint: UnitPoint(x: 0.5, y: 0.7),
+                            endPoint: .bottom
+                        )
+                        .opacity(0.3)
+                    )
+                    .cornerRadius(10)
+                    .zIndex(1)
             }
         }
+        .buttonStyle(ScaleButton())
         .frame(width: size, height: size)
-    }
-}
-
-extension View {
-    func asCategoryButton(size: CGFloat) -> AnyView {
-        AnyView(
-            scaledToFill()
-                .frame(width: size, height: size)
-                .cornerRadius(10)
-                .zIndex(1)
-                .overlay(LinearGradient(gradient: Gradient(colors: [.clear, .black]), startPoint: UnitPoint(x: 0.5, y: 0.7), endPoint: .bottom)
-                    .cornerRadius(10)
-                    .opacity(0.3)
-                )
-        )
     }
 }
 

@@ -21,6 +21,7 @@ struct WordpressPicker: View {
                     } label: {
                         SiteBanner(imageURL: site.bannerURL)
                     }
+                    .buttonStyle(ScaleButton())
                 }
                 .padding(.horizontal)
             }

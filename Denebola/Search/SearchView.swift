@@ -22,6 +22,7 @@ struct SearchView: View {
     var body: some View {
         VStack(spacing: 0) {
             SearchBar(updateSearch: $updateSearch)
+                .environmentObject(loader)
             Divider()
 
             // results
@@ -30,7 +31,7 @@ struct SearchView: View {
             }
         }
         .navigationBarTitle("Search \(category?.name ?? "Posts")", displayMode: .inline)
-        .navigationBarItems(trailing: LogoButton(url: viewModel.currentSite.logoURL))
+        .navigationBarItems(trailing: SiteLogo(url: viewModel.currentSite.logoURL))
     }
 }
 

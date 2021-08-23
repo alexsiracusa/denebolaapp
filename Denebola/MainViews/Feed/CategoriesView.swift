@@ -27,18 +27,21 @@ struct CategoriesView: View {
                 } label: {
                     SiteBanner(imageURL: currentSite.bannerURL)
                 }
+                .buttonStyle(ScaleButton())
                 .disabled(sites.count == 1)
                 .padding([.leading, .trailing], 15)
 
                 CategoriesList(site: viewModel.currentSite)
 
-                Spacer(minLength: 15)
+                Spacer()
+                    .frame(height: 15)
 
                 Text("Latest Posts")
                     .font(.headline)
                     .padding(.leading)
 
-                Spacer(minLength: 15)
+                Spacer()
+                    .frame(height: 5)
 
                 PostFeed(site: viewModel.currentSite)
             }
@@ -55,7 +58,7 @@ struct CategoriesView: View {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(.black)
                 }
-                LogoButton(url: currentSite.logoURL)
+                SiteLogo(url: currentSite.logoURL)
             }
         )
         .sheet(isPresented: $displayPicker) {

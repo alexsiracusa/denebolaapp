@@ -18,7 +18,7 @@ struct PostFeed: View {
 
     var body: some View {
         if loader.posts.count != 0 {
-            LazyVStack(spacing: 10) {
+            LazyVStack(spacing: 0) {
                 ForEach(loader.posts) { post in
                     PostRowView(post: post)
                         .onAppear {
@@ -26,7 +26,6 @@ struct PostFeed: View {
                         }
                 }
             }
-            .padding(.horizontal, 15)
             .onChange(of: site, perform: { value in
                 loader.setSite(value)
             })
@@ -41,12 +40,11 @@ struct PostFeed: View {
                     Text(error)
                 }
             }
-            VStack(spacing: 10) {
+            VStack(spacing: 0) {
                 ForEach(0 ..< 8) { _ in
                     LoadingPostRowView()
                 }
             }
-            .padding(.horizontal, 15)
             .onChange(of: site, perform: { value in
                 loader.setSite(value)
             })

@@ -13,21 +13,22 @@ struct SearchRow: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            HStack(alignment: .center) {
-                if let thumbnailImageURL = post.getThumbnailSizeUrl(size: "medium") {
-                    ImageView(url: thumbnailImageURL)
-                        .scaledToFill()
-                        .frame(width: 136, height: 85)
-                        .clipped()
-                        .aspectRatio(1.6, contentMode: .fill)
-                } else {
-                    ImageView(url: viewModel.currentSite.defaultImageURL, aspectRatio: 1.0)
-                        .frame(width: 85, height: 85)
-                }
-                NavigationLink(destination:
-                    PostView(post: post)
-                        .navigationBarTitle(Text(""), displayMode: .inline)
-                ) {
+            NavigationLink(destination:
+                PostView(post: post)
+                    .navigationBarTitle(Text(""), displayMode: .inline)
+            ) {
+                HStack(alignment: .center) {
+                    if let thumbnailImageURL = post.getThumbnailSizeUrl(size: "medium") {
+                        ImageView(url: thumbnailImageURL)
+                            .scaledToFill()
+                            .frame(width: 136, height: 85)
+                            .clipped()
+                            .aspectRatio(1.6, contentMode: .fill)
+                    } else {
+                        ImageView(url: viewModel.currentSite.defaultImageURL, aspectRatio: 1.0)
+                            .frame(width: 85, height: 85)
+                    }
+
                     VStack(alignment: .leading) {
                         Text(post.getTitle())
                             .bold()
@@ -44,9 +45,12 @@ struct SearchRow: View {
                             .font(.subheadline)
                             .lineLimit(1)
                     }
+
+                    Spacer(minLength: 10)
                 }
-                Spacer()
             }
+            .buttonStyle(OpacityButton())
+
             Divider()
                 .zIndex(3)
         }

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SearchBar: View {
+    @EnvironmentObject var loader: SearchResultLoader
+
     @State var searchFor: String = ""
     @Binding var updateSearch: String
     @State var isEditing = false
@@ -53,6 +55,9 @@ struct SearchBar: View {
                 .frame(height: 50)
         )
         .frame(height: 50)
+        .onAppear {
+            searchFor = loader.search
+        }
     }
 }
 

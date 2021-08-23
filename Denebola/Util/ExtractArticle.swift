@@ -24,8 +24,8 @@ private func extractArticle(html: String) throws -> ExtractedArticleElements? {
     guard let body = try doc.select("body").first() else { return nil }
     let scripts = try body.select("script").map { try $0.outerHtml() }
     var styles = try body.select("style").map { try $0.outerHtml() }
-    
-    styles.append(contentsOf: try body.select("link").map {try $0.outerHtml()})
+
+    styles.append(contentsOf: try body.select("link").map { try $0.outerHtml() })
 
     return ExtractedArticleElements(
         head: head,

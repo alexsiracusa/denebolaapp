@@ -41,6 +41,9 @@ struct PostView: View {
         }
         .frame(maxWidth: .infinity)
         .navigationTitle(post.getTitle())
+        .navigationBarItems(
+            trailing: viewModel.logo(from: post.link)
+        )
     }
 }
 

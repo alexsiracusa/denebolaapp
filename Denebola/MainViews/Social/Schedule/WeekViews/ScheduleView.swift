@@ -35,7 +35,7 @@ struct ScheduleView: View {
                                     }
                                 )
                         }
-                        .buttonStyle(NoButtonAnimation())
+                        .buttonStyle(ScaleButton(factor: 0.99))
                     }
                 }
 

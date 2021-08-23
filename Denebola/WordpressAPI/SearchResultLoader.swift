@@ -8,7 +8,7 @@
 import Foundation
 
 class SearchResultLoader: ScrollViewLoader {
-    private var search: String = ""
+    @Published var search: String = ""
 
     func searchFor(_ text: String, category: SimpleCategory? = nil) {
         posts = [Post]()

@@ -8,27 +8,9 @@
 import SwiftUI
 
 struct WeekIndicator: View {
-    @Binding var selection: Int {
-        didSet {
-            if let style = impactStyle {
-                impact(style)
-            }
-        }
-    }
+    @Binding var selection: Int
 
     var weeks: [Date]
-    let impactStyle: UIImpactFeedbackGenerator.FeedbackStyle?
-
-    func canCenter(_ selection: Int) -> Bool {
-        let minIndex = 3
-        let maxIndex = weeks.count - 4
-        guard minIndex <= maxIndex else { return false }
-        return (minIndex ... maxIndex).contains(selection)
-    }
-
-    func scrollPoint(_ selection: Int) -> UnitPoint? {
-        return canCenter(selection) ? .center : .none
-    }
 
     var body: some View {
         ScrollViewReader { reader in
@@ -46,9 +28,11 @@ struct WeekIndicator: View {
                         .buttonStyle(NoButtonAnimation())
                     }
                 }
+                // doesn't really solve the problem but just kind of hides it
+                .introspectScrollView { $0.setValue(0.1, forKeyPath: "contentOffsetAnimationDuration") }
                 .onChange(of: selection) { value in
                     withAnimation {
-                        reader.scrollTo(value, anchor: scrollPoint(value))
+                        reader.scrollTo(value)
                     }
                 }
             }
@@ -59,10 +43,21 @@ struct WeekIndicator: View {
             }
         }
     }
+
+    func canCenter(_ selection: Int) -> Bool {
+        let minIndex = 3
+        let maxIndex = weeks.count - 4
+        guard minIndex <= maxIndex else { return false }
+        return (minIndex ... maxIndex).contains(selection)
+    }
+
+    func scrollPoint(_ selection: Int) -> UnitPoint? {
+        return canCenter(selection) ? .center : .none
+    }
 }
 
 struct WeekIndicator_Previews: PreviewProvider {
     static var previews: some View {
-        WeekIndicator(selection: .constant(1), weeks: [Date()], impactStyle: nil)
+        WeekIndicator(selection: .constant(1), weeks: [Date()])
     }
 }

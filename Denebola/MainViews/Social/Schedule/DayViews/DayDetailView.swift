@@ -29,7 +29,8 @@ struct DayDetailView: View {
                         .padding(.top, 20)
                 }
             }
-            .padding(.vertical, 20)
+            .padding(.top, 5)
+            .padding(.bottom, 20)
         }
     }
 }

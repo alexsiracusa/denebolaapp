@@ -25,12 +25,6 @@ struct SchedulePageView: View {
         return viewModel.year
     }
 
-    var scheduleViews: [ScheduleView]? {
-        return year?.weeks.map { ScheduleView(date: $0, height: 400, showLunches: showLunches) }
-    }
-
-    let impactStyle: UIImpactFeedbackGenerator.FeedbackStyle = .light
-
     private func updateYear() {
         if let year = year, loadedYear != year.id {
             selection = year.currentWeekIndex
@@ -60,12 +54,17 @@ struct SchedulePageView: View {
             }
 
             if let year = year {
-                WeekIndicator(selection: $selection, weeks: year.weeks, impactStyle: impactStyle)
+                WeekIndicator(selection: $selection, weeks: year.weeks)
                     .padding(.vertical, 5)
                     .frame(alignment: .center)
 
-                MultiPageView(pages: scheduleViews!, currentPageIndex: $selection, impactStyle: impactStyle)
-                    .frame(height: 400)
+                TabView(selection: $selection) {
+                    ForEach(Array(year.weeks.enumerated()), id: \.offset) {
+                        ScheduleView(date: $0.element, height: 400, showLunches: showLunches).tag($0.offset)
+                    }
+                }
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                .frame(height: 400)
 
             } else {
                 LoadingWeekIndicator()
