@@ -29,7 +29,6 @@ struct PopupView: View {
                             .frame(width: width)
                             .frame(height: height)
                     }
-                    .padding(10)
                     .background(Color(.lightGray).brightness(0.3))
                     .clipShape(RoundedRectangle(cornerRadius: 15))
                     .contentShape(RoundedRectangle(cornerRadius: 15))

@@ -49,7 +49,6 @@ class ViewModelData: ObservableObject {
     // current school stuff - podcast
     @Published var podcasts: [Podcast]!
     @Published var loadedPodcasts = [Int: LoadedPodcast]()
-    @Published var selectedPodcast: Int? = nil
 
     // current school stuff - social
     @Published var year: SchoolYear?

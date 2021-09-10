@@ -10,7 +10,7 @@ import SwiftUI
 struct LoadingPodcastRow: View {
     var body: some View {
         HStack(alignment: .top) {
-            LoadingRectangle(5)
+            LoadingRectangle(10)
                 .frame(width: 100, height: 100)
             VStack(alignment: .leading, spacing: 12) {
                 LoadingRectangle(20)

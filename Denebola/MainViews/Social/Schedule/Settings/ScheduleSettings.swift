@@ -24,6 +24,7 @@ struct ScheduleSettings: View {
                     }
                 }
             }
+            .padding(.bottom, 15)
         }
         .navigationBarTitle("Blocks", displayMode: .inline)
         .onDisappear {

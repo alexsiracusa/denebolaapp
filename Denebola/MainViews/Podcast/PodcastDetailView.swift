@@ -9,7 +9,6 @@ import SwiftUI
 
 struct PodcastDetailView: View {
     let podcast: LoadedPodcast
-    @State var showingFullDescription = false
 
     var body: some View {
         ScrollView {
@@ -18,7 +17,7 @@ struct PodcastDetailView: View {
                     HStack(alignment: .top) {
                         ImageView(url: podcast.titleImageURL!)
                             .frame(width: 100, height: 100)
-                            .cornerRadius(5)
+                            .cornerRadius(10)
                         Text(podcast.title)
                             .font(.headline)
                             .foregroundColor(.black)

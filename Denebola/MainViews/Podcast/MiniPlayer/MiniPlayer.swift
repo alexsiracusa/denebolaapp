@@ -22,6 +22,15 @@ struct MiniPlayer: View {
         case none, description, settings
     }
 
+    @State var showTotalTime = true
+    var rightTimeDisplay: String {
+        if showTotalTime {
+            return getFormattedMinutesSeconds(player.audioLength)
+        } else {
+            return "-" + getFormattedMinutesSeconds(player.audioLength - player.time)
+        }
+    }
+
     @State var popup: PopupState = .none
     var height = UIScreen.main.bounds.height / 3
     var safeArea = UIApplication.shared.windows.first?.safeAreaInsets
@@ -48,14 +57,12 @@ struct MiniPlayer: View {
                                     .foregroundColor(.primary)
                                     .fontWeight(.bold)
                                     .lineLimit(1)
-                                    .matchedGeometryEffect(id: "Title", in: animation)
 
                                 Text(episode.from)
                                     .font(.caption)
                                     .foregroundColor(.gray)
                                     .fontWeight(.bold)
                                     .lineLimit(1)
-                                    .matchedGeometryEffect(id: "From", in: animation)
                             }
                             Spacer()
                         }
@@ -81,6 +88,7 @@ struct MiniPlayer: View {
                             .onTapGesture(perform: {
                                 withAnimation { expand = true }
                             })
+                            .disabled(expand == true)
 
                         if !expand {
                             Spacer(minLength: 0)
@@ -142,13 +150,18 @@ struct MiniPlayer: View {
                                 HStack {
                                     Text(getFormattedMinutesSeconds(player.time))
                                         .font(.caption)
-                                        .fixedSize(horizontal: true, vertical: false)
 
                                     Spacer()
 
-                                    Text(getFormattedMinutesSeconds(player.audioLength))
-                                        .font(.caption)
+                                    Button {
+                                        showTotalTime.toggle()
+                                    } label: {
+                                        Text(rightTimeDisplay)
+                                            .font(.caption)
+                                    }
+                                    .buttonStyle(NoButtonAnimation())
                                 }
+                                .foregroundColor(.black)
                             }
                             .padding(.top, 15)
                             .padding(.horizontal, 40)

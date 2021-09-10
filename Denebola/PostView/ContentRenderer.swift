@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentRenderer: View {
     @StateObject private var webviewStore = WebViewStore()
-    @State private var webviewHeight: CGFloat? = nil
+    @State private var webviewHeight: CGFloat? = 500
 
     var htmlContent: String? = nil
     var baseURL: URL? = nil

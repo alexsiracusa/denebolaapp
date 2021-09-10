@@ -9,14 +9,11 @@ import SwiftUI
 
 struct PodcastRow: View {
     @EnvironmentObject private var viewModel: ViewModelData
-    let id: Int
     let podcast: LoadedPodcast
 
     var body: some View {
         NavigationLink(
-            destination: PodcastDetailView(podcast: podcast),
-            tag: id,
-            selection: $viewModel.selectedPodcast
+            destination: PodcastDetailView(podcast: podcast)
         ) {
             HStack(alignment: .top) {
                 if let url = podcast.titleImageURL {
@@ -43,9 +40,9 @@ struct PodcastRow: View {
 struct PodcastRow_Previews: PreviewProvider {
     static var previews: some View {
         VStack(spacing: 0) {
-            PodcastRow(id: 0, podcast: LoadedPodcast.default)
-            PodcastRow(id: 1, podcast: LoadedPodcast.empty())
-            PodcastRow(id: 2, podcast: LoadedPodcast.default)
+            PodcastRow(podcast: LoadedPodcast.default)
+            PodcastRow(podcast: LoadedPodcast.empty())
+            PodcastRow(podcast: LoadedPodcast.default)
         }
         .environmentObject(ViewModelData.default)
     }

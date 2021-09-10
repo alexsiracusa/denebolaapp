@@ -18,7 +18,7 @@ struct PodcastView: View {
                 VStack(spacing: 0) {
                     ForEach(viewModel.podcasts) { podcast in
                         if let loaded = viewModel.loadedPodcasts[podcast.id] {
-                            PodcastRow(id: podcast.id, podcast: loaded)
+                            PodcastRow(podcast: loaded)
                         } else {
                             LoadingPodcastRow()
                                 .onAppear {
