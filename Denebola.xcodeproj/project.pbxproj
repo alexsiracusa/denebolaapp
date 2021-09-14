@@ -91,12 +91,12 @@
 		FA73AA2C263E361E00B6C8B6 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73AA28263E361E00B6C8B6 /* Category.swift */; };
 		FA73AA2D263E361E00B6C8B6 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73AA29263E361E00B6C8B6 /* Post.swift */; };
 		FA73AA30263E363600B6C8B6 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73AA2F263E363600B6C8B6 /* PostView.swift */; };
+		FA7AF39D26EAF5D1008EB090 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7AF39C26EAF5D1008EB090 /* LaunchScreen.swift */; };
 		FA879659269FB85F00C6E9BF /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA879658269FB85F00C6E9BF /* PopupView.swift */; };
 		FAA25CDB26B1B17A0082AD44 /* WordpressPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA25CDA26B1B17A0082AD44 /* WordpressPicker.swift */; };
 		FAA25CDD26B341310082AD44 /* SettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA25CDC26B341300082AD44 /* SettingsTab.swift */; };
 		FAA25CE126B34DFE0082AD44 /* SettingsIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA25CE026B34DFE0082AD44 /* SettingsIcons.swift */; };
 		FAA25CE426B35F1D0082AD44 /* SchoolList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA25CE326B35F1D0082AD44 /* SchoolList.swift */; };
-		FAA25CE626B35F8A0082AD44 /* SchoolListTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA25CE526B35F8A0082AD44 /* SchoolListTab.swift */; };
 		FAA25CE826B364F20082AD44 /* SchoolRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA25CE726B364F20082AD44 /* SchoolRow.swift */; };
 		FAA25CEA26B376D30082AD44 /* SettingsRowNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA25CE926B376D30082AD44 /* SettingsRowNav.swift */; };
 		FAA25CEC26B377CC0082AD44 /* SettingsRowAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA25CEB26B377CC0082AD44 /* SettingsRowAlert.swift */; };
@@ -124,6 +124,7 @@
 		FAD43D92268AD4C500F04FE9 /* DaysPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD43D91268AD4C500F04FE9 /* DaysPageView.swift */; };
 		FAD43D94268BAAC000F04FE9 /* Lunches.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD43D93268BAAC000F04FE9 /* Lunches.swift */; };
 		FAD5709826B5CFEF005469AF /* AbsencesKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD5709726B5CFEF005469AF /* AbsencesKey.swift */; };
+		FADD217B26EAEF6100BA6FF8 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FADD217A26EAEF6100BA6FF8 /* Launch Screen.storyboard */; };
 		FADE100F2683AF5E00712D27 /* AbsencesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE100E2683AF5E00712D27 /* AbsencesList.swift */; };
 		FADE10112683AFB200712D27 /* AbsenceRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE10102683AFB200712D27 /* AbsenceRow.swift */; };
 		FAE342E326CECB9100B85268 /* StaticSiteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE342E226CECB9100B85268 /* StaticSiteView.swift */; };
@@ -231,12 +232,12 @@
 		FA73AA28263E361E00B6C8B6 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		FA73AA29263E361E00B6C8B6 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		FA73AA2F263E363600B6C8B6 /* PostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
+		FA7AF39C26EAF5D1008EB090 /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
 		FA879658269FB85F00C6E9BF /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		FAA25CDA26B1B17A0082AD44 /* WordpressPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordpressPicker.swift; sourceTree = "<group>"; };
 		FAA25CDC26B341300082AD44 /* SettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTab.swift; sourceTree = "<group>"; };
 		FAA25CE026B34DFE0082AD44 /* SettingsIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsIcons.swift; sourceTree = "<group>"; };
 		FAA25CE326B35F1D0082AD44 /* SchoolList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolList.swift; sourceTree = "<group>"; };
-		FAA25CE526B35F8A0082AD44 /* SchoolListTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolListTab.swift; sourceTree = "<group>"; };
 		FAA25CE726B364F20082AD44 /* SchoolRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolRow.swift; sourceTree = "<group>"; };
 		FAA25CE926B376D30082AD44 /* SettingsRowNav.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRowNav.swift; sourceTree = "<group>"; };
 		FAA25CEB26B377CC0082AD44 /* SettingsRowAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRowAlert.swift; sourceTree = "<group>"; };
@@ -264,6 +265,7 @@
 		FAD43D91268AD4C500F04FE9 /* DaysPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysPageView.swift; sourceTree = "<group>"; };
 		FAD43D93268BAAC000F04FE9 /* Lunches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lunches.swift; sourceTree = "<group>"; };
 		FAD5709726B5CFEF005469AF /* AbsencesKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsencesKey.swift; sourceTree = "<group>"; };
+		FADD217A26EAEF6100BA6FF8 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		FADE100E2683AF5E00712D27 /* AbsencesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsencesList.swift; sourceTree = "<group>"; };
 		FADE10102683AFB200712D27 /* AbsenceRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsenceRow.swift; sourceTree = "<group>"; };
 		FAE342E226CECB9100B85268 /* StaticSiteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticSiteView.swift; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 				CEC03FB0263E354200FFCB45 /* DenebolaApp.swift */,
 				CEC03FB2263E354200FFCB45 /* ContentView.swift */,
 				FA56AA42263F080900B6D838 /* ViewController.swift */,
+				FA7AF39E26EBDBD1008EB090 /* LaunchScreen */,
 				FA65B476268EC49900AE3704 /* ViewModelData */,
 				FA56AA44263F0B0E00B6D838 /* MainViews */,
 				FABF848F26642E36000CE2A4 /* Search */,
@@ -373,6 +376,7 @@
 				FA65B46D268E967100AE3704 /* Disk */,
 				CEC03FB4263E354400FFCB45 /* Assets.xcassets */,
 				CEC03FB9263E354400FFCB45 /* Info.plist */,
+				FADD217A26EAEF6100BA6FF8 /* Launch Screen.storyboard */,
 				CEC03FB6263E354400FFCB45 /* Preview Content */,
 			);
 			path = Denebola;
@@ -427,7 +431,6 @@
 				FA0CB84B26671926009FE7A3 /* FeedTab.swift */,
 				FA0CB84F26671989009FE7A3 /* PodcastTab.swift */,
 				FA0CB851266719BA009FE7A3 /* SocialTab.swift */,
-				FAA25CE526B35F8A0082AD44 /* SchoolListTab.swift */,
 				FAA25CDC26B341300082AD44 /* SettingsTab.swift */,
 			);
 			path = AppearanceManagement;
@@ -472,7 +475,6 @@
 				FABF848C26642D42000CE2A4 /* Podcast */,
 				FABF848E26642E0C000CE2A4 /* Social */,
 				FA309EA126AF4141007220EE /* Settings */,
-				FAA25CE226B35F090082AD44 /* List */,
 			);
 			path = MainViews;
 			sourceTree = "<group>";
@@ -534,13 +536,14 @@
 			path = WordpressAPI;
 			sourceTree = "<group>";
 		};
-		FAA25CE226B35F090082AD44 /* List */ = {
+		FA7AF39E26EBDBD1008EB090 /* LaunchScreen */ = {
 			isa = PBXGroup;
 			children = (
+				FA7AF39C26EAF5D1008EB090 /* LaunchScreen.swift */,
 				FAA25CE326B35F1D0082AD44 /* SchoolList.swift */,
 				FAA25CE726B364F20082AD44 /* SchoolRow.swift */,
 			);
-			path = List;
+			path = LaunchScreen;
 			sourceTree = "<group>";
 		};
 		FAA25CED26B378C90082AD44 /* SettingsRows */ = {
@@ -810,6 +813,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FADD217B26EAEF6100BA6FF8 /* Launch Screen.storyboard in Resources */,
 				CEC03FB8263E354400FFCB45 /* Preview Assets.xcassets in Resources */,
 				CEC03FB5263E354400FFCB45 /* Assets.xcassets in Resources */,
 			);
@@ -867,6 +871,7 @@
 				FA03D1B626719D24005A760F /* WordpressCodable.swift in Sources */,
 				FA32E90426925C4000E38F31 /* WeekIndicator.swift in Sources */,
 				FA4B7364264E335200516AC6 /* PlayerObject.swift in Sources */,
+				FA7AF39D26EAF5D1008EB090 /* LaunchScreen.swift in Sources */,
 				CE126FC5267BEBEE001ABBB1 /* ExtractArticle.swift in Sources */,
 				FAA25CE126B34DFE0082AD44 /* SettingsIcons.swift in Sources */,
 				FAA7D2FC267E775200E8FFEC /* Week.swift in Sources */,
@@ -916,7 +921,6 @@
 				FA65B471268EA85F00AE3704 /* ModelLoading.swift in Sources */,
 				FA0CB85026671989009FE7A3 /* PodcastTab.swift in Sources */,
 				FA32E90226925AA700E38F31 /* WeekBlock.swift in Sources */,
-				FAA25CE626B35F8A0082AD44 /* SchoolListTab.swift in Sources */,
 				FAA25CE426B35F1D0082AD44 /* SchoolList.swift in Sources */,
 				FA73AA2C263E361E00B6C8B6 /* Category.swift in Sources */,
 				FAAAACA12686AFBD0052A658 /* BlockView.swift in Sources */,

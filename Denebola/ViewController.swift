@@ -43,13 +43,19 @@ struct ViewController: View {
 
                         Tab(tab, tag: tab.id.rawValue)
                     }
-                } else {
-                    Tab(SchoolListTab(), tag: TabID.list.rawValue)
                 }
 
                 Tab(SettingsTab(), tag: TabID.settings.rawValue)
             }
+            .zIndex(1)
             MiniPlayer(animation: ns, expand: $viewModel.podcastExpanded)
+                .zIndex(2)
+
+            if viewModel.launching {
+                LaunchScreen()
+                    .zIndex(3)
+                    .frame(alignment: .center)
+            }
         }
         .ignoresSafeArea(.keyboard)
         .accentColor(.orange)

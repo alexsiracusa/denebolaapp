@@ -14,16 +14,30 @@ extension ViewModelData {
     // 1st initial loading for picker
 
     func selectSchool() -> Promise<Void> {
-        return firstly {
-            self.retreiveCurrentSchoolFromDisk()
-        }.then { school in
-            self.loadSchoolData(school, infiniteRetry: true)
-        }
-        .recover { _ in // current school not selected, loading school list
-            self.loadSchoolList()
-                .done {
-                    self.loaded = .list
+        return Promise { seal in
+            if school != nil {
+                seal.fulfill()
+            }
+            firstly {
+                self.retreiveCurrentSchoolFromDisk()
+            }.then { school in
+                self.loadSchoolData(school, infiniteRetry: true)
+            }.done {
+                seal.fulfill()
+            }.catch { _ in
+                self.loadSchoolList().then { _ -> Promise<Void> in
+                    if let school = self.schools.first(where: { $0.id == 0 }) {
+                        return self.loadSchoolData(school, infiniteRetry: true)
+                    } else {
+                        self.loaded = .list
+                        return Promise()
+                    }
+                }.done {
+                    seal.fulfill()
+                }.catch { error in
+                    seal.reject(error)
                 }
+            }
         }
     }
 
@@ -71,6 +85,7 @@ extension ViewModelData {
             }
 
             self.loaded = .all
+            self.launching = false
         }.ensure {
             self.loadingSchool = nil
         }

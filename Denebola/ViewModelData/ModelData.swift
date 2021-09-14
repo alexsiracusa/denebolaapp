@@ -15,6 +15,8 @@ class ViewModelData: ObservableObject {
         case none, list, all
     }
 
+    @Published var launching = true
+
     @Published var selectedTab: Int = 0
     @Published var schools: [School]!
 

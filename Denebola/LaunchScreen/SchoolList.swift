@@ -12,10 +12,6 @@ struct SchoolList: View {
     @State var error: String? = nil
     @State var listAppeared = false
 
-    var title: String {
-        viewModel.loadingSchool == nil ? "Select a School" : "Loading"
-    }
-
     var showList: Bool {
         (viewModel.schools != nil && viewModel.loadingSchool == nil) || listAppeared
     }
@@ -40,7 +36,6 @@ struct SchoolList: View {
                 }
             }
         }
-        .navigationBarTitle(title, displayMode: .inline)
     }
 }
 

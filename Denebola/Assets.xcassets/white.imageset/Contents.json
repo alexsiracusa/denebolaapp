@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "DenebolaLogoNoBackground200.png",
+      "filename" : "white.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "DenebolaLogoNoBackground400.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "DenebolaLogoNoBackground600.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
