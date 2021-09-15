@@ -7,37 +7,29 @@
 
 import SwiftUI
 
-struct PostFeed: View {
-    @StateObject private var loader: ScrollViewLoader
+struct PostFeed<Loader: PageLoader>: View where Loader.Item == Post {
     let site: Wordpress
-
-    init(site: Wordpress, category: SimpleCategory? = nil) {
-        self.site = site
-        _loader = StateObject(wrappedValue: ScrollViewLoader(site: site, category: category))
-    }
+    @ObservedObject var loader: IncrementalLoader<Loader>
 
     var body: some View {
-        if loader.posts.count != 0 {
+        if loader.count() > 0 {
             LazyVStack(spacing: 0) {
-                ForEach(loader.posts) { post in
+                ForEach(loader.items) { post in
                     PostRowView(post: post)
                         .onAppear {
-                            loader.loadMorePostsIfNeeded(currentItem: post)
+                            loader.loadMoreIfNeeded(currentItem: post)
                         }
                 }
             }
-            .onChange(of: site, perform: { value in
-                loader.setSite(value)
-            })
         } else {
-            if let error = loader.error {
+            if let error = loader.lastError {
                 VStack(spacing: 10) {
                     Button {
-                        loader.loadMorePosts()
+                        loader.loadNextPage()
                     } label: {
                         Text("Reload")
                     }
-                    Text(error)
+                    Text(error.localizedDescription)
                 }
             }
             VStack(spacing: 0) {
@@ -45,15 +37,17 @@ struct PostFeed: View {
                     LoadingPostRowView()
                 }
             }
-            .onChange(of: site, perform: { value in
-                loader.setSite(value)
-            })
+            .onAppear {
+                if loader.count() == 0 {
+                    loader.loadNextPage()
+                }
+            }
         }
     }
 }
 
 struct PostFeed_Previews: PreviewProvider {
     static var previews: some View {
-        PostFeed(site: Wordpress.default)
+        PostFeed(site: Wordpress.default, loader: IncrementalLoader(WordpressPageLoader(Wordpress.default)))
     }
 }

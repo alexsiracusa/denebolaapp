@@ -8,10 +8,8 @@
 import SwiftUI
 
 struct SiteSection: View {
-    @EnvironmentObject private var viewModel: ViewModelData
-
     let site: Wordpress
-    @State var posts: [Post]? = nil
+    @ObservedObject var loader: IncrementalLoader<WordpressPageLoader>
 
     var body: some View {
         VStack(spacing: 0) {
@@ -25,7 +23,7 @@ struct SiteSection: View {
                     Spacer()
 
                     NavigationLink(destination:
-                        StaticSiteView(site: site)
+                        StaticSiteView(site: site, loader: loader)
                     ) {
                         Text(" ")
                             .font(.system(size: 23))
@@ -38,9 +36,9 @@ struct SiteSection: View {
             .padding(.leading, 15)
 
             ScrollView(.horizontal, showsIndicators: false) {
-                if let posts = posts {
+                if loader.count() > 0 {
                     HStack(alignment: .top, spacing: 10) {
-                        ForEach(posts) { post in
+                        ForEach(loader.prefix(8)) { post in
                             PostCard(post: post, defaultImageURL: site.defaultImageURL)
                                 .frame(height: 180)
                         }
@@ -63,9 +61,8 @@ struct SiteSection: View {
                 .padding(.leading, 15)
         }
         .onAppear {
-            site.getPostPage(page: 1, per_page: 8, embed: true).done { posts in
-                self.posts = posts
-            }.catch { _ in
+            if loader.pagesLoadedCount() == 0 {
+                loader.loadNextPage()
             }
         }
     }
@@ -73,7 +70,6 @@ struct SiteSection: View {
 
 struct SiteSection_Previews: PreviewProvider {
     static var previews: some View {
-        SiteSection(site: Wordpress.default)
-            .environmentObject(ViewModelData.default)
+        SiteSection(site: Wordpress.default, loader: IncrementalLoader(WordpressPageLoader(Wordpress.default)))
     }
 }

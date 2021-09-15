@@ -33,6 +33,10 @@ class ViewModelData: ObservableObject {
                 sites = config.wordpress
                 currentSite = sites[0]
                 podcasts = config.podcasts
+
+                if let sites = sites {
+                    siteLoaders = sites.map { IncrementalLoader(WordpressPageLoader($0)) }
+                }
             } else {
                 tabManager = nil
                 sites = nil
@@ -47,6 +51,7 @@ class ViewModelData: ObservableObject {
     // current school stuff - feed
     @Published var currentSite: Wordpress!
     @Published var sites: [Wordpress]!
+    @Published var siteLoaders: [IncrementalLoader<WordpressPageLoader>] = []
 
     // current school stuff - podcast
     @Published var podcasts: [Podcast]!

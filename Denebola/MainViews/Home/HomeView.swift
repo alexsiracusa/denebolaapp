@@ -14,8 +14,8 @@ struct HomeView: View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 0) {
                 // sites
-                ForEach(viewModel.sites) { site in
-                    SiteSection(site: site)
+                ForEach(0 ..< viewModel.sites.count) { index in
+                    SiteSection(site: viewModel.sites[index], loader: viewModel.siteLoaders[index])
                 }
 
                 // podcasts

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SearchBar: View {
-    @EnvironmentObject var loader: SearchResultLoader
+    @ObservedObject var loader: IncrementalLoader<WordpressSearchLoader>
 
     @State var searchFor: String = ""
     @Binding var updateSearch: String
@@ -48,6 +48,9 @@ struct SearchBar: View {
                 .padding(.leading, 20)
             }
         }
+        .onAppear {
+            self.searchFor = loader.pageLoader.searchTerm
+        }
         .padding([.leading, .trailing], 20)
         .background(
             Rectangle()
@@ -55,9 +58,6 @@ struct SearchBar: View {
                 .frame(height: 50)
         )
         .frame(height: 50)
-        .onAppear {
-            searchFor = loader.search
-        }
     }
 }
 
@@ -69,6 +69,6 @@ extension UIApplication {
 
 struct SearchBar_Previews: PreviewProvider {
     static var previews: some View {
-        SearchBar(updateSearch: .constant(""))
+        SearchBar(loader: IncrementalLoader(WordpressSearchLoader(Wordpress.default)), updateSearch: .constant(""))
     }
 }

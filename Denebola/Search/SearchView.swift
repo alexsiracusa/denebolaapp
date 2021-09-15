@@ -8,36 +8,43 @@
 import SwiftUI
 
 struct SearchView: View {
-    @ObservedObject var loader: SearchResultLoader
     @EnvironmentObject private var viewModel: ViewModelData
-    @State var searchFor = ""
+    @State var loader: IncrementalLoader<WordpressSearchLoader>
     @State var updateSearch = ""
-    var category: SimpleCategory?
 
-    init(site: Wordpress, category: SimpleCategory? = nil) {
-        self.category = category
-        loader = SearchResultLoader(site: site, category: category)
+    init(loader: IncrementalLoader<WordpressSearchLoader>) {
+        self.loader = loader
     }
 
     var body: some View {
         VStack(spacing: 0) {
-            SearchBar(updateSearch: $updateSearch)
-                .environmentObject(loader)
+            SearchBar(loader: loader, updateSearch: $updateSearch)
+
             Divider()
 
-            // results
+            // Initialized but user didn't
             ScrollView {
-                SearchResults(loader: loader, searchFor: $updateSearch)
+                if updateSearch != "" {
+                    SearchResults(loader: loader)
+                }
             }
         }
-        .navigationBarTitle("Search \(category?.name ?? "Posts")", displayMode: .inline)
+        .onChange(of: updateSearch) { newValue in
+            if updateSearch == "" || updateSearch == loader.pageLoader.searchTerm { return }
+            loader.pageLoader.setSearchTerm(searchTerm: newValue)
+            loader.reset()
+        }
+        .onAppear {
+            self.updateSearch = loader.pageLoader.searchTerm
+        }
+        .navigationBarTitle("Search \(loader.pageLoader.category?.name ?? "Posts")", displayMode: .inline)
         .navigationBarItems(trailing: SiteLogo(url: viewModel.currentSite.logoURL))
     }
 }
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView(site: Wordpress.default, category: SimpleCategory(id: 7, name: "Opinions", image: nil))
+        SearchView(loader: IncrementalLoader(WordpressSearchLoader(Wordpress.default, category: SimpleCategory(id: 7, name: "Opinions", image: nil))))
             .environmentObject(ViewModelData.default)
     }
 }

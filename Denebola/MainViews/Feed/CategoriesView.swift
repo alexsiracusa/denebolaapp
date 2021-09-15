@@ -13,6 +13,10 @@ struct CategoriesView: View {
         viewModel.currentSite
     }
 
+    var loader: IncrementalLoader<WordpressPageLoader> {
+        return viewModel.siteLoaders[viewModel.sites.firstIndex(where: { $0 == currentSite })!]
+    }
+
     var sites: [Wordpress]! {
         viewModel.sites
     }
@@ -43,7 +47,7 @@ struct CategoriesView: View {
                 Spacer()
                     .frame(height: 5)
 
-                PostFeed(site: viewModel.currentSite)
+                PostFeed(site: viewModel.currentSite, loader: loader)
             }
             .padding(.top, 10)
             .padding(.bottom, 15)
@@ -53,7 +57,7 @@ struct CategoriesView: View {
             trailing:
             HStack(spacing: 15) {
                 NavigationLink(destination:
-                    SearchView(site: currentSite)
+                    SearchView(loader: IncrementalLoader(WordpressSearchLoader(currentSite)))
                 ) {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(.black)

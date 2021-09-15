@@ -30,7 +30,7 @@ extension Wordpress {
         }
     }
 
-    func getPostPage(category: Int? = nil, page: Int = 1, per_page: Int = 10, embed: Bool) -> CancellablePromise<[Post]> {
+    func getPostPage(category: Int? = nil, page: Int = 1, per_page: Int = 10, embed: Bool) -> Promise<[Post]> {
         var params: [String: String] = [
             "page": "\(page)",
             "per_page": "\(per_page)",
@@ -44,10 +44,10 @@ extension Wordpress {
             request.responseDecodable(of: [Post].self) { response in
                 sealResult(seal, response.result)
             }
-        }.cancellize()
+        }
     }
 
-    func searchPosts(category: Int? = nil, text: String, page: Int = 1, per_page: Int = 10, embed: Bool = false) -> CancellablePromise<[Post]> {
+    func searchPosts(category: Int? = nil, text: String, page: Int = 1, per_page: Int = 10, embed: Bool = false) -> Promise<[Post]> {
         var params: [String: String] = [
             "page": "\(page)",
             "per_page": "\(per_page)",
@@ -62,6 +62,6 @@ extension Wordpress {
             request.responseDecodable(of: [Post].self) { response in
                 sealResult(seal, response.result)
             }
-        }.cancellize()
+        }
     }
 }

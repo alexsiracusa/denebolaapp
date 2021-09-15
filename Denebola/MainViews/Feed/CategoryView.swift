@@ -21,14 +21,13 @@ struct CategoryView: View {
                 Text("Latest Posts")
                     .font(.headline)
                     .padding(.leading)
-                PostFeed(site: viewModel.currentSite, category: category)
-                // PostFeed(category: category.id, domain: handler.domain)
+                PostFeed(site: viewModel.currentSite, loader: IncrementalLoader(WordpressPageLoader(viewModel.currentSite, category: category)))
             }
 
             // Navigation Link to SearchView
             // need to do like this to avoid bugs
             NavigationLink(
-                destination: SearchView(site: viewModel.currentSite, category: category),
+                destination: SearchView(loader: IncrementalLoader(WordpressSearchLoader(viewModel.currentSite, category: category))),
                 isActive: $isActive,
                 label: { EmptyView() }
             )
