@@ -21,7 +21,9 @@ class RSSLoader {
 
     private static func beginParsing(_ parser: FeedParser) -> Promise<Feed> {
         return Promise { seal in
-            sealResult(seal, parser.parse())
+            parser.parseAsync { feed in
+                sealResult(seal, feed)
+            }
         }
     }
 

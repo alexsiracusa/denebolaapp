@@ -52,11 +52,14 @@ struct PodcastSection: View {
                     SmallEpisodeRow(episode: episode)
                 }
             } else {
-                ForEach(0 ..< 2) { _ in
-                    LoadingSmallEpisodeRow()
+                VStack(alignment: .leading, spacing: 0) {
+                    ForEach(0 ..< 2) { _ in
+                        LoadingSmallEpisodeRow()
+                    }
                 }
                 .onAppear {
-                    viewModel.loadPodcast(podcast).done {}.catch { _ in }
+                    viewModel.loadPodcast(podcast).done {}.catch { _ in
+                    }
                 }
             }
 
