@@ -30,6 +30,7 @@ struct CategoriesView: View {
                     displayPicker = true
                 } label: {
                     SiteBanner(imageURL: currentSite.bannerURL)
+                        .animation(nil)
                 }
                 .buttonStyle(ScaleButton())
                 .disabled(sites.count == 1)

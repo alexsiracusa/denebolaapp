@@ -71,6 +71,7 @@ class ViewModelData: ObservableObject {
         model.school = School.default
         model.currentSite = Wordpress.default
         model.sites = [Wordpress.default]
+        model.siteLoaders = model.sites.map { IncrementalLoader(WordpressPageLoader($0)) }
         model.podcasts = [Podcast.default]
         model.blocks = Array(repeating: BlockData.default, count: 8)
         model.fullBlocks = [
