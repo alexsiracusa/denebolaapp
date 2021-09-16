@@ -12,7 +12,7 @@ struct LaunchScreen: View {
     @State var showList = false
 
     var body: some View {
-        ZStack(alignment: .center) {
+        Group {
             if showList {
                 VStack(spacing: 0) {
                     HStack(spacing: 0) {
@@ -26,18 +26,18 @@ struct LaunchScreen: View {
 
                     SchoolList()
                 }
-                .zIndex(1)
             } else {
                 ZStack(alignment: .center) {
                     Image("DenebolaLogoNoBackground")
                         .renderingMode(.original)
                         .aspectRatio(contentMode: .fit)
                         .zIndex(1)
+
+                    Color.white.ignoresSafeArea()
+                        .zIndex(0)
                 }
                 .ignoresSafeArea()
             }
-            Color.white.ignoresSafeArea()
-                .zIndex(0)
         }
         .onAppear {
             viewModel.selectSchool().done {

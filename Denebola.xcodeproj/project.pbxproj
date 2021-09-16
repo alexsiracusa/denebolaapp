@@ -390,7 +390,6 @@
 				FA65B46D268E967100AE3704 /* Disk */,
 				CEC03FB4263E354400FFCB45 /* Assets.xcassets */,
 				CEC03FB9263E354400FFCB45 /* Info.plist */,
-				FADD217A26EAEF6100BA6FF8 /* Launch Screen.storyboard */,
 				CEC03FB6263E354400FFCB45 /* Preview Content */,
 			);
 			path = Denebola;
@@ -554,6 +553,7 @@
 				FA7AF39C26EAF5D1008EB090 /* LaunchScreen.swift */,
 				FAA25CE326B35F1D0082AD44 /* SchoolList.swift */,
 				FAA25CE726B364F20082AD44 /* SchoolRow.swift */,
+				FADD217A26EAEF6100BA6FF8 /* Launch Screen.storyboard */,
 			);
 			path = LaunchScreen;
 			sourceTree = "<group>";
