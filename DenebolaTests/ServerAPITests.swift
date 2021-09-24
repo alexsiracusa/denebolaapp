@@ -6,7 +6,7 @@
 //
 
 import Alamofire
-@testable import Cypress
+@testable import Denebola
 import Disk
 import XCTest
 let SERVER_TEST_URL = "https://www.denebolaapp.com/api"

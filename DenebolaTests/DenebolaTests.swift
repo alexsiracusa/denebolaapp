@@ -5,7 +5,7 @@
 //  Created by Connor Tam on 6/17/21.
 //
 
-@testable import Cypress
+@testable import Denebola
 import XCTest
 
 class CypressTests: XCTestCase {

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SearchResults: View {
+    @EnvironmentObject var viewModel: ViewModelData
     @ObservedObject var loader: IncrementalLoader<WordpressSearchLoader>
 
     var body: some View {
@@ -16,7 +17,7 @@ struct SearchResults: View {
                 ForEach(loader.items) { post in
                     SearchRow(post: post)
                         .onAppear {
-                            loader.loadMoreIfNeeded(currentItem: post)
+                            loader.loadMoreIfNeeded(currentItem: post).catch(viewModel.handleError())
                         }
                 }
             }
@@ -33,7 +34,7 @@ struct SearchResults: View {
             }.padding()
                 .onAppear {
                     if loader.count() == 0 {
-                        loader.loadNextPage()
+                        loader.loadNextPage().catch(viewModel.handleError())
                     }
                 }
         }
@@ -43,5 +44,6 @@ struct SearchResults: View {
 struct SearchResults_Previews: PreviewProvider {
     static var previews: some View {
         SearchResults(loader: IncrementalLoader(WordpressSearchLoader(Wordpress.default)))
+            .environmentObject(ViewModelData.default)
     }
 }

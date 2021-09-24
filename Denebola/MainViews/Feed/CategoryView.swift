@@ -13,6 +13,17 @@ struct CategoryView: View {
     var imageURL: URL
 
     @State var isActive = false
+    
+    var pageLoader: IncrementalLoader<WordpressPageLoader> {
+        IncrementalLoader(WordpressPageLoader(viewModel.currentSite, category: category))
+    }
+
+    func onRefresh(_ refreshDone: @escaping () -> Void) {
+        pageLoader.refreshNonRemoving()
+            .refreshTimeout()
+            .catch(viewModel.handleError(context: "Refresh failed."))
+            .finally(refreshDone)
+    }
 
     var body: some View {
         ScrollView {
@@ -21,7 +32,7 @@ struct CategoryView: View {
                 Text("Latest Posts")
                     .font(.headline)
                     .padding(.leading)
-                PostFeed(site: viewModel.currentSite, loader: IncrementalLoader(WordpressPageLoader(viewModel.currentSite, category: category)))
+                PostFeed(site: viewModel.currentSite, loader: pageLoader)
             }
 
             // Navigation Link to SearchView
@@ -45,6 +56,7 @@ struct CategoryView: View {
                 SiteLogo(url: viewModel.currentSite.logoURL)
             }
         )
+        .pullToRefresh(viewModel.getRefreshModifier(for: "category", callback: onRefresh))
     }
 }
 

@@ -8,7 +8,16 @@
 import SwiftUI
 
 struct PodcastDetailView: View {
+    @EnvironmentObject var viewModel: ViewModelData
+
     let podcast: LoadedPodcast
+
+    func onRefresh(_ doneRefresh: @escaping () -> Void) {
+        viewModel.loadPodcast(viewModel.podcasts.first(where: { $0.id == podcast.id })!)
+            .refreshTimeout()
+            .ensure(doneRefresh)
+            .catch(viewModel.handleError(context: "Podcast refresh failed"))
+    }
 
     var body: some View {
         ScrollView {
@@ -37,7 +46,7 @@ struct PodcastDetailView: View {
                     }
                 }
             }
-        }
+        }.pullToRefresh(viewModel.getRefreshModifier(for: "podcastDetail", callback: onRefresh))
     }
 }
 
@@ -45,5 +54,6 @@ struct PodcastDetailView_Previews: PreviewProvider {
     static var previews: some View {
         PodcastDetailView(podcast: LoadedPodcast.default)
             .environmentObject(PlayerObject.default)
+            .environmentObject(ViewModelData.default)
     }
 }

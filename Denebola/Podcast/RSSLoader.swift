@@ -27,7 +27,7 @@ class RSSLoader {
         }
     }
 
-    private static func processFeedData(_ feed: Feed) -> Promise<LoadedPodcast> {
+    private static func processFeedData(_ feed: Feed, _ id: Int) -> Promise<LoadedPodcast> {
         return Promise { seal in
             switch feed {
             case .atom:
@@ -35,7 +35,7 @@ class RSSLoader {
             case .json:
                 seal.reject(RSSError(kind: .parseError, errorDescription: "Data is of type JSON, not RSS"))
             case let .rss(rss):
-                guard let podcast = LoadedPodcast.fromRSS(rss) else {
+                guard let podcast = LoadedPodcast.fromRSS(rss, id) else {
                     seal.reject(RSSError(kind: .parseError, errorDescription: "Data could not be converted"))
                     return
                 }
@@ -44,7 +44,7 @@ class RSSLoader {
         }
     }
 
-    static func loadPodcast(_ url: String) -> Promise<LoadedPodcast> {
+    static func loadPodcast(_ url: String, _ id: Int) -> Promise<LoadedPodcast> {
         // Convert url string to URL
         return firstly {
             RSSLoader.getFeedParser(try url.asURL())
@@ -54,20 +54,20 @@ class RSSLoader {
             RSSLoader.beginParsing(parser)
             // Process the feed data
         }.then { feed in
-            RSSLoader.processFeedData(feed)
+            RSSLoader.processFeedData(feed, id)
         }
     }
 }
 
 struct LoadedPodcast: Identifiable {
-    var id = UUID()
+    var id: Int
 
     let title: String
     let description: String
     let titleImageURL: URL?
     let episodes: [PodcastEpisode]
 
-    static func fromRSS(_ rss: RSSFeed) -> LoadedPodcast? {
+    static func fromRSS(_ rss: RSSFeed, _ id: Int) -> LoadedPodcast? {
         guard let title = rss.title else { return nil }
         guard let description = rss.description else { return nil }
         var imageURLString = ""
@@ -81,20 +81,20 @@ struct LoadedPodcast: Identifiable {
         guard let imageURL = try? imageURLString.asURL() else { return nil }
         guard let items = rss.items else { return nil }
         let episodes: [PodcastEpisode] = items.compactMap { PodcastEpisode.fromRSSItem($0, defaultImage: imageURL, from: title) }
-        return LoadedPodcast(title: title, description: description, titleImageURL: imageURL, episodes: episodes)
+        return LoadedPodcast(id: id, title: title, description: description, titleImageURL: imageURL, episodes: episodes)
     }
 
     static var `default`: LoadedPodcast {
-        return LoadedPodcast(title: "Denebocast: The Newton South Podcast", description: "Hello! Aidan, Brendan, and Justin here from Denebocast: Newton South's premier news podcast. The three of us are close friends who share a passion for journalism and current events. On this show, we present students with information that they should know going into each week. As current high schoolers, we provide a peer-based approach, reporting on news, both local and national, in an interesting, conversational setting. Feel free to email us at denebolapod@gmail.com if you have any questions, comments, or requests for us to cover", titleImageURL: try? "https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded_nologo/2481705/2481705-1618286836680-cc0bfe519a5a9.jpg".asURL(), episodes: [PodcastEpisode(title: "Denebocast - S3E5 Media, where do we draw the line? With Mr.Weintraub", description: "In this week’s episode we talk to our English teacher about his experience teaching this year, and his love of media! Near the end of the show we talk about the good and bad of media.", date: DateInRegion(), imageURL: try? "https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded_nologo/2481705/2481705-1618286836680-cc0bfe519a5a9.jpg".asURL(), audioURL: try? "https://anchor.fm/s/f635e84/podcast/play/35085052/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2F2021-5-8%2F194756451-44100-2-d848eddb3e298.mp3".asURL(), from: "Denebocast")])
+        return LoadedPodcast(id: 0, title: "Denebocast: The Newton South Podcast", description: "Hello! Aidan, Brendan, and Justin here from Denebocast: Newton South's premier news podcast. The three of us are close friends who share a passion for journalism and current events. On this show, we present students with information that they should know going into each week. As current high schoolers, we provide a peer-based approach, reporting on news, both local and national, in an interesting, conversational setting. Feel free to email us at denebolapod@gmail.com if you have any questions, comments, or requests for us to cover", titleImageURL: try? "https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded_nologo/2481705/2481705-1618286836680-cc0bfe519a5a9.jpg".asURL(), episodes: [PodcastEpisode(title: "Denebocast - S3E5 Media, where do we draw the line? With Mr.Weintraub", description: "In this week’s episode we talk to our English teacher about his experience teaching this year, and his love of media! Near the end of the show we talk about the good and bad of media.", date: DateInRegion(), imageURL: try? "https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded_nologo/2481705/2481705-1618286836680-cc0bfe519a5a9.jpg".asURL(), audioURL: try? "https://anchor.fm/s/f635e84/podcast/play/35085052/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2F2021-5-8%2F194756451-44100-2-d848eddb3e298.mp3".asURL(), from: "Denebocast")])
     }
 
 //    static var empty: LoadedPodcast {
 //        return LoadedPodcast(id: UUID(), title: String(), description: "", titleImageURL: nil, episodes: [])
 //    }
 
-    private static var nextId = UUID()
+    private static var nextId = 0
     static func empty() -> LoadedPodcast {
-        LoadedPodcast.nextId = UUID()
+        LoadedPodcast.nextId += 1
         return LoadedPodcast(id: nextId, title: String(), description: "", titleImageURL: nil, episodes: [])
     }
 

@@ -8,8 +8,17 @@
 import SwiftUI
 
 struct StaticSiteView: View {
+    @EnvironmentObject var viewModel: ViewModelData
+    
     let site: Wordpress
     let loader: IncrementalLoader<WordpressPageLoader>
+    
+    func onRefresh(_ refreshDone: @escaping () -> Void) {
+        loader.refreshNonRemoving()
+            .refreshTimeout()
+            .catch(viewModel.handleError(context: "Refresh failed."))
+            .finally(refreshDone)
+    }
 
     var body: some View {
         ScrollView(.vertical) {
@@ -25,11 +34,13 @@ struct StaticSiteView: View {
             .padding(.bottom, 15)
         }
         .navigationBarTitle(site.name, displayMode: .inline)
+        .pullToRefresh(viewModel.getRefreshModifier(for: "staticsite", callback: onRefresh))
     }
 }
 
 struct StaticSiteView_Previews: PreviewProvider {
     static var previews: some View {
         StaticSiteView(site: Wordpress.default, loader: IncrementalLoader(WordpressPageLoader(Wordpress.default)))
+            .environmentObject(ViewModelData.default)
     }
 }

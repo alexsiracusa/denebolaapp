@@ -115,7 +115,7 @@ extension ViewModelData {
     func loadPodcast(_ podcast: Podcast) -> Promise<Void> {
         guard !isPodcastLoaded(podcast) else { return Promise { $0.fulfill() } }
         return Promise { seal in
-            RSSLoader.loadPodcast(podcast.rssUrl).done { loaded in
+            RSSLoader.loadPodcast(podcast.rssUrl, podcast.id).done { loaded in
                 self.loadedPodcasts[podcast.id] = loaded
                 seal.fulfill()
             }.catch { error in

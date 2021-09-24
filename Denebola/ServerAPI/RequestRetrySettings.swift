@@ -16,7 +16,7 @@ class Retry: RetryPolicy {
 
     init(delay: Double = 4, maxRetryCount: UInt = UInt.max) {
         self.delay = delay
-        self.maxRetryCount = maxRetryCount
+        self.maxRetryCount = 1
     }
 
     override func retry(_ request: Request,

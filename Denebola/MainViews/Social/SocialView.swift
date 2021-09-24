@@ -14,6 +14,14 @@ struct SocialView: View {
     @State var showingScheduleDay: Int = 0
     @State var showingSchedule: Bool = false
 
+    func onRefresh(_ doneRefresh: @escaping () -> Void) {
+        viewModel.loadAbsences()
+            .refreshTimeout()
+            .then { _ in viewModel.loadSchoolYear() }
+            .catch(viewModel.handleError(context: "Refresh failed."))
+            .finally { doneRefresh() }
+    }
+
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading) {
@@ -25,6 +33,7 @@ struct SocialView: View {
             }
         }
         .navigationBarTitle("Social", displayMode: .inline)
+        .pullToRefresh(viewModel.getRefreshModifier(for: "social", callback: onRefresh))
     }
 }
 

@@ -20,4 +20,18 @@ extension ViewModelData {
         }
         return nil
     }
+
+    func handleError(context: String? = nil) -> (_ error: Error) -> Void {
+        // REDIRECT ALL ERRORS TO HERE
+        return { error in
+            print("ERROR OCCURED: \(context) - \(error.localizedDescription)")
+        }
+    }
+
+    func getRefreshModifier(for name: String, callback: @escaping RefreshCallback) -> PullRefresh {
+        if self.refreshObservers[name] == nil {
+            self.refreshObservers[name] = PullRefresh(callback)
+        }
+        return self.refreshObservers[name]!
+    }
 }

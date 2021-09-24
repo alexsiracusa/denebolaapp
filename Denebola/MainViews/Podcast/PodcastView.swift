@@ -6,10 +6,18 @@
 //
 
 import MediaPlayer
+import PromiseKit
 import SwiftUI
 
 struct PodcastView: View {
     @EnvironmentObject var viewModel: ViewModelData
+
+    func onRefresh(_ refreshDone: @escaping () -> Void) {
+        when(resolved: viewModel.podcasts.map { viewModel.loadPodcast($0).refreshTimeout() })
+            .get { _ in }
+            .catch(viewModel.handleError(context: "Refresh failed."))
+            .finally(refreshDone)
+    }
 
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -45,6 +53,7 @@ struct PodcastView: View {
             }
         }
         .navigationBarTitle("Podcasts", displayMode: .inline)
+        .pullToRefresh(viewModel.getRefreshModifier(for: "podcast", callback: onRefresh))
     }
 }
 

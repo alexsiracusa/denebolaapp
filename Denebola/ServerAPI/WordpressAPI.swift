@@ -23,11 +23,7 @@ extension Wordpress {
         let params: [String: String] = [
             "_embed": embed ? "true" : "false",
         ]
-        return Promise { seal in
-            AF.request("\(url)/wp-json/wp/v2/posts/\(id)", method: .get, parameters: params, interceptor: Retry()).validate().responseDecodable(of: Post.self) { response in
-                sealResult(seal, response.result)
-            }
-        }
+        return requestPromise(request: AF.request("\(url)/wp-json/wp/v2/posts/\(id)", method: .get, parameters: params, interceptor: Retry()))
     }
 
     func getPostPage(category: Int? = nil, page: Int = 1, per_page: Int = 10, embed: Bool) -> Promise<[Post]> {
@@ -38,13 +34,7 @@ extension Wordpress {
         ]
         if let cat = category { params["categories"] = "\(cat)" }
 
-        let request = AF.request("\(url)/?rest_route=/wp/v2/posts", method: .get, parameters: params, interceptor: Retry()).validate()
-
-        return Promise(cancellable: request) { seal in
-            request.responseDecodable(of: [Post].self) { response in
-                sealResult(seal, response.result)
-            }
-        }
+        return requestPromise(request: AF.request("\(url)/?rest_route=/wp/v2/posts", method: .get, parameters: params, interceptor: Retry()))
     }
 
     func searchPosts(category: Int? = nil, text: String, page: Int = 1, per_page: Int = 10, embed: Bool = false) -> Promise<[Post]> {
@@ -56,12 +46,6 @@ extension Wordpress {
         ]
         if let category = category { params["categories"] = "\(category)" }
 
-        let request = AF.request("\(url)/wp-json/wp/v2/posts", method: .get, parameters: params, interceptor: Retry()).validate()
-
-        return Promise(cancellable: request) { seal in
-            request.responseDecodable(of: [Post].self) { response in
-                sealResult(seal, response.result)
-            }
-        }
+        return requestPromise(request: AF.request("\(url)/wp-json/wp/v2/posts", method: .get, parameters: params, interceptor: Retry()))
     }
 }

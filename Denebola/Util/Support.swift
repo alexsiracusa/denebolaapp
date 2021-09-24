@@ -16,6 +16,7 @@ let DATE_FORMAT = "MMMM d, YYYY"
 let TIME_FORMAT = "h:mm a"
 let SERVER_TIME_FORMAT = "hh:mm:ss"
 let TIME_SCALE: Int32 = 600
+let DEFAULT_REFRESH_TIMEOUT: Double = 7
 
 func getFormattedMinutesSeconds(_ seconds: Double) -> String {
     // had this crash once at ", Int(seconds / 60" saying it couldn't convert Double to Int because it's either NaN or infinite.  Can't reproduce so idk what to fix.  Crashed when I clicked on a new episode.
@@ -97,6 +98,15 @@ enum DayOfWeek: String, CaseIterable, Codable {
 func impact(_ style: UIImpactFeedbackGenerator.FeedbackStyle = .rigid) {
     let impactMed = UIImpactFeedbackGenerator(style: style)
     impactMed.impactOccurred()
+}
+
+func requestPromise<T: Codable>(request: DataRequest) -> Promise<T> {
+    return Promise(cancellable: request) { seal in
+        // Resolve the request
+        request.validate().responseDecodable(of: T.self, decoder: MultiFormatter()) { response in
+            sealResult(seal, response.result)
+        }
+    }
 }
 
 // Additional formats to be parsed by the autoformatter in SwiftDate

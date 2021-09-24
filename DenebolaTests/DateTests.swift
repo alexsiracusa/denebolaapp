@@ -5,7 +5,7 @@
 //  Created by Connor Tam on 7/20/21.
 //
 
-@testable import Cypress
+@testable import Denebola
 import SwiftDate
 import XCTest
 

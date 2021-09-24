@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct PostFeed<Loader: PageLoader>: View where Loader.Item == Post {
+struct PostFeed<Loader: PageLoader & Equatable>: View where Loader.Item == Post {
+    @EnvironmentObject var viewModel: ViewModelData
     let site: Wordpress
     @ObservedObject var loader: IncrementalLoader<Loader>
 
@@ -17,7 +18,7 @@ struct PostFeed<Loader: PageLoader>: View where Loader.Item == Post {
                 ForEach(loader.items) { post in
                     PostRowView(post: post)
                         .onAppear {
-                            loader.loadMoreIfNeeded(currentItem: post)
+                            loader.loadMoreIfNeeded(currentItem: post).catch(viewModel.handleError())
                         }
                 }
             }
@@ -25,7 +26,7 @@ struct PostFeed<Loader: PageLoader>: View where Loader.Item == Post {
             if let error = loader.lastError {
                 VStack(spacing: 10) {
                     Button {
-                        loader.loadNextPage()
+                        loader.loadNextPage().catch(viewModel.handleError())
                     } label: {
                         Text("Reload")
                     }
@@ -39,7 +40,7 @@ struct PostFeed<Loader: PageLoader>: View where Loader.Item == Post {
             }
             .onAppear {
                 if loader.count() == 0 {
-                    loader.loadNextPage()
+                    loader.loadNextPage().catch(viewModel.handleError())
                 }
             }
         }
@@ -49,5 +50,6 @@ struct PostFeed<Loader: PageLoader>: View where Loader.Item == Post {
 struct PostFeed_Previews: PreviewProvider {
     static var previews: some View {
         PostFeed(site: Wordpress.default, loader: IncrementalLoader(WordpressPageLoader(Wordpress.default)))
+            .environmentObject(ViewModelData.default)
     }
 }

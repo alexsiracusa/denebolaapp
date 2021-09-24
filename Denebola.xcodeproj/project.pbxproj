@@ -19,6 +19,7 @@
 		CE6442B4267FA152002FFFEC /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = CE6442B3267FA152002FFFEC /* SwiftUIPager */; };
 		CE7788B72690E10500942A71 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = CE7788B62690E10500942A71 /* Introspect */; };
 		CE7788B92690E1DD00942A71 /* ViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7788B82690E1DD00942A71 /* ViewManager.swift */; };
+		CE7C3D1826DA6FD200DCB647 /* PullRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7C3D1726DA6FD200DCB647 /* PullRefresh.swift */; };
 		CE87B3EE264CCE8A009CAF44 /* Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE87B3ED264CCE8A009CAF44 /* Support.swift */; };
 		CE9BD098265CC9AB00231689 /* SocialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9BD097265CC9AB00231689 /* SocialView.swift */; };
 		CEADD43826DA88A100D689EC /* PageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEADD43726DA88A100D689EC /* PageLoader.swift */; };
@@ -164,6 +165,7 @@
 		CE45BFD7267BFF63003D0C2B /* DenebolaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenebolaTests.swift; sourceTree = "<group>"; };
 		CE45BFD9267BFF63003D0C2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE7788B82690E1DD00942A71 /* ViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewManager.swift; sourceTree = "<group>"; };
+		CE7C3D1726DA6FD200DCB647 /* PullRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullRefresh.swift; sourceTree = "<group>"; };
 		CE87B3ED264CCE8A009CAF44 /* Support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Support.swift; sourceTree = "<group>"; };
 		CE9BD097265CC9AB00231689 /* SocialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialView.swift; sourceTree = "<group>"; };
 		CEADD43726DA88A100D689EC /* PageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageLoader.swift; sourceTree = "<group>"; };
@@ -421,6 +423,7 @@
 				FA879658269FB85F00C6E9BF /* PopupView.swift */,
 				FA3A94C826A1367800CEFA08 /* LongText.swift */,
 				FA3FC66726BB172B00908674 /* ScheduleBlockView.swift */,
+				CE7C3D1726DA6FD200DCB647 /* PullRefresh.swift */,
 			);
 			path = UtilityViews;
 			sourceTree = "<group>";
@@ -881,6 +884,7 @@
 				CEAE3E3D2648D0CC0066C825 /* WebView.swift in Sources */,
 				FA1E4C38269E4F4400EC955B /* EpisodeDescription.swift in Sources */,
 				FA03D1B626719D24005A760F /* WordpressCodable.swift in Sources */,
+				CE7C3D1826DA6FD200DCB647 /* PullRefresh.swift in Sources */,
 				FA32E90426925C4000E38F31 /* WeekIndicator.swift in Sources */,
 				FA4B7364264E335200516AC6 /* PlayerObject.swift in Sources */,
 				FA7AF39D26EAF5D1008EB090 /* LaunchScreen.swift in Sources */,
@@ -987,7 +991,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6ZFN3Y2T93;
-				INFOPLIST_FILE = CypressTests/Info.plist;
+				INFOPLIST_FILE = DenebolaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -997,7 +1001,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cypress.app/Cypress";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Denebola.app/Denebola";
 			};
 			name = Debug;
 		};
@@ -1007,7 +1011,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6ZFN3Y2T93;
-				INFOPLIST_FILE = CypressTests/Info.plist;
+				INFOPLIST_FILE = DenebolaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1017,7 +1021,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cypress.app/Cypress";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Denebola.app/Denebola";
 			};
 			name = Release;
 		};

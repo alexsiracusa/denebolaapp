@@ -9,7 +9,14 @@ import SwiftUI
 
 struct SiteSection: View {
     let site: Wordpress
+    @EnvironmentObject var viewModel: ViewModelData
     @ObservedObject var loader: IncrementalLoader<WordpressPageLoader>
+    
+    func loadPosts() {
+        if loader.pagesLoadedCount() == 0 {
+            loader.loadNextPage().catch(viewModel.handleError())
+        }
+    }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -60,16 +67,14 @@ struct SiteSection: View {
                 .padding(.top, 35)
                 .padding(.leading, 15)
         }
-        .onAppear {
-            if loader.pagesLoadedCount() == 0 {
-                loader.loadNextPage()
-            }
-        }
+        .onChange(of: loader.items) {_ in loadPosts()}
+        .onAppear(perform: loadPosts)
     }
 }
 
 struct SiteSection_Previews: PreviewProvider {
     static var previews: some View {
         SiteSection(site: Wordpress.default, loader: IncrementalLoader(WordpressPageLoader(Wordpress.default)))
+            .environmentObject(ViewModelData.default)
     }
 }

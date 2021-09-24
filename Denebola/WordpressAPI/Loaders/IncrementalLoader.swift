@@ -6,15 +6,18 @@
 //
 
 import Foundation
+import PromiseKit
 import SwiftUI
 
-class IncrementalLoader<Loader: PageLoader>: PageLoaderManager<Loader> {
-    func loadMoreIfNeeded(currentItem: Loader.Item) {
+class IncrementalLoader<Loader: PageLoader & Equatable>: PageLoaderManager<Loader> {
+    func loadMoreIfNeeded(currentItem: Loader.Item) -> Promise<Void> {
         let index = items.firstIndex(where: { currentItem.id == $0.id })
         let thresholdIndex = items.index(items.endIndex, offsetBy: -10)
 
         if index == thresholdIndex {
-            loadNextPage()
+            return loadNextPage()
         }
+        
+        return Promise()
     }
 }

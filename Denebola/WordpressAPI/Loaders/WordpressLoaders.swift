@@ -6,8 +6,9 @@
 //
 
 import PromiseKit
+import SwiftUI
 
-class WordpressPageLoader: PageLoader {
+class WordpressPageLoader: PageLoader, Equatable {
     typealias Item = Post
 
     let site: Wordpress
@@ -35,6 +36,10 @@ class WordpressPageLoader: PageLoader {
 
     func loadPage(_ page: Int) -> Promise<[Item]> {
         return site.getPostPage(category: nil, page: page, per_page: per_page, embed: true)
+    }
+    
+    static func == (lhs: WordpressPageLoader, rhs: WordpressPageLoader) -> Bool {
+        return lhs.site == rhs.site
     }
 }
 

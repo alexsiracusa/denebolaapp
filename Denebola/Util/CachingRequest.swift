@@ -10,15 +10,6 @@ import CryptoKit
 import Foundation
 import PromiseKit
 
-func requestPromise<T: Codable>(request: DataRequest) -> Promise<T> {
-    return Promise(cancellable: request) { seal in
-        // Resolve the request
-        request.validate().responseDecodable(of: T.self, decoder: MultiFormatter()) { response in
-            sealResult(seal, response.result)
-        }
-    }
-}
-
 class CachingRequest<T: Codable> {
     let dataRequest: DataRequest
 

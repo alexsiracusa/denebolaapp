@@ -16,6 +16,13 @@ struct SearchView: View {
         self.loader = loader
     }
 
+    func onRefresh(_ refreshDone: @escaping () -> Void) {
+        loader.refreshNonRemoving()
+            .refreshTimeout()
+            .catch(viewModel.handleError(context: "Refresh failed."))
+            .finally(refreshDone)
+    }
+
     var body: some View {
         VStack(spacing: 0) {
             SearchBar(loader: loader, updateSearch: $updateSearch)
@@ -39,6 +46,7 @@ struct SearchView: View {
         }
         .navigationBarTitle("Search \(loader.pageLoader.category?.name ?? "Posts")", displayMode: .inline)
         .navigationBarItems(trailing: SiteLogo(url: viewModel.currentSite.logoURL))
+        .pullToRefresh(viewModel.getRefreshModifier(for: "search", callback: onRefresh))
     }
 }
 

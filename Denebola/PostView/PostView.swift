@@ -50,7 +50,6 @@ struct PostView: View {
 struct PostView_Previews: PreviewProvider {
     static var previews: some View {
         PostView(post: Post.default)
-            // .environmentObject(WordpressAPIHandler())
-            .environmentObject(ViewModelData())
+            .environmentObject(ViewModelData.default)
     }
 }

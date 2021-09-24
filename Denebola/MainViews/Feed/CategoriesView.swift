@@ -23,6 +23,13 @@ struct CategoriesView: View {
 
     @State var displayPicker = false
 
+    func onRefresh(_ refreshDone: @escaping () -> Void) {
+        loader.refreshNonRemoving()
+            .refreshTimeout()
+            .catch(viewModel.handleError(context: "Refresh failed."))
+            .finally(refreshDone)
+    }
+
     var body: some View {
         ScrollView(.vertical) {
             VStack(alignment: .leading) {
@@ -69,6 +76,7 @@ struct CategoriesView: View {
         .sheet(isPresented: $displayPicker) {
             WordpressPicker(show: $displayPicker)
         }
+        .pullToRefresh(viewModel.getRefreshModifier(for: "categories", callback: onRefresh))
     }
 }
 

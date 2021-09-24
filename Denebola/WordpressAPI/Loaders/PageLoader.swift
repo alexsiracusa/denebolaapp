@@ -9,7 +9,11 @@ import Alamofire
 import Foundation
 import PromiseKit
 
-class PageLoaderManager<Loader: PageLoader>: ObservableObject {
+class PageLoaderManager<Loader: PageLoader & Equatable>: ObservableObject, Equatable {
+    static func == (lhs: PageLoaderManager<Loader>, rhs: PageLoaderManager<Loader>) -> Bool {
+        return lhs.pageLoader == rhs.pageLoader
+    }
+
     var pageLoader: Loader!
     private var currentPage = 1
     private var reachedEnd = false
@@ -21,26 +25,39 @@ class PageLoaderManager<Loader: PageLoader>: ObservableObject {
     init(_ pageLoader: Loader?) {
         self.pageLoader = pageLoader
     }
+    
+    func handlePageLoadError(error: Error) throws {
+        if let error = error as? PageLoadError, case .endOfResults = error {
+            self.reachedEnd = true
+        } else {
+            self.lastError = error
+            throw error
+        }
+    }
 
-    func loadNextPage() {
+    func loadNextPage() -> Promise<Void> {
         if reachedEnd || loadingPage {
-            return
+            return Promise()
         }
 
         loadingPage = true
 
-        pageLoader.loadPage(currentPage).done { items in
+        return pageLoader.loadPage(currentPage).done { items in
             self.items.append(contentsOf: items)
             self.currentPage += 1
         }.ensure {
             self.loadingPage = false
-        }.catch { error in
-            if let error = error as? PageLoadError, case .endOfResults = error {
-                self.reachedEnd = true
-            } else {
-                self.lastError = error
-            }
         }
+        .recover(handlePageLoadError)
+    }
+    
+    func refreshNonRemoving() -> Promise<Void> {
+        return pageLoader.loadPage(1).done {items in
+            self.reset()
+            self.items.append(contentsOf: items)
+            self.currentPage += 1
+        }
+        .recover(handlePageLoadError)
     }
 
     func reset() {
