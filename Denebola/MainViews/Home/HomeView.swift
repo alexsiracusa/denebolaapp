@@ -15,7 +15,7 @@ struct HomeView: View {
         var loadingPromises: [Promise<Void>] = []
 
         loadingPromises += viewModel.siteLoaders.map { $0.refreshNonRemoving().refreshTimeout() }
-        loadingPromises += viewModel.podcasts.map {viewModel.loadPodcast($0).refreshTimeout()}
+        loadingPromises += viewModel.podcasts.map { viewModel.loadPodcast($0).refreshTimeout() }
 
         when(fulfilled: loadingPromises)
             .get { _ in }

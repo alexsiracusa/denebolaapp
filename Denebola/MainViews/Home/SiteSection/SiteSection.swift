@@ -11,7 +11,7 @@ struct SiteSection: View {
     let site: Wordpress
     @EnvironmentObject var viewModel: ViewModelData
     @ObservedObject var loader: IncrementalLoader<WordpressPageLoader>
-    
+
     func loadPosts() {
         if loader.pagesLoadedCount() == 0 {
             loader.loadNextPage().catch(viewModel.handleError())
@@ -67,7 +67,7 @@ struct SiteSection: View {
                 .padding(.top, 35)
                 .padding(.leading, 15)
         }
-        .onChange(of: loader.items) {_ in loadPosts()}
+        .onChange(of: loader.items) { _ in loadPosts() }
         .onAppear(perform: loadPosts)
     }
 }

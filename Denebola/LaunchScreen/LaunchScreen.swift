@@ -20,7 +20,7 @@ struct LaunchScreen: View {
                 if viewModel.schools == nil {
                     viewModel.loadSchoolList().done { _ in
                         showList = true
-                    }
+                    }.catch(viewModel.handleError())
                 } else {
                     showList = true
                 }

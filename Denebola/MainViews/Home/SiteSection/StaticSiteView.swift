@@ -9,10 +9,10 @@ import SwiftUI
 
 struct StaticSiteView: View {
     @EnvironmentObject var viewModel: ViewModelData
-    
+
     let site: Wordpress
     let loader: IncrementalLoader<WordpressPageLoader>
-    
+
     func onRefresh(_ refreshDone: @escaping () -> Void) {
         loader.refreshNonRemoving()
             .refreshTimeout()

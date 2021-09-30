@@ -21,23 +21,21 @@ class WordpressPageLoader: PageLoader, Equatable {
         self.per_page = per_page
     }
 
-    func mapPageError(result: Promise<[Item]>) -> Promise<[Item]> {
-        return result.recover { error -> Promise<[Item]> in
-            if let error = error.asAFError {
-                // code 400 marks end
-                if let code = error.responseCode, code == 400 {
-                    throw PageLoadError.endOfResults
-                }
-                throw PageLoadError.network(error)
+    func mapPageError(error: Error) throws -> Promise<[Item]> {
+        if let error = error.asAFError {
+            // code 400 marks end
+            if let code = error.responseCode, code == 400 {
+                throw PageLoadError.endOfResults
             }
-            throw error
+            throw PageLoadError.network(error)
         }
+        throw error
     }
 
     func loadPage(_ page: Int) -> Promise<[Item]> {
-        return site.getPostPage(category: nil, page: page, per_page: per_page, embed: true)
+        return site.getPostPage(category: category?.id, page: page, per_page: per_page, embed: true).recover(mapPageError)
     }
-    
+
     static func == (lhs: WordpressPageLoader, rhs: WordpressPageLoader) -> Bool {
         return lhs.site == rhs.site
     }
@@ -46,12 +44,8 @@ class WordpressPageLoader: PageLoader, Equatable {
 class WordpressSearchLoader: WordpressPageLoader {
     var searchTerm: String = ""
 
-    init(_ site: Wordpress, category _: SimpleCategory? = nil, per_page: Int = 10) {
-        super.init(site, per_page: per_page)
-    }
-
     override func loadPage(_ page: Int) -> Promise<[WordpressPageLoader.Item]> {
-        return site.searchPosts(category: category?.id, text: searchTerm, page: page, per_page: per_page, embed: true)
+        return site.searchPosts(category: category?.id, text: searchTerm, page: page, per_page: per_page, embed: true).recover(mapPageError)
     }
 
     func setSearchTerm(searchTerm: String) {

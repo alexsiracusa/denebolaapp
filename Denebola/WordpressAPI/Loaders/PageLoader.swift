@@ -25,12 +25,12 @@ class PageLoaderManager<Loader: PageLoader & Equatable>: ObservableObject, Equat
     init(_ pageLoader: Loader?) {
         self.pageLoader = pageLoader
     }
-    
+
     func handlePageLoadError(error: Error) throws {
         if let error = error as? PageLoadError, case .endOfResults = error {
-            self.reachedEnd = true
+            reachedEnd = true
         } else {
-            self.lastError = error
+            lastError = error
             throw error
         }
     }
@@ -43,6 +43,11 @@ class PageLoaderManager<Loader: PageLoader & Equatable>: ObservableObject, Equat
         loadingPage = true
 
         return pageLoader.loadPage(currentPage).done { items in
+            if items.count == 0 {
+                self.reachedEnd = true
+                return
+            }
+
             self.items.append(contentsOf: items)
             self.currentPage += 1
         }.ensure {
@@ -50,9 +55,9 @@ class PageLoaderManager<Loader: PageLoader & Equatable>: ObservableObject, Equat
         }
         .recover(handlePageLoadError)
     }
-    
+
     func refreshNonRemoving() -> Promise<Void> {
-        return pageLoader.loadPage(1).done {items in
+        return pageLoader.loadPage(1).done { items in
             self.reset()
             self.items.append(contentsOf: items)
             self.currentPage += 1

@@ -29,9 +29,9 @@ extension ViewModelData {
     }
 
     func getRefreshModifier(for name: String, callback: @escaping RefreshCallback) -> PullRefresh {
-        if self.refreshObservers[name] == nil {
-            self.refreshObservers[name] = PullRefresh(callback)
+        if refreshObservers[name] == nil {
+            refreshObservers[name] = PullRefresh(callback)
         }
-        return self.refreshObservers[name]!
+        return refreshObservers[name]!
     }
 }

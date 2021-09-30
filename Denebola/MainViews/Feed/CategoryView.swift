@@ -13,7 +13,7 @@ struct CategoryView: View {
     var imageURL: URL
 
     @State var isActive = false
-    
+
     var pageLoader: IncrementalLoader<WordpressPageLoader> {
         IncrementalLoader(WordpressPageLoader(viewModel.currentSite, category: category))
     }
@@ -35,8 +35,6 @@ struct CategoryView: View {
                 PostFeed(site: viewModel.currentSite, loader: pageLoader)
             }
 
-            // Navigation Link to SearchView
-            // need to do like this to avoid bugs
             NavigationLink(
                 destination: SearchView(loader: IncrementalLoader(WordpressSearchLoader(viewModel.currentSite, category: category))),
                 isActive: $isActive,

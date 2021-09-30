@@ -59,7 +59,7 @@ struct PullRefresh: ViewModifier {
     @ObservedObject var observer: ObserverWrapper
 
     init(_ refreshCallback: @escaping RefreshCallback) {
-        self.observer = ObserverWrapper(refreshCallback)
+        observer = ObserverWrapper(refreshCallback)
     }
 
     func body(content: Content) -> some View {
@@ -89,26 +89,26 @@ struct Spinner: View {
 
     private func getOpacity(_ i: Int) -> Double {
         var opacity: Double
-        
+
         if animating {
             opacity = Double((opacityIndex + i - 1) % 8) / 8.0
         } else {
             opacity = percentage * 8 >= CGFloat(i) ? Double(i) / 8.0 : 0
         }
-        
+
         opacity *= opacityFactor
-        
+
         return opacity
     }
-    
+
     private func startTimer() {
         if timer == nil {
-            timer = Timer.scheduledTimer(withTimeInterval: 0.15, repeats: true) {_ in
+            timer = Timer.scheduledTimer(withTimeInterval: 0.15, repeats: true) { _ in
                 opacityIndex = (opacityIndex - 1 + 8) % 8
             }
         }
     }
-    
+
     private func stopTimer() {
         timer?.invalidate()
         timer = nil
@@ -117,15 +117,15 @@ struct Spinner: View {
     private func doAnimate() {
         if animating {
             opacityIndex = 0
-            
+
             startTimer()
-            
+
             withAnimation(Animation.linear(duration: 4.0).repeatForever()) {
                 rotationDegrees = 360
             }
         } else {
             stopTimer()
-            
+
             withAnimation(.default) {
                 rotationDegrees = 0
             }

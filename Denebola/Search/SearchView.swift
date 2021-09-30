@@ -38,8 +38,9 @@ struct SearchView: View {
         }
         .onChange(of: updateSearch) { newValue in
             if updateSearch == "" || updateSearch == loader.pageLoader.searchTerm { return }
-            loader.pageLoader.setSearchTerm(searchTerm: newValue)
             loader.reset()
+            loader.pageLoader.setSearchTerm(searchTerm: newValue)
+            loader.loadNextPage().catch(viewModel.handleError(context: "Search failed"))
         }
         .onAppear {
             self.updateSearch = loader.pageLoader.searchTerm

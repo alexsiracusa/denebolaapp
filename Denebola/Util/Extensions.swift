@@ -177,10 +177,10 @@ extension String: LocalizedError {
 
 extension Promise {
     func timeout(_ duration: Double) -> Promise<T> {
-        return race(self, after(seconds: duration).then {_ in throw "Timed out."})
+        return race(self, after(seconds: duration).then { _ in throw "Timed out." })
     }
-    
+
     func refreshTimeout() -> Promise {
-        return self.timeout(DEFAULT_REFRESH_TIMEOUT)
+        return timeout(DEFAULT_REFRESH_TIMEOUT)
     }
 }

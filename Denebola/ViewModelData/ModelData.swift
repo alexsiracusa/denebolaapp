@@ -62,7 +62,7 @@ class ViewModelData: ObservableObject {
     @Published var blocks: [BlockData]!
     @Published var fullBlocks: [Int: FullBlock]!
     @Published var absences: Absences?
-    
+
     @Published var refreshObservers: [String: PullRefresh] = [:]
 
     var navController: UINavigationController!

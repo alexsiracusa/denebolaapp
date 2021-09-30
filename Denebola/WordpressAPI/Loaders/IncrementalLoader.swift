@@ -12,12 +12,12 @@ import SwiftUI
 class IncrementalLoader<Loader: PageLoader & Equatable>: PageLoaderManager<Loader> {
     func loadMoreIfNeeded(currentItem: Loader.Item) -> Promise<Void> {
         let index = items.firstIndex(where: { currentItem.id == $0.id })
-        let thresholdIndex = items.index(items.endIndex, offsetBy: -10)
+        let thresholdIndex = items.index(items.endIndex, offsetBy: -20)
 
-        if index == thresholdIndex {
+        if let index = index, index >= thresholdIndex {
             return loadNextPage()
         }
-        
+
         return Promise()
     }
 }
