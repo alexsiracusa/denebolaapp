@@ -28,7 +28,7 @@ class ViewModelData: ObservableObject {
     @Published var school: School!
     @Published var config: SchoolConfig! {
         didSet {
-            if let config = self.config {
+            if let config = config {
                 tabManager = TabManager(config.allTabs())
                 sites = config.wordpress
                 currentSite = sites[0]

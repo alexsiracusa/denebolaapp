@@ -29,9 +29,9 @@ struct BlockEditor: View {
                 ColorPicker(selection: $color, supportsOpacity: false, label: {
                     Spacer()
                 })
-                    .onChange(of: color, perform: { color in
-                        block.codableColor = CodableColor(uiColor: UIColor(color))
-                    })
+                .onChange(of: color, perform: { color in
+                    block.codableColor = CodableColor(uiColor: UIColor(color))
+                })
             }
             .frame(height: 30)
             .padding(.horizontal, 15)

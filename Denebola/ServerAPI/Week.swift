@@ -25,9 +25,9 @@ struct Week: Codable {
 
     func startAndEndTimes() -> (start: Date, end: Date) {
         let blocks = includedDays.flatMap { $0.blocks + $0.lunch }
-        let startTime = blocks.map { $0.times.from }.min()
-        let endTime = blocks.map { $0.times.to }.max()
-        return (startTime!, endTime!)
+        let startTime = blocks.map { $0.times.from }.min() ?? Date()
+        let endTime = blocks.map { $0.times.to }.max() ?? Date()
+        return (startTime, endTime)
     }
 
     static var `default`: Week {
