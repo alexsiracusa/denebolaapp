@@ -1179,7 +1179,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.denebolaapp.denebola;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.denebola-app.denebola";
 				PRODUCT_NAME = Denebola;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1203,7 +1203,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.denebolaapp.denebola;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.denebola-app.denebola";
 				PRODUCT_NAME = Denebola;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
