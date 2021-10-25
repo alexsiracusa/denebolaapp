@@ -60,7 +60,8 @@ struct SchedulePageView: View {
 
                 TabView(selection: $selection) {
                     ForEach(Array(year.weeks.enumerated()), id: \.offset) {
-                        ScheduleView(date: $0.element, height: 400, showLunches: showLunches).tag($0.offset)
+                        ScheduleView(date: $0.element, height: 400, showLunches: showLunches, selection: $selection, id: $0.offset)
+                            .tag($0.offset)
                     }
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))

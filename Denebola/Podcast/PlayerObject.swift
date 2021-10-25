@@ -155,9 +155,9 @@ class PlayerObject: AVPlayer, ObservableObject {
         playingObserverToken = addObserver(self, forKeyPath: "rate", options: [.old, .new], context: &playerContext)
         timeObserverToken = addPeriodicTimeObserver(forInterval: interval, queue: .main) {
             [weak self] _ in
-            if !(self?.seeking ?? true) {
-                self?.time = self?.currentTime().seconds ?? 0.0
-            }
+                if !(self?.seeking ?? true) {
+                    self?.time = self?.currentTime().seconds ?? 0.0
+                }
         }
     }
 

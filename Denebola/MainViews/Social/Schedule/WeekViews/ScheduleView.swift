@@ -5,6 +5,7 @@
 //  Created by Connor Tam on 5/26/21.
 //
 
+import PromiseKit
 import SwiftUI
 
 struct ScheduleView: View {
@@ -16,6 +17,18 @@ struct ScheduleView: View {
 
     @State var showDetail = false
     var showLunches: Bool
+
+    @Binding var selection: Int
+    var id: Int
+
+    func load() {
+        guard selection == id else { return }
+        viewModel.school.getWeek(date: date).perform().done { week in
+            self.week = week
+        }.catch { error in
+            self.error = error.localizedDescription
+        }
+    }
 
     var body: some View {
         if let week = week {
@@ -53,20 +66,15 @@ struct ScheduleView: View {
             Text(error)
         } else {
             LoadingScheduleView(height: height)
-                .onAppear {
-                    viewModel.school.getWeek(date: date).perform().done { week in
-                        self.week = week
-                    }.catch { error in
-                        self.error = error.localizedDescription
-                    }
-                }
+                .onChange(of: selection) { _ in load() }
+                .onAppear(perform: load)
         }
     }
 }
 
 struct ScheduleView_Previews: PreviewProvider {
     static var previews: some View {
-        ScheduleView(date: Date("7/20/2021")!, height: 400, showLunches: false)
+        ScheduleView(date: Date("7/20/2021")!, height: 400, showLunches: false, selection: .constant(0), id: 0)
             .environmentObject(ViewModelData.default)
     }
 }
